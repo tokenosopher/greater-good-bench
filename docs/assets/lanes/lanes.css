@@ -358,3 +358,9 @@ body.v2 .site-header { padding-left: max(var(--v2-gutter), calc((100% - 1480px) 
 /* ---- local only: the compare page's video maker ---- */
 .v2-studio { margin: 20px 0; }
 .v2-studio .v2-pill { text-decoration: none; }
+
+/* ---- text runs: a card's tile fills its media area; compare reads each whole text in a scrollable column ---- */
+.v2-media .text-tile { width: 100%; border: 0; border-radius: 0; }
+.v2-card .v2-media .text-tile { padding-top: 60px; } /* below the card's checkbox */
+.v2-tile-media .text-tile, .v2-feature-media .text-tile { position: absolute; inset: 0; aspect-ratio: auto; border: 0; border-radius: 0; padding: 52px 20px 16px; }
+.v2-col .v2-media .prose-box { border: 0; border-radius: 0; max-height: 70vh; }

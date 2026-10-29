@@ -1,6 +1,6 @@
 import { el, getJSON, showMessage } from "../dom.js";
 import { modelParts, vendorOf, vendorName, vendorMark, runDir, isFailed, coverOf, EFFORTS, byRankThenModel, prettyModelName, effortPill, localFeature } from "../runs.js";
-import { kindUi } from "../output.js";
+import { kindUi, textCard } from "../output.js";
 import { plural } from "./common.js";
 import { setupRequestButton } from "./request.js";
 
@@ -19,8 +19,10 @@ const dateOf = (p) => {
 };
 const vendorCount = (p) => new Set((p.models || []).map(vendorOf)).size;
 const pageHref = (p) => `page.html?p=${encodeURIComponent(p.slug)}`;
+// A page without a picture whose runs wrote texts shows one of them as a text tile (title + excerpt) instead.
 const thumbOf = (p) => (p.thumb = p.pickedThumb ?? p.thumb)
   ? el("img", { attrs: { src: p.thumb, alt: "", loading: "lazy" } })
+  : p.pickedText ? textCard(p.pickedText.output)
   : el("div", { class: "thumb-ph", text: "no preview" });
 const kindChip = (p) => el("span", { class: "kind-chip", text: kindUi(p.kind).label, attrs: { "data-kind": p.kind } });
 
@@ -116,7 +118,12 @@ async function pickThumbs(pages) {
       usedVendor.set(vendorOf(chosen.model), (usedVendor.get(vendorOf(chosen.model)) ?? 0) + 1);
       return;
     }
-    if (!runs.length) return;
+    if (!runs.length) {
+      // No pictures (a text page): its highest-effort run with an excerpt stands for it.
+      const texts = (datas[i]?.runs || []).filter((r) => !isFailed(r) && r.output?.excerpt != null);
+      p.pickedText = texts.sort((a, b) => level(b) - level(a) || byRankThenModel(a, b))[0] ?? null;
+      return;
+    }
     const top = Math.max(...runs.map(level));
     const score = (r) => (usedModel.get(r.model) ?? 0) * 100 + (usedVendor.get(vendorOf(r.model)) ?? 0);
     const pick = runs.filter((r) => level(r) === top).sort((a, b) => score(a) - score(b) || byRankThenModel(a, b))[0];

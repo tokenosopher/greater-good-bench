@@ -55,7 +55,8 @@ if (page) {
       const vo = vendorOptions(run.model);
       const bar = votes ? voteBar(votes, run.id) : offlineVotes();
       return el("article", { class: "v2-col", attrs: vo.attrs, style: vo.style }, [
-        el("div", { class: "v2-media" }, renderOutput(run, runDir(slug, run.id), { compact: true, href: runUrl(slug, run.id) })),
+        // a text is read in full in each column (a scrollable box), everything else is shown as on the cards
+        el("div", { class: "v2-media" }, renderOutput(run, runDir(slug, run.id), { compact: !run.output?.text, href: runUrl(slug, run.id) })),
         el("div", { class: "v2-col-head" }, [
           el("a", { class: "who", attrs: { href: runUrl(slug, run.id), title: run.model } }, [
             vendorMark(run.model),

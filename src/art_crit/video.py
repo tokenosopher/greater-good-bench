@@ -212,6 +212,8 @@ def make_source(studio, docs, slug, run, seconds, work, say):
     run_dir = docs / "data" / slug / "runs" / run["id"]
     out = Path(work) / f"{run['id']}.mp4"
     items = items_of(run)
+    if not items and not (run.get("output") or {}).get("entry"):
+        return None  # a text run: nothing to record or picture
     try:
         if not items:  # a game or page
             return record_game(studio, slug, run, seconds, work)

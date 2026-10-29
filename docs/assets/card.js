@@ -72,9 +72,10 @@ function metricsLine(r, best) {
 export function runCard(slug, r, best, selection = null, votes = null) {
   const base = runDir(slug, r.id);
   const sb = stateBadge(r) || outputBadge(r);
-  // ↗ opens the run alone in a popup window, through the sandboxed play.html (never the raw entry URL)
+  // ↗ opens the run alone in a popup window, through the sandboxed play.html (never the raw entry URL); a text is read
+  // on its run page instead
   const url = playUrl(slug, r.id);
-  const pop = outputOk(r) ? el("a", {
+  const pop = outputOk(r) && !r.output.text ? el("a", {
     class: "popout", text: "↗",
     attrs: { href: url, target: "_blank", rel: "noopener", title: "Open in its own window", "aria-label": `Open ${r.model} ${r.effort} in its own window` },
     on: { click: (e) => { e.preventDefault(); window.open(url, "_blank", "popup,noopener,width=1280,height=800"); } },

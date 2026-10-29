@@ -59,8 +59,9 @@ export async function loadPage(slug, container = document.getElementById("main")
   }
 }
 
+// Run files as text (source files, a text run's Markdown), revalidated like getJSON: a re-import replaces them in place.
 export async function getText(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, { cache: "no-cache" });
   if (!res.ok) throw new Error(`${url} → HTTP ${res.status}`);
   return res.text();
 }

@@ -191,8 +191,9 @@ function renderGame(run, base) {
   } : null;
   panel.append(...renderOutput(run, base, { full: true, tools }));
   if (canCover) {
-    // A game or page has one picture (its screenshot): only the page cover applies. Media runs get buttons per file.
-    panel.append(el("div", { class: "cover-bar" }, [...(run.output?.items ? [] : coverButtons(run, null, status)), status]));
+    // A game or page has one picture (its screenshot): only the page cover applies. Media runs get buttons per file;
+    // a text has no picture at all.
+    panel.append(el("div", { class: "cover-bar" }, [...(run.output?.items || run.output?.text ? [] : coverButtons(run, null, status)), status]));
   }
   if (isPlayable(run)) {
     panel.append(

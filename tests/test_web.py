@@ -1863,3 +1863,109 @@ def test_lanes_compare_needs_two_runs_and_marks_the_best(site, page):
     expect(page.locator(".v2-back-btn")).to_have_attribute("href", "page.html?p=demo")
     expect(page.locator(".site-header .v2-classic")).to_have_attribute("href", f"classic/compare.html?p=demo&r={MEDIUM_ID},{HIGH_ID}")
     assert_no_errors(page)
+
+
+# ---------------------------------------------------------------- text pages (kind "text")
+TEXT_LOW = "model-x-low-20260104-000000"
+TEXT_HIGH = "model-x-high-20260104-000000"
+ESSAY_MD = """# On Chairs
+
+A chair is a **seat** with a [back](https://example.com/backs).
+
+- four legs
+- one back
+
+> Sit down.
+
+<script>window.essayRan = true</script>
+<b>not bold</b>
+"""
+
+
+def text_page(page):
+    """Routes a two-run text page "essay" (Markdown with a raw <script>) into the fixture site, and onto the home page."""
+    def run(run_id, effort):
+        return {"id": run_id, "page": "essay", "model": "test-org/model-x", "effort": effort, "kind": "text",
+                "started_at": "2026-01-04T00:00:00Z", "harness": {"name": "pi", "version": "0.87.1"}, "state": "complete",
+                "error": None, "route": None, "rank": None, "session": None, "thumb": None,
+                "source": {"root": "source/", "files": ["notes.md"]},
+                "metrics": {"duration_ms": 1000, "cost_usd": 0.01, "tool_calls": 1, "turns": 1, "tokens_total": 10,
+                            "tokens_input": 5, "tokens_output": 5, "tokens_reasoning": 0, "tokens_cache_read": 0},
+                "output": {"kind": "text", "text": "text/text.md", "bytes": len(ESSAY_MD), "words": len(ESSAY_MD.split()),
+                           "title": "On Chairs", "excerpt": f"A chair is a seat with a back ({effort}).",
+                           "ok": True, "verified": True, "error": None}}
+    data = {"slug": "essay", "title": "Essay", "kind": "text", "prompt": "an essay on chairs", "final_prompt": None,
+            "created": "2026-01-04T00:00:00Z", "updated": "2026-01-04T00:00:00Z",
+            "runs": [run(TEXT_LOW, "low"), run(TEXT_HIGH, "high")]}
+
+    def pages(route):
+        body = route.fetch().json()
+        route.fulfill(json=[{"slug": "essay", "title": "Essay", "kind": "text", "n_runs": 2, "models": ["test-org/model-x"],
+                             "updated": "2026-01-04T00:00:00Z", "thumb": None}, *body])
+
+    page.route("**/data/pages.json", pages)
+    page.route("**/data/essay/page.json", lambda r: r.fulfill(json=data))
+    page.route("**/data/essay/runs/*/text/text.md", lambda r: r.fulfill(body=ESSAY_MD, content_type="text/markdown"))
+    page.route("**/data/essay/runs/*/source/notes.md", lambda r: r.fulfill(body="outline", content_type="text/markdown"))
+    return data
+
+
+def test_text_run_page_reads_the_markdown_as_an_article(site, page):
+    text_page(page)
+    page.goto(f"{site}run.html?p=essay&r={TEXT_HIGH}")
+    article = page.locator("#panel-game article.prose")
+    expect(article.locator("h1")).to_have_text("On Chairs")
+    expect(page.locator('#tabs button[data-tab="game"]')).to_have_text("Read")
+    expect(article.locator("p").first).to_have_text("A chair is a seat with a back.")
+    expect(article.locator("strong")).to_have_text("seat")
+    expect(article.locator("li")).to_have_count(2)
+    expect(article.locator("blockquote")).to_have_text("Sit down.")
+    assert article.locator("a").get_attribute("href") == "https://example.com/backs"
+    # raw HTML is visible text, never markup: the script doesn't run and <b> isn't bold
+    assert "<script>" in article.inner_text() and "<b>not bold</b>" in article.inner_text()
+    assert article.locator("script, b, img, iframe").count() == 0
+    assert page.evaluate("window.essayRan") is None
+    download = page.locator(".prose-foot a")
+    expect(download).to_have_attribute("download", "text.md")
+    assert download.get_attribute("href").endswith(f"essay/runs/{TEXT_HIGH}/text/text.md")
+    assert page.locator('a:has-text("Open full screen")').count() == 0  # nothing to play
+    page.locator('#tabs button[data-tab="source"]').click()
+    expect(page.locator(".source-files button")).to_have_text(["notes.md"])
+    expect(page.locator(".source-view pre")).to_have_text("outline")
+    assert_no_errors(page)
+
+
+def test_text_cards_show_the_title_and_excerpt_on_home_and_page(site, page):
+    text_page(page)
+    page.goto(site + "index.html")
+    expect(page.locator(".v2-feature h2")).to_have_text("Essay")
+    feature = page.locator(".v2-feature-media")
+    expect(feature.locator(".text-tile-title")).to_have_text("On Chairs")
+    expect(feature.locator(".text-tile-excerpt")).to_have_text("A chair is a seat with a back (high).")  # the top effort
+    expect(page.locator(".v2-section-head .v2-pill").nth(1)).to_have_text(re.compile(r"Text\s*1"))
+    expect(page.locator('.v2-tile[href="page.html?p=essay"] .text-tile-excerpt')).to_have_count(1)
+
+    page.goto(site + "page.html?p=essay")
+    expect(page.locator(".v2-strip .kind-chip")).to_have_text("Text")
+    tile = page.locator(f'.v2-card:has(input[data-id="{TEXT_LOW}"]) a.text-tile')
+    expect(tile.locator(".text-tile-excerpt")).to_have_text("A chair is a seat with a back (low).")
+    expect(tile).to_have_attribute("href", f"run.html?p=essay&r={TEXT_LOW}")
+    assert page.locator("article.prose").count() == 0  # cards never fetch the text
+    box = tile.bounding_box()
+    assert 200 < box["height"] < 300  # the 4:3 tile of a 320 px card, like a picture's
+    assert_no_errors(page)
+
+
+def test_text_compare_reads_each_text_in_full(site, page):
+    text_page(page)
+    page.goto(f"{site}compare.html?p=essay&r={TEXT_LOW},{TEXT_HIGH}")
+    cols = page.locator(".v2-col")
+    expect(cols).to_have_count(2)
+    expect(cols.locator(".prose-box article.prose h1")).to_have_text(["On Chairs", "On Chairs"])
+    expect(page.locator(".v2-cmp-sub .kind-chip")).to_have_text("Text")
+    assert page.evaluate("window.essayRan") is None
+
+    page.goto(f"{site}classic/compare.html?p=essay")
+    expect(page.locator(".compare-col .text-tile")).to_have_count(2)
+    assert page.locator(".compare-col a.popout").count() == 0  # no play.html window for a text
+    assert_no_errors(page)
