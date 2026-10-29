@@ -11,6 +11,7 @@ const KINDS = [
   ["godot", "A Godot project, played in the browser"],
   ["web", "A web page with JS modules, packaged into one file"],
   ["blender", "A 3D model and renders made in Blender (viewable in 3D)"],
+  ["text", "Writing the agent saves as one Markdown file (an essay, a story…)"],
 ];
 
 // Shown only when served by `art-crit serve` on this machine (it answers api/local with requests: true).
@@ -96,7 +97,7 @@ function requestCard(r, onRemove) {
 // The form, in a modal <dialog>: prompt, kind, optional title / note / model set, and a live preview of the command.
 function requestDialog(sets, onSaved) {
   const field = (label, control, hint) => el("label", { class: "field" }, [el("span", { class: "field-label" }, [label, hint ? el("span", { class: "muted", text: ` ${hint}` }) : null]), control]);
-  const prompt = el("textarea", { attrs: { name: "prompt", rows: "5", required: "", maxlength: "4000", placeholder: "e.g. Create an SVG of a pelican riding a bicycle" } });
+  const prompt = el("textarea", { attrs: { name: "prompt", rows: "5", required: "", maxlength: "4000", placeholder: "e.g. An SVG that, if everyone saw it, would improve the world for the greatest number of people." } });
   const title = el("input", { attrs: { name: "title", type: "text", maxlength: "120", placeholder: "Pelican on a bicycle" } });
   const note = el("textarea", { attrs: { name: "note", rows: "2", maxlength: "1000", placeholder: "Why it's interesting, what to look for…" } });
   const set = el("select", { attrs: { name: "set" } }, [el("option", { text: "choose models later", attrs: { value: "" } }), ...sets.map((s) => el("option", { text: s, attrs: { value: s } }))]);

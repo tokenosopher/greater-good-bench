@@ -1862,6 +1862,7 @@ def test_lanes_compare_needs_two_runs_and_marks_the_best(site, page):
     expect(cols.first.locator(".v2-metric")).to_have_count(3)
     expect(page.locator(".v2-back-btn")).to_have_attribute("href", "page.html?p=demo")
     expect(page.locator(".site-header .v2-classic")).to_have_attribute("href", f"classic/compare.html?p=demo&r={MEDIUM_ID},{HIGH_ID}")
+    assert "null" not in page.evaluate("() => [...document.getElementById('main').childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent.trim())")
     assert_no_errors(page)
 
 

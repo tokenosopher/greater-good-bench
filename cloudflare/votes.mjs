@@ -192,7 +192,7 @@ async function vote(request, env, pages, user, kind) {
 // repo), never the visitor's own GitHub token, which the site doesn't keep. Each user gets REQUESTS_PER_DAY a day and
 // the whole site REQUESTS_PER_DAY_ALL, counted in D1, so the bot can't be used to flood the repo.
 const REPO = "tokenosopher/mtwabp-bench";
-const REQUEST_KINDS = { media: "Vector", godot: "Game", web: "Web", blender: "3D" };
+const REQUEST_KINDS = { media: "Vector", godot: "Game", web: "Web", blender: "3D", text: "Text" };
 const REQUESTS_PER_DAY = 5;
 const REQUESTS_PER_DAY_ALL = 50;
 const MAX_REQUEST_BODY = 8192;

@@ -1,9 +1,8 @@
 # Prompts
 
 The six pages of mtwabp bench, one prompt file each. **The prompts here are placeholders**: the owner supplies the
-final ones. Each file is passed to `art-crit run` whole, so when you put in the final prompt, also delete the
-`<!-- placeholder: ... -->` line (otherwise the agents see it as part of the prompt). A page has one prompt: to change it
-after its first run, pass `--change-prompt`.
+final ones before the first real run. Each file is passed to `art-crit run` whole (`-f`), so it should hold the prompt
+and nothing else. A page has one prompt: to change it after its first run, pass `--change-prompt`.
 
 | Page (slug) | Title | Kind | Prompt file | Note |
 |---|---|---|---|---|
@@ -12,7 +11,7 @@ after its first run, pass `--change-prompt`.
 | `3d-model` | 3D model | `blender` | [3d-model.md](3d-model.md) | A `.glb` plus renders, made in a per-run windowless Blender through its MCP server. |
 | `game` | Game | `godot` | [game.md](game.md) | Exported to a web build and boot-checked in headless Chrome. |
 | `animation` | Animation | `media` | [animation.md](animation.md) | A video, capped at 10 s (trimmed if longer). The owner may still switch this page to `web` (an animation in the browser, no length cap): change `--kind` before the first run, since a page keeps its kind. |
-| `essay` | Essay | `text` | [essay.md](essay.md) | The `text` kind (added separately, ADR-0036); the command fails until it is in the tree. |
+| `essay` | Essay | `text` | [essay.md](essay.md) | The `text` kind (ADR-0036): one Markdown file, rendered on the site. |
 
 ## Models
 
@@ -47,43 +46,43 @@ the 3D model, `godot` with matching web export templates for the game.
 ### SVG
 
 ```sh
-uv run art-crit run --dry-run --kind media -p svg -t "SVG" --set frontier -e high -T 2h -j 4 "$(cat prompts/svg.md)"
-uv run art-crit run --kind media -p svg -t "SVG" --set frontier -e high -T 2h -j 4 "$(cat prompts/svg.md)"
+uv run art-crit run --dry-run --kind media -p svg -t "SVG" --set frontier -e high -T 2h -j 4 -f prompts/svg.md
+uv run art-crit run --kind media -p svg -t "SVG" --set frontier -e high -T 2h -j 4 -f prompts/svg.md
 ```
 
 ### Website
 
 ```sh
-uv run art-crit run --dry-run --kind web -p website -t "Website" --set frontier -e high -T 2h -j 4 "$(cat prompts/website.md)"
-uv run art-crit run --kind web -p website -t "Website" --set frontier -e high -T 2h -j 4 "$(cat prompts/website.md)"
+uv run art-crit run --dry-run --kind web -p website -t "Website" --set frontier -e high -T 2h -j 4 -f prompts/website.md
+uv run art-crit run --kind web -p website -t "Website" --set frontier -e high -T 2h -j 4 -f prompts/website.md
 ```
 
 ### 3D model
 
 ```sh
-uv run art-crit run --dry-run --kind blender -p 3d-model -t "3D model" --set frontier -e high -T 2h -j 4 "$(cat prompts/3d-model.md)"
-uv run art-crit run --kind blender -p 3d-model -t "3D model" --set frontier -e high -T 2h -j 4 "$(cat prompts/3d-model.md)"
+uv run art-crit run --dry-run --kind blender -p 3d-model -t "3D model" --set frontier -e high -T 2h -j 4 -f prompts/3d-model.md
+uv run art-crit run --kind blender -p 3d-model -t "3D model" --set frontier -e high -T 2h -j 4 -f prompts/3d-model.md
 ```
 
 ### Game
 
 ```sh
-uv run art-crit run --dry-run --kind godot -p game -t "Game" --set frontier -e high -T 2h -j 4 "$(cat prompts/game.md)"
-uv run art-crit run --kind godot -p game -t "Game" --set frontier -e high -T 2h -j 4 "$(cat prompts/game.md)"
+uv run art-crit run --dry-run --kind godot -p game -t "Game" --set frontier -e high -T 2h -j 4 -f prompts/game.md
+uv run art-crit run --kind godot -p game -t "Game" --set frontier -e high -T 2h -j 4 -f prompts/game.md
 ```
 
 ### Animation
 
 ```sh
-uv run art-crit run --dry-run --kind media -p animation -t "Animation" --set frontier -e high -T 2h -j 4 "$(cat prompts/animation.md)"
-uv run art-crit run --kind media -p animation -t "Animation" --set frontier -e high -T 2h -j 4 "$(cat prompts/animation.md)"
+uv run art-crit run --dry-run --kind media -p animation -t "Animation" --set frontier -e high -T 2h -j 4 -f prompts/animation.md
+uv run art-crit run --kind media -p animation -t "Animation" --set frontier -e high -T 2h -j 4 -f prompts/animation.md
 ```
 
 ### Essay
 
 ```sh
-uv run art-crit run --dry-run --kind text -p essay -t "Essay" --set frontier -e high -T 2h -j 4 "$(cat prompts/essay.md)"
-uv run art-crit run --kind text -p essay -t "Essay" --set frontier -e high -T 2h -j 4 "$(cat prompts/essay.md)"
+uv run art-crit run --dry-run --kind text -p essay -t "Essay" --set frontier -e high -T 2h -j 4 -f prompts/essay.md
+uv run art-crit run --kind text -p essay -t "Essay" --set frontier -e high -T 2h -j 4 -f prompts/essay.md
 ```
 
 To add runs to a page later (another model, another level), pass `--page <slug>` without a prompt: the page's

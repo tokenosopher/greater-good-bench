@@ -336,7 +336,7 @@ test("prompt requests are capped per user and per day, and GitHub trouble is a c
   const sixth = await request(e, alice, { prompt: PROMPT, kind: "godot" });
   assert.equal(sixth.status, 429);
   const bob = await signIn(e, "bob");
-  assert.equal((await request(e, bob, { prompt: PROMPT, kind: "web" })).status, 201); // the cap is per user
+  assert.equal((await request(e, bob, { prompt: PROMPT, kind: "text" })).status, 201); // the cap is per user (and text is a kind)
   e.DB.run("UPDATE prompt_requests SET at = at - 25 * 3600"); // a day later
   assert.equal((await request(e, alice, { prompt: PROMPT, kind: "blender" })).status, 201);
   // the site-wide cap

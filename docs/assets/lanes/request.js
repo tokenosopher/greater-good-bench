@@ -12,6 +12,7 @@ const KINDS = [
   ["godot", "A Godot project, played in the browser"],
   ["web", "A web page with JS modules, packaged into one file"],
   ["blender", "A 3D model and renders made in Blender (viewable in 3D)"],
+  ["text", "Writing the agent saves as one Markdown file (an essay, a story…)"],
 ];
 const DRAFT = "art-crit.request-draft"; // kept across the sign-in round trip only
 const AGAIN = "#request"; // the hash sign-in returns to, which reopens the form with the draft
@@ -34,7 +35,7 @@ function newIssueUrl({ prompt, kind, note }) {
 
 // The header button and its dialog. `header` is the .site-header to put the button in.
 export function setupRequestButton(header) {
-  const prompt = el("textarea", { attrs: { name: "prompt", rows: "5", required: "", minlength: "10", maxlength: "4000", placeholder: "e.g. Create an SVG of a pelican riding a bicycle" } });
+  const prompt = el("textarea", { attrs: { name: "prompt", rows: "5", required: "", minlength: "10", maxlength: "4000", placeholder: "e.g. An SVG that, if everyone saw it, would improve the world for the greatest number of people." } });
   const note = el("textarea", { attrs: { name: "note", rows: "2", maxlength: "1000", placeholder: "Why it's interesting, what to look for…" } });
   const kinds = el("div", { class: "kind-options", attrs: { role: "radiogroup", "aria-label": "Kind" } }, KINDS.map(([kind, desc], i) =>
     el("label", { class: "kind-option" }, [

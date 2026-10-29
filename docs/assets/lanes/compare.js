@@ -75,7 +75,7 @@ if (page) {
     };
 
     const models = new Set(page.runs.map((r) => r.model));
-    main.replaceChildren(
+    main.replaceChildren(...[ // replaceChildren prints null as "null": the optional parts are filtered out below
       el("header", { class: "v2-cmp-top" }, [
         back,
         el("h1", { text: `Comparing ${runs.length} runs` }),
@@ -92,7 +92,7 @@ if (page) {
       (await localFeature("video")) ? el("p", { class: "v2-studio" }, [el("a", { class: "v2-pill", text: "Make a video of these runs in the video studio", attrs: { href: `studio.html?p=${encodeURIComponent(slug)}&r=${runs.map((r) => encodeURIComponent(r.id)).join(",")}` } })]) : null,
       el("div", { class: "v2-cols" }, runs.map(col)),
       el("p", { class: "v2-cmp-note", text: "Green marks the best value in each row among the selected runs. Bars are scaled to the largest value." }),
-    );
+    ].filter(Boolean));
     for (const n of main.querySelectorAll(".votes-label")) n.remove();
   }
 }
