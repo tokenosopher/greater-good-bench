@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2312 562" width="2312" height="562">
-<!-- mtwabp bench wordmark (a working name: the name is set here, in SITE_NAME in dom.js, and in each HTML file's title
-     and logo alt). Plain text in a system font, at the 4.1:1 the headers and the video scene expect. "mtwabp" in violet,
-     "bench" in ink; both lighten in dark mode. -->
+<!-- Greater Good Bench wordmark (the name is set here, in SITE_NAME in dom.js, and in each HTML file's title and logo
+     alt). Plain text in a system font, at the 4.1:1 the headers and the video scene expect. "Greater Good" in violet,
+     "Bench" in ink; both lighten in dark mode. -->
 <style>.a{fill:#7742fe}.b{fill:#040304}@media (prefers-color-scheme:dark){.a{fill:#9b7bff}.b{fill:#f2f1ef}}
-text{font-family:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;font-weight:800;font-size:430px}</style>
-<text x="8" y="400" textLength="2296" lengthAdjust="spacingAndGlyphs"><tspan class="a">mtwabp</tspan><tspan class="b"> bench</tspan></text>
+text{font-family:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;font-weight:800;font-size:300px}</style>
+<text x="8" y="385" textLength="2296" lengthAdjust="spacingAndGlyphs"><tspan class="a">Greater Good</tspan><tspan class="b"> Bench</tspan></text>
 </svg>

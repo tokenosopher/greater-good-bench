@@ -1,4 +1,4 @@
-# 0037. Fork art-crit as mtwabp bench, changing what the site asks rather than how it works
+# 0037. Fork art-crit as Greater Good Bench, changing what the site asks rather than how it works
 
 - Status: Accepted
 - Date: 2026-10-29
@@ -19,8 +19,8 @@ take the upstream's fixes.
 The fork is a new site on the unchanged tool:
 
 - **Rebranded for visitors only.** Window titles, the logo, the home page's intro and the "Request a prompt" copy name
-  the site with its working name, "mtwabp bench" (one place per file: `SITE_NAME` in `docs/assets/dom.js`, each HTML
-  file's `<title>` and logo `alt`, `docs/assets/logo.svg`). Prompt requests open issues on `tokenosopher/mtwabp-bench`.
+  the site as "Greater Good Bench" (one place per file: `SITE_NAME` in `docs/assets/dom.js`, each HTML file's `<title>`
+  and logo `alt`, `docs/assets/logo.svg`). Prompt requests open issues on `tokenosopher/greater-good-bench`.
 - **Kept as it is:** the CLI name (`art-crit`, package, `art-crit.toml`, `ART_CRIT_*`, `docs/` layout, Cloudflare
   paths), the kinds, the owner's ranking, community votes, and the harnesses. The upstream's published pages were
   removed (`art-crit rm` + `rebuild`); the site starts empty.

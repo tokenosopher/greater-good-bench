@@ -1,6 +1,6 @@
-# mtwabp bench
+# Greater Good Bench
 
-*(A working name; a catchier one is still to come.)*
+Greater Good Bench is a benchmark of what AI models make for the greater good, measured by people rather than by a score.
 
 A public benchmark that asks frontier AI models one question: **can they make something that, if everyone saw, read,
 used, played or watched it, would improve the world for the greatest number of people?** What gets measured in AI gets
@@ -276,7 +276,7 @@ clears it. Choices go to `docs/data/<page>/covers.json` (overrides only, so ever
 ## Request a prompt
 
 The home page's top bar has a **Request a prompt** button: write the task, pick its kind and add an optional note.
-On the deployed site, after signing in with GitHub, the request becomes an issue on `tokenosopher/mtwabp-bench` labeled `prompt request`
+On the deployed site, after signing in with GitHub, the request becomes an issue on `tokenosopher/greater-good-bench` labeled `prompt request`
 ([ADR-0030](adr/0030-lanes-design-and-prompt-requests-as-issues.md); setup under *Prompt requests* below). Anywhere
 else (or before that setup) the button opens GitHub's own new-issue form with everything filled in.
 
@@ -353,8 +353,8 @@ fork and open a pull request.
 
 The values in this section are the upstream art-crit's: the `fenderog.com` domain (and its `/art-crit` path), the
 Pages project name `art-crit`, the `art-crit-votes` database and the `fenderog/art-crit` repo. Replace them with your
-own (domain, project, database, and `tokenosopher/mtwabp-bench` or your fork) in these steps and in
-`cloudflare/wrangler.jsonc`. The prompt-request issues already go to `tokenosopher/mtwabp-bench` (`REPO` in
+own (domain, project, database, and `tokenosopher/greater-good-bench` or your fork) in these steps and in
+`cloudflare/wrangler.jsonc`. The prompt-request issues already go to `tokenosopher/greater-good-bench` (`REPO` in
 `cloudflare/votes.mjs`, `REPO_ISSUES` in `docs/assets/lanes/request.js`).
 
 Cloudflare Pages follows `main` of `fenderog/art-crit` (project `art-crit`). Set its build command

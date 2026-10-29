@@ -63,4 +63,4 @@ Copy `template.md` to `NNNN-short-title.md` using the next number, and add it to
 | [0034](0034-video-studio-is-a-local-page.md) | The video studio is a local page that designs a video and renders it with the frame-by-frame scene | Accepted |
 | [0035](0035-ori-runs-its-own-runtime-from-jsonl.md) | Ori: its own runtime agent from its JSONL stream, models from OpenRouter's live catalog | Accepted |
 | [0036](0036-text-kind.md) | The text kind: one Markdown file, rendered by the viewer's own markdown.js | Accepted |
-| [0037](0037-fork-for-mtwabp-bench.md) | Fork art-crit as mtwabp bench, changing what the site asks rather than how it works | Accepted |
+| [0037](0037-fork-for-greater-good-bench.md) | Fork art-crit as Greater Good Bench, changing what the site asks rather than how it works | Accepted |

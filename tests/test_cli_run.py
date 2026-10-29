@@ -1666,7 +1666,7 @@ def test_a_monitor_stop_kills_the_agent(run_root, monkeypatch):
     assert (run_dir / "harness" / "stop").is_file()
 
 
-# --- mtwabp bench: the six pages in prompts/README.md (ADR-0037) ---------------------------------------------------
+# --- Greater Good Bench: the six pages in prompts/README.md (ADR-0037) ---------------------------------------------------
 
 REPO = Path(__file__).parent.parent
 FRONTIER = Config.load(REPO).sets["frontier"]

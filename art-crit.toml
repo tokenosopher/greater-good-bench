@@ -15,7 +15,7 @@ tools = ["python3 (standard library only)", "node (no npm packages)", "ffmpeg", 
 # cheap = ["openai-codex/gpt-6-luna:minimal,low", "openrouter/deepseek/deepseek-v4.1-flash:low"]
 # Pin the OpenRouter upstream per run (fallbacks off; each upstream is a separate "model" on the page):
 # upstreams = ["openrouter/deepseek/deepseek-v4.1-flash@deepinfra/fp8:low", "openrouter/deepseek/deepseek-v4.1-flash@atlas-cloud/fp8:low"]
-# mtwabp bench: the newest frontier models, all through pi's OpenRouter provider so every model runs under the same
+# Greater Good Bench: the newest frontier models, all through pi's OpenRouter provider so every model runs under the same
 # harness config. No levels in the entries: `-e` sets one effort level for the whole batch (see prompts/README.md).
 frontier = ["openrouter/anthropic/claude-fable-5.1", "openrouter/anthropic/claude-opus-5.5", "openrouter/openai/gpt-6-astra-pro", "openrouter/openai/gpt-6.1-sol-pro", "openrouter/google/gemini-4-argon", "openrouter/meta/muse-wonder", "openrouter/meta/muse-spark-open", "openrouter/deepseek/deepseek-v4.1-flash-1017", "openrouter/deepseek/deepseek-v4-pro-0813"]
 # The upstream art-crit's frontier set: frontier models across harnesses (renamed from `frontier`). Levels in an entry override -e.

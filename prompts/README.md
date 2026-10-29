@@ -1,6 +1,6 @@
 # Prompts
 
-The six pages of mtwabp bench, one prompt file each. **The prompts here are placeholders**: the owner supplies the
+The six pages of Greater Good Bench, one prompt file each. **The prompts here are placeholders**: the owner supplies the
 final ones before the first real run. Each file is passed to `art-crit run` whole (`-f`), so it should hold the prompt
 and nothing else. A page has one prompt: to change it after its first run, pass `--change-prompt`.
 

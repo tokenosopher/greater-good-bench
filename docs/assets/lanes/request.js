@@ -6,7 +6,7 @@
 import { el } from "../dom.js";
 import { kindUi } from "../output.js";
 
-const REPO_ISSUES = "https://github.com/tokenosopher/mtwabp-bench/issues";
+const REPO_ISSUES = "https://github.com/tokenosopher/greater-good-bench/issues";
 const KINDS = [
   ["media", "Images or video the agent saves (SVG, PNG, MP4…)"],
   ["godot", "A Godot project, played in the browser"],

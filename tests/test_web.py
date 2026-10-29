@@ -1790,7 +1790,7 @@ def test_lanes_request_opens_githubs_prefilled_form_without_the_api(site, page):
     dialog.get_by_role("button", name="Open the request").click()
     expect(dialog).to_contain_text("GitHub's new-issue form opened")
     url = page.evaluate("() => window.__opened")
-    assert url.startswith("https://github.com/tokenosopher/mtwabp-bench/issues/new?")
+    assert url.startswith("https://github.com/tokenosopher/greater-good-bench/issues/new?")
     from urllib.parse import parse_qs, urlparse
     q = parse_qs(urlparse(url).query)
     assert q["title"] == ["Prompt request: Draw a pelican riding a bicycle @someone"]
@@ -1805,7 +1805,7 @@ def test_lanes_request_through_the_api_links_the_new_issue(site, page):
     def fulfill(route):
         sent.append(route.request.post_data_json)
         route.fulfill(status=201, content_type="application/json",
-                      body=json.dumps({"number": 7, "url": "https://github.com/tokenosopher/mtwabp-bench/issues/7"}))
+                      body=json.dumps({"number": 7, "url": "https://github.com/tokenosopher/greater-good-bench/issues/7"}))
     page.route("**/api/request", fulfill)
     page.goto(site + "index.html")
     page.locator("#request-open").click()
@@ -1813,7 +1813,7 @@ def test_lanes_request_through_the_api_links_the_new_issue(site, page):
     dialog.locator("textarea[name=prompt]").fill("A voxel lighthouse at dusk")
     dialog.locator("textarea[name=note]").fill("watch the beam")
     dialog.get_by_role("button", name="Open the request").click()
-    expect(dialog.locator("a")).to_have_attribute("href", "https://github.com/tokenosopher/mtwabp-bench/issues/7")
+    expect(dialog.locator("a")).to_have_attribute("href", "https://github.com/tokenosopher/greater-good-bench/issues/7")
     assert sent == [{"prompt": "A voxel lighthouse at dusk", "kind": "media", "note": "watch the beam"}]
     assert_no_errors(page)
 

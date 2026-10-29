@@ -1,7 +1,7 @@
 // DOM and data plumbing: query params, the tiny `el()` builder (text is always textContent, never HTML), fetch helpers.
 
 // The site's name as visitors see it (window titles). The HTML files carry it once each in <title> and the logo's alt.
-export const SITE_NAME = "mtwabp bench";
+export const SITE_NAME = "Greater Good Bench";
 
 export function qs(name) {
   return new URLSearchParams(location.search).get(name);

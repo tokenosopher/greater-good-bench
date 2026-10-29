@@ -751,7 +751,7 @@ label), note (optional, ≤ 1000). Submitting posts `{prompt, kind, note}` to `P
 - `401`: the draft goes to `sessionStorage`, the visitor signs in (`api/login?return=<this page>#request`), and the
   form reopens with the draft on the way back.
 - `404`, `503`, a non-JSON answer or a network error (no request API: `art-crit serve`, a static host, a Worker not
-  yet configured): the form opens `https://github.com/tokenosopher/mtwabp-bench/issues/new` in a new tab with the same title,
+  yet configured): the form opens `https://github.com/tokenosopher/greater-good-bench/issues/new` in a new tab with the same title,
   body and label the Worker would use, for the visitor to submit there.
 - anything else: the API's `error` is shown under the form.
 

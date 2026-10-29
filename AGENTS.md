@@ -6,7 +6,7 @@ in the same commit.
 
 ## What this is
 
-**This repo is a fork: mtwabp bench** (a working name, repo `tokenosopher/mtwabp-bench`), a public benchmark asking
+**This repo is a fork: Greater Good Bench** (repo `tokenosopher/greater-good-bench`), a public benchmark asking
 frontier models whether they can make something that, if everyone saw, read, used, played or watched it, would
 improve the world for the greatest number of people: what gets measured in AI gets optimized, so this starts
 measuring it. Six pages (SVG, website, 3D model, game, animation, essay; `prompts/README.md` has the prompts, the
