@@ -22,13 +22,13 @@ globalThis.fetch = async (url, options = {}) => {
     return Response.json(body.code.startsWith("code-") ? { access_token: `token-${body.code.slice(5)}` } : { error: "bad_verification_code" });
   }
   if (url === "https://api.github.com/user") return Response.json(USERS[options.headers.Authorization.slice("Bearer token-".length)]);
-  if (url === "https://api.github.com/repos/fenderog/art-crit/issues") {
+  if (url === "https://api.github.com/repos/tokenosopher/mtwabp-bench/issues") {
     assert.equal(options.method, "POST");
     assert.equal(options.headers.Authorization, "Bearer bot-token");
     const issue = JSON.parse(options.body);
     issues.push(issue);
     if (issue.title.includes("make github fail")) return new Response("nope", { status: 500 });
-    return Response.json({ number: issues.length, html_url: `https://github.com/fenderog/art-crit/issues/${issues.length}` }, { status: 201 });
+    return Response.json({ number: issues.length, html_url: `https://github.com/tokenosopher/mtwabp-bench/issues/${issues.length}` }, { status: 201 });
   }
   throw new Error(`unexpected fetch ${url}`);
 };
@@ -300,7 +300,7 @@ test("a signed-in visitor's prompt request becomes a labeled issue, opened with 
   const res = await request(e, alice, { prompt: `  ${PROMPT}\nwith a @someone mention and \`\`\` fences  `, kind: "media", note: "watch the wheels" });
   assert.equal(res.status, 201);
   const { number, url } = await res.json();
-  assert.equal(url, `https://github.com/fenderog/art-crit/issues/${number}`);
+  assert.equal(url, `https://github.com/tokenosopher/mtwabp-bench/issues/${number}`);
   assert.equal(issues.length, before + 1);
   const issue = issues.at(-1);
   assert.equal(issue.title, `Prompt request: ${PROMPT}`);

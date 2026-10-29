@@ -739,7 +739,7 @@ label), note (optional, ≤ 1000). Submitting posts `{prompt, kind, note}` to `P
 - `401`: the draft goes to `sessionStorage`, the visitor signs in (`api/login?return=<this page>#request`), and the
   form reopens with the draft on the way back.
 - `404`, `503`, a non-JSON answer or a network error (no request API: `art-crit serve`, a static host, a Worker not
-  yet configured): the form opens `https://github.com/fenderog/art-crit/issues/new` in a new tab with the same title,
+  yet configured): the form opens `https://github.com/tokenosopher/mtwabp-bench/issues/new` in a new tab with the same title,
   body and label the Worker would use, for the visitor to submit there.
 - anything else: the API's `error` is shown under the form.
 
@@ -878,7 +878,8 @@ The three main views are the lanes design: `docs/assets/lanes/{index,page,compar
 described there. The previous views live unchanged in `docs/classic/` (`<base href="../">`; base-uri `'self'` there),
 and each lanes page links to its classic counterpart ("classic view").
 
-- **Home**: a compact hero; the newest prompt as a featured card whose picture is a slideshow (crossfade every 4.5 s,
+- **Home**: a compact hero (the site's question and why it is asked; shown alone, with a "No prompts have been run yet."
+  note, while `pages.json` is empty); the newest prompt as a featured card whose picture is a slideshow (crossfade every 4.5 s,
   paused on hover/focus, in background tabs and under reduced motion) of up to four runs from different models (then
   vendors) at the page's highest effort level, then the next level down; its prompt in a handwritten system font. Then
   "All prompts": kind filter pills with counts and image-first tiles. Each prompt's cover is one of its highest-effort

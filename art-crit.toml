@@ -4,8 +4,8 @@ rewrite = { "/Volumes/M2SSD" = "<vol>", "--Volumes-M2SSD-" = "--vol-" }
 
 [run]
 dir = "~/dev/art-crit-runs"   # where batch folders go (never inside ~/dev/effort-runs)
-parallel = 8
-timeout = "95m"
+parallel = 4
+timeout = "2h"    # runs are agentic and can take long
 # Tools listed in the media brief ("name note"); ones not on PATH are left out.
 tools = ["python3 (standard library only)", "node (no npm packages)", "ffmpeg", "ffprobe"]
 
@@ -15,8 +15,11 @@ tools = ["python3 (standard library only)", "node (no npm packages)", "ffmpeg", 
 # cheap = ["openai-codex/gpt-6-luna:minimal,low", "openrouter/deepseek/deepseek-v4.1-flash:low"]
 # Pin the OpenRouter upstream per run (fallbacks off; each upstream is a separate "model" on the page):
 # upstreams = ["openrouter/deepseek/deepseek-v4.1-flash@deepinfra/fp8:low", "openrouter/deepseek/deepseek-v4.1-flash@atlas-cloud/fp8:low"]
-# Frontier models across harnesses. Levels in an entry override -e.
-frontier = ["claude-code:opus:low..xhigh", "claude-code:claude-sonnet-5-5:low..xhigh", "codex:gpt-6.1-sol:low..high", "codex:gpt-6-astra:low..max", "claude-code:claude-haiku-5-5:low..xhigh", "muse-code:muse-spark-1.3", "muse-code:muse-wonder-1.0", "muse-code:muse-wonder-full-1.0", "grok-build:grok-4.7:low..xhigh", "agy:gemini-3.8-flash:low..high"]
+# mtwabp bench: the newest frontier models, all through pi's OpenRouter provider so every model runs under the same
+# harness config. No levels in the entries: `-e` sets one effort level for the whole batch (see prompts/README.md).
+frontier = ["openrouter/anthropic/claude-fable-5.1", "openrouter/anthropic/claude-opus-5.5", "openrouter/openai/gpt-6-astra-pro", "openrouter/openai/gpt-6.1-sol-pro", "openrouter/google/gemini-4-argon", "openrouter/meta/muse-wonder", "openrouter/meta/muse-spark-open", "openrouter/deepseek/deepseek-v4.1-flash-1017", "openrouter/deepseek/deepseek-v4-pro-0813"]
+# The upstream art-crit's frontier set: frontier models across harnesses (renamed from `frontier`). Levels in an entry override -e.
+cross-harness = ["claude-code:opus:low..xhigh", "claude-code:claude-sonnet-5-5:low..xhigh", "codex:gpt-6.1-sol:low..high", "codex:gpt-6-astra:low..max", "claude-code:claude-haiku-5-5:low..xhigh", "muse-code:muse-spark-1.3", "muse-code:muse-wonder-1.0", "muse-code:muse-wonder-full-1.0", "grok-build:grok-4.7:low..xhigh", "agy:gemini-3.8-flash:low..high"]
 # oss-frontier is pi-only. deepseek-v4.1-flash-1017 is live on OpenRouter but not in pi's catalog yet, so it
 # needs a local ~/.pi/agent/models.json entry to be planned at all (drop that entry once `pi update --models`
 # lists it; it also shadows the official metadata while it exists). Without it one unknown spec fails the set.

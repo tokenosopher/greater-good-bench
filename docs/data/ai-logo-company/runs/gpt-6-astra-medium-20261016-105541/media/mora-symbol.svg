@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-labelledby="title desc">
-  <title id="title">Mora symbol</title>
-  <desc id="desc">An open spiral of three organic seed forms in neutral earth tones.</desc>
-  <g transform="translate(320 320) scale(1.65)">
-      <path d="M -6,-20 C -45,-35 -76,-77 -58,-111 C -40,-146 9,-151 39,-124 C 72,-94 61,-56 34,-35 C 19,-23 5,-18 -6,-20 Z" fill="#797B66"/>
-      <path d="M -6,-20 C -45,-35 -76,-77 -58,-111 C -40,-146 9,-151 39,-124 C 72,-94 61,-56 34,-35 C 19,-23 5,-18 -6,-20 Z" transform="rotate(120)" fill="#B3A38D"/>
-      <path d="M -6,-20 C -45,-35 -76,-77 -58,-111 C -40,-146 9,-151 39,-124 C 72,-94 61,-56 34,-35 C 19,-23 5,-18 -6,-20 Z" transform="rotate(240)" fill="#D3C8B5"/>
-    </g>
-</svg>

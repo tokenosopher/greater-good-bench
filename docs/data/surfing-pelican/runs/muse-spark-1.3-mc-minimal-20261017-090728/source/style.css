@@ -1,9 +1,0 @@
-html, body { margin: 0; height: 100%; overflow: hidden; background: #87c5e8; }
-#app { position: fixed; inset: 0; }
-#app canvas { display: block; }
-.caption {
-  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
-  font: 14px/1.4 system-ui, sans-serif; color: #fff;
-  background: rgba(0, 40, 70, 0.45); padding: 6px 14px; border-radius: 20px;
-  pointer-events: none; white-space: nowrap;
-}

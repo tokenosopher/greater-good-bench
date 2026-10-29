@@ -46,7 +46,7 @@ function feature(p) {
         el("span", { text: plural(vendorCount(p), "vendor") }),
         el("span", { text: dateOf(p) }),
       ]),
-      el("span", { class: "v2-cta", text: "See and judge →" }),
+      el("span", { class: "v2-cta", text: "See and compare →" }),
     ]),
   ]);
 }
@@ -71,14 +71,14 @@ localFeature("video").then((on) => {
     el("a", { class: "monitor-crumb", attrs: { href: "studio.html" }, text: "Video studio (local)" }));
 });
 
+// The question and why it is asked: shown above the prompts, and on its own while there are none yet.
+const hero = () => el("section", { class: "v2-hero" }, [
+  el("h1", {}, [document.createTextNode("Can AI make something that would "), el("span", { class: "hl-pill", text: "improve the world" }), document.createTextNode(" for the most people?")]),
+  el("p", { class: "lede", text: "What gets measured in AI gets optimized, so this starts measuring it: frontier models are asked to make an SVG, a website, a 3D model, a game, an animation and an essay that, if everyone saw, used, played, watched or read it, would improve the world for the greatest number of people. Each prompt's outputs are shown side by side with the full agent transcript, time, tokens and cost. Nothing is judged automatically: the ranking is the owner's own, plus community votes." }),
+]);
+
 if (pages.length) {
-  main.replaceChildren(
-    el("section", { class: "v2-hero" }, [
-      el("h1", {}, [document.createTextNode("Creative tasks for models, for you to "), el("span", { class: "hl-pill", text: "judge" })]),
-      el("p", { class: "lede", text: "Each page is one visual or spatial prompt, run by different models at different reasoning-effort levels. Open one to judge their work side by side, with cost, time, tokens and the full agent transcript." }),
-    ]),
-    feature(pages[0]),
-  );
+  main.replaceChildren(hero(), feature(pages[0]));
   const kinds = [...new Set(pages.map((p) => p.kind))];
   const pills = el("div", { class: "v2-pills" });
   const grid = el("div", { class: "v2-grid" });
@@ -92,7 +92,7 @@ if (pages.length) {
   draw();
   main.append(el("section", {}, [el("div", { class: "v2-section-head" }, [el("h2", { text: "All prompts" }), pills]), grid]));
 } else if (!main.firstChild) {
-  showMessage(main, "No pages imported yet.");
+  main.replaceChildren(hero(), el("p", { class: "msg msg-info", text: "No prompts have been run yet." }));
 }
 
 // Each page's picture comes from one of its highest-effort runs that made its output (and has a cover picture: its thumbnail, or the one covers.json names), so the cover

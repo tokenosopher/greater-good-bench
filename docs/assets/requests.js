@@ -116,7 +116,7 @@ function requestDialog(sets, onSaved) {
       el("h2", { text: "Request a prompt" }),
       el("button", { class: "aside-close", text: "×", attrs: { type: "button", "aria-label": "Close" }, on: { click: close } }),
     ]),
-    el("p", { class: "dialog-lede", text: "A visual or spatial task for the models. It's saved on this machine with the command to run it; nothing is published until you run it." }),
+    el("p", { class: "dialog-lede", text: "Something for the models to make that would improve the world for the greatest number of people. It's saved on this machine with the command to run it; nothing is published until you run it." }),
     field("Prompt", prompt),
     el("fieldset", { class: "field" }, [el("legend", { class: "field-label", text: "Kind" }), kinds]),
     el("div", { class: "field-row" }, [field("Title", title, "optional"), field("Models", set, "a set from art-crit.toml")]),

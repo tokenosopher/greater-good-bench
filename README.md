@@ -1,12 +1,41 @@
-# art-crit
+# mtwabp bench
 
-A crit for LLMs: pick a visual or spatial prompt, run it across models and effort levels, and hang
-the results side by side. It's for the comparisons a score can't make: which horse looks like a
-horse, which game feels right, which pelican can actually ride a bike.
-For every run you get the thing the model made — a playable Godot game, images or video,
-or a packaged web page — plus the full transcript, the source files, and what it cost.
+*(A working name; a catchier one is still to come.)*
 
-**Live site:** https://fenderog.com/art-crit/ (old GitHub Pages URL: https://fenderog.github.io/art-crit/)
+A public benchmark that asks frontier AI models one question: **can they make something that, if everyone saw, read,
+used, played or watched it, would improve the world for the greatest number of people?** What gets measured in AI gets
+optimized, and nobody measures this yet, so this starts measuring it.
+
+v1 is deliberately simple: generate, verify, and show the outputs side by side. There are six tasks, one page each:
+
+| Page | The model makes | Kind |
+|---|---|---|
+| SVG | an SVG image | `media` |
+| Website | a web page | `web` |
+| 3D model | a Blender model (`.glb`) with renders | `blender` |
+| Game | a Godot game, playable in the browser | `godot` |
+| Animation | a short video (10 s cap) | `media` |
+| Essay | a piece of writing | `text` |
+
+The prompts, the model set and the exact command for each page are in [prompts/README.md](prompts/README.md)
+(the prompts there are placeholders until the owner supplies the final ones).
+
+- **No automated judging.** No LLM judge, no score, no rubric: the ranking is the owner's own ranking plus community
+  votes, next to every run's full transcript, time, tokens and cost.
+- **The harness is part of the result.** Every run records the harness (the agent program) that produced it, with its
+  tools and effort level, and comparisons only make sense between comparable harness configs: the same harness, tools
+  and limits for every model on a page.
+- **Only the newest frontier models**, run at the effort levels the batch names.
+
+**Live site:** none yet. Deploying to Cloudflare Pages is the owner's to set up, following
+[Cloudflare deployment](#cloudflare-deployment) below.
+
+## Based on art-crit
+
+This is a fork of [art-crit](https://github.com/fenderog/art-crit) by fenderog, a crit for LLMs that runs visual and
+spatial prompts across models and shows the results side by side (live at https://fenderog.com/art-crit/). The CLI,
+the site, the kinds, rankings, votes and harnesses are all art-crit's: this fork changes what the site asks, not how it
+works. The command is still `art-crit`, and everything below is art-crit's own usage, kept as it is.
 
 This repo is two things: the `art-crit` CLI in `src/art_crit/` (plain Python, stdlib only) and the
 site in `docs/` (plain JS, no viewer build step, hosted on Cloudflare Pages). The CLI
@@ -236,7 +265,7 @@ clears it. Choices go to `docs/data/<page>/covers.json` (overrides only, so ever
 ## Request a prompt
 
 The home page's top bar has a **Request a prompt** button: write the task, pick its kind and add an optional note.
-On fenderog.com, after signing in with GitHub, the request becomes an issue on this repo labeled `prompt request`
+On the deployed site, after signing in with GitHub, the request becomes an issue on `tokenosopher/mtwabp-bench` labeled `prompt request`
 ([ADR-0030](adr/0030-lanes-design-and-prompt-requests-as-issues.md); setup under *Prompt requests* below). Anywhere
 else (or before that setup) the button opens GitHub's own new-issue form with everything filled in.
 
@@ -310,6 +339,12 @@ Publishing to this site needs write access — otherwise you'll get a permission
 fork and open a pull request.
 
 ## Cloudflare deployment
+
+The values in this section are the upstream art-crit's: the `fenderog.com` domain (and its `/art-crit` path), the
+Pages project name `art-crit`, the `art-crit-votes` database and the `fenderog/art-crit` repo. Replace them with your
+own (domain, project, database, and `tokenosopher/mtwabp-bench` or your fork) in these steps and in
+`cloudflare/wrangler.jsonc`. The prompt-request issues already go to `tokenosopher/mtwabp-bench` (`REPO` in
+`cloudflare/votes.mjs`, `REPO_ISSUES` in `docs/assets/lanes/request.js`).
 
 Cloudflare Pages follows `main` of `fenderog/art-crit` (project `art-crit`). Set its build command
 to `python3 cloudflare/prepare.py`, output directory to `cloudflare-dist`, and root to the repo root.

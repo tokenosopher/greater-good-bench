@@ -1,2 +1,0 @@
-muse: workspace root: <vol>/dev/art-crit-runs/2026-10-17-154616-surfing-pelican/muse-wonder-full-1.0-mc-max-20261017-154616/work (cwd default)
-muse: Agent delegation: auto unavailable: workspace is untrusted.

@@ -1,7 +1,0 @@
-*{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;background:#8fd8e8;font-family:Georgia,'Times New Roman',serif}
-.stage{position:fixed;inset:0}
-#scene{display:block;width:100%;height:100%;pointer-events:none}
-.caption{position:absolute;left:28px;bottom:24px;color:#083344;pointer-events:none;text-shadow:0 1px 0 rgba(255,255,255,.45)}
-.caption h1{margin:0;font-size:clamp(26px,4vw,44px);font-weight:600;letter-spacing:.01em}
-.caption p{margin:6px 0 0;font-size:clamp(14px,1.6vw,18px);font-style:italic;opacity:.82}

@@ -6,6 +6,16 @@ in the same commit.
 
 ## What this is
 
+**This repo is a fork: mtwabp bench** (a working name, repo `tokenosopher/mtwabp-bench`), a public benchmark asking
+frontier models whether they can make something that, if everyone saw, read, used, played or watched it, would
+improve the world for the greatest number of people: what gets measured in AI gets optimized, so this starts
+measuring it. Six pages (SVG, website, 3D model, game, animation, essay; `prompts/README.md` has the prompts, the
+`frontier` set and the exact commands), run through art-crit unchanged, with no automated judging: the ranking is the
+owner's own plus community votes. Only what visitors see was rebranded (titles, logo, home copy, `SITE_NAME` in
+`docs/assets/dom.js`); the CLI, package, config, `docs/` layout and Cloudflare paths keep the art-crit names (ADR-0037).
+Everything below is the upstream art-crit's guide, still accurate for the code; where it names fenderog.com or
+`fenderog/art-crit` as the live site and repo, those are the upstream's, and this fork has no live site yet.
+
 A CLI (`art-crit`, Python) plus a static GitHub Pages site that shows what LLMs make for visual and spatial prompts,
 side by side, for comparisons you judge by eye rather than by a score (the name is art school's "crit").
 

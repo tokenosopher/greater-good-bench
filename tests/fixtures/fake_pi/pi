@@ -13,6 +13,7 @@ Behavior knobs (env vars), read at `-p` run time:
   FAKE_PI_ERROR_STOP=1  write a session whose last assistant message has stopReason "error"
   FAKE_PI_BAD_OUTPUT=1  (media briefs) also put an unreadable image and a stray text file in ./output/
   FAKE_PI_BAD_WEB=1     (web briefs) import a module that doesn't exist, so packaging fails
+  FAKE_PI_EXTRA_MODELS=A,B  also list these models (with every level) in --list-models
   FAKE_PI_ARGV=FILE     write {argv, ART_CRIT_OPENROUTER_ROUTING, ART_CRIT_ROUTE_LOG} to FILE
   ART_CRIT_ROUTE_LOG       (set by art-crit for routed runs) append what the routing extension would log:
                         {id, provider} (the first requested upstream's name) and {id, cost: 0.0042}
@@ -50,6 +51,9 @@ MODEL_LEVELS = {
     "openrouter/openai/gpt-6-sol:batch": ["off", "low", "medium", "high", "xhigh", "max"],  # ':' in the id
     "openrouter/test/model": ["off", "minimal", "low", "medium", "high", "xhigh", "max"],
 }
+# FAKE_PI_EXTRA_MODELS="a/b,c/d" lists more models (every level), e.g. a real set from art-crit.toml.
+MODEL_LEVELS.update({m: ["off", "minimal", "low", "medium", "high", "xhigh", "max"]
+                     for m in os.environ.get("FAKE_PI_EXTRA_MODELS", "").split(",") if m})
 
 
 def arg(flag):

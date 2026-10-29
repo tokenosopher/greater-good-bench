@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="480" viewBox="0 0 480 480" role="img" aria-label="Forma — mark">
-<title>Forma — mark</title>
-
-<g transform="translate(10.0 10.0) scale(3.8333)" opacity="1.0"><defs><clipPath id="seedclip3"><path d="M -40 -40 H 160 V 160 H -40 Z M 54.6 60 A 5.4 5.4 0 1 0 65.4 60 A 5.4 5.4 0 1 0 54.6 60 Z" clip-rule="evenodd"/></clipPath></defs><g clip-path="url(#seedclip3)"><path d="M 60 62 C 36 48, 44 16, 66 2 C 80 16, 82 50, 60 62 Z" fill="#2B2823" transform="rotate(0 60 60)"/><path d="M 60 62 C 36 48, 44 16, 66 2 C 80 16, 82 50, 60 62 Z" fill="#8F8271" transform="rotate(120 60 60)"/><path d="M 60 62 C 36 48, 44 16, 66 2 C 80 16, 82 50, 60 62 Z" fill="#B4A48D" transform="rotate(240 60 60)"/></g></g>
-</svg>

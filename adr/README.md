@@ -62,3 +62,4 @@ Copy `template.md` to `NNNN-short-title.md` using the next number, and add it to
 | [0033](0033-videos-are-rendered-frame-by-frame.md) | Social videos are drawn frame by frame by an animated page in Chrome, with a synthesized sound track | Accepted |
 | [0034](0034-video-studio-is-a-local-page.md) | The video studio is a local page that designs a video and renders it with the frame-by-frame scene | Accepted |
 | [0035](0035-ori-runs-its-own-runtime-from-jsonl.md) | Ori: its own runtime agent from its JSONL stream, models from OpenRouter's live catalog | Accepted |
+| [0037](0037-fork-for-mtwabp-bench.md) | Fork art-crit as mtwabp bench, changing what the site asks rather than how it works | Accepted |

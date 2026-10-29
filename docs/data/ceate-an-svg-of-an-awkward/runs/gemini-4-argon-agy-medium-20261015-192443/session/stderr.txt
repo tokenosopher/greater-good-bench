@@ -1,2 +1,0 @@
-error: agent executor error: generating and executing: stream reading error: stream idle timeout (5m0s): context deadline exceeded
-AGY_ERROR: {"short_error":"agent executor error: generating and executing: stream reading error: stream idle timeout (5m0s): context deadline exceeded","status":"DEADLINE_EXCEEDED","error_code":4,"code_kind":"grpc","retryable":true,"error_id":"be911155-7097-42dd-94b4-720e072f3095-22"}

@@ -1664,3 +1664,34 @@ def test_a_monitor_stop_kills_the_agent(run_root, monkeypatch):
     record = json.loads((run_dir / "run.json").read_text())
     assert (record["state"], record["error"]) == ("failed", "stopped from the local monitor")
     assert (run_dir / "harness" / "stop").is_file()
+
+
+# --- mtwabp bench: the six pages in prompts/README.md (ADR-0037) ---------------------------------------------------
+
+REPO = Path(__file__).parent.parent
+FRONTIER = Config.load(REPO).sets["frontier"]
+# (kind, page, title) of each page, in prompts/README.md's order.
+# TODO: add ("text", "essay", "Essay") once the `text` kind (kinds/text.py, ADR-0036) is in this tree.
+BENCH_PAGES = [("media", "svg", "SVG"), ("web", "website", "Website"), ("blender", "3d-model", "3D model"),
+               ("godot", "game", "Game"), ("media", "animation", "Animation")]
+
+
+@pytest.mark.parametrize("kind, page, title", BENCH_PAGES)
+def test_bench_page_dry_run_plans_the_frontier_set(run_root, monkeypatch, capsys, kind, page, title):
+    """Each page's documented dry run plans all nine frontier models at -e's level, against the repo's own set."""
+    flags = f'--kind {kind} -p {page} -t "{title}" --set frontier -e high -T 2h -j 4'
+    readme = (REPO / "prompts/README.md").read_text()
+    assert f'uv run art-crit run --dry-run {flags} "$(cat prompts/{page}.md)"' in readme
+    assert f'uv run art-crit run {flags} "$(cat prompts/{page}.md)"' in readme
+    assert len(FRONTIER) == 9 and all(m.startswith("openrouter/") and ":" not in m for m in FRONTIER)
+    monkeypatch.setenv("FAKE_PI_EXTRA_MODELS", ",".join(FRONTIER))
+    cfg = run_root / "art-crit.toml"
+    cfg.write_text(cfg.read_text() + "\n[sets]\nfrontier = " + json.dumps(FRONTIER) + "\n")
+    prompt = (REPO / "prompts" / f"{page}.md").read_text()
+    argv = ["run", "--dry-run", "--kind", kind, "-p", page, "-t", title, "--set", "frontier", "-e", "high",
+            "-T", "2h", "-j", "4", prompt, "--root", str(run_root)]
+    assert main(argv) == 0
+    out = capsys.readouterr().out
+    assert f"kind: {kind}" in out and f"page: {page} (new, title: '{title}')" in out
+    for i, model in enumerate(FRONTIER, 1):
+        assert f"{i}. {model}:high" in out

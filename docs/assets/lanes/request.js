@@ -6,7 +6,7 @@
 import { el } from "../dom.js";
 import { kindUi } from "../output.js";
 
-const REPO_ISSUES = "https://github.com/fenderog/art-crit/issues";
+const REPO_ISSUES = "https://github.com/tokenosopher/mtwabp-bench/issues";
 const KINDS = [
   ["media", "Images or video the agent saves (SVG, PNG, MP4…)"],
   ["godot", "A Godot project, played in the browser"],
@@ -58,7 +58,7 @@ export function setupRequestButton(header) {
       el("h2", { text: "Request a prompt" }),
       el("button", { class: "aside-close", text: "×", attrs: { type: "button", "aria-label": "Close" }, on: { click: close } }),
     ]),
-    el("p", { class: "dialog-lede", text: "A visual or spatial task for the models. It's posted as an issue on the art-crit GitHub repo, where you can follow it. You sign in with GitHub to send it." }),
+    el("p", { class: "dialog-lede", text: "Something for the models to make that, if everyone saw, used, played, watched or read it, would improve the world for the greatest number of people. It's posted as an issue on the site's GitHub repo, where you can follow it. You sign in with GitHub to send it." }),
     el("label", { class: "field" }, [el("span", { class: "field-label", text: "Prompt" }), prompt]),
     el("fieldset", { class: "field" }, [el("legend", { class: "field-label", text: "Kind" }), kinds]),
     el("label", { class: "field" }, [el("span", { class: "field-label" }, ["Note", el("span", { class: "muted", text: " optional" })]), note]),

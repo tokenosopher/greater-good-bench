@@ -1,2 +1,0 @@
-muse: workspace root: <vol>/dev/art-crit-runs/2026-10-15-230204-octopus-ramen-shop/muse-wonder-1.0-mc-high-20261015-230204/work (cwd default)
-muse: Agent delegation: auto unavailable: workspace is untrusted.

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-<title id="title">Forma symbol</title>
-<desc id="desc">Three softly curved seed shapes in neutral earth tones, turning around an open center. Transparent background.</desc>
-<g transform="translate(256 256) scale(1.12)">
-<path d="M 3,-23 C -35,-33 -92,-62 -99,-110 C -107,-162 -67,-192 -24,-180 C 27,-167 78,-124 72,-83 C 68,-52 34,-26 3,-23 Z" fill="#514D43" transform="rotate(0)"/>
-<path d="M 3,-23 C -35,-33 -92,-62 -99,-110 C -107,-162 -67,-192 -24,-180 C 27,-167 78,-124 72,-83 C 68,-52 34,-26 3,-23 Z" fill="#898676" transform="rotate(120)"/>
-<path d="M 3,-23 C -35,-33 -92,-62 -99,-110 C -107,-162 -67,-192 -24,-180 C 27,-167 78,-124 72,-83 C 68,-52 34,-26 3,-23 Z" fill="#B8AE9C" transform="rotate(240)"/>
-</g>
-</svg>

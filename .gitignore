@@ -16,3 +16,6 @@ __pycache__/
 /references/
 /ideas.md
 /videos/
+
+# local secrets (OPENROUTER_API_KEY for pi/ori runs)
+.env

@@ -1,4 +1,4 @@
-import { qs, el, loadPage, getJSON, getText, showMessage, badge } from "./dom.js";
+import { qs, el, loadPage, getJSON, getText, showMessage, badge, SITE_NAME } from "./dom.js";
 import { fmtNum, fmtDuration, fmtCost, fmtDate } from "./fmt.js";
 import { runDir, harnessLabel, stateBadge, effortPill, modelParts, rankBy, ordinal, LOWER_IS_BETTER, isComplete, rankChip, playUrl, canEditCovers, saveCover } from "./runs.js";
 import { outputBadge, outputVerified, isPlayable, renderOutput, kindUi } from "./output.js";
@@ -26,7 +26,7 @@ if (page) {
 }
 
 function render(run, base, siblings) {
-  document.title = `${run.model} · ${run.effort} – art-crit`;
+  document.title = `${run.model} · ${run.effort} – ${SITE_NAME}`;
   const { provider, name, via } = modelParts(run.model);
   document.getElementById("run-provider").textContent = via ? `${provider} · via ${via}` : provider;
   const myRank = run.rank;

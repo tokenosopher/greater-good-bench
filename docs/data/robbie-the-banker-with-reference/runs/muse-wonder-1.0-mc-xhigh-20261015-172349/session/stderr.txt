@@ -1,2 +1,0 @@
-muse: workspace root: <vol>/dev/art-crit-runs/2026-10-15-172349-robbie-the-banker-with-reference/muse-wonder-1.0-mc-xhigh-20261015-172349/work (cwd default)
-muse: Agent delegation: auto unavailable: workspace is untrusted.

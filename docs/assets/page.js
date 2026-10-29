@@ -1,4 +1,4 @@
-import { qs, el, loadPage, showMessage, badge, setQuery } from "./dom.js";
+import { qs, el, loadPage, showMessage, badge, setQuery, SITE_NAME } from "./dom.js";
 import { fmtNum, fmtDuration, fmtCost, fmtDate, fmtDateShort } from "./fmt.js";
 import { runDir, harnessLabel, stateBadge, effortPill, effortIndex, prettyModelLabel, modelParts, prettyModelName, runUrl, byModelThenEffort, rankBy, bestSets, filterRuns, LOWER_IS_BETTER, isComplete, rankLabel, canEditRanks, saveRanks, vendorOptions, playUrl } from "./runs.js";
 import { COLUMN_HELP, rowHelp } from "./help.js";
@@ -48,7 +48,7 @@ renderAuth(votes);
 if (page) render(page, page.runs, await canEditRanks());
 
 function render(page, runs, editable) {
-  document.title = `${page.title} – art-crit`;
+  document.title = `${page.title} – ${SITE_NAME}`;
   document.getElementById("title").textContent = page.title;
   if (page.prompt) {
     document.getElementById("prompt").textContent = page.prompt;

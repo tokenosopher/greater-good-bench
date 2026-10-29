@@ -1,4 +1,4 @@
-import { el, qs, qsList, loadPage } from "../dom.js";
+import { el, qs, qsList, loadPage, SITE_NAME } from "../dom.js";
 import { fmtNum, fmtDuration, fmtCost } from "../fmt.js";
 import { renderOutput, kindUi } from "../output.js";
 import { localFeature, runDir, runUrl, effortPill, prettyModelName, modelParts, vendorOf, vendorName, vendorMark, vendorOptions, rankBy } from "../runs.js";
@@ -10,7 +10,7 @@ const slug = qs("p");
 document.getElementById("current-link").href = `classic/compare.html?p=${encodeURIComponent(slug ?? "")}&r=${qsList("r").map(encodeURIComponent).join(",")}`;
 const page = await loadPage(slug, main);
 if (page) {
-  document.title = `Compare – ${page.title} – art-crit`;
+  document.title = `Compare – ${page.title} – ${SITE_NAME}`;
   const runs = qsList("r").map((id) => page.runs.find((r) => r.id === id)).filter(Boolean);
   const votes = await loadVotes(slug);
   headerAuth(votes);

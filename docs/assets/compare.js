@@ -1,4 +1,4 @@
-import { qsList, qs, loadPage, showMessage } from "./dom.js";
+import { qsList, qs, loadPage, showMessage, SITE_NAME } from "./dom.js";
 import { loadVotes, renderAuth } from "./votes.js";
 import { byRankThenModel } from "./runs.js";
 import { renderRunGrid, setupPlayAll } from "./card.js";
@@ -16,7 +16,7 @@ if (page) {
   const link = document.getElementById("page-link");
   link.textContent = page.title;
   link.href = `classic/page.html?p=${encodeURIComponent(slug)}`;
-  document.title = `Compare – ${page.title} – art-crit`;
+  document.title = `Compare – ${page.title} – ${SITE_NAME}`;
   document.getElementById("title").textContent = page.title;
   if (page.prompt) {
     const p = document.getElementById("compare-prompt");

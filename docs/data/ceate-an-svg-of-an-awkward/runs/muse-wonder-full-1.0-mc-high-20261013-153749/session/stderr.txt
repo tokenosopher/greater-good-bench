@@ -1,2 +1,0 @@
-muse: workspace root: <vol>/dev/art-crit-runs/2026-10-13-153749-ceate-an-svg-of-an-awkward/muse-wonder-full-1.0-mc-high-20261013-153749/work (cwd default)
-muse: Agent delegation: auto unavailable: workspace is untrusted.

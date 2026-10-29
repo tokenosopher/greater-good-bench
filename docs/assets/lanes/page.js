@@ -1,4 +1,4 @@
-import { el, qs, qsList, setQuery, loadPage, getJSON } from "../dom.js";
+import { el, qs, qsList, setQuery, loadPage, getJSON, SITE_NAME } from "../dom.js";
 import { fmtNum, fmtDuration, fmtCost } from "../fmt.js";
 import { renderOutput, kindUi } from "../output.js";
 import {
@@ -17,7 +17,7 @@ const page = await loadPage(slug, main);
 if (page) start(page);
 
 async function start(page) {
-  document.title = `${page.title} – art-crit`;
+  document.title = `${page.title} – ${SITE_NAME}`;
   const runs = page.runs || [];
   const votes = await loadVotes(slug);
   headerAuth(votes);
