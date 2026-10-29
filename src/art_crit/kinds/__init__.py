@@ -1,6 +1,6 @@
 """A kind is what a page's runs produce: `godot` (a project, exported to a web build), `media`
-(image/video files), `web` (a page packaged into one file) or `blender` (a .glb model and/or renders made in
-Blender through its MCP server). Each kind is one class here with the
+(image/video files), `web` (a page packaged into one file), `blender` (a .glb model and/or renders made in
+Blender through its MCP server) or `text` (one Markdown file, rendered as a page). Each kind is one class here with the
 same surface, registered in `KINDS` like `HARNESSES`; the runner and the importer never branch on
 the kind's name. See SPEC.md "Kinds" and ADR-0017."""
 
@@ -77,6 +77,7 @@ class Kind:
 from .blender import Blender  # noqa: E402
 from .godot import Godot  # noqa: E402
 from .media import Media  # noqa: E402
+from .text import Text  # noqa: E402
 from .web import Web  # noqa: E402
 
-KINDS = {kind.name: kind for kind in (Godot, Media, Web, Blender)}
+KINDS = {kind.name: kind for kind in (Godot, Media, Web, Blender, Text)}

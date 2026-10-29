@@ -12,6 +12,7 @@ Behavior knobs (env vars), read at `-p` run time:
   FAKE_PI_HANG=1        sleep "forever" (simulates a hung agent; the caller must kill it)
   FAKE_PI_ERROR_STOP=1  write a session whose last assistant message has stopReason "error"
   FAKE_PI_BAD_OUTPUT=1  (media briefs) also put an unreadable image and a stray text file in ./output/
+  FAKE_PI_BAD_TEXT=1    (text briefs) write two .md files in ./output/, so the text step fails
   FAKE_PI_BAD_WEB=1     (web briefs) import a module that doesn't exist, so packaging fails
   FAKE_PI_ARGV=FILE     write {argv, ART_CRIT_OPENROUTER_ROUTING, ART_CRIT_ROUTE_LOG} to FILE
   ART_CRIT_ROUTE_LOG       (set by art-crit for routed runs) append what the routing extension would log:
@@ -23,7 +24,9 @@ Behavior knobs (env vars), read at `-p` run time:
 A blender brief (one mentioning .glb) gets ./output/ with a one-triangle scene.glb and a PNG render; the MCP config
 art-crit gave it (./.pi/mcp.json) is copied to ./mcp-seen.json. A media brief (one mentioning ./output/) gets ./output/ with an SVG, a PNG and a 2s mp4 (made with
 ffmpeg), plus a make.py and a leftover binary frame instead of a Godot project. A web brief (one
-mentioning esbuild) gets index.html + main.js + style.css and a fake npm package in node_modules/.
+mentioning esbuild) gets index.html + main.js + style.css and a fake npm package in node_modules/. A text brief
+(one asking for "one Markdown file") gets ./output/essay.md (with a heading, a list, a link and a raw <script>) plus
+notes.md outside ./output/.
 """
 import base64
 import json
@@ -132,6 +135,8 @@ def cmd_run():
 
     if ".glb" in brief:
         write_blender()
+    elif "one Markdown file" in brief:
+        write_text()
     elif "./output/" in brief:
         write_media()
     elif "esbuild" in brief:
@@ -204,6 +209,19 @@ def write_media():
     Path("make.py").write_text("print('made the files')\n")
     Path("frames").mkdir(exist_ok=True)
     (Path("frames") / "f001.png").write_bytes(PNG_1X1)  # a leftover binary: never published as source
+
+
+def write_text():
+    out = Path("output")
+    out.mkdir(exist_ok=True)
+    (out / "essay.md").write_text(
+        "# On Fake Essays\n\n"
+        f"Written in {os.getcwd()} by a **fake** agent, with a [link](https://example.com).\n\n"
+        "- one point\n- another point\n\n<script>window.fakeEssayRan = true</script>\n"
+    )
+    if os.environ.get("FAKE_PI_BAD_TEXT"):
+        (out / "second.md").write_text("# Another\n")
+    Path("notes.md").write_text("outline: say something\n")
 
 
 def tiny_glb():

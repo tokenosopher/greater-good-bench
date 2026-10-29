@@ -18,8 +18,8 @@ tomllib, http.server, subprocess). The site is vanilla JS ES modules, with one p
 - **Kind**: what a page's runs produce. `godot` = a Godot project, published as a playable web build;
   `media` (shown as "Vector" in the UI) = image and/or video files; `web` = a web page (HTML + ES modules + npm packages), published as one
   self-contained `index.html` packaged with esbuild; `blender` = a `.glb` model and/or renders made in a Blender of
-  the run's own through the official Blender MCP server, the model shown in an interactive 3D viewer. Every run of a
-  page has the page's kind.
+  the run's own through the official Blender MCP server, the model shown in an interactive 3D viewer; `text` = one
+  Markdown file, rendered by the viewer as a readable page. Every run of a page has the page's kind.
 
 ## Site layout (the data contract between the CLI and the viewer)
 
@@ -49,6 +49,7 @@ docs/
       game/index.html, index.pck, index.png, index.icon.png, index.apple-touch-icon.png   # godot
       media/<file>, media/<name>.poster.jpg, media/<name>.thumb.jpg                       # media, blender (+ media/<name>.glb)
       game/index.html             # web: the packaged page, one file (cleaned and secret-scanned like source)
+      text/text.md                # text: the Markdown, as the agent wrote it (cleaned and secret-scanned like source)
       session/conversation.json   # cleaned (see Cleaning)
       session/stderr.txt          # optional, cleaned
       source/...                  # project files the model wrote
@@ -125,10 +126,13 @@ page's published copies, so adding runs can't silently leave the model with no i
   when it was cut to 10 s (width/height can be `null` for an SVG without a size), and `thumb: "media/<stem>.thumb.jpg"`
   for a raster image or a video (a JPEG at most 800 px wide made at import from the image or the poster, ADR-0029; an
   SVG has none); `blender` = `items` like media, plus
-  `{type: "model", path: "media/<name>.glb", bytes, meshes, triangles, animations}` for a model. Paths are relative to the run
+  `{type: "model", path: "media/<name>.glb", bytes, meshes, triangles, animations}` for a model; `text` = `text:
+  "text/text.md"`, `bytes`, `words` (whitespace-separated), `title` (the first `# ` heading as plain text, or `null`) and
+  `excerpt` (the first ~300 characters as plain text, the title left out, cut at a word with "…"), both read from the
+  cleaned file. So `output` has three shapes: `entry` (a game or page), `items` (a gallery) and `text`. Paths are relative to the run
   directory. `thumb` = `thumb.jpg` (the verify step's first screenshot, at most 800 px wide; `thumb.png`, the screenshot
   itself, when ffmpeg couldn't make it) for godot and web; for media and blender the first item's `thumb`, or the first
-  image's path or video's poster when no item has one. `art-crit rebuild` backfills missing thumbnails of published
+  image's path or video's poster when no item has one; `null` for text (cards show the title and excerpt instead). `art-crit rebuild` backfills missing thumbnails of published
   runs from their files and rewrites those `run.json`. Model-written text (SVGs, the packaged page) is cleaned and secret-scanned like
   source. The run's `source` never includes `node_modules/`; for media it holds only text files of at most 512 KB,
   and `output/` only for the files there that aren't media (a generator script kept in `./output/`).
@@ -427,6 +431,14 @@ class Kind:
   `extensionsRequired`); the item records `meshes`, `triangles` (mode-4 primitives: index count or POSITION count / 3) and
   `animations`. No media file at all is the error `no render or .glb files in ./output/`. `verify` and `stage` are the
   media kind's (a `.glb` is copied as is; it is binary, so never source).
+- **text** (`Text`; nothing on PATH, activity "checking"): `finalize` takes the `.md` files in `work/output/` (sorted,
+  flattened names like media's; anything else there is ignored): none is the error `no Markdown file in ./output/`, more
+  than one is an error naming them. The one file must be UTF-8, at most 200 KB (`MAX_BYTES`) and hold a non-blank line;
+  it is written to `output/text.md` with `manifest.json` = `{ok, bytes, words, title, errors}`. `verify` re-reads
+  `output/text.md` with the same checks (`{ok, bytes, words}`; there is no browser step). `stage` writes `text/text.md`
+  through `ctx.write_text` (cleaned and secret-scanned like source) and reads `bytes`, `words`, `title` and `excerpt`
+  from that cleaned copy; no thumbnail. `keep_source`: text files of at most 512 KB, never anything under `output/` (the
+  Markdown is the output). See ADR-0036.
 
 ### Metrics (from the session log, the same numbers pi-subagents reported)
 Over assistant messages: `turns` = count; `tool_calls` = number of `toolCall` content blocks; `tokens_input/output/
@@ -930,7 +942,12 @@ JSON is fetched with `cache: "no-cache"` so a saved ranking or a new publish is 
 All output rendering goes through one function, `renderOutput(run, base, opts)` in output.js (the click-to-play frame, the
 immediate sandboxed frame, the media gallery, or the "no output" message, with the kind step's own error above it) and
 one `KIND_UI` table (chip label, tab label, no-output text and failure badge per kind); page, run, compare and play all call
-them. Any output with an `entry` is shown in the sandbox, so a new kind needs no viewer code.
+them. Any output with an `entry` is shown in the sandbox, so a new kind needs no viewer code. An output with `text`
+(the text kind) is Markdown: cards (`compact`) show its `title` and `excerpt` as text in a 4:3 tile linking to the run
+(nothing is fetched), the run page reads it in full, and anything else (the lanes compare columns, expanded table rows)
+shows the full article in a scrollable box. It is rendered only by `renderMarkdown()` (raw HTML stays text, ADR-0015),
+never through innerHTML or a frame; `isPlayable()` is false for it and cards have no ↗ pop-out. A text page has no
+picture, so the lanes home shows its highest-effort run's text tile instead.
 
 Wherever a run is one of many (home cards, the runs table and grid, compare cards, the click-to-play overlay) the viewer
 shows thumbnails: `run.thumb`, and on a media card each item's `thumb` (`mediaElement(..., {compact: true})`); the run
@@ -983,6 +1000,10 @@ lists from the `import` statements and fails when they drift.
     a 4:3 orbit/zoom/pan view (`model.js`, rendered on demand, animations looped; its WebGL context is freed when the card
     is redrawn). Its caption adds the triangle count. Galleries are chosen by `output.items`, not by kind name.
   - *Page* (instead of Game, for a `web` run): the packaged page with click-to-play, in the same sandboxed iframe as games.
+  - *Read* (instead of Game, for a `text` run, chosen by `output.text`): the Markdown fetched (`getText`, `no-cache`) and
+    rendered by `renderMarkdown()` into an `<article class="prose">` at a ~70ch measure, with the word count, size and a
+    `download` link under it. markdown.js is loaded with a dynamic `import()` on first use. No full-screen link (nothing
+    to play) and no cover buttons (no picture).
   - *Source*: a file list, and clicking a file shows it in a `<pre>`. The first code file opens right away.
   - *Metrics*: all metrics as a table of raw values (with a readable form beside durations, costs and big counts,
     including Harness, State, Error and the output's ok / verified / error), plus links to download the raw session files.
@@ -1043,3 +1064,8 @@ lists from the `import` statements and fails when they drift.
   `tests/test_web_kind.py` (skipped without esbuild) packages pages with the real esbuild (module + inline module +
   classic scripts, stylesheets, imported assets, `</script>` escaping, remote/importmap left alone, missing imports and
   paths outside the project), and verifies offline in the sandbox (a remote fetch and localStorage both fail it).
+  For a text brief the fake pi writes `./output/essay.md` (plus `notes.md` outside it; `FAKE_PI_BAD_TEXT` adds a second
+  .md). `tests/test_text.py` covers finalize (none, two files, oversized, undecodable, blank), verify, title, words and
+  excerpt, staging from the cleaned copy, `keep_source`, and a full `run --kind text` (plus rebuild, list, rm and the
+  one-kind-per-page check). A routed `text` page in test_web.py covers the run page's article (a raw `<script>` stays
+  text and never runs), the excerpt tiles on the home and page cards, and compare reading each text in full.

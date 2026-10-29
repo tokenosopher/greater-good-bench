@@ -14,7 +14,8 @@ side by side, for comparisons you judge by eye rather than by a score (the name 
 - **Kind** = what a page's runs produce: `godot` (a project, published as a playable web build), `media`
   (shown as "Vector" in the UI; image/video files the agent saved in `./output/`), `web` (a page with ES modules + npm packages, packaged
   into one `index.html` with esbuild) or `blender` (a `.glb` + renders made in a per-run windowless Blender through
-  the official Blender MCP server). One kind per page.
+  the official Blender MCP server) or `text` (one Markdown file in `./output/`, rendered by the viewer's own
+  markdown.js as a readable page; cards show its title and excerpt). One kind per page.
 
 Each run has three parts: its output (a playable Godot web build, images/videos, or a packaged web page), the full agent
 transcript with every tool call, and metrics (tokens, cost, duration).
@@ -66,6 +67,7 @@ src/art_crit/          CLI, standard library only (argparse, json, subprocess, t
                     helpers every kind and `rebuild` use (`write_thumb`, `add_thumbs`, `screenshot_thumb`; ADR-0029)
     web.py          inline the page's scripts/stylesheets with esbuild -> output/index.html (one file)
     blender.py      a Media with `.glb`: `prepare` installs the MCP add-on, `agent_session` = the run's own Blender
+    text.py         one .md in work/output/ -> output/text.md + manifest.json; `stage` records title, words, excerpt (ADR-0036)
     <kind>.md       brief template per kind ({prompt}, and {tools} from [run].tools, are substituted)
   browser.py        the headless-Chrome check the godot and web kinds share (Playwright is optional, imported lazily)
 docs/               the site: vanilla JS ES modules, no viewer build step, no framework
@@ -101,6 +103,7 @@ uv run art-crit run --dry-run "prompt" -m openai-codex/gpt-6-sol:low   # plan on
 uv run art-crit run --dry-run --kind media "an SVG pelican" -m openai-codex/gpt-6-sol:low
 uv run art-crit run --dry-run --kind web "a three.js horse" -m openai-codex/gpt-6-sol:low   # needs esbuild + npm
 uv run art-crit run --dry-run --kind blender "a low-poly fox" -m claude-code:opus:low   # needs blender + uvx
+uv run art-crit run --dry-run --kind text "an essay on chairs" -m openai-codex/gpt-6-sol:low   # one Markdown file, no tools
 uv run art-crit run --dry-run "prompt" -m claude-code:opus:low --ref robbie.jpg   # a file from <root>/references/, copied into each run's work/references/
 uv run art-crit run --dry-run "prompt" --set cheap   # a model set from art-crit.toml [sets] (or a file path)
 uv run art-crit run --dry-run "prompt"                # no -m/--set: pick harness, models and levels interactively (-i/--pick)
@@ -156,7 +159,8 @@ cf pages deployments list --project-name art-crit   # Git-triggered deployment s
 - **Viewer data:** `page.json.runs` includes ranks; per-run `run.json` remains the source of truth. `rebuild` removes
   legacy `results.json`. All four page views use `loadPage()` for a single page-data request. (ADR-0016)
 - **Kinds are classes, not branches.** The runner, importer and viewer never switch on a kind's name: a kind is one
-  `Kind` subclass (`kinds/`), and the viewer shows any `output` with an `entry` through `renderOutput()`. Keep the
+  `Kind` subclass (`kinds/`), and the viewer shows any `output` with an `entry` through `renderOutput()` (the other two
+  shapes: `items`, a gallery, and `text`, Markdown read as an article). Keep the
   three questions apart: `state`/`error` = the agent, `output.ok`/`output.error` = the kind step, `output.verified` = the
   check. A failed export is `state: complete` with `output.ok: false`. (ADR-0018)
 - **Keep it lean.** Stdlib-only CLI, no JS frameworks or bundler for the viewer (Cloudflare's staging build only
@@ -309,6 +313,11 @@ cf pages deployments list --project-name art-crit   # Git-triggered deployment s
   `pose()` also overwrites `filter`, so an element with its own CSS filter (the logo inverted on a light studio card) sits
   inside a posed wrapper. In studio.css, base rules for form controls use `:where()`: a plain `.st button` outranked the
   class colours and turned the white text on dark slots black.
+- **Text runs (ADR-0036):** the title and excerpt in `run.json` are read from the *cleaned* `text/text.md` in `Text.stage`,
+  never from work/: run.json itself isn't secret-scanned, so a value taken from the raw file could publish a home path.
+  The viewer loads markdown.js (and Marked, 72 KB) with a dynamic `import()` only when a text is read in full, so cards
+  and the home page never pay for it; a text has no thumbnail, so the lanes home shows a text tile for a page without a
+  picture (`pickedText` in lanes/index.js), and `isPlayable()`/the ↗ pop-out leave texts out (nothing for play.html).
 - **`replaceChildren()`/`append()` print `null` as text**; `el()` skips null children, so pass optional nodes
   through `el()` or `.filter(Boolean)`.
 - **Tools recorded per run:** `Harness.tools(mcp)` (+ `BUILTIN_TOOLS` where the command names them) feeds `run.json.tools.allowed`;

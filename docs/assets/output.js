@@ -2,18 +2,19 @@
 // sandboxedGame() (never allow-same-origin), model-made images and SVGs only through mediaElement() (<img>, ADR-0004).
 // A .glb is data that model.js parses with three.js (nothing in it runs), so it needs no frame.
 
-import { el, badge } from "./dom.js";
+import { el, badge, getText } from "./dom.js";
 import { fmtBytes, fmtNum } from "./fmt.js";
 import { mountModel } from "./model.js";
 
 // What differs per kind in the UI: its name, the run page's output tab, what a run without output says,
-// the badge for a kind step that failed, and whether its output is a gallery of files (output.items) rather than a game
-// or page. Anything else (kinds the viewer doesn't know) reads as a game.
+// the badge for a kind step that failed, and whether its output is a gallery of files (output.items) or a text to read
+// (output.text) rather than a game or page. Anything else (kinds the viewer doesn't know) reads as a game.
 const KIND_UI = {
   godot: { label: "Game", tab: "Game", none: "No playable build recorded for this run.", failed: "export failed" },
   media: { label: "Vector", tab: "Output", none: "No output files recorded for this run.", failed: "output failed", gallery: true },
   web: { label: "Web", tab: "Page", none: "No packaged page recorded for this run.", failed: "packaging failed" },
   blender: { label: "3D", tab: "Output", none: "No model or renders recorded for this run.", failed: "output failed", gallery: true },
+  text: { label: "Text", tab: "Read", none: "No text recorded for this run.", failed: "text failed", text: true },
 };
 
 export function kindUi(kind) {
@@ -158,8 +159,32 @@ export function mediaCard(items, base, href = null) {
   return el("div", { class: "media-card" }, [box, thumbs.length ? el("div", { class: "media-strip" }, thumbs) : null]);
 }
 
+// A text run (output.text, Markdown) on a card: its title and the excerpt recorded at import, as plain text (no fetch),
+// in a tile as tall as any other card's output; with `href` the tile links to the run.
+export function textCard(out, href = null) {
+  const body = [out.title ? el("strong", { class: "text-tile-title", text: out.title }) : null, el("span", { class: "text-tile-excerpt", text: out.excerpt || "" })];
+  return href ? el("a", { class: "text-tile", attrs: { href, title: "Read the run" } }, body) : el("div", { class: "text-tile" }, body);
+}
+
+// A text run's Markdown as an article. The file is fetched and rendered by markdown.js (loaded on first use: it carries
+// the Markdown parser, which only text runs and transcripts need), which builds DOM nodes and keeps raw HTML as text.
+// `full` (the run page) shows it at reading width with a download link; otherwise it sits in a scrollable box (compare).
+export function textArticle(out, base, { full = false } = {}) {
+  const article = el("article", { class: "prose" }, [el("p", { class: "msg", text: "Loading…" })]);
+  Promise.all([getText(base + out.text), import("./markdown.js")])
+    .then(([source, { renderMarkdown }]) => renderMarkdown(article, source))
+    .catch((err) => article.replaceChildren(el("p", { class: "msg", text: `Could not load the text: ${err.message}` })));
+  if (!full) return el("div", { class: "prose-box" }, [article]);
+  const name = out.text.split("/").pop();
+  const facts = [out.words != null ? `${fmtNum(out.words)} words` : null, fmtBytes(out.bytes)].filter(Boolean).join(" · ");
+  return el("div", { class: "prose-page" }, [
+    article,
+    el("p", { class: "prose-foot" }, [el("span", { text: facts }), el("a", { text: `download ${name}`, attrs: { href: base + out.text, download: name } })]),
+  ]);
+}
+
 // A run's output wherever it is shown, as an array of nodes: the kind step's own error (if any), then
-// the media gallery, the game or page in the sandbox, or the "no output" message.
+// the media gallery, the text, the game or page in the sandbox, or the "no output" message.
 // Games and pages start on a click (a thumbnail with a play button) unless `autoplay` (the click was
 // opening the row or the window); `frameClass` is the wrapper of an autoplaying frame. `compact` (cards)
 // shows media as one hero with a thumbnail strip instead of the full captioned gallery, its image linking to `href`;
@@ -169,11 +194,12 @@ export function renderOutput(run, base, { autoplay = false, frameClass = "game-f
   const nodes = out?.error ? [el("p", { class: "run-error", text: out.error })] : [];
   if (!out?.ok) return [...nodes, el("p", { class: "msg", text: kindUi(run.kind).none })];
   if (out.items) return [...nodes, compact ? mediaCard(out.items || [], base, href) : mediaGallery(out.items || [], base, { full, tools })];
+  if (out.text) return [...nodes, compact ? textCard(out, href) : textArticle(out, base, { full })];
   const entry = base + out.entry;
   return [...nodes, autoplay ? el("div", { class: frameClass }, [sandboxedGame(entry)]) : buildGameFrame(entry, run.thumb ? base + run.thumb : null)];
 }
 
 // Whether a run's output is a game or page that has its own full-screen window (play.html).
 export function isPlayable(run) {
-  return outputOk(run) && !run.output.items;
+  return outputOk(run) && !run.output.items && !run.output.text;
 }

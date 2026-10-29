@@ -161,7 +161,7 @@ uv run art-crit run "a windmill" --set cheap
 Entries take the same form as `-m`. `--set` also accepts a file (one `MODEL[:LEVELS]` per line,
 `#` for comments). Sets compose with each other and with `-m`; `-e` fills in entries missing levels.
 
-### The four kinds of pages
+### The five kinds of pages
 
 **Godot games** (`--kind godot`, the default) get exported to a web build and booted in headless
 Chrome to prove they run. The engine (~38 MB) lives once in `docs/engines/` and is shared, so each
@@ -209,6 +209,17 @@ On the site a model is a "View in 3D" button over its render that opens an orbit
 harness can run it: pi, Claude Code, Codex and Grok get the server per run; agy and Muse only read a global MCP
 config, so each holds one permanent `art-crit-blender` entry (a proxy that has no tools outside art-crit runs). The first batch installs the
 add-on into `~/.cache/art-crit/` (your own Blender isn't touched) and fetches the server with `uvx`.
+
+**Text** (`--kind text`):
+
+```sh
+uv run art-crit run --kind text "a short essay on why chairs have four legs" -m openai-codex/gpt-6-sol
+```
+
+The agent writes one Markdown file in `./output/` (any `.md` name, at most 200 KB, UTF-8); anything else there is
+ignored, and notes or drafts kept outside `./output/` are published as source. The file is published as is (cleaned
+and secret-scanned like source) and the site renders it as a readable page with its own Markdown renderer: raw HTML
+stays visible text and nothing in it runs. Cards show the title and an excerpt instead of a picture. No tools are needed.
 
 One kind per page: you can't add a Vector prompt to a Godot page, and so on.
 
