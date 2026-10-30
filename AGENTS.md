@@ -71,6 +71,8 @@ src/art_crit/          CLI, standard library only (argparse, json, subprocess, t
   pi_ext/           art-crit-shipped pi extensions loaded with explicit `-e` (work under `-ne`):
                     `openrouter_routing.ts`, loaded for every OpenRouter run: logs the serving upstream + real
                     cost to `ART_CRIT_ROUTE_LOG`, and pins the upstream from `ART_CRIT_OPENROUTER_ROUTING` (`MODEL@slug`)
+                    `openrouter_sticky_upstream.ts`, loaded for unpinned `openrouter/google/*` runs: pins every later
+                    request to the upstream that served the first (Gemini thought signatures don't verify across upstreams)
   kinds/            one class per kind, registered in `KINDS` (ADR-0018): `Kind` = brief, tools, finalize, verify, stage
     godot.py        headless Godot export, boot check, engine dedupe + index.html rewrite
     media.py        check/normalize work/output/ files with ffprobe/ffmpeg -> output/manifest.json; also the thumbnail
@@ -305,6 +307,21 @@ cf pages deployments list --project-name art-crit   # Git-triggered deployment s
 - **`-ne` still loads explicit `-e` extensions.** Per-run OpenRouter routing goes through the art-crit-shipped
   `pi_ext/openrouter_routing.ts` plus `ART_CRIT_OPENROUTER_ROUTING`/`ART_CRIT_ROUTE_LOG` env vars (never the global
   `models.json`, which would affect every pi session on the machine).
+- **OpenRouter Gemini 400 "reasoning details to be preserved"** is misleading: pi (1.4.0) already resends
+  `reasoning_details` verbatim. The real upstream error is "Corrupted thought signature": OpenRouter served a later
+  request from another upstream (Vertex -> AI Studio after a 429). `pi_ext/openrouter_sticky_upstream.ts` fixes it.
+  Pinning the set entry (`openrouter/google/gemini-4-argon@google-vertex`) avoids the question entirely; a response then
+  names the upstream "Google", which `upstream_key` accepts as a prefix of `googlevertex`.
+- **pi machine settings three OpenRouter models needed** (`~/.pi/agent/settings.json`, `~/.pi/agent/models.json`; both
+  outside the repo, so a new machine needs them again): OpenRouter refuses a request whose *maximum* output can't be
+  paid from the balance (`402 ... You requested up to 941808 tokens`), so models advertising ~1M output tokens (Gemini,
+  Kimi, Muse) fail on a small balance unless `modelOverrides.<id>.maxTokens` caps them (64k here). Gemini can reason
+  silently for more than pi's default `httpIdleTimeoutMs` (300000), which ends the run with "Network connection lost.";
+  it is 1800000 here. Mistral Large 4 lists only `off, high` in pi's catalog although the API takes low/medium/high
+  (a `thinkingLevelMap` override), and still answers `Provider finish_reason: error` at medium/high on real pages.
+  The OpenRouter key is `providers.openrouter.apiKey = "!sed ... .env"` there rather than `OPENROUTER_API_KEY` in the
+  environment: an agent that runs `env` would otherwise print the key into its transcript (the Mistral essay run did;
+  the import's secret scan caught it and `--redact` masked it).
 - **OpenRouter upstreams:** slugs contain `/` (`deepinfra/fp8`), so anything that takes "the model name after the
   last `/"` must split off `@route` first (`make_run_id`, `model_tag`, `modelParts()`). Responses name the upstream
   by display name ("AtlasCloud"), not slug: compare with `upstream_key()` (harness.py, where the whole route lives: `Pi.finish` reads `route.jsonl`). pi's cost for OpenRouter calls is a

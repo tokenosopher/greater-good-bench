@@ -24,6 +24,9 @@ from .util import LEVEL_INDEX, LEVEL_ORDER, CritError
 # which upstream served each response and what OpenRouter charged, and pins the upstream for
 # `MODEL@slug` runs. Passed with an explicit `-e` (which still loads under `-ne`).
 ROUTING_EXTENSION = Path(__file__).parent / "pi_ext" / "openrouter_routing.ts"
+# For unpinned OpenRouter Gemini runs (see pi_ext/openrouter_sticky_upstream.ts): keeps every request on
+# the upstream that served the first one, since Gemini's thought signatures don't verify across upstreams.
+STICKY_EXTENSION = Path(__file__).parent / "pi_ext" / "openrouter_sticky_upstream.ts"
 MCP_TIMEOUT_S = 600  # per MCP tool call; a Blender render can take minutes (the clients default to ~60s)
 
 
@@ -341,7 +344,9 @@ class Pi(Harness):
         if not route:
             return metrics
         only = {upstream_key(s) for s in route["requested"]["only"]} if route["requested"] else None
-        outside = [s for s in route["served"] if upstream_key(s) not in only] if only else []
+        # A response names the upstream by display name, which can be shorter than the slug ("Google" served
+        # google-vertex/global), so a served key that starts a requested key counts as that upstream.
+        outside = [s for s in route["served"] if not any(k.startswith(upstream_key(s)) for k in only)] if only else []
         notes = [f"served upstream outside requested only: {', '.join(outside)}"] if outside else []
         route["pi_cost_usd"] = metrics.get("cost_usd", 0.0)
         cost = route["cost_usd"] if route["cost_usd"] is not None else route["pi_cost_usd"]
@@ -365,6 +370,8 @@ class Pi(Harness):
         ]
         if base.startswith("openrouter/"):
             cmd += ["-e", str(ROUTING_EXTENSION)]
+            if base.startswith("openrouter/google/") and not slugs:
+                cmd += ["-e", str(STICKY_EXTENSION)]
         if mcp:
             # pi's built-in MCP support (which -ne leaves out) has no per-run config flag: it reads ~/.pi/agent/mcp.json
             # and a trusted project's .pi/mcp.json, so the servers go in work/.pi/ (never published as source) and

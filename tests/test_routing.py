@@ -242,6 +242,15 @@ def test_routed_run_served_elsewhere_sets_error(run_root, monkeypatch):
     assert run["error"] == "served upstream outside requested only: Fireworks"
 
 
+def test_routed_run_served_by_a_shorter_display_name_is_not_an_error(run_root, monkeypatch):
+    """OpenRouter names google-vertex/global "Google" in responses: a served name that starts the slug counts."""
+    monkeypatch.setenv("FAKE_PI_SERVED", "Google")
+    assert main(["run", "--yes", "served by google", "-m", "openrouter/test/model@google-vertex/global:low", "--root", str(run_root)]) == 0
+    [run] = json.loads((run_root / "docs/data/served-by-google/page.json").read_text())["runs"]
+    assert run["state"] == "complete" and run["error"] is None
+    assert run["route"]["served"] == ["Google"]
+
+
 def test_read_route_parses_the_log(tmp_path):
     from art_crit.harness import read_route
 
@@ -284,3 +293,75 @@ def test_finish_hook_is_identity_except_for_pi_openrouter_runs(tmp_path):
     assert done["cost_usd"] == 0.01 and done["extra"]["route"]["pi_cost_usd"] == 0.5
     assert done["notes"] == ["served upstream outside requested only: Fireworks"]
     assert metrics == {"cost_usd": 0.5}  # the input isn't modified
+
+
+# --- sticky upstream for OpenRouter Gemini (pi_ext/openrouter_sticky_upstream.ts) ---
+
+
+def _node_runs_ts():
+    import shutil
+    import subprocess
+
+    node = shutil.which("node")
+    if not node:
+        return False
+    major = subprocess.run([node, "-p", "process.versions.node.split('.')[0]"], capture_output=True, text=True).stdout.strip()
+    return major.isdigit() and int(major) >= 23
+
+
+@pytest.mark.skipif(not _node_runs_ts(), reason="needs node 23+ (runs .ts by stripping types)")
+def test_sticky_extension_pins_later_requests_to_first_upstream():
+    """The extension's own logic, in node with a stand-in for pi's `on`: no real model is called."""
+    import subprocess
+
+    from art_crit.harness import STICKY_EXTENSION
+
+    script = f"""
+import assert from 'node:assert/strict';
+const ext = await import({json.dumps(STICKY_EXTENSION.as_uri())});
+const pinned = {{only: ['google-vertex'], allow_fallbacks: false}};
+assert.deepEqual(ext.pinUpstream({{model: 'm'}}, null), {{model: 'm'}});
+assert.deepEqual(ext.pinUpstream({{model: 'm', provider: {{sort: 'price'}}}}, 'google-vertex'),
+                 {{model: 'm', provider: {{sort: 'price', ...pinned}}}});
+assert.deepEqual(ext.pinUpstream({{provider: {{only: ['x']}}}}, 'google-vertex'), {{provider: {{only: ['x']}}}});
+
+function load(env) {{
+  const handlers = {{}};
+  delete process.env.ART_CRIT_OPENROUTER_ROUTING;
+  Object.assign(process.env, env);
+  ext.default({{ on: (name, fn) => {{ handlers[name] = fn; }} }});
+  return handlers;
+}}
+let h = load({{}});
+const request = () => h.before_provider_request({{ payload: {{ messages: [] }} }});
+assert.deepEqual(request(), {{ messages: [] }});  // first request: OpenRouter picks
+h.provider_stream_event({{ data: {{ id: 'g1', choices: [] }} }});
+h.provider_stream_event({{ data: {{ id: 'g1', provider: 'Google' }} }});
+h.provider_stream_event({{ data: {{ id: 'g2', provider: 'Google AI Studio' }} }});  // first name decided
+assert.deepEqual(request(), {{ messages: [], provider: pinned }});
+h = load({{}});
+h.provider_stream_event({{ data: {{ provider: 'Some Unknown Host' }} }});
+h.provider_stream_event({{ data: {{ provider: 'Google' }} }});
+assert.deepEqual(request(), {{ messages: [] }});  // unknown first upstream: left unpinned
+h = load({{ ART_CRIT_OPENROUTER_ROUTING: '{{"only": ["google-vertex"]}}' }});
+assert.deepEqual(h, {{}});  // a MODEL@slug run is pinned already
+"""
+    subprocess.run(["node", "--input-type=module", "-e", script], check=True, cwd=Path(__file__).resolve().parents[1])
+
+
+def test_openrouter_gemini_run_loads_sticky_extension(run_root, monkeypatch, tmp_path):
+    argv_file = tmp_path / "pi-argv.json"
+    monkeypatch.setenv("FAKE_PI_ARGV", str(argv_file))
+    monkeypatch.setenv("FAKE_PI_EXTRA_MODELS", "openrouter/google/gemini-x")
+    assert main(["run", "--yes", "gemini run", "-m", "openrouter/google/gemini-x:high", "--root", str(run_root)]) == 0
+    argv = json.loads(argv_file.read_text())["argv"]
+    exts = [argv[i + 1] for i, a in enumerate(argv) if a == "-e"]
+    assert [Path(e).name for e in exts] == ["openrouter_routing.ts", "openrouter_sticky_upstream.ts"]
+    assert all(Path(e).is_file() for e in exts)
+
+    # pinned with @slug: already sticky; another OpenRouter model: no sticky either
+    for model in ("openrouter/google/gemini-x@google-vertex:high", "openrouter/test/model:low"):
+        argv_file.unlink()
+        assert main(["run", "--yes", "other run", "-m", model, "--root", str(run_root)]) == 0
+        argv = json.loads(argv_file.read_text())["argv"]
+        assert [Path(argv[i + 1]).name for i, a in enumerate(argv) if a == "-e"] == ["openrouter_routing.ts"]
