@@ -1,0 +1,75 @@
+{
+  "id": "muse-wonder-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/meta/muse-wonder",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:26:41Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Meta"
+    ],
+    "cost_usd": 0.6269608,
+    "pi_cost_usd": 0.6269608000000002
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 9,
+      "read": 4,
+      "edit": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 209936,
+    "cost_usd": 0.6269608,
+    "tool_calls": 16,
+    "turns": 17,
+    "tokens_total": 90811,
+    "tokens_input": 76197,
+    "tokens_output": 14614,
+    "tokens_reasoning": 5253,
+    "tokens_cache_read": 149464
+  },
+  "thumb": "media/pause-breathe-see-each-other.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 960,
+        "height": 540,
+        "duration_s": 10.0,
+        "bytes": 641126,
+        "transcoded": false,
+        "path": "media/pause-breathe-see-each-other.mp4",
+        "poster": "media/pause-breathe-see-each-other.poster.jpg",
+        "thumb": "media/pause-breathe-see-each-other.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make_animation.py"
+    ]
+  }
+}

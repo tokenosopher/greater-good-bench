@@ -1,0 +1,87 @@
+{
+  "id": "deepseek-v4.1-flash-1017-high-20261029-205306",
+  "page": "game",
+  "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T20:53:06Z",
+  "batch": "2026-10-29-205306-game",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Wafer"
+    ],
+    "cost_usd": 0.146959046,
+    "pi_cost_usd": 0.082682151
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 40,
+      "read": 22,
+      "write": 12
+    }
+  },
+  "metrics": {
+    "duration_ms": 859621,
+    "cost_usd": 0.146959046,
+    "tool_calls": 74,
+    "turns": 71,
+    "tokens_total": 535076,
+    "tokens_input": 430295,
+    "tokens_output": 104781,
+    "tokens_reasoning": 102498,
+    "tokens_cache_read": 5904512
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      ".gitignore",
+      "README.md",
+      "export_presets.cfg",
+      "icon.svg",
+      "icon.svg.import",
+      "main.tscn",
+      "project.godot",
+      "scripts/audio.gd",
+      "scripts/audio.gd.uid",
+      "scripts/background.gd",
+      "scripts/background.gd.uid",
+      "scripts/data.gd",
+      "scripts/data.gd.uid",
+      "scripts/interest_card.gd",
+      "scripts/interest_card.gd.uid",
+      "scripts/main.gd",
+      "scripts/main.gd.uid",
+      "scripts/party_panel.gd",
+      "scripts/party_panel.gd.uid",
+      "scripts/trust_meter.gd",
+      "scripts/trust_meter.gd.uid",
+      "scripts/ui_kit.gd",
+      "scripts/ui_kit.gd.uid"
+    ]
+  }
+}

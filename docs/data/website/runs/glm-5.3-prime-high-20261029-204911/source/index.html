@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Where You Stand — the good you could do</title>
+<meta name="description" content="An honest calculator: where your income stands among 8 billion people, and how many lives a slice of it could save through the world's most effective charities." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23f5b25b'/%3E%3Ccircle cx='11' cy='6' r='2' fill='%23fff'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top">Where&nbsp;You&nbsp;Stand</a>
+  <nav>
+    <a href="#stand">Where you stand</a>
+    <a href="#give">What giving does</a>
+    <a href="#objections">Objections</a>
+    <a href="#pledge">Pledge</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <p class="kicker">An honest calculator about your income — and what it could do</p>
+    <h1>You are probably <em>richer</em><br />than you think.</h1>
+    <p class="lede">
+      Most people reading this are in the richest slice of humanity that has ever lived —
+      and the price of saving a human life through the most effective charities is now
+      measured in <strong>thousands</strong>, not millions, of dollars.
+      Enter your income below and see what that means in concrete terms.
+    </p>
+    <div class="hero-stat">
+      <div class="hero-num"><span id="malaria-count">0</span></div>
+      <div class="hero-label">
+        children are estimated to have died of malaria since you opened this page —
+        one roughly every 70 seconds, nearly all from <em>preventable</em> causes.
+      </div>
+    </div>
+    <p class="footnote">WHO World Malaria Report 2024: 597,000 malaria deaths in 2023, ~76% among children under&nbsp;5.</p>
+  </section>
+
+  <section id="stand" class="section">
+    <div class="section-head reveal">
+      <h2>Where you stand</h2>
+      <p class="section-sub">Every dot below is about 8 million people, ordered by income, poorest first.</p>
+    </div>
+    <div class="stand-grid reveal">
+      <div class="panel controls">
+        <label class="control-label" for="income-input">Your yearly income, before tax
+          <span class="hint">(in your own currency — close enough for an estimate)</span>
+        </label>
+        <input id="income-input" type="text" inputmode="numeric" value="45,000" autocomplete="off" />
+        <input id="income-slider" type="range" min="0" max="100" step="0.1" value="79"
+               aria-label="Income on a logarithmic scale" />
+        <div class="rank-line"><span id="stand-lead">—</span></div>
+        <div class="rank-line">That makes you roughly the
+          <b id="rank">—</b> richest person on Earth,
+          out of 8.1 billion.
+        </div>
+        <div class="rank-line">You are richer than <b><span id="richer-count">—</span></b> people —
+          about <b><span id="richer-pct">—</span>%</b> of humanity.
+        </div>
+        <p class="rank-note">Approximate, based on World Bank and Our World in Data global income
+          distributions (2019–2023, PPP-adjusted). Your exact rank may differ; the order of
+          magnitude will not.</p>
+      </div>
+      <div class="panel dots-panel">
+        <canvas id="dots" role="img" aria-label="A field of one thousand dots, one per 8 million people. Dots poorer than you are dim, dots richer than you are gold, and your position is a pulsing white dot."></canvas>
+        <div class="dots-legend">
+          <span><i class="sw sw-poor"></i> living on less than you</span>
+          <span><i class="sw sw-you"></i> you</span>
+          <span><i class="sw sw-rich"></i> richer than you</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="give" class="section">
+    <div class="section-head reveal">
+      <h2>What a slice of it could do</h2>
+      <p class="section-sub">
+        Not the slice you spend on rent or groceries — the slice you'd never miss.
+        These are the measured, published cost-effectiveness numbers of the charities
+        GiveWell considers the best in the world.
+      </p>
+    </div>
+
+    <div class="panel give-controls reveal">
+      <div class="give-slider-row">
+        <label class="control-label" for="pct-slider">
+          Portion of your income you give away: <b><span id="pct-display">5</span>%</b>
+        </label>
+        <input id="pct-slider" type="range" min="0.5" max="15" step="0.5" value="5" />
+        <div class="slider-scale"><span>0.5%</span><span>5%</span><span>10%</span><span>15%</span></div>
+      </div>
+      <div class="give-amount">= <b id="donation-annual">$—</b> per year</div>
+      <div class="pledge-row">
+        <button class="pledge-btn" data-pct="1" id="pledge-1">Try 1%</button>
+        <button class="pledge-btn" data-pct="5" id="pledge-5">5% (the classic)</button>
+        <button class="pledge-btn" data-pct="10" id="pledge-10">10% (the Giving What We Can pledge)</button>
+      </div>
+    </div>
+
+    <div class="results-grid reveal">
+      <div class="stat stat-hero">
+        <div class="stat-num"><span id="r-lives-decade">—</span></div>
+        <div class="stat-label">lives saved over the <b>next decade</b></div>
+        <div class="stat-note">and roughly <span id="r-lives-40">—</span> over a 40-year career, at this level of giving</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span id="r-nets">—</span></div>
+        <div class="stat-label">mosquito nets per year</div>
+        <div class="stat-note">protecting about <span id="r-protected">—</span> people from malaria each year</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span id="r-deworm">—</span></div>
+        <div class="stat-label">children dewormed per year</div>
+        <div class="stat-note">deworming costs under a dollar per child and measurably raises their lifetime earnings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span id="r-dalys">—</span></div>
+        <div class="stat-label">years of healthy life gained in a decade</div>
+        <div class="stat-note"><span id="r-dalys-note">—</span> over a 40-year career</div>
+      </div>
+    </div>
+
+    <p class="fineprint reveal">
+      Figures are GiveWell's 2023–24 estimates for its top charities: ~$5 per bed net,
+      ~$5,000 per death averted, ~$1.25 per child-year of vitamin A, under $1 per
+      child-year of deworming, ~$150 per year of healthy life (conservative). Estimates
+      carry real uncertainty — they are also the most rigorously measured numbers in
+      philanthropy. Giving is not a substitute for fixing systems; it's the part you can
+      measure tonight.
+    </p>
+  </section>
+
+  <section id="translate" class="section">
+    <div class="section-head reveal">
+      <h2>The translator</h2>
+      <p class="section-sub">Type in anything you spend money on. See what it is, at the other end of your income bracket.</p>
+    </div>
+    <div class="panel translator reveal">
+      <label class="control-label" for="price-input">Price of a thing:
+        <span class="hint">(a dinner out, a gadget, a month of streaming)</span>
+      </label>
+      <div class="price-row">
+        <span class="currency">$</span>
+        <input id="price-input" type="number" min="1" max="100000" value="20" />
+      </div>
+      <p class="translator-out">
+        That's <b><span id="tr-nets">4</span></b> malaria bed nets — protecting
+        <b><span id="tr-people">8</span></b> people while they sleep — or
+        <b><span id="tr-deworm">27</span></b> children dewormed for a year,
+        or <b><span id="tr-life">0.4</span>%</b> of the cost of saving a life.
+      </p>
+      <p class="fineprint">Yes, that coffee really is one bed net. No, you don't have to give up the coffee —
+      that's why the calculator works in percentages.</p>
+    </div>
+  </section>
+
+  <section id="objections" class="section">
+    <div class="section-head reveal">
+      <h2>The objections — taken seriously</h2>
+      <p class="section-sub">You're right to be skeptical. Here are the honest answers.</p>
+    </div>
+    <div class="objections reveal">
+      <details>
+        <summary>“I'm not rich. I can barely pay my own bills.”</summary>
+        <p>“Rich” is relative — and you're reading this on a computer. If you earn $40,000 a
+        year, you out-earn roughly 94% of humanity. You don't need to be a billionaire to
+        save a life; you need $5,000 — often less — and a well-chosen charity. For most
+        people in the global top 10%, that's months, not decades, of discretionary spending.</p>
+      </details>
+      <details>
+        <summary>“My donation is a drop in the ocean.”</summary>
+        <p>A life is not an ocean. $5,000 to a top-rated malaria charity is, with high
+        probability, a specific child who doesn't die. Almost no one ever saves a life.
+        You can do it within a year — quietly, anonymously, from a couch.</p>
+      </details>
+      <details>
+        <summary>“Charities are wasteful and corrupt.”</summary>
+        <p>This was the hard problem, and it's been solved about as well as it can be.
+        GiveWell spends years auditing charities and publishes all of its math, mistakes
+        included. Its top charities deliver bed nets for ~$5 and vitamin A for ~$1.25,
+        with independent monitoring and randomized-trial evidence. If you distrust one
+        charity, that's an argument for <em>better</em> giving, not for no giving —
+        and “no giving” has a body count too.</p>
+      </details>
+      <details>
+        <summary>“Aid creates dependency.”</summary>
+        <p>Bed nets, deworming and vitamin A are cheap, time-limited, and measured by
+        randomized controlled trials; programs are increasingly handed to national
+        governments to run themselves. Since 2000, simple interventions like these have
+        helped cut child deaths from ~10 million a year to under 5 million — one of the
+        best-evidenced success stories in all of development.</p>
+      </details>
+      <details>
+        <summary>“We should fix the root causes instead.”</summary>
+        <p>Do both — the critique is fair, and it applies to your consumption too. But a
+        child with malaria tonight cannot wait for structural reform, and bed nets work
+        tonight. Giving and system-change aren't rivals; the same dollar just can't do
+        both, so the decision deserves to be deliberate rather than default.</p>
+      </details>
+      <details>
+        <summary>“I already give to local causes / my alma mater.”</summary>
+        <p>Local causes matter, and that's your call. But the math is stubborn: $5,000 in a
+        rich country might buy a nicer mural or a marginally better library; $5,000 in the
+        poorest places buys a life. The whole point of this page is one question:
+        <em>if you're giving anyway, how much good do you want it to do?</em></p>
+      </details>
+    </div>
+  </section>
+
+  <section id="pledge" class="section">
+    <div class="section-head reveal">
+      <h2>Make it real</h2>
+      <p class="section-sub">Pick a level above, add your name, and read it aloud.</p>
+    </div>
+    <div class="certificate reveal">
+      <div class="cert-ornament">❦</div>
+      <p class="cert-line">I, <b id="cert-name">A Person Who Read This Page</b>,</p>
+      <p class="cert-line">give <b><span id="cert-pct">5</span>%</b> of my income —
+        <b><span id="cert-amount">$—</span></b> this year —</p>
+      <p class="cert-line">to the charities that do the most measurable good in the world.</p>
+      <p class="cert-line cert-close">Kept for a working life, this is estimated to save</p>
+      <p class="cert-lives"><b><span id="cert-lives">—</span></b> lives.</p>
+      <input id="name-input" type="text" placeholder="Type your name…" autocomplete="off" maxlength="60" />
+      <p class="cert-note">Nothing is stored or sent anywhere — this page has no memory,
+        by design. The only copy that exists is the one you keep, in your head or in ink.</p>
+    </div>
+  </section>
+
+  <section class="section sources">
+    <h2>Sources &amp; caveats</h2>
+    <ul>
+      <li><b>GiveWell</b>, “Cost-Effectiveness Analyses — Top Charities” (2023–24): bed nets ~$5;
+        ~$3,500–5,500 per death averted (top-charity average; $5,000 used here); vitamin A
+        supplementation ~$1.25 per child-year; deworming &lt;$1 per child-year.</li>
+      <li><b>WHO</b>, World Malaria Report 2024: 597,000 malaria deaths in 2023, ~76% children under 5
+        (≈ one child death per ~70 seconds).</li>
+      <li><b>World Bank Poverty &amp; Inequality Platform</b> and <b>Our World in Data</b>,
+        global income distribution, 2019–2023, PPP-adjusted international dollars.</li>
+      <li><b>Give What We Can</b> (10% pledge) and <b>The Life You Could Save</b> (1%+ pledge).</li>
+    </ul>
+    <p class="fineprint">All numbers are estimates — deliberately on the conservative side where
+    uncertain. This page runs entirely in your browser, stores nothing, tracks nothing, and asks
+    for nothing. It only asks you to look, once, at the actual math.</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Built to be seen once. Share it with someone who earns what you do. — no tracking, no storage, one file.</p>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

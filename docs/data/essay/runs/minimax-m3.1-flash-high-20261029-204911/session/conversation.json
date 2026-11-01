@@ -1,0 +1,422 @@
+[
+  {
+    "type": "session",
+    "version": 3,
+    "id": "01a1896d-1e96-751f-bad5-546913da55db",
+    "timestamp": "2026-10-29T20:49:52.279Z",
+    "cwd": "~/dev/art-crit-runs/2026-10-29-204911-essay/minimax-m3.1-flash-high-20261029-204911/work"
+  },
+  {
+    "type": "model_change",
+    "id": "c9577edb",
+    "parentId": null,
+    "timestamp": "2026-10-29T20:49:52.316Z",
+    "provider": "openrouter",
+    "modelId": "minimax/minimax-m3.1-flash"
+  },
+  {
+    "type": "thinking_level_change",
+    "id": "fccfdb9c",
+    "parentId": "c9577edb",
+    "timestamp": "2026-10-29T20:49:52.316Z",
+    "thinkingLevel": "high"
+  },
+  {
+    "type": "message",
+    "id": "d6a6593a",
+    "parentId": "fccfdb9c",
+    "timestamp": "2026-10-29T20:49:52.320Z",
+    "message": {
+      "role": "system",
+      "content": "",
+      "sections": {
+        "preamble": "You are an expert coding assistant operating inside pi, a coding agent harness. You help users by reading files, executing commands, editing code, and writing new files.",
+        "tools": "<tools>\n- read: Read file contents\n- bash: Execute bash commands (ls, grep, find, etc.)\n- edit: Make precise file edits with exact text replacement, including multiple disjoint edits in one call\n- write: Create or overwrite files\n\nIn addition to the tools above, you may have access to other custom tools depending on the project.\n</tools>",
+        "rules": "<rules>\n- Use bash for file operations like ls, rg, find\n- Use read to examine files instead of cat or sed.\n- You can inspect PI_* environment variables for current model and session details.\n- Use edit for precise changes (edits[].oldText must match exactly)\n- When changing multiple separate locations in one file, use one edit call with multiple entries in edits[] instead of multiple edit calls\n- Each edits[].oldText is matched against the original file, not after earlier edits are applied. Do not emit overlapping or nested edits. Merge nearby changes into one edit.\n- Keep edits[].oldText as small as possible while still being unique in the file. Do not pad with large unchanged regions.\n- Use write only for new files or complete rewrites.\n- Be concise in your responses\n- Show file paths clearly when working with files\n</rules>",
+        "docs": "<docs>\nPi documentation (read only when the user asks about pi itself, its SDK, extensions, themes, skills, or TUI):\n- Main documentation: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/README.md\n- Additional docs: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/docs\n- Examples: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/examples (extensions, custom tools, SDK)\n- When reading pi docs or examples, resolve docs/... under Additional docs and examples/... under Examples, not the current working directory\n- When asked about: extensions (docs/extensions.md, examples/extensions/), themes (docs/themes.md), skills (docs/skills.md), prompt templates (docs/prompt-templates.md), TUI components (docs/tui.md), keybindings (docs/keybindings.md), SDK integrations (docs/sdk.md), custom providers (docs/custom-provider.md), adding models (docs/models.md), pi packages (docs/packages.md), environment variables (docs/environment-variables.md), MCP servers (docs/mcp.md), codemode scripts and non-LLM models such as classifiers and image models (docs/codemode.md)\n- When working on pi topics, read the docs and examples, and follow .md cross-references before implementing\n- Always read pi .md files completely and follow links to related docs (e.g., tui.md for TUI API details)\n</docs>",
+        "cwd": "<cwd>\n~/dev/art-crit-runs/2026-10-29-204911-essay/minimax-m3.1-flash-high-20261029-204911/work\n</cwd>"
+      },
+      "timestamp": 1793306992319,
+      "toolsAdded": [
+        {
+          "name": "read",
+          "description": "Read the contents of a file. Supports text files and images (jpg, png, gif, webp, bmp). Images are sent as attachments. For text files, output is truncated to 2000 lines or 50KB (whichever is hit first). Use offset/limit for large files. When you need the full file, continue with offset until complete.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to read (relative or absolute)"
+              },
+              "offset": {
+                "type": "number",
+                "description": "Line number to start reading from (1-indexed)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of lines to read"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "bash",
+          "description": "Execute a bash command in the current working directory. Returns stdout and stderr. Output is truncated to last 2000 lines or 50KB (whichever is hit first). If truncated, full output is saved to a temp file. Optionally provide a timeout in seconds.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "command"
+            ],
+            "properties": {
+              "command": {
+                "type": "string",
+                "description": "Shell command to execute"
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Timeout in seconds (optional, no default timeout)"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "edit",
+          "description": "Edit a single file using exact text replacement. Every edits[].oldText must match a unique, non-overlapping region of the original file. If two changes affect the same block or nearby lines, merge them into one edit instead of emitting overlapping edits. Do not include large unchanged regions just to connect distant changes.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path",
+              "edits"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to edit (relative or absolute)"
+              },
+              "edits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "oldText",
+                    "newText"
+                  ],
+                  "properties": {
+                    "oldText": {
+                      "type": "string",
+                      "description": "Exact text for one targeted replacement. It must be unique in the original file and must not overlap with any other edits[].oldText in the same call."
+                    },
+                    "newText": {
+                      "type": "string",
+                      "description": "Replacement text for this targeted edit."
+                    }
+                  }
+                },
+                "description": "One or more targeted replacements. Each edit is matched against the original file, not incrementally. Do not include overlapping or nested edits. If two changes touch the same block or nearby lines, merge them into one edit instead."
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "write",
+          "description": "Write content to a file. Creates the file if it doesn't exist, overwrites if it does. Automatically creates parent directories.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path",
+              "content"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to write (relative or absolute)"
+              },
+              "content": {
+                "type": "string",
+                "description": "Content to write to the file"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "1eea53ca",
+    "parentId": "d6a6593a",
+    "timestamp": "2026-10-29T20:49:52.320Z",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Write an essay that, if everyone read it, would improve the world for the greatest number of people.\n\nDeliver the result as one Markdown file, working in the current directory.\n- Save it in ./output/ under any name ending in .md (for example ./output/essay.md). ./output/ must hold\n  exactly one .md file; anything else there is ignored.\n- The file is published as it is and shown as a page: headings, paragraphs, lists, block quotes, emphasis,\n  links and code blocks. No raw HTML (it is shown as plain text) and no images that need other files.\n- Keep it under 200 KB.\n- Keep notes, outlines, drafts and any scripts outside ./output/ (in the working directory or a\n  subdirectory): they're published as the source.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you wrote.\n"
+        }
+      ],
+      "timestamp": 1793306992319
+    }
+  },
+  {
+    "type": "message",
+    "id": "cfc22d6a",
+    "parentId": "1eea53ca",
+    "timestamp": "2026-10-29T20:49:55.132Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "We need write essay. Need inspect dir maybe only output. Need deliver. We need craft strong essay greatest number. Aim perhaps \"The Practice of Being Ordinary\" civic virtue, institutions, compassion, habit, epistemic humility. Need universal but specific actionable. Since prompt asks essay, polished. Need exactly one md in output. Check files."
+        },
+        {
+          "type": "toolCall",
+          "id": "b129c092-df54-9dc6-a775-83ba2763232d_0",
+          "name": "bash",
+          "arguments": {
+            "command": "pwd && find . -maxdepth 2 -type f -print | sort && mkdir -p output && find output -maxdepth 1 -type f -print | sort",
+            "timeout": 10
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 1880,
+        "output": 139,
+        "cacheRead": 128,
+        "cacheWrite": 0,
+        "reasoning": 77,
+        "totalTokens": 2147,
+        "cost": {
+          "input": 0.0002538,
+          "output": 7.506e-05,
+          "cacheRead": 1.728e-06,
+          "cacheWrite": 0,
+          "total": 0.000330588
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793306992327,
+      "responseId": "gen-1793306992-XNNo96o29PCafPIW4JQO",
+      "rawStopReason": "tool_calls",
+      "durationMs": 2805,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "13edee1b",
+    "parentId": "cfc22d6a",
+    "timestamp": "2026-10-29T20:49:55.144Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "b129c092-df54-9dc6-a775-83ba2763232d_0",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "~/dev/art-crit-runs/2026-10-29-204911-essay/minimax-m3.1-flash-high-20261029-204911/work\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 11,
+      "timestamp": 1793306995144
+    }
+  },
+  {
+    "type": "message",
+    "id": "7f66f032",
+    "parentId": "13edee1b",
+    "timestamp": "2026-10-29T20:50:29.778Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need create essay. Think title \"The Smallest Useful Good\" maybe essay thesis: greatest good not grand gestures but repair social default, distributed habits. Could articulate moral philosophy: greatest number impossible quantified, but lexicographic priorities: prevent severe suffering, improve systems, expand agency. \"We are the environment of one another.\" Need perhaps no false specifics. 2-4k words maybe good. Must improve world if everyone read: audience can practice \"norm of generous interpretation, costs, institutions, reciprocal citizenship.\" A concrete framework: Four commitments:\n1 See clearly, uncertainty\n2 Reduce avoidable suffering\n3 Improve conditions where many live\n4 Build capacity for self-governance\n5 leave institutions good.\nCould call \"The Case for Deliberate Goodness\". Need not be preachy; universal address.\n\nEssay should have emotional and argument coherence. \"The best possible world is not one where a few attain perfection, but where millions encounter fewer unnecessary tragedies and more people can repair what is broken.\" Also avoid voluntarism: people cannot individually solve structural problems. Distinguish charity and justice. Need strongest contribution: \"Moral ambition is cheap; moral infrastructure is real.\" Everyone can't donate their way. Adopt and enforce rules, build capacity.\n\nMaybe central thesis: shared goodness becomes durable when converted into systems and habits. Four moves:\n- End preventable harm\n- Make contribution possible\n- Strengthen institutions of truth\n- Practice trust\nExamples generic and broad.\n\nCall to action: Every person decides (what to do, who benefits, what remains) and communities. Maybe \"three questions\" that operationalize:\n1 Who bears cost?\n2 Who has voice?\n3 What happens if everyone does it?\nCould be compelling. \"Every serious public proposal should pass reversibility/scaling test.\"\n\nNeed satisfy greatest number. Could include health, environment, peace. But broad issue hierarchy.\n\nLet's draft ~3500 words. Markdown file only. No external references required. Include blockquotes maybe. Ensure no raw HTML. Title. The reader asked only file and summary. Let's write."
+        },
+        {
+          "type": "toolCall",
+          "id": "ef76db64-ba7e-9799-881b-4a6e8912514a_0",
+          "name": "write",
+          "arguments": {
+            "path": "output/a-more-good-world.md",
+            "content": "# A More Good World Is a Practice, Not a Miracle\n\nThe world\u2019s problems are often described as if they were one enormous problem. They are not. There is no single evil to defeat and no single solution waiting to be discovered. There are billions of decisions, layered within institutions that reward some behaviors and punish others, producing ordinary outcomes that would appall us if we saw them all at once.\n\nA child denied a vaccine. A worker injured by machinery no one bothered to guard. A woman who cannot leave an abusive relationship without losing her home. A neighborhood cooled not because its residents were willing to sacrifice comfort, but because electricity rates had been designed that way. A community that distrusts its government because, again and again, government has not told the truth.\n\nEach tragedy has a human face. Each also has a structure. This is the hopeful part. If suffering is not merely a fact of nature, it may be possible to reduce it. If bad outcomes are partly produced by systems, they can be changed.\n\nThe question is not whether one person can save the world. Almost no one can. The question is what would happen if every person became better at making the world work better\u2014not only in emergencies, but in the ordinary arrangements that decide who flourishes and who merely survives.\n\nThe answer will not be a single program. It will be a durable practice of good judgment, mutual aid, and institutional repair.\n\n## Begin with avoidable suffering\n\nNot all suffering can be ended. People become ill. Accidents occur. Love disappoints. Aging brings loss. A morality that promises to abolish every hardship would be dishonest and would encourage denial of what cannot be changed.\n\nBut much suffering is avoidable. It is produced by preventable disease, dangerous workplaces, war, pollution, neglect, fraud, and the failure to help people in distress. The moral priority is therefore clear: first prevent severe, preventable suffering; then reduce suffering that can be lessened; then pursue improvements that make lives safer, healthier, and more meaningful.\n\nThis ordering matters because public attention is easily captured by the dramatic. A spectacular injustice can command more outrage than a quiet one. Yet a neglected river that makes children sick, a dangerous road that kills workers, or a family left without food because a bureaucracy failed to respond may destroy more lives over time.\n\nAn improving society learns to count both what is visible and what is hidden. It asks not only, \u201cHow many people were harmed in this incident?\u201d but also, \u201cHow many lives will this policy affect?\u201d It resists false choices between, say, economic progress and human dignity, recognizing that a system that degrades the people who sustain it is not truly successful.\n\nThere is also a moral advantage to focusing first on avoidable suffering: it unites people without requiring them to agree about everything. Almost no one wants children to die of thirst, workers to die at preventable jobs, or victims of cruelty to be abandoned. This common ground can support practical cooperation even in societies divided by ideology, wealth, identity, and history.\n\nWe should not wait for complete harmony before acting. We can begin where cruelty is clearest.\n\n## Improve the conditions in which most people live\n\nCharity helps, but charity cannot do everything charity is asked to do. The world does not primarily lack kind individuals. It lacks enough institutions that make kindness routine.\n\nConsider education. Teaching children to read is valuable, but a society in which school attendance depends on the accident of birth is not simply unlucky; it is organized unfairly. Consider healthcare. No amount of personal courage substitutes for clean water, vaccination, trained clinicians, breathable air, medicines, and sick leave. Consider work. Asking people to be productive while refusing them safety, rest, and a living wage makes productivity a burden transferred from employers to workers.\n\nJustice is partly the arrangement of the background conditions under which people make their choices. People cannot always be blamed for outcomes they did not choose or are unable to escape. Nor can their choices be fully excused because circumstances are severe. Good public policy both supports responsibility and reduces the desperation that makes responsibility impossible.\n\nThis is why the pursuit of the common good cannot be reduced to demanding that individuals become better while leaving harmful structures untouched. We must improve both the incentives people face and the capacities they possess. Better people in worse systems will often be ground down. Better systems make better behavior more likely, more affordable, and more reliable.\n\nThe highest leverage work is often unglamorous: designing safer buildings; maintaining public transit; treating mental illness; supporting early childhood care; making elections genuinely competitive; preventing corruption; enforcing labor law; preserving wetlands that protect cities from floods. Such work may not produce a photograph, but it determines whether millions can build stable lives.\n\nA good society is not one in which every choice is easy. It is one in which the easiest choices are mostly safe, honest, and beneficial.\n\n## Treat truth as a public utility\n\nEvery serious problem of public life ultimately depends on some version of truth. People cannot govern well if they cannot know what is happening. They cannot cooperate if statements are routinely strategic lies. They cannot hold institutions accountable if evidence has been made inaccessible or unreliable.\n\nTruthfulness is therefore more than a private virtue. It is public infrastructure.\n\nThis has practical consequences. A government should publish information that citizens need to make decisions, including bad news. An employer should not conceal hazards. A scientist should report inconvenient findings honestly. A journalist should correct errors. A platform should not knowingly distort attention to maximize outrage. An organization that depends on trust should disclose conflicts of interest.\n\nMost people do not expect perfect truth. They expect the truth to be possible to obtain and claims to be answerable to evidence. That modest standard is transformative.\n\nInstitutions often fail not because their members are uniformly malicious but because honesty is inconvenient to each person individually while systematically necessary to everyone collectively. A company may benefit temporarily from misleading customers. A politician may benefit from exaggeration. A news organization may gain attention from conflict. Each local advantage accumulates into a social environment in which shared facts collapse.\n\nThe repair begins with procedures rather than declarations: transparent records, independent inspection, publication of methods, meaningful correction, institutional protection for whistleblowers, and consequences for deliberate deception. Transparency alone is insufficient; it can produce information overload or become a performance. But combined with accountability and clear standards, it gives communities something indispensable: a way to learn.\n\nCynicism is not a neutral stance. It may protect us from disappointment, but habitual distrust makes every institution less functional. Hope, when attached to evidence and accountability, is a practical technology.\n\n## Make people participants, not objects\n\nMuch of modern life treats people as inputs: customers to convert, workers to schedule, citizens to sort, audiences to retain. A person may be valued for what can be extracted from them rather than for what they know or what they need.\n\nA more good world treats people as participants. This means giving them meaningful voice in decisions that shape their lives. It means designing services with recipients rather than merely delivering them to them. It means recognizing the knowledge held by the teacher, nurse, mechanic, caregiver, and resident who understands a problem no distant expert can see.\n\nParticipation is not the same as endless consultation. Too much consultation can exhaust people and delay urgent action. The principle is that people should have a credible ability to understand, question, and influence decisions that materially affect them. Where consent is impossible\u2014for example, in emergencies\u2014decision-makers owe a stronger duty of care and clear accountability.\n\nThis principle scales surprisingly well. A small meeting and a large institution share the same ethical foundation: explain the decision, invite relevant criticism, and let those affected have a real stake in the outcome. The larger the consequences, the stronger the need for those safeguards.\n\nParticipation also strengthens communities. People are more likely to sustain rules when they have helped make them and can see that exceptions are not made for their own group. A society in which many feel merely administered becomes brittle. A society in which many can contribute becomes resilient.\n\n## Build the capacity to repair\n\nThe world does not need flawless people. It needs people and institutions capable of noticing error, accepting responsibility, and changing course.\n\nA culture can make repair more likely by changing how it treats admission. Saying \u201cI was wrong\u201d does not erase consequences, but it allows knowledge to circulate before failure compounds. Saying \u201cThis system failed\u201d does not require declaring that everyone was bad, but it directs attention toward what can be redesigned.\n\nRepair has practical forms. A neighbor replaces a broken gate instead of waiting for the landlord. A company recalls a product without treating the recall as an admission of personal worthlessness. A government corrects a failed policy, publishes the evidence, and protects the people harmed while it develops a better one. A friend acknowledges that their anger made them unfair and apologizes without demanding instant forgiveness.\n\nThe scale of repair is not limited to small acts. Restorative justice, public-health surveillance, environmental remediation, and democratic reform all aim at the same principle: respond to harm in a way that addresses its causes and restores as much capacity as possible.\n\nTwo errors must be avoided. One is the perfectionism that postpones action until every detail is certain. The other is the nihilism that excuses action because every system is flawed. A flawed system can be improved, and improvement becomes more likely when people are trusted to participate in it.\n\nThe most hopeful people are not those who believe all is well. They are those who can distinguish what is necessary from what is tolerable, what is broken from what is merely unfamiliar, and what can be fixed now from what must be learned along the way.\n\n## Practice trust as a public good\n\nCooperation requires trust, and trust is usually created by conduct rather than proclaimed by slogans. Trust grows when promises are kept, when mistakes are acknowledged, and when power can be questioned without arbitrary punishment. It decays when people are manipulated, when rules apply only to some, and when institutions deny what they know.\n\nSome trust is na\u00efve. Mature trust includes discernment. We should not trust everyone with everything. We should not surrender verification to good intentions. But suspicion cannot be the final relation between human beings. If we expect everyone to act adversarially, we build systems in which everyone pays for that expectation: higher costs, slower decisions, less kindness, and fewer people willing to take responsibility.\n\nThe alternative is conditional trust. Assume good faith, require accountability, and correct course when evidence shows that trust was misplaced. Extend the benefit of the doubt first because it preserves the possibility of cooperation; insist on consequences because they preserve the possibility of justice.\n\nTrust also becomes stronger when it is reciprocated. A small act of reliability makes the next encounter less risky for everyone. People who expect help become more likely to offer it. People who expect fair treatment become more likely to treat others fairly. This does not require optimism about human nature; it requires the recognition that incentives, examples, and repeated interaction shape behavior.\n\nThere is also a scale dimension. Trust within a family, neighborhood, or profession is necessary, but so is trust across distance and difference. Modern civilization was built by people who could cooperate without knowing one another: engineers, farmers, doctors, traders, validators, drivers, maintainers. Their institutions encoded the lesson that most people will behave decently when the rules are fair and their cooperation has value.\n\nTo rebuild that confidence, the powerful must demonstrate it first. Fairness has more persuasive power than reassurance.\n\n## Use power for the people who bear its costs\n\nGood intentions fail when concentrated power has no meaningful restraint. Private virtue cannot substitute for just incentives. A generous executive can still build a harmful system; a sincere government can still produce widespread harm.\n\nEvery exercise of power should answer three questions:\n\n1. **Who bears the cost?**\n2. **Who has a voice in the decision?**\n3. **What happens if everyone does this?**\n\nThe first question exposes who benefits and who is merely present. The second protects legitimacy. The third is a test of universality: if a practice is beneficial only when some people are exempt from its burdens, it is not a durable good. It is a privilege seeking to become routine.\n\nThese questions apply to a household schedule as well as to a national policy. What costs fall on the least powerful member of a workplace? Who can speak when a service changes? Would the organization still be defensible if everyone followed the same rule?\n\nThe third question also reveals scale. A compassionate act can become a system only if its logic survives generalization. A billion people cannot individually absorb every cost they collectively create. If everyone used the equivalent of a disposable resource, someone would have to live with the waste. If every business extracted maximum value without paying fair costs, the shared economy would deteriorate. A practice becomes genuinely good not when it serves its initiator perfectly but when it can organize the behavior of many without exhausting what they all depend upon.\n\nPower should be judged partly by the character of those it leaves more capable. Does the system help people participate, care for one another, and meet their obligations? Or does it make them more dependent, fearful, and depleted?\n\nThe test need not make every decision unanimous. It can guide judgment in imperfect circumstances.\n\n## Measure what matters, then stop measuring only what is easy\n\nMany public decisions fail because proxies become ends. A hospital is measured by throughput, a school by test scores, a worker by output, a government department by what it can count. Proxy measures are useful, but when they replace attention to outcomes, organizations begin optimizing the appearance of success.\n\nThe world needs better measures of human flourishing: preventable deaths and years of healthy life; safety and meaningful freedom; learning and the ability to reason; income and security; trust and the capacity to repair conflict; environmental conditions that support health and survival; the distribution of all of these across people and places.\n\nNo single index will be complete. Composite measures can obscure moral trade-offs. But direction matters. If a policy improves a number while eroding dignity, resilience, or the capacity of people to make choices, the score has become an excuse.\n\nMeasurement should serve judgment, not replace it. The purpose of data is to reveal reality so that people can deliberate and act, not to license experts to govern without consent or to give politicians slogans they can print. Good measurement creates common facts; democratic judgment gives those facts direction.\n\nWe should also value what cannot be captured in a dashboard: children who grow up feeling safe, communities that can resolve disputes without violence, institutions that tell the truth, and people who can pursue purposes beyond the market. These outcomes are often indirect, delayed, and difficult to count. That does not make them imaginary. It means we need judgment alongside instruments.\n\n## Change the default, not only the exception\n\nMost behavior is strongly shaped by defaults: what happens if no one intervenes, what an institution does without scrutiny, what a person can do without money or special permission.\n\nDefaults often look neutral, but they distribute burdens and benefits. A default of suspicion, private blame, or endless consumption has consequences. A default of safe streets, clear rules, accessible services, and collective responsibility has others.\n\nAn improving society asks where it can make the beneficial choice the easier choice. Put a helmet on the motorcycle rather than merely lecturing riders. Design a building so that the stairs are visible. Make the medical appointment easy to keep. Make public information easy to find. Allow people to repair a mistake without being humiliated. Put a reusable container where a disposable one used to be.\n\nThis is not paternalism. It is design with humility: the recognition that people have limited time, attention, and foresight, and that good systems reduce needless moral effort while preserving meaningful choice.\n\nAt the same time, defaults must remain open to revision. A world can make one habit too convenient and thereby crowd out reflection. The aim is not to engineer perfect conduct, but to create environments in which decent conduct is sustainable and harmful conduct requires effort rather than being effortless.\n\n## Do the next useful thing\n\nA philosophy of the good can become an excuse to postpone ordinary action in pursuit of a perfect plan. Better to begin with the work that is available and necessary.\n\nThis work occurs at different levels, and none should be dismissed.\n\nAt the personal level, we can reduce harm in our habits, give more reliably than convenience permits, cultivate skills instead of merely expressing opinions, and notice the people whose suffering we habitually avoid seeing. We can apologize, repair what we can, and accept correction without turning it into self-destruction.\n\nAt the interpersonal level, we can become more trustworthy. We can make specific, credible promises. We can ask before assuming. We can offer help that creates agency rather than dependence. We can include people whose presence makes us uncomfortable, provided inclusion is not a mere gesture. We can remember that dignity survives after applause disappears.\n\nAt the professional level, we can examine the systems we build and administer. Can we measure failure without hiding it? Can we remove incentives for harm? Can we involve the people who know the work best? Can we leave the process better than we found it?\n\nAt the civic level, we can support institutions that are boring, effective, and answerable: clean elections, independent courts, public health, competent administration, transparent budgets, functioning transit, safe housing, protected ecosystems, and schools that teach both knowledge and judgment. We can support leaders who make institutions work, not merely produce the emotional appearance of change.\n\nAt the global level, we must recognize that national boundaries do not divide the atmosphere, the oceans, pandemics, or the economic rules that distribute both costs and benefits. International cooperation is often slow and imperfect, but the alternative is to pretend that interdependence has disappeared. Climate stability, pandemic prevention, refugee protection, nuclear restraint, and the fair use of scientific knowledge require institutions broader than any one state. This is not an argument for erasing nations; it is an argument for matching our rules to the scale of shared harms.\n\nThese levels reinforce one another. Personal generosity without institutional reform becomes exhaustion. Institutional reform without personal responsibility becomes bureaucracy that recruits only committed specialists. Civic engagement without the patience to master difficult subjects becomes noise.\n\nNo one is required to solve everything. Everyone is required to repair something.\n\n## The leverage of being ordinary\n\nHistory is often narrated through the actions of famous people. That narrative is useful because dramatic choices reveal character, but misleading because most public improvement depends on less visible work: teachers who stay with difficult students, clerks who resist falsification, engineers who fix flaws before an emergency, parents who model consideration, organizers who notice an overlooked group, technicians who maintain systems, and citizens who answer honestly when asked what is true.\n\nOrdinary people are not outside history. They are how history is made durable.\n\nThe future will contain many uncertainties. No one can specify exactly what the next century will demand. But some requirements remain stable. People will need food, shelter, health, safety, meaning, and relationships with others. Communities will need rules that work when they are tired, tempted, fearful, and distracted. Institutions will need people who can distinguish mistakes from bad faith and know how to respond to both.\n\nA better world is not one without selfishness, conflict, or failure. It is one in which these realities are met with enough skill, courage, and generosity that avoidable suffering falls, opportunities widen, and damaged systems can recover.\n\nWe do not need everyone to become a hero. We need everyone to become more trustworthy in small matters and more ambitious in large ones. We need not agree about the whole future to agree that children should be safe and institutions should tell the truth. We do not need a perfect blueprint before improving the next system.\n\nThe task is practical: see suffering clearly, distinguish what can be changed, reduce harm, widen participation, tell the truth, and make repair normal. Done by one person, these things are modest. Done by many, in enough places, they can make a world in which more people get to live rather than merely endure.\n\nThat is the greatest good available to us: not a paradise built by conquest, but a common world repaired, together, one institution and one relationship at a time.\n"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 2074,
+        "output": 4515,
+        "cacheRead": 128,
+        "cacheWrite": 0,
+        "reasoning": 423,
+        "totalTokens": 6717,
+        "cost": {
+          "input": 0.00027999000000000003,
+          "output": 0.0024381,
+          "cacheRead": 1.728e-06,
+          "cacheWrite": 0,
+          "total": 0.0027198179999999997
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793306995146,
+      "responseId": "gen-1793306995-GsrMHetx5FwHhSyOfWzM",
+      "rawStopReason": "tool_calls",
+      "durationMs": 34632,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "cdfd10b6",
+    "parentId": "7f66f032",
+    "timestamp": "2026-10-29T20:50:29.787Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "ef76db64-ba7e-9799-881b-4a6e8912514a_0",
+      "toolName": "write",
+      "content": [
+        {
+          "type": "text",
+          "text": "Successfully wrote to output/a-more-good-world.md"
+        }
+      ],
+      "isError": false,
+      "durationMs": 5,
+      "timestamp": 1793307029787
+    }
+  },
+  {
+    "type": "message",
+    "id": "92e9c36a",
+    "parentId": "cdfd10b6",
+    "timestamp": "2026-10-29T20:50:31.492Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need verify exactly one, size, perhaps lint."
+        },
+        {
+          "type": "toolCall",
+          "id": "135bfed0-aa2a-98e7-9577-dd1c571465ae_0",
+          "name": "bash",
+          "arguments": {
+            "command": "find output -maxdepth 1 -type f -print | sort && wc -c -w -l output/a-more-good-world.md && grep -nE '<[^>]+>|!\\[' output/a-more-good-world.md || true",
+            "timeout": 10
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 4692,
+        "output": 94,
+        "cacheRead": 2048,
+        "cacheWrite": 0,
+        "reasoning": 20,
+        "totalTokens": 6834,
+        "cost": {
+          "input": 0.00063342,
+          "output": 5.076e-05,
+          "cacheRead": 2.7648e-05,
+          "cacheWrite": 0,
+          "total": 0.000711828
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793307029789,
+      "responseId": "gen-1793307030-1Vra9djDajtmjv07Kw6J",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1703,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "13a047b7",
+    "parentId": "92e9c36a",
+    "timestamp": "2026-10-29T20:50:31.523Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "135bfed0-aa2a-98e7-9577-dd1c571465ae_0",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "output/a-more-good-world.md\n     175    3490   22662 output/a-more-good-world.md\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 29,
+      "timestamp": 1793307031523
+    }
+  },
+  {
+    "type": "message",
+    "id": "801b42a3",
+    "parentId": "13a047b7",
+    "timestamp": "2026-10-29T20:50:32.334Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Created `output/a-more-good-world.md`.\n\nThe essay argues that a better world can be built through ordinary, coordinated moral practice: preventing avoidable suffering, improving institutions, protecting truth, widening participation, repairing systems, strengthening trust, and making beneficial choices the default. It offers practical principles and action at personal, interpersonal, professional, civic, and global levels."
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 90,
+        "output": 73,
+        "cacheRead": 6784,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 6947,
+        "cost": {
+          "input": 1.215e-05,
+          "output": 3.942e-05,
+          "cacheRead": 9.1584e-05,
+          "cacheWrite": 0,
+          "total": 0.000143154
+        }
+      },
+      "stopReason": "stop",
+      "timestamp": 1793307031524,
+      "responseId": "gen-1793307031-Est5SQYVEIS7cB4dMRiZ",
+      "rawStopReason": "stop",
+      "durationMs": 809,
+      "thinkingLevel": "high"
+    }
+  }
+]

@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">The future is a shared project</title>
+  <desc id="desc">An optimistic public-service poster showing a living planet surrounded by people holding hands, with three invitations: protect what gives us life, share what we have, and make room for others.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF9EE"/>
+      <stop offset="1" stop-color="#F3E9D5"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="50%" cy="45%" r="58%">
+      <stop offset="0" stop-color="#FFD66B"/>
+      <stop offset="0.72" stop-color="#F6A451"/>
+      <stop offset="1" stop-color="#EF7D55"/>
+    </radialGradient>
+    <radialGradient id="ocean" cx="35%" cy="28%" r="80%">
+      <stop offset="0" stop-color="#81D8D3"/>
+      <stop offset="0.52" stop-color="#3AA5A9"/>
+      <stop offset="1" stop-color="#17677D"/>
+    </radialGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B7D66A"/>
+      <stop offset="1" stop-color="#6EAF65"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#153B45" flood-opacity="0.22"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" seed="8" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.045"/></feComponentTransfer>
+    </filter>
+    <clipPath id="globeClip"><circle cx="1180" cy="365" r="205"/></clipPath>
+  </defs>
+
+  <!-- warm, tactile paper -->
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" filter="url(#grain)" opacity="0.75"/>
+
+  <!-- subtle framing marks -->
+  <path d="M72 116V72h44 M1528 72h-44v44 M72 884v44h44 M1528 928h-44v-44" fill="none" stroke="#153B45" stroke-width="3" stroke-linecap="round" opacity="0.28"/>
+
+  <!-- left editorial block -->
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(104 115)">
+      <circle cx="12" cy="12" r="12" fill="#F0714D"/>
+      <path d="M7 12.5l3.2 3.2L17 8.8" fill="none" stroke="#FFF9EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="38" y="18" font-size="18" font-weight="700" letter-spacing="3.2" fill="#153B45">A NOTE FOR EVERYONE</text>
+    </g>
+
+    <text x="100" y="244" font-size="96" font-weight="800" letter-spacing="-3.5" fill="#123843">THE FUTURE</text>
+    <text x="100" y="342" font-size="96" font-weight="800" letter-spacing="-3.5" fill="#E86443">IS A SHARED</text>
+    <text x="100" y="440" font-size="96" font-weight="800" letter-spacing="-3.5" fill="#123843">PROJECT.</text>
+
+    <path d="M104 492h66" stroke="#E86443" stroke-width="6" stroke-linecap="round"/>
+    <text x="104" y="543" font-size="27" fill="#385860" letter-spacing="0.15">It starts with what we do today —</text>
+    <text x="104" y="580" font-size="27" fill="#385860" letter-spacing="0.15">and who we do it for.</text>
+
+    <g transform="translate(104 652)">
+      <path d="M0 0h335" stroke="#153B45" stroke-width="2" opacity="0.2"/>
+      <text x="0" y="39" font-size="15" font-weight="700" letter-spacing="2.8" fill="#5D7477">SMALL ACTIONS. COMMON GROUND.</text>
+      <text x="0" y="75" font-size="21" fill="#284D55">No one has to do everything.</text>
+      <text x="0" y="104" font-size="21" fill="#284D55">Everyone can do something.</text>
+    </g>
+  </g>
+
+  <!-- sun and living planet -->
+  <g filter="url(#shadow)">
+    <circle cx="1180" cy="365" r="262" fill="url(#sun)" opacity="0.97"/>
+    <circle cx="1180" cy="365" r="205" fill="url(#ocean)"/>
+  </g>
+
+  <g clip-path="url(#globeClip)">
+    <!-- stylized continents -->
+    <path d="M965 275c25-39 54-67 92-76l29 15 11 25 34 5 14 21-17 17-37 2-12 17-28 4-19 27-25 3-19-20-26-4z" fill="url(#land)"/>
+    <path d="M1095 384l28-14 27 8 20 27 33 6 24 34-10 44-27 23-5 38-23 27-15 36-29 15-18-18 8-36-10-21 13-28-17-27 5-36-16-25z" fill="url(#land)"/>
+    <path d="M1254 254l37 10 28 30 31 8 18 33-17 16-38-9-21-21-27-4-16-23-24-10z" fill="url(#land)"/>
+    <path d="M1310 423l30 4 28 25-8 22-30-2-16-18z" fill="#84BF66"/>
+    <path d="M1004 500l28 6 18 31-13 30-23-8-11-31z" fill="#79BB62"/>
+
+    <!-- ocean highlights -->
+    <path d="M970 250c88-94 250-83 329 10" fill="none" stroke="#D8FFFF" stroke-width="14" stroke-linecap="round" opacity="0.22"/>
+    <path d="M1010 493c61 63 156 77 226 42" fill="none" stroke="#D8FFFF" stroke-width="8" stroke-linecap="round" opacity="0.13"/>
+  </g>
+
+  <!-- globe latitude/longitude lines -->
+  <g fill="none" stroke="#E9FFFA" stroke-width="2" opacity="0.28">
+    <ellipse cx="1180" cy="365" rx="205" ry="73"/>
+    <ellipse cx="1180" cy="365" rx="205" ry="140"/>
+    <ellipse cx="1180" cy="365" rx="73" ry="205"/>
+    <ellipse cx="1180" cy="365" rx="140" ry="205"/>
+    <circle cx="1180" cy="365" r="205"/>
+  </g>
+
+  <!-- birds: possibility in motion -->
+  <g fill="none" stroke="#123843" stroke-width="4" stroke-linecap="round">
+    <path d="M942 161q15-15 30 0q15-15 30 0"/>
+    <path d="M1369 148q12-12 24 0q12-12 24 0"/>
+  </g>
+
+  <!-- a linked circle of people, in many colors -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- joined arms behind the figures -->
+    <path d="M875 692l55-18 60 10 55-25 60 5 55-26 60 6 60-18 60 10" fill="none" stroke="#153B45" stroke-width="8" opacity="0.34"/>
+
+    <!-- person 1 -->
+    <g transform="translate(882 683)">
+      <circle cx="0" cy="-49" r="16" fill="#8C4F38"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#F0714D"/>
+      <path d="M-10 16l-5 47M10 16l7 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-30 11M16-14l29 4" fill="none" stroke="#8C4F38" stroke-width="7"/>
+    </g>
+    <!-- person 2 -->
+    <g transform="translate(942 675)">
+      <circle cx="0" cy="-49" r="16" fill="#E3A276"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#3AA5A9"/>
+      <path d="M-10 16l-4 47M10 16l5 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 0M16-14l25 5" fill="none" stroke="#E3A276" stroke-width="7"/>
+    </g>
+    <!-- person 3 -->
+    <g transform="translate(1002 660)">
+      <circle cx="0" cy="-49" r="16" fill="#6B3E2D"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#F5B94C"/>
+      <path d="M-10 16l-5 47M10 16l7 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 10M16-14l25 6" fill="none" stroke="#6B3E2D" stroke-width="7"/>
+    </g>
+    <!-- person 4 -->
+    <g transform="translate(1064 650)">
+      <circle cx="0" cy="-49" r="16" fill="#D28A5F"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#8B68B2"/>
+      <path d="M-10 16l-4 47M10 16l5 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 10M16-14l25 3" fill="none" stroke="#D28A5F" stroke-width="7"/>
+    </g>
+    <!-- person 5 -->
+    <g transform="translate(1126 647)">
+      <circle cx="0" cy="-49" r="16" fill="#A96545"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#FFF3D5"/>
+      <path d="M-10 16l-5 47M10 16l7 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 3M16-14l25 4" fill="none" stroke="#A96545" stroke-width="7"/>
+    </g>
+    <!-- person 6 -->
+    <g transform="translate(1188 650)">
+      <circle cx="0" cy="-49" r="16" fill="#F0C2A1"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#E86443"/>
+      <path d="M-10 16l-4 47M10 16l5 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 4M16-14l25 3" fill="none" stroke="#F0C2A1" stroke-width="7"/>
+    </g>
+    <!-- person 7 -->
+    <g transform="translate(1250 660)">
+      <circle cx="0" cy="-49" r="16" fill="#7B4A34"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#3AA5A9"/>
+      <path d="M-10 16l-5 47M10 16l7 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 6M16-14l25 4" fill="none" stroke="#7B4A34" stroke-width="7"/>
+    </g>
+    <!-- person 8 -->
+    <g transform="translate(1312 675)">
+      <circle cx="0" cy="-49" r="16" fill="#C7825E"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#F5B94C"/>
+      <path d="M-10 16l-4 47M10 16l5 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-25 5M16-14l25 0" fill="none" stroke="#C7825E" stroke-width="7"/>
+    </g>
+    <!-- person 9 -->
+    <g transform="translate(1372 683)">
+      <circle cx="0" cy="-49" r="16" fill="#8C4F38"/>
+      <path d="M-16-29q16-11 32 0l6 45h-44z" fill="#8B68B2"/>
+      <path d="M-10 16l-5 47M10 16l7 47" fill="none" stroke="#153B45" stroke-width="9"/>
+      <path d="M-15-14l-30 4M16-14l29 0" fill="none" stroke="#8C4F38" stroke-width="7"/>
+    </g>
+  </g>
+
+  <!-- action band -->
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="0" y="808" width="1600" height="192" fill="#123843"/>
+    <path d="M0 808h1600" stroke="#E86443" stroke-width="7"/>
+
+    <!-- leaf / protect -->
+    <g transform="translate(104 842)">
+      <circle cx="30" cy="30" r="30" fill="#F5B94C"/>
+      <path d="M14 39C17 19 29 14 47 15c0 19-9 31-27 31" fill="none" stroke="#123843" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 47c9-13 18-20 29-26" fill="none" stroke="#123843" stroke-width="4" stroke-linecap="round"/>
+      <text x="82" y="21" font-size="16" font-weight="700" letter-spacing="2.5" fill="#F5B94C">01  PROTECT</text>
+      <text x="82" y="54" font-size="24" font-weight="700" fill="#FFF9EE">What gives us life</text>
+    </g>
+
+    <!-- hands / share -->
+    <g transform="translate(565 842)">
+      <circle cx="30" cy="30" r="30" fill="#F0714D"/>
+      <path d="M13 30h15l8-10 5 2-5 15h-8l-5-8M40 24h8l8 10" fill="none" stroke="#123843" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 17v20" fill="none" stroke="#123843" stroke-width="4" stroke-linecap="round"/>
+      <text x="82" y="21" font-size="16" font-weight="700" letter-spacing="2.5" fill="#F5B94C">02  SHARE</text>
+      <text x="82" y="54" font-size="24" font-weight="700" fill="#FFF9EE">What we have</text>
+    </g>
+
+    <!-- open door / make room -->
+    <g transform="translate(1022 842)">
+      <circle cx="30" cy="30" r="30" fill="#3AA5A9"/>
+      <path d="M16 46V14h27v32M16 46h10V22h17" fill="none" stroke="#123843" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="38" cy="34" r="2.5" fill="#123843"/>
+      <text x="82" y="21" font-size="16" font-weight="700" letter-spacing="2.5" fill="#F5B94C">03  INCLUDE</text>
+      <text x="82" y="54" font-size="24" font-weight="700" fill="#FFF9EE">Those on the outside</text>
+    </g>
+
+    <text x="104" y="963" font-size="14" letter-spacing="2.1" fill="#A9C6C7">ONE ACT TODAY • A BETTER WORLD TOMORROW</text>
+    <text x="1496" y="963" text-anchor="end" font-size="14" letter-spacing="1.2" fill="#A9C6C7">START WHERE YOU ARE</text>
+  </g>
+</svg>

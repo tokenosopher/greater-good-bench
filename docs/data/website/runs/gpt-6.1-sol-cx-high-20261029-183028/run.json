@@ -1,0 +1,71 @@
+{
+  "id": "gpt-6.1-sol-cx-high-20261029-183028",
+  "page": "website",
+  "model": "openai/gpt-6.1-sol",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-website",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 23,
+      "file_change": 8
+    }
+  },
+  "metrics": {
+    "duration_ms": 804387,
+    "cost_usd": 0.0,
+    "tool_calls": 31,
+    "turns": 1,
+    "tokens_total": 65010,
+    "tokens_input": 27447,
+    "tokens_output": 37563,
+    "tokens_reasoning": 8334,
+    "tokens_cache_read": 736384
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 220502,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "action-guide.jpg",
+      "desktop-final.jpg",
+      "desktop-viewport.jpg",
+      "desktop.jpg",
+      "fonts.css",
+      "index.html",
+      "main.js",
+      "mobile-final.jpg",
+      "mobile-guide.jpg",
+      "mobile-viewport.jpg",
+      "mobile.jpg",
+      "package-lock.json",
+      "package.json",
+      "style.css"
+    ]
+  }
+}

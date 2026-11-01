@@ -1,0 +1,69 @@
+{
+  "id": "grok-4.7-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/x-ai/grok-4.7",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:49:11Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "xAI"
+    ],
+    "cost_usd": 2.751672,
+    "pi_cost_usd": 2.7516719999999992
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "read": 30,
+      "bash": 17,
+      "edit": 10,
+      "write": 7
+    }
+  },
+  "metrics": {
+    "duration_ms": 1636411,
+    "cost_usd": 2.751672,
+    "tool_calls": 64,
+    "turns": 36,
+    "tokens_total": 257396,
+    "tokens_input": 147824,
+    "tokens_output": 109572,
+    "tokens_reasoning": 71975,
+    "tokens_cache_read": 3597184
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 82676,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "content.js",
+      "index.html",
+      "main.js",
+      "style.css"
+    ]
+  }
+}

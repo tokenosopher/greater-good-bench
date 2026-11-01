@@ -1,0 +1,91 @@
+{
+  "id": "deepseek-v4-pro-0813-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:12:51Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Wafer"
+    ],
+    "cost_usd": 0.430909536,
+    "pi_cost_usd": 0.41055440399999993
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 22,
+      "edit": 2,
+      "read": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 666487,
+    "cost_usd": 0.430909536,
+    "tool_calls": 27,
+    "turns": 28,
+    "tokens_total": 146598,
+    "tokens_input": 106744,
+    "tokens_output": 39854,
+    "tokens_reasoning": 28384,
+    "tokens_cache_read": 806744
+  },
+  "thumb": "media/kindness.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 10.0,
+        "bytes": 1061781,
+        "transcoded": false,
+        "path": "media/kindness.mp4",
+        "poster": "media/kindness.poster.jpg",
+        "thumb": "media/kindness.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1280,
+        "height": 720,
+        "bytes": 112673,
+        "path": "media/poster_final.jpg",
+        "thumb": "media/poster_final.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1280,
+        "height": 720,
+        "bytes": 85979,
+        "path": "media/poster_heart.jpg",
+        "thumb": "media/poster_heart.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": false,
+    "error": "kindness.webm: skipped, another output is already named kindness.mp4"
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/render.py"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "muse-wonder-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/meta/muse-wonder",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:55:44Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Meta"
+    ],
+    "cost_usd": 1.2579976,
+    "pi_cost_usd": 1.2579976
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 11,
+      "read": 11,
+      "edit": 6,
+      "write": 5
+    }
+  },
+  "metrics": {
+    "duration_ms": 465401,
+    "cost_usd": 1.2579976,
+    "tool_calls": 33,
+    "turns": 25,
+    "tokens_total": 168867,
+    "tokens_input": 139910,
+    "tokens_output": 28957,
+    "tokens_reasoning": 4843,
+    "tokens_cache_read": 596088
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 59205,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "index.html",
+      "main.js",
+      "style.css"
+    ]
+  }
+}

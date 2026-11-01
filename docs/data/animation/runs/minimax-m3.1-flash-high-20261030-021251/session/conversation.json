@@ -1,0 +1,1291 @@
+[
+  {
+    "type": "session",
+    "version": 3,
+    "id": "01a18a9e-fdf0-73ee-87b0-ef3a85b45164",
+    "timestamp": "2026-10-30T02:23:57.936Z",
+    "cwd": "~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work"
+  },
+  {
+    "type": "model_change",
+    "id": "45d5b0c6",
+    "parentId": null,
+    "timestamp": "2026-10-30T02:23:57.969Z",
+    "provider": "openrouter",
+    "modelId": "minimax/minimax-m3.1-flash"
+  },
+  {
+    "type": "thinking_level_change",
+    "id": "a8763c69",
+    "parentId": "45d5b0c6",
+    "timestamp": "2026-10-30T02:23:57.969Z",
+    "thinkingLevel": "high"
+  },
+  {
+    "type": "message",
+    "id": "8fc266a9",
+    "parentId": "a8763c69",
+    "timestamp": "2026-10-30T02:23:57.973Z",
+    "message": {
+      "role": "system",
+      "content": "",
+      "sections": {
+        "preamble": "You are an expert coding assistant operating inside pi, a coding agent harness. You help users by reading files, executing commands, editing code, and writing new files.",
+        "tools": "<tools>\n- read: Read file contents\n- bash: Execute bash commands (ls, grep, find, etc.)\n- edit: Make precise file edits with exact text replacement, including multiple disjoint edits in one call\n- write: Create or overwrite files\n\nIn addition to the tools above, you may have access to other custom tools depending on the project.\n</tools>",
+        "rules": "<rules>\n- Use bash for file operations like ls, rg, find\n- Use read to examine files instead of cat or sed.\n- You can inspect PI_* environment variables for current model and session details.\n- Use edit for precise changes (edits[].oldText must match exactly)\n- When changing multiple separate locations in one file, use one edit call with multiple entries in edits[] instead of multiple edit calls\n- Each edits[].oldText is matched against the original file, not after earlier edits are applied. Do not emit overlapping or nested edits. Merge nearby changes into one edit.\n- Keep edits[].oldText as small as possible while still being unique in the file. Do not pad with large unchanged regions.\n- Use write only for new files or complete rewrites.\n- Be concise in your responses\n- Show file paths clearly when working with files\n</rules>",
+        "docs": "<docs>\nPi documentation (read only when the user asks about pi itself, its SDK, extensions, themes, skills, or TUI):\n- Main documentation: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/README.md\n- Additional docs: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/docs\n- Examples: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/examples (extensions, custom tools, SDK)\n- When reading pi docs or examples, resolve docs/... under Additional docs and examples/... under Examples, not the current working directory\n- When asked about: extensions (docs/extensions.md, examples/extensions/), themes (docs/themes.md), skills (docs/skills.md), prompt templates (docs/prompt-templates.md), TUI components (docs/tui.md), keybindings (docs/keybindings.md), SDK integrations (docs/sdk.md), custom providers (docs/custom-provider.md), adding models (docs/models.md), pi packages (docs/packages.md), environment variables (docs/environment-variables.md), MCP servers (docs/mcp.md), codemode scripts and non-LLM models such as classifiers and image models (docs/codemode.md)\n- When working on pi topics, read the docs and examples, and follow .md cross-references before implementing\n- Always read pi .md files completely and follow links to related docs (e.g., tui.md for TUI API details)\n</docs>",
+        "cwd": "<cwd>\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work\n</cwd>"
+      },
+      "timestamp": 1793327037972,
+      "toolsAdded": [
+        {
+          "name": "read",
+          "description": "Read the contents of a file. Supports text files and images (jpg, png, gif, webp, bmp). Images are sent as attachments. For text files, output is truncated to 2000 lines or 50KB (whichever is hit first). Use offset/limit for large files. When you need the full file, continue with offset until complete.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to read (relative or absolute)"
+              },
+              "offset": {
+                "type": "number",
+                "description": "Line number to start reading from (1-indexed)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of lines to read"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "bash",
+          "description": "Execute a bash command in the current working directory. Returns stdout and stderr. Output is truncated to last 2000 lines or 50KB (whichever is hit first). If truncated, full output is saved to a temp file. Optionally provide a timeout in seconds.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "command"
+            ],
+            "properties": {
+              "command": {
+                "type": "string",
+                "description": "Shell command to execute"
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Timeout in seconds (optional, no default timeout)"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "edit",
+          "description": "Edit a single file using exact text replacement. Every edits[].oldText must match a unique, non-overlapping region of the original file. If two changes affect the same block or nearby lines, merge them into one edit instead of emitting overlapping edits. Do not include large unchanged regions just to connect distant changes.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path",
+              "edits"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to edit (relative or absolute)"
+              },
+              "edits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "oldText",
+                    "newText"
+                  ],
+                  "properties": {
+                    "oldText": {
+                      "type": "string",
+                      "description": "Exact text for one targeted replacement. It must be unique in the original file and must not overlap with any other edits[].oldText in the same call."
+                    },
+                    "newText": {
+                      "type": "string",
+                      "description": "Replacement text for this targeted edit."
+                    }
+                  }
+                },
+                "description": "One or more targeted replacements. Each edit is matched against the original file, not incrementally. Do not include overlapping or nested edits. If two changes touch the same block or nearby lines, merge them into one edit instead."
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "write",
+          "description": "Write content to a file. Creates the file if it doesn't exist, overwrites if it does. Automatically creates parent directories.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path",
+              "content"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to write (relative or absolute)"
+              },
+              "content": {
+                "type": "string",
+                "description": "Content to write to the file"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "61a7c45b",
+    "parentId": "8fc266a9",
+    "timestamp": "2026-10-30T02:23:57.973Z",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Make an animation that, if everyone watched it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n"
+        }
+      ],
+      "timestamp": 1793327037972
+    }
+  },
+  {
+    "type": "message",
+    "id": "b4e2f64a",
+    "parentId": "61a7c45b",
+    "timestamp": "2026-10-30T02:23:59.974Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "We need create animation likely 10 sec mp4 under 2MB, using ffmpeg/python drawing. Need compelling improving world greatest number. Could make social norm animation: \"One small act multiplies\" perhaps reciprocal kindness tree? Need visual quality. Need inspect outputs via jpg frames. We can generate SVG? Video with ffmpeg lavfi and Python drawing maybe use Pillow unavailable. SVG frames rendered via ffmpeg? ffmpeg may have librsvg? Check. Could generate SVG static and animate using ffmpeg filters, but visual art. Better create HTML? no browser maybe chromium? Check tools. We can use ffmpeg drawbox/drawtext, but handcrafted vector animation through SVG and ffmpeg? ffmpeg can rasterize SVG only if librsvg enabled. Check ffmpeg capabilities."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f05817521b7576848",
+          "name": "bash",
+          "arguments": {
+            "command": "ffmpeg -hide_banner -filters | rg 'svg|librsvg|drawtext|gradients' && fc-list | head -10",
+            "timeout": 20
+          }
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f06667992a38c473b",
+          "name": "bash",
+          "arguments": {
+            "command": "find . -maxdepth 2 -type f -print; ls -la",
+            "timeout": 20
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 2154,
+        "output": 278,
+        "cacheRead": 0,
+        "cacheWrite": 0,
+        "reasoning": 168,
+        "totalTokens": 2432,
+        "cost": {
+          "input": 0.00029079,
+          "output": 0.00015012,
+          "cacheRead": 0,
+          "cacheWrite": 0,
+          "total": 0.00044091000000000003
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327037985,
+      "responseId": "gen-1793327038-BPHWweS6x7R1ZFwUziTr",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1988,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "bc2e84f5",
+    "parentId": "b4e2f64a",
+    "timestamp": "2026-10-30T02:23:59.995Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f05817521b7576848",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "/bin/bash: rg: command not found\n\n\nCommand exited with code 127"
+        }
+      ],
+      "isError": true,
+      "durationMs": 20,
+      "timestamp": 1793327039995
+    }
+  },
+  {
+    "type": "message",
+    "id": "bf1029b0",
+    "parentId": "bc2e84f5",
+    "timestamp": "2026-10-30T02:23:59.995Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f06667992a38c473b",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "total 0\ndrwxr-xr-x@ 2 ekho  staff   64 Oct 30 02:23 .\ndrwxr-xr-x@ 4 ekho  staff  128 Oct 30 02:23 ..\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 8,
+      "timestamp": 1793327039995
+    }
+  },
+  {
+    "type": "message",
+    "id": "e2009bb5",
+    "parentId": "bf1029b0",
+    "timestamp": "2026-10-30T02:24:01.210Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need command separately because rg absent pipeline broke after? ffmpeg output piped rg error means no output. Use grep permitted."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f09cb76b0815ea4be",
+          "name": "bash",
+          "arguments": {
+            "command": "ffmpeg -hide_banner -filters 2>&1 | grep -E 'svg|librsvg|drawtext|gradients' || true; echo FONTS; fc-list 2>/dev/null | head -10 || true",
+            "timeout": 20
+          }
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f0aa578a2943530d0",
+          "name": "bash",
+          "arguments": {
+            "command": "ffmpeg -hide_banner -encoders 2>&1 | grep -E 'libx264|libvpx|webp|gif' || true; python3 - <<'PY'\ntry:\n import PIL\n print('PIL yes')\nexcept Exception as e: print('PIL no',e)\nPY",
+            "timeout": 20
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 470,
+        "output": 203,
+        "cacheRead": 2048,
+        "cacheWrite": 0,
+        "reasoning": 24,
+        "totalTokens": 2721,
+        "cost": {
+          "input": 6.345e-05,
+          "output": 0.00010962,
+          "cacheRead": 2.7648e-05,
+          "cacheWrite": 0,
+          "total": 0.00020071799999999998
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327040001,
+      "responseId": "gen-1793327040-75wUAteCpMYSDGCXajZq",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1209,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "2d0b7b4e",
+    "parentId": "e2009bb5",
+    "timestamp": "2026-10-30T02:24:01.277Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f09cb76b0815ea4be",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": " T. gradfun           V->V       Debands video quickly using gradients.\n .S gradients         |->V       Draw a gradients.\nFONTS\n/System/Library/Fonts/SFCompact.ttf: .SF Compact:style=Thin\n/System/Library/Fonts/ADTNumeric.ttc: .SF Soft Numeric:style=ExtraCompressedBoldG1\n/System/Library/Fonts/Apple Color Emoji.ttc: .Apple Color Emoji UI:style=Regular\n/System/Library/Fonts/Supplemental/Verdana Bold.ttf: Verdana:style=Bold,Negreta,tu\u010dn\u00e9,fed,Fett,\u0388\u03bd\u03c4\u03bf\u03bd\u03b1,Negrita,Lihavoitu,Gras,F\u00e9lk\u00f6v\u00e9r,Grassetto,Vet,Halvfet,Pogrubiony,Negrito,\u041f\u043e\u043b\u0443\u0436\u0438\u0440\u043d\u044b\u0439,Fet,Kal\u0131n,Krepko,Lodia\n/System/Library/Fonts/ADTNumeric.ttc: .SF Soft Numeric:style=ExtraCompressedBoldG3\n/System/Library/Fonts/SFNSMonoItalic.ttf: .SF NS Mono:style=Medium Italic\n/System/Library/Fonts/ADTNumeric.ttc: .SF Soft Numeric:style=ExtraCompressedBoldG2\n/System/Library/Fonts/ADTNumeric.ttc: .SF Soft Numeric:style=ExtraCompressedBoldG4\n/System/Library/Fonts/ADTNumeric.ttc: .SF Stencil Numeric:style=Semibold G3\n/System/Library/Fonts/ADTNumeric.ttc: .SF Stencil Numeric:style=Semibold G2\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 66,
+      "timestamp": 1793327041277
+    }
+  },
+  {
+    "type": "message",
+    "id": "78b52576",
+    "parentId": "2d0b7b4e",
+    "timestamp": "2026-10-30T02:24:01.277Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f0aa578a2943530d0",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": " V....D gif                  GIF (Graphics Interchange Format)\n V....D libx264              libx264 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10 (codec h264)\n V....D libx264rgb           libx264 H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10 RGB (codec h264)\n V....D libvpx               libvpx VP8 (codec vp8)\n V....D libvpx-vp9           libvpx VP9 (codec vp9)\nPIL no No module named 'PIL'\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 38,
+      "timestamp": 1793327041277
+    }
+  },
+  {
+    "type": "message",
+    "id": "d3d742ab",
+    "parentId": "78b52576",
+    "timestamp": "2026-10-30T02:24:03.108Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need no PIL. Can use Python stdlib write SVG frames then maybe use mac qlmanage/sips? ffmpeg may not decode SVG. Could render SVG using Chrome if installed. Check browser. Also node canvas unavailable. We can create SVG animation directly and deliver SVG? Requirement image formats includes SVG but \"animation\" could animated SVG. But best video mp4. Could perhaps use ffmpeg's `lavfi` sources and complex filters with drawtext, overlays, geq. Or use SVG + `qlmanage` screenshot frames? macOS qlmanage can thumbnail SVG? Better `sips` doesn't support svg likely. `rsvg-convert` maybe installed. Chrome maybe."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f109f78c08a04598a",
+          "name": "bash",
+          "arguments": {
+            "command": "command -v chromium chromium-browser google-chrome playwright wkhtmltoimage rsvg-convert convert magick inkscape qlmanage sips || true; ls /Applications 2>/dev/null | grep -E 'Chrome|Safari|Firefox' || true",
+            "timeout": 20
+          }
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f119d76309ee9c45f",
+          "name": "bash",
+          "arguments": {
+            "command": "ffmpeg -hide_banner -filters 2>&1 | grep -E 'drawtext|drawbox|drawgrid|overlay|blend|noise|vignette|chromashift|gblur|zoompan' | head -50",
+            "timeout": 20
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 1160,
+        "output": 307,
+        "cacheRead": 2048,
+        "cacheWrite": 0,
+        "reasoning": 140,
+        "totalTokens": 3515,
+        "cost": {
+          "input": 0.0001566,
+          "output": 0.00016578,
+          "cacheRead": 2.7648e-05,
+          "cacheWrite": 0,
+          "total": 0.00035002800000000006
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327041282,
+      "responseId": "gen-1793327041-9N1xV3BTKhFTqA9eqASa",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1825,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "6f1fe6c6",
+    "parentId": "d3d742ab",
+    "timestamp": "2026-10-30T02:24:03.130Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f109f78c08a04598a",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "~/code/mtwabp-bench/.venv/bin/playwright\n/opt/homebrew/bin/rsvg-convert\n/usr/bin/qlmanage\n/usr/bin/sips\nChrome Remote Desktop Host Uninstaller.app\nGoogle Chrome.app\nSafari.app\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 10,
+      "timestamp": 1793327043130
+    }
+  },
+  {
+    "type": "message",
+    "id": "23ad3962",
+    "parentId": "6f1fe6c6",
+    "timestamp": "2026-10-30T02:24:03.130Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f119d76309ee9c45f",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": " TS adeclick          A->A       Remove impulsive noise from input audio.\n TS adenorm           A->A       Remedy denormals by adding extremely low-level noise.\n TS afftdn            A->A       Denoise audio samples using FFT.\n TS afwtdn            A->A       Denoise audio stream using Wavelets.\n TS anlmdn            A->A       Reduce broadband noise from stream using Non-Local Means.\n TS arnndn            A->A       Reduce noise from speech using Recurrent Neural Networks.\n TS crystalizer       A->A       Simple audio noise sharpening filter.\n .. anoisesrc         |->A       Generate a noise audio signal.\n TS atadenoise        V->V       Apply an Adaptive Temporal Averaging Denoiser.\n T. avgblur           V->V       Apply Average Blur filter.\n T. bitplanenoise     V->V       Measure bit plane noise.\n TS blend             VV->V      Blend two video frames into each other.\n TS bm3d              N->V       Block-Matching 3D denoiser.\n TS chromanr          V->V       Reduce chrominance noise.\n TS chromashift       V->V       Shift chroma.\n TS dctdnoiz          V->V       Denoise frames using 2D DCT.\n T. drawbox           V->V       Draw a colored box on the input video.\n T. drawgrid          V->V       Draw a colored grid on the input video.\n TS fftdnoiz          V->V       Denoise frames using 3D FFT.\n TS gblur             V->V       Apply Gaussian Blur filter.\n TS hqdn3d            V->V       Apply a High Quality 3D Denoiser.\n TS nlmeans           V->V       Non-local means denoiser.\n TS noise             V->V       Add noise.\n TS overlay           VV->V      Overlay a video source on top of the input.\n T. owdenoise         V->V       Denoise using wavelets.\n TS tblend            V->V       Blend successive frames.\n T. vaguedenoiser     V->V       Apply a Wavelet based Denoiser.\n T. vignette          V->V       Make or reverse a vignette effect.\n T. xpsnr             VV->V      Calculate the extended perceptually weighted peak signal-to-noise ratio (XPSNR) between two video streams.\n .. zoompan           V->V       Apply Zoom & Pan effect.\n .. perlin            |->V       Generate Perlin noise\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 21,
+      "timestamp": 1793327043130
+    }
+  },
+  {
+    "type": "message",
+    "id": "32eeec4b",
+    "parentId": "23ad3962",
+    "timestamp": "2026-10-30T02:24:44.103Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Great rsvg-convert and playwright. Could create SVG frames with precise animation per frame rendered using rsvg-convert. Need under 2MB 10s. 960x540 maybe 30fps, then x264 CRF. SVG render via rsvg fast. Need design.\n\nConcept: If everyone watched: \"The Ripple\" story: single light enters dark world; each person chooses to pass it; tree network blooms into stars; end message \"A brighter world begins with what we pass on.\" But asked greatest number of people. Could convey \"One kindness becomes a thousand\" and \"Start with one. Pass it on.\" Concrete highest-leverage behavior? Giving blood? voting? reducing meat? Plastic cleanup? Collective action: \"Keep what we have, share what we can, repair what we break\" maybe three principles improving greatest number. 10 seconds limited. Animation: At first crowd each holds dim spark; one spark is passed person to person, branches into millions, end \"ONE ACTION. A MILLION LIVES.\" Could be generic and potentially inspirational but impactful.\n\nMaybe animation about \"The best thing you can do for the most people is make their next breath easier.\" Clean air tree. Yet \"if everyone watched it\" needs behavior call-to-action. We can create \"Small act. Shared world.\" A visual chain of diverse people passing a seed; seed becomes tree; tree becomes forest? Environmental benefit only.\n\nGreatest number: \"Give blood. Share an organ. Be a donor.\" A visually compelling animation: one heartbeat splits into many, pulsing circles, ending \"One body can save up to 8 lives. One donor can give 16 organs.\" But if everyone watched, \"Become a donor\" affects living people. Could be strong factual, but animation emotionally about donor registration. 10 sec.\n\nAlternatively \"Give clean water\" charity impact, but viewer action less immediate.\n\nMaybe \"The Most Powerful Superpower: Being Kind\" generic.\n\nNeed deliver high visual quality. Could make animation via SVG frames with gradients, silhouettes, typography. 8 sec. 1080x1080 square social? MP4 works. 960x540 better. Need likely judged visual. We can make frames with vector scene and smooth motion.\n\nLet's design \"ONE SPARK / A MILLION LIVES\" story:\n\nFrame sequence 0-1.5: deep navy background, little white/gold seed at center. Text top small \"ONE SMALL ACT\".\n1.5-4.5: seed travels in a golden path across stylized globe silhouette, leaving points.\n4.5-7: points connect, each becomes heart/people? Light spreads to crowd.\n7-10: Globe illuminated by connected network, final message \"PASS IT ON.\" plus subtitle \"One act of care can change a lifetime.\" \n\nCould have people around globe passing glowing \"kindness\" orb. At end many small hearts around. The universal message is kindness, not specific enough perhaps.\n\n\"Reduce waste. Protect water. Share food.\" Three actions could broaden. But 10 sec one clear action.\n\nMaybe actual highest impact collective act: \"Vote\" but viewing doesn't help unless civic engagement; politically neutral. \"Plant trees\" climate.\n\nA beautiful \"THE CHAIN\" animation: A single person plants one tree; camera pulls back to see hand chain passing saplings; eventually entire earth lush. Final \"ONE ACT. A WORLD OF DIFFERENCE.\" This is generic.\n\nNeed greatest number. Could explicitly say \"Protect the air we share.\" animation: Factory emission turning into particles; collective action (switching to clean energy) clears sky; world celebrates. Call to \"Choose clean. Share clean air.\" That's more tangible but controversial policy.\n\nCould show \"One meal. One planet.\" Shift plant-based meals? Environmental impact broad but health nuanced.\n\nCould use \"Give blood. Be a lifesaver.\" Highly concrete and world benefit. Animation:\n- dark canvas, stylized ECG line turns into heartbeat.\n- a glowing red blood drop falls into a network; heartbeat light travels outward\n- silhouettes of diverse people connected in circles\n- final \"ONE DONOR. UP TO 8 LIVES.\" and \"Be a donor.\" with small line \"Give blood. Save a life.\"\nFacts: One donor can save up to 8 lives via organs and their families. If just blood donation one donation can save 3 lives (some countries up to 4). Strong. Animation with blood donation cross culturally universal? Organ donation eligibility varies. \"Give blood. Save lives.\" A single blood donation can save up to three lives (varies). Better avoid contested max? WHO says one donation can save 3 lives. End \"One donation. Up to three lives.\" \"Give blood.\" Greatest number still limited. If organ donation up to 8 lives. Combined donors can give blood + organs, but registration differs.\n\nMaybe \"Become a donor.\" Ending icon heart.\n\nWe can create elegant \"THE GIFT THAT KEEPS GIVING\" with a glowing red heart/drop passing through diverse hands and generating life lines. Message:\n\"ONE DONOR\"\n\"UP TO 8 LIVES\"\n\"BECOME A DONOR\"\nsmall \"Organ donation can also give tissue, corneas and more.\"\nBut 10 sec and clear.\n\nYet \"if everyone watched it\" the visual itself might improve world? Animation about kindness and mutual aid could shift culture. Need maybe final imperative \"DO ONE GOOD THING TODAY. PASS IT ON.\" That's a call to action that if everyone acts, compounding impact.\n\nCould make concept \"THE KINDNESS RIPPLE\": One person offers help, person passes it to another, circles multiply, final line \"ONE ACT OF KINDNESS CAN CHANGE MANY LIVES. START TODAY. PASS IT ON.\" That directly if everyone watched, they do kindness.\n\nI like that. Visual needs be narrative not just text. We can draw a river/network of abstract people, one acts and wave spreads. Use 8.5 sec.\n\nTechnical: Python script generates 270 SVG frames 960x540, use rsvg-convert to PNG piped maybe subprocess per frame, then ffmpeg. But 270 frames * rsvg process maybe 30s. Use `rsvg-convert` each. Better Python create static SVGs? We need frame by frame. Could exploit SVG animations and render? rsvg likely doesn't support SMIL. Generate frames.\n\nWe can use Node + Chrome screenshot? rsvg okay.\n\nGenerate frame PNG with Python invoking rsvg-convert. Then ffmpeg. Intermediate frames deleted, keep source script in src/. Need output only mp4 maybe plus jpg preview? User asks result as image/video files. We can include MP4 and JPG poster maybe under 2MB each, max8. But output only finished. JPG poster helps inspect, but it's \"finished image/video\" okay. Yet user says each image read stays context and save what looked at as jpg. We'll create JPG preview in output maybe optional. We can output final MP4 and a cover JPG. Under 2MB.\n\nNeed maybe soundtrack? Not requested, animation no audio is okay. MP4 9 sec at 30fps, 960x540, CRF 28 perhaps under 2MB.\n\nLet's implement Python generating SVG frames with shapes, then render. Need fonts: use system font family Arial/Helvetica, rsvg supports. We can draw text centered. We'll need use unique frames.\n\nAnimation specifics:\n\nCanvas 960x540. Background deep gradient navy to indigo with grain perhaps deterministic circles.\n\nScene composition:\n- Center timeline maybe.\n- 0-1.2: small glowing orb starts near lower-left? Text \"ONE SMALL ACT\" fade in.\n- 1.2-3.6: Orb moves from x=210 y=310 to x=480 y=250, a human at x=200 receives; then orb to next person x=760? But \"passes\".\n- Abstract people array 8 around central circle, shown as simple circle head and torso. Start positions along ellipse.\n- A single person on left glows teal, makes hand arc, passes orb to next along curved path. Then next lights up. Ripple goes around ring, each lighting.\n- At end all 8 are connected by luminous curve; above them central circle expands into a globe-like network of arcs, perhaps final big glowing heart? And text.\nMaybe final screen transitions:\n0-4.6 chain of figures pass glowing dot along spiral.\n4.6-6.5 camera pulls back/reframe, network fills, orbiting dots.\n6.5-9.5 final typography overlay: \"ONE GOOD DEED.\" then \"A RIPPLE.\" then \"PASS IT ON.\" with \"Start where you are. Give what you can.\"\n\nCould be clean and modern, no cheesy.\n\nAlternative abstract typographic motion:\nWords \"ONE ACT\" represented as node light, pulses along network. Each pass reaches another person, their halo blooms and petals emerge. In 8 sec.\n\nLet's use explicit title card integrated:\n- At 0-1: black/navy, orb in center, word \"ONE\" fades.\n- 1-5: one spark travels around network of 9 diverse human figures arranged semicircle. Each receiving spark lights a ring around person and a little heart appears above. On first act, others receive.\n- 5-7.5: network lines connect them, camera zoom, central large phrase \"IT MULTIPLIES.\"\n- 7.5-10: final \"PASS IT ON.\" + subtitle.\n\nBut camera zoom in SVG can be done by group transform scale around center; rsvg raster. Yet people can just enlarge.\n\nLet's script phases.\n\nNeed aesthetic: warm coral and cyan colors on dark blue. People skin tones, clothing different. Figures as minimalist flat. Need \"greatest number\": maybe end has 24 people, more than initial? Could animate expanding crowd to imply exponential. At final, a crowd of 40 tiny figures with golden halos in background, central headline.\n\nMaybe phrase \"A single act of care can ripple farther than you think.\" Could end \"DO ONE GOOD THING.\" Then \"PASS IT ON.\" Better.\n\nUse the visual sequence:\n- orb (golden) at x=130,y=330.\n- figures at positions [130, 220, 320, 430, 550, 680, 810] around arc y [330,285,250,235,245,275,325]. 7 visible.\n- Path curve connecting them.\n- spark travels from one to next at intervals 0.5 s. Each passed spark adds halo and ring. At first, one figure gestures toward next.\n- 0-1.5 title \"A GOOD DEED\" top.\n- 5-6.5 all lit and crowd dots appear. Message \"starts with you.\"\n- 6.5-9.8 final large \"PASS IT ON.\" bottom? Maybe text overlays.\n\nNeed more compelling ending with spark branches upward to dozens of smaller dots as stars in upper region, then final text. This conveys ripple.\n\nCould have title card transition at end: top left tiny \"ONE ACT\" and big center \"PASSES\\nIT ON.\" But fine.\n\nText:\nat start small \"A GOOD DEED\"\nat 5.3 \"BECOMES A RIPPLE\"\nat 7.3 \"PASS IT ON.\" and sub \"One small act. A world of difference.\"\nBut \"a world of difference\" claims.\n\nMaybe final call: \"DO ONE GOOD THING TODAY.\" is more direct, followed \"PASS IT ON.\" Too much text in short time. End:\nPASS IT ON.\nOne good act becomes a ripple.\nCould include a small heart icon.\n\nLet's implement 10 sec 300 frames 30fps. Add smooth fades via easing and alpha.\n\nSVG element generation:\n- gradients, background.\n- dotted stars deterministic.\n- central glow filter.\n- person function at x y scale, skin fill, shirt fill; head circle, body path. Receive glow ring.\n- baseline maybe elliptical path around.\n- arc path with gradient.\n- Orb at interpolated curve by param? Use quadratic B\u00e9zier path and get point. But multiple hops, each hop linear with slight arc. Calculate eased per segment. Draw trail circles.\n- Path connections behind people. Use polyline/quadratic; reveal segments based progress using stroke-dasharray/dashoffset approximate segment length. Each person lights as orb arrives.\n- At t>5.2, crowd of 50 mini people along horizon? Hmm.\n- Branch spark from last person toward upper right then upper-left across canvas, spawning dots.\n\nCould final wide scene with figures lower third and stars upper half; big text centered upper/middle. To avoid text obstructing, use gradient veil as final.\n\nTransitions:\n0-0.8 bg dark, intro title fades.\n0.8-6.2 ripple sequence.\n6.2-6.8 final scene draws more dots and crowd.\n6.8-9.8 final title fade in with line and sub.\nAt 9.5 hold.\n\nLet's code. Need use write."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9f6ace7ef3bfb45659",
+          "name": "write",
+          "arguments": {
+            "path": "src/render_animation.py",
+            "content": "#!/usr/bin/env python3\n\"\"\"Render a frame-by-frame vector animation to PNG, then encode it as an MP4.\"\"\"\nfrom __future__ import annotations\n\nimport math\nimport os\nimport random\nimport subprocess\nimport shutil\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[1]\nBUILD = ROOT / \"build\"\nFRAMES = BUILD / \"frames\"\nOUT = ROOT / \"output\"\nW, H = 960, 540\nFPS = 30\nDURATION = 10.0\nN = int(FPS * DURATION)\n\nrandom.seed(12)\nOUT.mkdir(exist_ok=True)\nif BUILD.exists():\n    shutil.rmtree(BUILD)\nFRAMES.mkdir(parents=True)\n\n\ndef clamp(x, lo=0.0, hi=1.0):\n    return max(lo, min(hi, x))\n\n\ndef ease(x):\n    x = clamp(x)\n    return x * x * (3 - 2 * x)\n\n\ndef smooth(a, b, t):\n    return ease((t - a) / (b - a))\n\n\ndef alpha(t, a, b, fade=0.45):\n    if t < a or t > b:\n        return 0.0\n    return smooth(a, a + fade, t) * (1 - smooth(b - fade, b, t))\n\n\ndef mix(c1, c2, t):\n    t = clamp(t)\n    return tuple(round(a + (b - a) * t) for a, b in zip(c1, c2))\n\n\ndef rgba(c, a=1.0):\n    return f\"rgba({c[0]},{c[1]},{c[2]},{a:.3f})\"\n\n\n# Seven stylised neighbours arranged along a gentle arc.\nPEOPLE = [\n    (112, 351, 0.92, \"#E9A678\", \"#F06D5E\"),\n    (230, 302, 1.00, \"#8C583F\", \"#39B8AD\"),\n    (352, 274, 0.96, \"#F1C6A5\", \"#F4B942\"),\n    (481, 265, 1.06, \"#C98761\", \"#8A79D1\"),\n    (610, 276, 0.98, \"#F4D4B6\", \"#4E9BE8\"),\n    (732, 310, 1.02, \"#6F4637\", \"#EE6C9B\"),\n    (842, 356, 0.90, \"#DFA77E\", \"#43B99A\"),\n]\n\n# A distant crowd: (x, y, scale, colour)\nCROWD = []\nfor row, count in [(432, 22), (472, 25), (506, 29)]:\n    for i in range(count):\n        x = 30 + (i + (0.38 if row % 2 else 0)) * (900 / max(1, count - 1))\n        y = row + random.uniform(-8, 8)\n        sc = random.uniform(0.22, 0.36)\n        colour = random.choice([\"#3D6C91\", \"#456A88\", \"#6E7098\", \"#3F827E\", \"#8B637C\"])\n        CROWD.append((x, y, sc, colour))\n\nSTARS = [(random.uniform(20, 940), random.uniform(20, 380), random.uniform(0.6, 2.0), random.uniform(0.08, 0.45)) for _ in range(55)]\n\n\ndef person(x, y, sc, skin, shirt, glow=0.0, arm=0.0):\n    # Minimal, friendly pictogram. arm > 0 points the next gift to the right.\n    g = max(0.0, glow)\n    halo = \"\"\n    if g > 0:\n        halo = f'''<circle cx=\"0\" cy=\"-50\" r=\"58\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"3\" opacity=\"{0.62*g:.3f}\"/>\n        <circle cx=\"0\" cy=\"-50\" r=\"69\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"1\" opacity=\"{0.23*g:.3f}\"/>\n        <circle cx=\"0\" cy=\"-38\" r=\"48\" fill=\"#FFD166\" opacity=\"{0.10*g:.3f}\" filter=\"url(#softGlow)\"/>'''\n    return f'''<g transform=\"translate({x:.1f},{y:.1f}) scale({sc:.3f})\">{halo}\n      <path d=\"M-21 18 Q0 7 21 18 L27 58 Q0 69 -27 58 Z\" fill=\"{shirt}\"/>\n      <path d=\"M-9 58 L-10 92 Q0 96 10 92 L9 58\" fill=\"#17213D\"/>\n      <path d=\"M-16 91 Q-20 97 -11 99 L0 99 L0 91\" fill=\"#111A31\"/>\n      <path d=\"M16 91 Q20 97 11 99 L0 99 L0 91\" fill=\"#111A31\"/>\n      <circle cx=\"0\" cy=\"-36\" r=\"21\" fill=\"{skin}\"/>\n      <path d=\"M-20 -40 Q-19 -66 3 -64 Q24 -62 21 -37 Q10 -52 -20 -40\" fill=\"#20253B\" opacity=\".9\"/>\n      <path d=\"M-14 22 Q-31 34 -30 48\" fill=\"none\" stroke=\"{skin}\" stroke-width=\"10\" stroke-linecap=\"round\"/>\n      <path d=\"M14 22 Q27 31 31 43\" fill=\"none\" stroke=\"{skin}\" stroke-width=\"10\" stroke-linecap=\"round\"/>\n      <path d=\"M14 22 Q{29+8*arm:.1f} {8-22*arm:.1f} {43+9*arm:.1f} {2-26*arm:.1f}\" fill=\"none\" stroke=\"{skin}\" stroke-width=\"10\" stroke-linecap=\"round\"/>\n    </g>'''\n\n\ndef svg(t):\n    # The gift moves from neighbour to neighbour from t=1.05 to 5.45.\n    start = 1.05\n    hop = 0.62\n    travel = start + hop * (len(PEOPLE) - 1) + 0.25\n    active = -1\n    prev_active = -1\n    pos = PEOPLE[0][:2]\n    if t < travel:\n        k = (t - start) / hop\n        active = max(0, min(len(PEOPLE) - 2, int(k)))\n        f = k - active\n        p0 = PEOPLE[active]\n        p1 = PEOPLE[active + 1]\n        f = ease(f)\n        x = p0[0] + (p1[0] - p0[0]) * f\n        y = p0[1] + (p1[1] - p0[1]) * f - 30 * math.sin(math.pi * f)\n        pos = (x, y - 72 * ((p0[2] + p1[2]) / 2))\n        prev_active = active\n    elif t < travel + 0.5:\n        active = len(PEOPLE) - 1\n        pos = (PEOPLE[-1][0], PEOPLE[-1][1] - 72 * PEOPLE[-1][2])\n\n    # A quiet opening title.\n    intro_a = alpha(t, 0.15, 1.55, 0.45)\n    # Final title is fully readable for its final hold.\n    final_a = alpha(t, 6.65, 7.65, 0.55)\n    scene_dark = 0.28 * final_a\n\n    out = []\n    out.append(f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W}\" height=\"{H}\" viewBox=\"0 0 {W} {H}\">\n    <defs>\n      <linearGradient id=\"bg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\n        <stop offset=\"0\" stop-color=\"#08162B\"/><stop offset=\".52\" stop-color=\"#111C38\"/><stop offset=\"1\" stop-color=\"#17162F\"/>\n      </linearGradient>\n      <radialGradient id=\"warm\"><stop offset=\"0\" stop-color=\"#FFE9A8\" stop-opacity=\".95\"/><stop offset=\".26\" stop-color=\"#FFD166\" stop-opacity=\".7\"/><stop offset=\"1\" stop-color=\"#FFD166\" stop-opacity=\"0\"/></radialGradient>\n      <radialGradient id=\"cool\"><stop offset=\"0\" stop-color=\"#7FE9DD\" stop-opacity=\".65\"/><stop offset=\"1\" stop-color=\"#7FE9DD\" stop-opacity=\"0\"/></radialGradient>\n      <linearGradient id=\"line\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"0\"><stop stop-color=\"#F4B942\"/><stop offset=\".5\" stop-color=\"#7FE9DD\"/><stop offset=\"1\" stop-color=\"#EF71A8\"/></linearGradient>\n      <filter id=\"glow\" x=\"-200%\" y=\"-200%\" width=\"400%\" height=\"400%\"><feGaussianBlur stdDeviation=\"7\" result=\"b\"/><feMerge><feMergeNode in=\"b\"/><feMergeNode in=\"SourceGraphic\"/></feMerge></filter>\n      <filter id=\"softGlow\" x=\"-100%\" y=\"-100%\" width=\"300%\" height=\"300%\"><feGaussianBlur stdDeviation=\"18\"/></filter>\n    </defs>''')\n    out.append(f'<rect width=\"{W}\" height=\"{H}\" fill=\"url(#bg)\"/>')\n\n    # Soft atmospheric light.\n    out.append(f'<ellipse cx=\"480\" cy=\"300\" rx=\"430\" ry=\"300\" fill=\"url(#cool)\" opacity=\"{0.12 + 0.05*math.sin(t*1.4):.3f}\"/>')\n    out.append(f'<ellipse cx=\"480\" cy=\"460\" rx=\"500\" ry=\"120\" fill=\"#060B1C\" opacity=\".38\"/>')\n    for x, y, r, a in STARS:\n        tw = 0.72 + 0.28 * math.sin(t * 1.8 + x * .03)\n        out.append(f'<circle cx=\"{x:.1f}\" cy=\"{y:.1f}\" r=\"{r:.1f}\" fill=\"#DDEBFF\" opacity=\"{a*tw:.3f}\"/>')\n\n    # Crowd appears gradually in the final phase.\n    crowd_a = smooth(5.25, 7.25, t)\n    if crowd_a > 0:\n        for x, y, sc, col in CROWD:\n            out.append(f'<g transform=\"translate({x:.1f},{y:.1f}) scale({sc:.3f})\" opacity=\"{crowd_a*.72:.3f}\">'\n                       f'<circle cx=\"0\" cy=\"-18\" r=\"9\" fill=\"#D6A783\"/><path d=\"M-10 -7 Q0 -13 10 -7 L13 22 Q0 27 -13 22Z\" fill=\"{col}\"/></g>')\n\n    # The shared path behind the foreground neighbours.\n    path = \"M 112 351 C 220 250 330 215 481 265 C 625 205 750 255 842 356\"\n    reveal = clamp((t - 0.85) / 4.9)\n    out.append(f'<path d=\"{path}\" fill=\"none\" stroke=\"#2B4161\" stroke-width=\"3\" stroke-linecap=\"round\"/>')\n    out.append(f'<path d=\"{path}\" fill=\"none\" stroke=\"url(#line)\" stroke-width=\"4\" stroke-linecap=\"round\" pathLength=\"1\" stroke-dasharray=\"1\" stroke-dashoffset=\"{1-reveal:.4f}\" opacity=\".8\" filter=\"url(#glow)\"/>')\n\n    # People, with a warm halo after they receive the gift.\n    for i, (x, y, sc, skin, shirt) in enumerate(PEOPLE):\n        lit = 0.0\n        if t >= start + i * hop - .12:\n            lit = smooth(start + i * hop - .12, start + i * hop + .55, t)\n        # First person briefly reaches toward the second.\n        arm = 0.0\n        if i == 0:\n            arm = math.sin(math.pi * clamp((t - .55) / .85))\n        elif i == len(PEOPLE) - 2:\n            arm = math.sin(math.pi * clamp((t - (start + i*hop) + .1) / .85))\n        out.append(person(x, y, sc, skin, shirt, lit, arm))\n\n    # Gift orb and trailing light.\n    if t >= start - .3 and t <= travel + .75:\n        x, y = pos\n        out.append(f'<circle cx=\"{x:.1f}\" cy=\"{y:.1f}\" r=\"36\" fill=\"url(#warm)\" opacity=\".9\"/>')\n        out.append(f'<circle cx=\"{x:.1f}\" cy=\"{y:.1f}\" r=\"11\" fill=\"#FFF4C7\" filter=\"url(#glow)\"/>')\n        # Three fading echoes along the recent path.\n        for j, age in enumerate((0.08, 0.17, 0.27)):\n            tt = t - age\n            if tt >= start and tt <= travel:\n                k = (tt - start) / hop\n                ai = max(0, min(len(PEOPLE) - 2, int(k)))\n                ff = ease(k - ai)\n                p0, p1 = PEOPLE[ai], PEOPLE[ai + 1]\n                ex = p0[0] + (p1[0] - p0[0]) * ff\n                ey = p0[1] + (p1[1] - p0[1]) * ff - 30 * math.sin(math.pi * ff)\n                ey -= 72 * ((p0[2] + p1[2]) / 2)\n                out.append(f'<circle cx=\"{ex:.1f}\" cy=\"{ey:.1f}\" r=\"{6-j*1.4:.1f}\" fill=\"#FFD166\" opacity=\"{.30-j*.08:.3f}\"/>')\n\n    # After the chain, the spark branches upward into a constellation.\n    branch = smooth(5.35, 7.0, t)\n    if branch > 0:\n        out.append(f'<path d=\"M842 284 C790 210 710 150 620 118 C500 76 330 95 210 150\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"2.2\" stroke-dasharray=\"5 10\" opacity=\"{branch*.55:.3f}\"/>')\n        for j in range(28):\n            tt = j / 27\n            bx = 842 - 632 * tt\n            by = 284 - 150 * math.sin(tt * math.pi * .82) - 34 * math.sin(tt * math.pi * 2)\n            out.append(f'<circle cx=\"{bx:.1f}\" cy=\"{by:.1f}\" r=\"{2.2 + 1.4*math.sin(j*.9):.1f}\" fill=\"#FFE39A\" opacity=\"{branch*(.35+.25*math.sin(j*1.7)**2):.3f}\"/>')\n\n    # Opening label.\n    if intro_a > 0:\n        out.append(f'<g opacity=\"{intro_a:.3f}\" transform=\"translate(480 77)\">'\n                   f'<circle cx=\"-73\" cy=\"-1\" r=\"4\" fill=\"#FFD166\"/><text x=\"0\" y=\"7\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"18\" font-weight=\"700\" letter-spacing=\"5\" fill=\"#DDE8FA\">A GOOD DEED</text>'\n                   f'<circle cx=\"73\" cy=\"-1\" r=\"4\" fill=\"#FFD166\"/></g>')\n\n    # Mid-scene beat.\n    mid_a = alpha(t, 4.55, 5.95, .45)\n    if mid_a > 0:\n        out.append(f'<text x=\"480\" y=\"72\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"700\" letter-spacing=\"5\" fill=\"#DCE9FA\" opacity=\"{mid_a:.3f}\">BECOMES A RIPPLE</text>')\n\n    # Final title card layered over the widened, connected scene.\n    if final_a > 0:\n        out.append(f'<rect width=\"{W}\" height=\"{H}\" fill=\"#071124\" opacity=\"{scene_dark:.3f}\"/>')\n        out.append(f'<g opacity=\"{final_a:.3f}\">')\n        out.append(f'<path d=\"M430 195 Q480 165 530 195\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\".9\"/>')\n        out.append(f'<path d=\"M447 192 C452 182 459 180 466 188 C474 174 486 176 490 188 C498 179 508 182 513 192 C506 205 480 214 480 214 C480 214 454 205 447 192Z\" fill=\"#FFD166\" opacity=\".95\"/>')\n        out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n        out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act can become a ripple.</text>')\n        out.append(f'<g transform=\"translate(480 379)\">')\n        out.append(f'<rect x=\"-177\" y=\"-25\" width=\"354\" height=\"50\" rx=\"25\" fill=\"#FFD166\"/>')\n        out.append(f'<text x=\"0\" y=\"7\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"18\" font-weight=\"800\" letter-spacing=\"2.5\" fill=\"#10182B\">DO ONE GOOD THING TODAY</text>')\n        out.append(f'</g></g>')\n\n    out.append('</svg>')\n    return \"\\n\".join(out)\n\n\ndef render_svg(data: str, dest: Path):\n    svg_path = BUILD / \"current.svg\"\n    svg_path.write_text(data, encoding=\"utf-8\")\n    subprocess.run([\n        \"rsvg-convert\", \"-w\", str(W), \"-h\", str(H), \"-o\", str(dest), str(svg_path)\n    ], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)\n\n\ndef main():\n    print(f\"Rendering {N} frames\u2026\")\n    for i in range(N):\n        t = i / FPS\n        render_svg(svg(t), FRAMES / f\"frame_{i:04d}.png\")\n        if (i + 1) % 30 == 0:\n            print(f\"  {i+1}/{N}\")\n\n    mp4 = OUT / \"pass-it-on.mp4\"\n    subprocess.run([\n        \"ffmpeg\", \"-y\", \"-hide_banner\", \"-loglevel\", \"error\",\n        \"-framerate\", str(FPS), \"-i\", str(FRAMES / \"frame_%04d.png\"),\n        \"-c:v\", \"libx264\", \"-preset\", \"slow\", \"-crf\", \"25\", \"-pix_fmt\", \"yuv420p\",\n        \"-movflags\", \"+faststart\", \"-an\", str(mp4)\n    ], check=True)\n\n    # A small, social-friendly poster made from the final hold frame.\n    poster = OUT / \"pass-it-on-poster.jpg\"\n    subprocess.run([\n        \"ffmpeg\", \"-y\", \"-hide_banner\", \"-loglevel\", \"error\", \"-i\", str(mp4),\n        \"-ss\", \"8.4\", \"-frames:v\", \"1\", \"-q:v\", \"3\", str(poster)\n    ], check=True)\n    print(mp4, mp4.stat().st_size)\n    print(poster, poster.stat().st_size)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 1048,
+        "output": 7243,
+        "cacheRead": 3072,
+        "cacheWrite": 0,
+        "reasoning": 2686,
+        "totalTokens": 11363,
+        "cost": {
+          "input": 0.00014148,
+          "output": 0.00391122,
+          "cacheRead": 4.1472e-05,
+          "cacheWrite": 0,
+          "total": 0.004094172
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327043135,
+      "responseId": "gen-1793327043-KgM1Pk0TQJcaGUDu8Jt3",
+      "rawStopReason": "tool_calls",
+      "durationMs": 40968,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "65f2e172",
+    "parentId": "32eeec4b",
+    "timestamp": "2026-10-30T02:24:44.105Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9f6ace7ef3bfb45659",
+      "toolName": "write",
+      "content": [
+        {
+          "type": "text",
+          "text": "Successfully wrote to src/render_animation.py"
+        }
+      ],
+      "isError": false,
+      "durationMs": 1,
+      "timestamp": 1793327084105
+    }
+  },
+  {
+    "type": "message",
+    "id": "c8a44be6",
+    "parentId": "65f2e172",
+    "timestamp": "2026-10-30T02:24:45.062Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Run."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18a9fb6c078f18dffccff",
+          "name": "bash",
+          "arguments": {
+            "command": "python3 src/render_animation.py",
+            "timeout": 300
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 7290,
+        "output": 46,
+        "cacheRead": 4096,
+        "cacheWrite": 0,
+        "reasoning": 1,
+        "totalTokens": 11432,
+        "cost": {
+          "input": 0.00098415,
+          "output": 2.484e-05,
+          "cacheRead": 5.5296e-05,
+          "cacheWrite": 0,
+          "total": 0.001064286
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327084111,
+      "responseId": "gen-1793327084-HHShNcFgvfsP3sPwJ235",
+      "rawStopReason": "tool_calls",
+      "durationMs": 951,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "7c453cb8",
+    "parentId": "c8a44be6",
+    "timestamp": "2026-10-30T02:25:13.724Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18a9fb6c078f18dffccff",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "Rendering 300 frames\u2026\n  30/300\n  60/300\n  90/300\n  120/300\n  150/300\n  180/300\n  210/300\n  240/300\n  270/300\n  300/300\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work/output/pass-it-on.mp4 338405\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work/output/pass-it-on-poster.jpg 53925\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 28662,
+      "timestamp": 1793327113724
+    }
+  },
+  {
+    "type": "message",
+    "id": "4a6930d6",
+    "parentId": "7c453cb8",
+    "timestamp": "2026-10-30T02:25:15.326Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need inspect frames. Read poster and perhaps extract other frames to temp jpg not output? User says save what look at as jpg rather than png. We can extract jpg into build then read. But output only final. Fine. Extract at t 1,3,5,7,9 as jpg montage? Could use ffmpeg tile into one jpg. Let's create build/contact.jpg."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa02aca7e609d9bbf9b",
+          "name": "bash",
+          "arguments": {
+            "command": "ffmpeg -y -hide_banner -loglevel error -i output/pass-it-on.mp4 -vf \"select='eq(n,45)+eq(n,105)+eq(n,165)+eq(n,225)+eq(n,285)',scale=480:270,tile=5x1\" -frames:v 1 -q:v 3 build/contact.jpg && ls -lh output/* build/contact.jpg && ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of default=noprint_wrappers=1 output/pass-it-on.mp4",
+            "timeout": 30
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 347,
+        "output": 250,
+        "cacheRead": 11264,
+        "cacheWrite": 0,
+        "reasoning": 83,
+        "totalTokens": 11861,
+        "cost": {
+          "input": 4.6845e-05,
+          "output": 0.000135,
+          "cacheRead": 0.000152064,
+          "cacheWrite": 0,
+          "total": 0.000333909
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327113731,
+      "responseId": "gen-1793327113-ZyEkhUIwBX6jj3JgjO8j",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1595,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "6b6c7723",
+    "parentId": "4a6930d6",
+    "timestamp": "2026-10-30T02:25:15.438Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa02aca7e609d9bbf9b",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "-rw-r--r--@ 1 ekho  staff    80K Oct 30 02:25 build/contact.jpg\n-rw-r--r--@ 1 ekho  staff    53K Oct 30 02:25 output/pass-it-on-poster.jpg\n-rw-r--r--@ 1 ekho  staff   330K Oct 30 02:25 output/pass-it-on.mp4\ncodec_name=h264\nwidth=960\nheight=540\nr_frame_rate=30/1\nduration=10.000000\nsize=338405\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 111,
+      "timestamp": 1793327115438
+    }
+  },
+  {
+    "type": "message",
+    "id": "852fcd9d",
+    "parentId": "6b6c7723",
+    "timestamp": "2026-10-30T02:25:15.850Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa02ef67992982cf6dc",
+          "name": "read",
+          "arguments": {
+            "path": "build/contact.jpg",
+            "offset": 1,
+            "limit": 10
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 736,
+        "output": 48,
+        "cacheRead": 11264,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 12048,
+        "cost": {
+          "input": 9.936e-05,
+          "output": 2.5920000000000003e-05,
+          "cacheRead": 0.000152064,
+          "cacheWrite": 0,
+          "total": 0.000277344
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327115443,
+      "responseId": "gen-1793327115-lqO1xrim82D2R7ovkySb",
+      "rawStopReason": "tool_calls",
+      "durationMs": 406,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "96995f35",
+    "parentId": "852fcd9d",
+    "timestamp": "2026-10-30T02:25:16.018Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa02ef67992982cf6dc",
+      "toolName": "read",
+      "content": [
+        {
+          "type": "text",
+          "text": "Read image file [image/png]\n[Image: original 2400x270, displayed at 2000x225. Multiply coordinates by 1.20 to map to original image.]"
+        },
+        {
+          "type": "image",
+          "data": "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",
+          "mimeType": "image/jpeg",
+          "sourceMimeType": "image/png",
+          "bytes": 434001
+        }
+      ],
+      "isError": false,
+      "durationMs": 143,
+      "timestamp": 1793327116017
+    }
+  },
+  {
+    "type": "message",
+    "id": "2ec123bf",
+    "parentId": "96995f35",
+    "timestamp": "2026-10-30T02:25:21.512Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Oh final title appears at t=7.5 but not shown in contact? Frame 7.5 maybe alpha? Contact at n225=7.5 seems no final title, but some translucent weird overlay (text \"A good deed can...\") maybe final starts at 6.65 but at t7.5 should full. Contact appears dark but no title, just weird horizontal tiny text. Wait contact ordering: n45=1.5 shows first; n105=3.5; n165=5.5; n225=7.5; n285=9.5. At n225 title missing due to alpha function? alpha(t,6.65,7.65,0.55) = smooth(6.65,7.2,7.5) * (1-smooth(7.1,7.65,7.5)) = 1 * (1 - ~0.78) = .22. So title only peaks when t exactly b-fade=7.1 then declines. My alpha implementation incorrect: fade-out starts b-fade but because b=7.65 fade=.55 start=7.1. At end title gone. Need intro title similarly fading okay. For final we want hold to end, not fade out. Define final_a = smooth(6.65,7.3,t). This stays. Then at 7.5 full, 9.5 full. Do that. Also poster currently at 8.4 no title! Need fix.\n\nAlso visual at first frame title too faint due alpha at 1.5 (near end) that's okay. Main people line nice but heads and arms maybe decent. Final overlay needs be more opaque to read, and crowd visible. We can improve scene.\n\nNeed fix final alpha. Also maybe output final poster shows final. Let's edit and rerender. Could render only perhaps all again. Fine 300. Also maybe the final card darkens scene only 28%, enough. Title large and good.\n\nMid \"BECOMES A RIPPLE\" at 5.5. good.\n\nNeed ensure phrase \"One good act can become a ripple.\" somewhat awkward but okay. Could say \"One good act starts a ripple.\" Better concise. Final \"DO ONE GOOD THING TODAY\" and \"PASS IT ON.\" Fine.\n\nAt final title, heart icon location y 195 and title 280, too much gap but okay. Could keep.\n\nFix final alpha and maybe final overlay opacity .45 for scene. Also current final scene branch dotted line appears. Good.\n\nNeed poster and final."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa0432f7780a9a13707",
+          "name": "edit",
+          "arguments": {
+            "path": "src/render_animation.py",
+            "edits": [
+              {
+                "oldText": "    final_a = alpha(t, 6.65, 7.65, 0.55)\n    scene_dark = 0.28 * final_a\n",
+                "newText": "    # The closing message enters smoothly, then holds for a clear final beat.\n    final_a = smooth(6.65, 7.30, t)\n    scene_dark = 0.40 * final_a\n"
+              },
+              {
+                "oldText": "        out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act can become a ripple.</text>')\n",
+                "newText": "        out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act starts a ripple.</text>')\n"
+              }
+            ]
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 988,
+        "output": 839,
+        "cacheRead": 11776,
+        "cacheWrite": 0,
+        "reasoning": 528,
+        "totalTokens": 13603,
+        "cost": {
+          "input": 0.00013338,
+          "output": 0.00045306000000000003,
+          "cacheRead": 0.000158976,
+          "cacheWrite": 0,
+          "total": 0.000745416
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327116024,
+      "responseId": "gen-1793327117-TeuCpqJosbYu8lZmeIty",
+      "rawStopReason": "tool_calls",
+      "durationMs": 5488,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "b4890668",
+    "parentId": "2ec123bf",
+    "timestamp": "2026-10-30T02:25:21.523Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa0432f7780a9a13707",
+      "toolName": "edit",
+      "content": [
+        {
+          "type": "text",
+          "text": "Successfully replaced 2 block(s) in src/render_animation.py."
+        }
+      ],
+      "details": {
+        "diff": "     ...\n 123 \n 124     # A quiet opening title.\n 125     intro_a = alpha(t, 0.15, 1.55, 0.45)\n 126     # Final title is fully readable for its final hold.\n-127     final_a = alpha(t, 6.65, 7.65, 0.55)\n-128     scene_dark = 0.28 * final_a\n+127     # The closing message enters smoothly, then holds for a clear final beat.\n+128     final_a = smooth(6.65, 7.30, t)\n+129     scene_dark = 0.40 * final_a\n 129 \n 130     out = []\n 131     out.append(f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W}\" height=\"{H}\" viewBox=\"0 0 {W} {H}\">\n 132     <defs>\n     ...\n 219         out.append(f'<g opacity=\"{final_a:.3f}\">')\n 220         out.append(f'<path d=\"M430 195 Q480 165 530 195\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\".9\"/>')\n 221         out.append(f'<path d=\"M447 192 C452 182 459 180 466 188 C474 174 486 176 490 188 C498 179 508 182 513 192 C506 205 480 214 480 214 C480 214 454 205 447 192Z\" fill=\"#FFD166\" opacity=\".95\"/>')\n 222         out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n-223         out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act can become a ripple.</text>')\n+224         out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act starts a ripple.</text>')\n 224         out.append(f'<g transform=\"translate(480 379)\">')\n 225         out.append(f'<rect x=\"-177\" y=\"-25\" width=\"354\" height=\"50\" rx=\"25\" fill=\"#FFD166\"/>')\n 226         out.append(f'<text x=\"0\" y=\"7\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"18\" font-weight=\"800\" letter-spacing=\"2.5\" fill=\"#10182B\">DO ONE GOOD THING TODAY</text>')\n 227         out.append(f'</g></g>')\n     ...",
+        "patch": "--- src/render_animation.py\n+++ src/render_animation.py\n@@ -123,10 +123,11 @@\n \n     # A quiet opening title.\n     intro_a = alpha(t, 0.15, 1.55, 0.45)\n     # Final title is fully readable for its final hold.\n-    final_a = alpha(t, 6.65, 7.65, 0.55)\n-    scene_dark = 0.28 * final_a\n+    # The closing message enters smoothly, then holds for a clear final beat.\n+    final_a = smooth(6.65, 7.30, t)\n+    scene_dark = 0.40 * final_a\n \n     out = []\n     out.append(f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W}\" height=\"{H}\" viewBox=\"0 0 {W} {H}\">\n     <defs>\n@@ -219,9 +220,9 @@\n         out.append(f'<g opacity=\"{final_a:.3f}\">')\n         out.append(f'<path d=\"M430 195 Q480 165 530 195\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\".9\"/>')\n         out.append(f'<path d=\"M447 192 C452 182 459 180 466 188 C474 174 486 176 490 188 C498 179 508 182 513 192 C506 205 480 214 480 214 C480 214 454 205 447 192Z\" fill=\"#FFD166\" opacity=\".95\"/>')\n         out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n-        out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act can become a ripple.</text>')\n+        out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act starts a ripple.</text>')\n         out.append(f'<g transform=\"translate(480 379)\">')\n         out.append(f'<rect x=\"-177\" y=\"-25\" width=\"354\" height=\"50\" rx=\"25\" fill=\"#FFD166\"/>')\n         out.append(f'<text x=\"0\" y=\"7\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"18\" font-weight=\"800\" letter-spacing=\"2.5\" fill=\"#10182B\">DO ONE GOOD THING TODAY</text>')\n         out.append(f'</g></g>')\n",
+        "firstChangedLine": 127
+      },
+      "isError": false,
+      "durationMs": 8,
+      "timestamp": 1793327121523
+    }
+  },
+  {
+    "type": "message",
+    "id": "6093f8f9",
+    "parentId": "b4890668",
+    "timestamp": "2026-10-30T02:25:22.695Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa0495477f19d094553",
+          "name": "bash",
+          "arguments": {
+            "command": "python3 src/render_animation.py && ffmpeg -y -hide_banner -loglevel error -i output/pass-it-on.mp4 -vf \"select='eq(n,45)+eq(n,105)+eq(n,165)+eq(n,225)+eq(n,285)',scale=480:270,tile=5x1\" -frames:v 1 -q:v 3 build/contact2.jpg && ls -lh output/*",
+            "timeout": 300
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 1344,
+        "output": 129,
+        "cacheRead": 12288,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 13761,
+        "cost": {
+          "input": 0.00018144,
+          "output": 6.966000000000001e-05,
+          "cacheRead": 0.000165888,
+          "cacheWrite": 0,
+          "total": 0.00041698799999999997
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327121539,
+      "responseId": "gen-1793327121-eZpQbGr5rSKxaW1fiI7Q",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1156,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "66fb0077",
+    "parentId": "6093f8f9",
+    "timestamp": "2026-10-30T02:25:52.944Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa0495477f19d094553",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "Rendering 300 frames\u2026\n  30/300\n  60/300\n  90/300\n  120/300\n  150/300\n  180/300\n  210/300\n  240/300\n  270/300\n  300/300\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work/output/pass-it-on.mp4 320647\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work/output/pass-it-on-poster.jpg 54034\n-rw-r--r--@ 1 ekho  staff    53K Oct 30 02:25 output/pass-it-on-poster.jpg\n-rw-r--r--@ 1 ekho  staff   313K Oct 30 02:25 output/pass-it-on.mp4\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 30248,
+      "timestamp": 1793327152944
+    }
+  },
+  {
+    "type": "message",
+    "id": "6bc6b412",
+    "parentId": "66fb0077",
+    "timestamp": "2026-10-30T02:25:54.150Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa0c4a27e32b89dfa97",
+          "name": "read",
+          "arguments": {
+            "path": "build/contact2.jpg",
+            "offset": 1,
+            "limit": 10
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 691,
+        "output": 49,
+        "cacheRead": 13312,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 14052,
+        "cost": {
+          "input": 9.3285e-05,
+          "output": 2.646e-05,
+          "cacheRead": 0.000179712,
+          "cacheWrite": 0,
+          "total": 0.000299457
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327152949,
+      "responseId": "gen-1793327153-M48jkTOqCHZKkY0Lx9cu",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1200,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "8cbad874",
+    "parentId": "6bc6b412",
+    "timestamp": "2026-10-30T02:25:54.345Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa0c4a27e32b89dfa97",
+      "toolName": "read",
+      "content": [
+        {
+          "type": "text",
+          "text": "Read image file [image/png]\n[Image: original 2400x270, displayed at 2000x225. Multiply coordinates by 1.20 to map to original image.]"
+        },
+        {
+          "type": "image",
+          "data": "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",
+          "mimeType": "image/jpeg",
+          "sourceMimeType": "image/png",
+          "bytes": 421161
+        }
+      ],
+      "isError": false,
+      "durationMs": 170,
+      "timestamp": 1793327154344
+    }
+  },
+  {
+    "type": "message",
+    "id": "e68e2a9c",
+    "parentId": "8cbad874",
+    "timestamp": "2026-10-30T02:25:59.742Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Final title overlaps people heads but readable. The heart icon appears as odd shape above (looks like moustache) centered over title maybe due heart path. At contact it appears over title around y190. Actually the heart shape path maybe looks like small yellow cap. Better perhaps replace heart icon with simple radiant sun/spark or remove it, because overlaps one person's head and title. We can position heart above title but scene center person head at y=215, so overlap. Since title at 280, heart at 195 exactly person. Could shift final to a clear top card? Need title over scene; maybe darken more 0.6, and title y=255, subtitle 305, button 360. Heart unnecessary. Remove heart and path, perhaps just a small gold line/dots above title at y=190. Still person behind but text at 280. Add opaque dark overlay maybe 0.55, giving contrast. We want final readable. Currently readable but person heads behind. Darken to .58 and no heart. Also the branch dotted line and crowd visible. Maybe final poster should look good.\n\nCould create final title at y=260 and subtitle 305, button 350. Current button 379. Fine. Remove heart; leave small gold spark at 480, 195 maybe still overlaps head. skip.\n\nMaybe final should be card-style centered panel? That would obscure crowd but cleaner. A translucent rounded rect from x=180 y=175 w600 h240 fill #08142B opacity .9 with border. Then title. But less dynamic. Could be excellent. Yet title white over people with dark overlay enough.\n\nLet's remove icon and darken 0.52. Then rerender. Maybe final title could use 68 font to fit but fits. Good.\n\nInspect poster after."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa0d6a37923986a85a3",
+          "name": "edit",
+          "arguments": {
+            "path": "src/render_animation.py",
+            "edits": [
+              {
+                "oldText": "    scene_dark = 0.40 * final_a\n",
+                "newText": "    scene_dark = 0.54 * final_a\n"
+              },
+              {
+                "oldText": "        out.append(f'<path d=\"M430 195 Q480 165 530 195\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\".9\"/>')\n        out.append(f'<path d=\"M447 192 C452 182 459 180 466 188 C474 174 486 176 490 188 C498 179 508 182 513 192 C506 205 480 214 480 214 C480 214 454 205 447 192Z\" fill=\"#FFD166\" opacity=\".95\"/>')\n        out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n",
+                "newText": "        out.append(f'<circle cx=\"480\" cy=\"188\" r=\"4\" fill=\"#FFD166\" opacity=\".95\"/>')\n        out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n"
+              }
+            ]
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 944,
+        "output": 768,
+        "cacheRead": 13824,
+        "cacheWrite": 0,
+        "reasoning": 366,
+        "totalTokens": 15536,
+        "cost": {
+          "input": 0.00012744,
+          "output": 0.00041472000000000004,
+          "cacheRead": 0.000186624,
+          "cacheWrite": 0,
+          "total": 0.0007287840000000001
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327154352,
+      "responseId": "gen-1793327155-qADI2ehncgt3c2IdqhyB",
+      "rawStopReason": "tool_calls",
+      "durationMs": 5391,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "c14a53e1",
+    "parentId": "e68e2a9c",
+    "timestamp": "2026-10-30T02:25:59.744Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa0d6a37923986a85a3",
+      "toolName": "edit",
+      "content": [
+        {
+          "type": "text",
+          "text": "Successfully replaced 2 block(s) in src/render_animation.py."
+        }
+      ],
+      "details": {
+        "diff": "     ...\n 125     intro_a = alpha(t, 0.15, 1.55, 0.45)\n 126     # Final title is fully readable for its final hold.\n 127     # The closing message enters smoothly, then holds for a clear final beat.\n 128     final_a = smooth(6.65, 7.30, t)\n-129     scene_dark = 0.40 * final_a\n+129     scene_dark = 0.54 * final_a\n 130 \n 131     out = []\n 132     out.append(f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W}\" height=\"{H}\" viewBox=\"0 0 {W} {H}\">\n 133     <defs>\n     ...\n 217     # Final title card layered over the widened, connected scene.\n 218     if final_a > 0:\n 219         out.append(f'<rect width=\"{W}\" height=\"{H}\" fill=\"#071124\" opacity=\"{scene_dark:.3f}\"/>')\n 220         out.append(f'<g opacity=\"{final_a:.3f}\">')\n-221         out.append(f'<path d=\"M430 195 Q480 165 530 195\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\".9\"/>')\n-222         out.append(f'<path d=\"M447 192 C452 182 459 180 466 188 C474 174 486 176 490 188 C498 179 508 182 513 192 C506 205 480 214 480 214 C480 214 454 205 447 192Z\" fill=\"#FFD166\" opacity=\".95\"/>')\n+221         out.append(f'<circle cx=\"480\" cy=\"188\" r=\"4\" fill=\"#FFD166\" opacity=\".95\"/>')\n 223         out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n 224         out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act starts a ripple.</text>')\n 225         out.append(f'<g transform=\"translate(480 379)\">')\n 226         out.append(f'<rect x=\"-177\" y=\"-25\" width=\"354\" height=\"50\" rx=\"25\" fill=\"#FFD166\"/>')\n     ...",
+        "patch": "--- src/render_animation.py\n+++ src/render_animation.py\n@@ -125,9 +125,9 @@\n     intro_a = alpha(t, 0.15, 1.55, 0.45)\n     # Final title is fully readable for its final hold.\n     # The closing message enters smoothly, then holds for a clear final beat.\n     final_a = smooth(6.65, 7.30, t)\n-    scene_dark = 0.40 * final_a\n+    scene_dark = 0.54 * final_a\n \n     out = []\n     out.append(f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W}\" height=\"{H}\" viewBox=\"0 0 {W} {H}\">\n     <defs>\n@@ -217,10 +217,9 @@\n     # Final title card layered over the widened, connected scene.\n     if final_a > 0:\n         out.append(f'<rect width=\"{W}\" height=\"{H}\" fill=\"#071124\" opacity=\"{scene_dark:.3f}\"/>')\n         out.append(f'<g opacity=\"{final_a:.3f}\">')\n-        out.append(f'<path d=\"M430 195 Q480 165 530 195\" fill=\"none\" stroke=\"#FFD166\" stroke-width=\"5\" stroke-linecap=\"round\" opacity=\".9\"/>')\n-        out.append(f'<path d=\"M447 192 C452 182 459 180 466 188 C474 174 486 176 490 188 C498 179 508 182 513 192 C506 205 480 214 480 214 C480 214 454 205 447 192Z\" fill=\"#FFD166\" opacity=\".95\"/>')\n+        out.append(f'<circle cx=\"480\" cy=\"188\" r=\"4\" fill=\"#FFD166\" opacity=\".95\"/>')\n         out.append(f'<text x=\"480\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"72\" font-weight=\"800\" letter-spacing=\"7\" fill=\"#FFF9EC\">PASS IT ON.</text>')\n         out.append(f'<text x=\"480\" y=\"326\" text-anchor=\"middle\" font-family=\"Arial,Helvetica,sans-serif\" font-size=\"24\" font-weight=\"400\" letter-spacing=\"1\" fill=\"#C8D7EC\">One good act starts a ripple.</text>')\n         out.append(f'<g transform=\"translate(480 379)\">')\n         out.append(f'<rect x=\"-177\" y=\"-25\" width=\"354\" height=\"50\" rx=\"25\" fill=\"#FFD166\"/>')\n",
+        "firstChangedLine": 129
+      },
+      "isError": false,
+      "durationMs": 1,
+      "timestamp": 1793327159744
+    }
+  },
+  {
+    "type": "message",
+    "id": "b704bd3a",
+    "parentId": "c14a53e1",
+    "timestamp": "2026-10-30T02:26:01.679Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Rerender final."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa0e1537c43a26f009f",
+          "name": "bash",
+          "arguments": {
+            "command": "python3 src/render_animation.py && ffmpeg -y -hide_banner -loglevel error -i output/pass-it-on.mp4 -ss 8.4 -frames:v 1 -q:v 3 build/final-check.jpg && ls -lh output/* && find output -maxdepth 1 -type f -print",
+            "timeout": 300
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 1229,
+        "output": 112,
+        "cacheRead": 14336,
+        "cacheWrite": 0,
+        "reasoning": 3,
+        "totalTokens": 15677,
+        "cost": {
+          "input": 0.000165915,
+          "output": 6.0480000000000004e-05,
+          "cacheRead": 0.000193536,
+          "cacheWrite": 0,
+          "total": 0.000419931
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327159750,
+      "responseId": "gen-1793327160-8YXZm9dEcTkFKKF3oyBG",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1929,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "9a49df7a",
+    "parentId": "b704bd3a",
+    "timestamp": "2026-10-30T02:26:31.811Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa0e1537c43a26f009f",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "Rendering 300 frames\u2026\n  30/300\n  60/300\n  90/300\n  120/300\n  150/300\n  180/300\n  210/300\n  240/300\n  270/300\n  300/300\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work/output/pass-it-on.mp4 318890\n~/dev/art-crit-runs/2026-10-30-021251-animation/minimax-m3.1-flash-high-20261030-021251/work/output/pass-it-on-poster.jpg 47213\n-rw-r--r--@ 1 ekho  staff    46K Oct 30 02:26 output/pass-it-on-poster.jpg\n-rw-r--r--@ 1 ekho  staff   311K Oct 30 02:26 output/pass-it-on.mp4\noutput/pass-it-on-poster.jpg\noutput/pass-it-on.mp4\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 30131,
+      "timestamp": 1793327191811
+    }
+  },
+  {
+    "type": "message",
+    "id": "9d8e3c66",
+    "parentId": "9a49df7a",
+    "timestamp": "2026-10-30T02:26:33.798Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa15f747c329a14a824",
+          "name": "read",
+          "arguments": {
+            "path": "build/final-check.jpg",
+            "offset": 1,
+            "limit": 10
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 574,
+        "output": 49,
+        "cacheRead": 15360,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 15983,
+        "cost": {
+          "input": 7.749e-05,
+          "output": 2.646e-05,
+          "cacheRead": 0.00020736,
+          "cacheWrite": 0,
+          "total": 0.00031130999999999997
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327191816,
+      "responseId": "gen-1793327192-fhBqFNElADQNrbdb9Liq",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1982,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "a86cdc96",
+    "parentId": "9d8e3c66",
+    "timestamp": "2026-10-30T02:26:33.882Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa15f747c329a14a824",
+      "toolName": "read",
+      "content": [
+        {
+          "type": "text",
+          "text": "Read image file [image/jpeg]"
+        },
+        {
+          "type": "image",
+          "data": "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",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "isError": false,
+      "durationMs": 55,
+      "timestamp": 1793327193881
+    }
+  },
+  {
+    "type": "message",
+    "id": "01b3cf6f",
+    "parentId": "a86cdc96",
+    "timestamp": "2026-10-30T02:26:38.723Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Looks nice. Need maybe video check first and final. Done. Need delete intermediates build per user \"Delete intermediate files such as rendered frames when done.\" remove build. Keep src script. Output only final. Also maybe source has output generated. Fine. Need ensure no temp in output. run rm -rf build. Check size duration."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_01a18aa171c97d439749d557",
+          "name": "bash",
+          "arguments": {
+            "command": "rm -rf build && find . -maxdepth 3 -type f -print | sort && ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 output/pass-it-on.mp4",
+            "timeout": 20
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 848,
+        "output": 152,
+        "cacheRead": 15872,
+        "cacheWrite": 0,
+        "reasoning": 66,
+        "totalTokens": 16872,
+        "cost": {
+          "input": 0.00011448,
+          "output": 8.208e-05,
+          "cacheRead": 0.000214272,
+          "cacheWrite": 0,
+          "total": 0.00041083199999999997
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793327193888,
+      "responseId": "gen-1793327196-JofVEIi8LeX8pgR06P0Y",
+      "rawStopReason": "tool_calls",
+      "durationMs": 4835,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "be122aaa",
+    "parentId": "01b3cf6f",
+    "timestamp": "2026-10-30T02:26:38.800Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_01a18aa171c97d439749d557",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "./output/pass-it-on-poster.jpg\n./output/pass-it-on.mp4\n./src/render_animation.py\nduration=10.000000\nsize=318890\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 76,
+      "timestamp": 1793327198800
+    }
+  },
+  {
+    "type": "message",
+    "id": "ba0202f4",
+    "parentId": "be122aaa",
+    "timestamp": "2026-10-30T02:26:41.561Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Created **\u201cPass It On.\u201d** \u2014 a 10-second animated public-service piece showing one good deed traveling between people, expanding into a wider ripple, and ending with the call to action:\n\n**\u201cOne good act starts a ripple. Do one good thing today.\u201d**\n\nFinished files:\n- `output/pass-it-on.mp4` \u2014 960\u00d7540, 30 fps, 10 seconds, 312 KB\n- `output/pass-it-on-poster.jpg` \u2014 final-frame poster, 46 KB\n\nSource: `src/render_animation.py`"
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 540,
+        "output": 116,
+        "cacheRead": 16384,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 17040,
+        "cost": {
+          "input": 7.29e-05,
+          "output": 6.264e-05,
+          "cacheRead": 0.000221184,
+          "cacheWrite": 0,
+          "total": 0.000356724
+        }
+      },
+      "stopReason": "stop",
+      "timestamp": 1793327198806,
+      "responseId": "gen-1793327199-RAjCgZ842SYEytYl6xJm",
+      "rawStopReason": "stop",
+      "durationMs": 2755,
+      "thinkingLevel": "high"
+    }
+  }
+]

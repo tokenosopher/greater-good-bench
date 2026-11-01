@@ -1,1 +1,137 @@
-[]
+[
+  {
+    "slug": "game",
+    "title": "Game",
+    "kind": "godot",
+    "n_runs": 12,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-10-30T03:58:46Z",
+    "thumb": "data/game/runs/minimax-m3.1-flash-high-20261030-034211/thumb.jpg"
+  },
+  {
+    "slug": "website",
+    "title": "Website",
+    "kind": "web",
+    "n_runs": 13,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/mistralai/mistral-large-4-0",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-10-30T03:42:04Z",
+    "thumb": "data/website/runs/gemini-4-argon-high-20261030-031820/thumb.jpg"
+  },
+  {
+    "slug": "3d-model",
+    "title": "3D model",
+    "kind": "blender",
+    "n_runs": 12,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon@google-vertex",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-10-30T03:29:12Z",
+    "thumb": "data/3d-model/runs/muse-wonder-high-20261030-024430/media/one_shared_home_close.thumb.jpg"
+  },
+  {
+    "slug": "svg",
+    "title": "SVG",
+    "kind": "media",
+    "n_runs": 14,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/qwen/qwen3.8-max-prime",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-10-30T03:18:17Z",
+    "thumb": "data/svg/runs/grok-4.7-high-20261030-023118/media/someone-is-home.thumb.jpg"
+  },
+  {
+    "slug": "animation",
+    "title": "Animation",
+    "kind": "media",
+    "n_runs": 12,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon@google-vertex",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-10-30T02:44:26Z",
+    "thumb": "data/animation/runs/muse-wonder-high-20261030-021251/media/pause-breathe-see-each-other.thumb.jpg"
+  },
+  {
+    "slug": "essay",
+    "title": "Essay",
+    "kind": "text",
+    "n_runs": 14,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/qwen/qwen3.8-max-prime",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-10-30T02:31:17Z",
+    "thumb": null
+  }
+]

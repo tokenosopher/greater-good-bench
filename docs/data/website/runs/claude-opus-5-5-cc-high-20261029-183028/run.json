@@ -1,0 +1,73 @@
+{
+  "id": "claude-opus-5-5-cc-high-20261029-183028",
+  "page": "website",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-website",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "read": 12,
+      "bash": 11,
+      "write": 6
+    }
+  },
+  "metrics": {
+    "duration_ms": 639117,
+    "cost_usd": 2.1352695999999995,
+    "tool_calls": 29,
+    "turns": 23,
+    "tokens_total": 63518,
+    "tokens_input": 46,
+    "tokens_output": 63472,
+    "tokens_reasoning": 17531,
+    "tokens_cache_read": 1199188
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 61410,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "components.js",
+      "dom.js",
+      "index.html",
+      "lessons.js",
+      "main.js",
+      "package-lock.json",
+      "package.json",
+      "style.css",
+      "widgets.js"
+    ]
+  }
+}

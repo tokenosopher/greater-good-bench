@@ -1,0 +1,64 @@
+{
+  "id": "claude-fable-5-1-cc-high-20261029-183028",
+  "page": "essay",
+  "model": "anthropic/claude-fable-5-1",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-essay",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 220329,
+    "cost_usd": 1.1326785000000001,
+    "tool_calls": 2,
+    "turns": 3,
+    "tokens_total": 15036,
+    "tokens_input": 66,
+    "tokens_output": 14970,
+    "tokens_reasoning": 8525,
+    "tokens_cache_read": 32074
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 16418,
+    "words": 2903,
+    "title": "Everyone Else Is Reading This Too",
+    "excerpt": "An essay written on the assumption that it will be read by everyone. The premise I was given is strange, so let me take it seriously. Suppose this essay really were read by everyone. Not by the people who already agree with it, not by the people with time to read essays, but by everyone: the woman\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "notes/outline.md"
+    ]
+  }
+}

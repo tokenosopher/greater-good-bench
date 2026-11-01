@@ -1,0 +1,76 @@
+{
+  "id": "deepseek-v4.1-flash-1017-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:49:11Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Morph"
+    ],
+    "cost_usd": 0.063253498,
+    "pi_cost_usd": 0.063253498
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 32,
+      "read": 30,
+      "write": 11
+    }
+  },
+  "metrics": {
+    "duration_ms": 1300925,
+    "cost_usd": 0.063253498,
+    "tool_calls": 73,
+    "turns": 74,
+    "tokens_total": 227482,
+    "tokens_input": 135780,
+    "tokens_output": 91702,
+    "tokens_reasoning": 44182,
+    "tokens_cache_read": 5539328
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 79851,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "index.html",
+      "main.js",
+      "package-lock.json",
+      "package.json",
+      "src/atlas.js",
+      "src/data.js",
+      "src/format.js",
+      "src/hero.js",
+      "src/lab.js",
+      "src/portfolio.js",
+      "src/ripple.js",
+      "styles.css"
+    ]
+  }
+}

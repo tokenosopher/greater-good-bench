@@ -1,0 +1,104 @@
+{
+  "id": "deepseek-v4.1-flash-1017-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:12:51Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "InferenceNet"
+    ],
+    "cost_usd": 0.161378374,
+    "pi_cost_usd": 0.09372582700000005
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 69,
+      "read": 45,
+      "write": 10,
+      "edit": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 1658674,
+    "cost_usd": 0.161378374,
+    "tool_calls": 128,
+    "turns": 126,
+    "tokens_total": 190094,
+    "tokens_input": 72053,
+    "tokens_output": 118041,
+    "tokens_reasoning": 49572,
+    "tokens_cache_read": 11336448
+  },
+  "thumb": "media/call_someone.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1920,
+        "height": 1080,
+        "duration_s": 9.6,
+        "bytes": 1246111,
+        "transcoded": false,
+        "path": "media/call_someone.mp4",
+        "poster": "media/call_someone.poster.jpg",
+        "thumb": "media/call_someone.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 61563,
+        "path": "media/call_someone_reach.jpg",
+        "thumb": "media/call_someone_reach.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 75512,
+        "path": "media/call_someone_spreading.jpg",
+        "thumb": "media/call_someone_spreading.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 123884,
+        "path": "media/call_someone_title.jpg",
+        "thumb": "media/call_someone_title.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "src/art.py",
+      "src/font.py",
+      "src/grade.sh",
+      "src/make.sh",
+      "src/pngutil.py"
+    ]
+  }
+}

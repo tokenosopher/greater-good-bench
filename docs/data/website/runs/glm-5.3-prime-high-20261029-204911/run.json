@@ -1,0 +1,79 @@
+{
+  "id": "glm-5.3-prime-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/z-ai/glm-5.3-prime",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:49:12Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Alibaba"
+    ],
+    "cost_usd": 0.50966536,
+    "pi_cost_usd": 0.50966536
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 7,
+      "write": 7,
+      "edit": 6,
+      "read": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 228771,
+    "cost_usd": 0.50966536,
+    "tool_calls": 21,
+    "turns": 16,
+    "tokens_total": 57205,
+    "tokens_input": 30639,
+    "tokens_output": 26566,
+    "tokens_reasoning": 11937,
+    "tokens_cache_read": 339456
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 28240,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "check.mjs",
+      "desktop-full.jpg",
+      "distribution.js",
+      "dotfield.js",
+      "final.mjs",
+      "index.html",
+      "main.js",
+      "mobile.jpg",
+      "package-lock.json",
+      "package.json",
+      "shot.mjs",
+      "shot1.jpg",
+      "styles.css",
+      "utils.js"
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "grok-4.7-high-20261030-023118",
+  "page": "svg",
+  "model": "openrouter/x-ai/grok-4.7",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:31:18Z",
+  "batch": "2026-10-30-023118-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "xAI"
+    ],
+    "cost_usd": 3.807944,
+    "pi_cost_usd": 3.807944000000001
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "read": 33,
+      "bash": 24,
+      "edit": 6,
+      "write": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 2081648,
+    "cost_usd": 3.807944,
+    "tool_calls": 67,
+    "turns": 53,
+    "tokens_total": 286666,
+    "tokens_input": 160973,
+    "tokens_output": 125693,
+    "tokens_reasoning": 88791,
+    "tokens_cache_read": 5463680
+  },
+  "thumb": "media/someone-is-home.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 900,
+        "height": 1200,
+        "duration_s": 9.79,
+        "bytes": 237756,
+        "transcoded": false,
+        "path": "media/someone-is-home.mp4",
+        "poster": "media/someone-is-home.poster.jpg",
+        "thumb": "media/someone-is-home.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1200,
+        "height": 1600,
+        "bytes": 188255,
+        "path": "media/someone-is-home.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/build_poster.py",
+      "src/fontpath.py",
+      "src/render_film.py"
+    ]
+  }
+}

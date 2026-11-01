@@ -1,0 +1,76 @@
+{
+  "id": "gpt-6.1-sol-cx-high-20261029-184111",
+  "page": "animation",
+  "model": "openai/gpt-6.1-sol",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:41:11Z",
+  "batch": "2026-10-29-184111-animation",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 13
+    }
+  },
+  "metrics": {
+    "duration_ms": 385085,
+    "cost_usd": 0.0,
+    "tool_calls": 13,
+    "turns": 1,
+    "tokens_total": 50383,
+    "tokens_input": 36452,
+    "tokens_output": 13931,
+    "tokens_reasoning": 5382,
+    "tokens_cache_read": 421888
+  },
+  "thumb": "media/day-lighter.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1080,
+        "height": 1080,
+        "bytes": 88385,
+        "path": "media/day-lighter.jpg",
+        "thumb": "media/day-lighter.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 1080,
+        "height": 1080,
+        "duration_s": 10.0,
+        "bytes": 762653,
+        "transcoded": false,
+        "path": "media/day-lighter.mp4",
+        "poster": "media/day-lighter.poster.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "src/build.sh",
+      "src/render.swift",
+      "src/sound.py"
+    ]
+  }
+}

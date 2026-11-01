@@ -1,0 +1,126 @@
+{
+  "id": "muse-wonder-high-20261030-024430",
+  "page": "3d-model",
+  "model": "openrouter/meta/muse-wonder",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-30T03:01:56Z",
+  "batch": "2026-10-30-024430-3d-model",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Meta"
+    ],
+    "cost_usd": 0.855232,
+    "pi_cost_usd": 0.8552319999999999
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 6,
+      "read": 5,
+      "bash": 2,
+      "mcp__blender__render_viewport_to_path": 2,
+      "mcp__blender__get_blendfile_summary_datablocks": 1,
+      "mcp__blender__get_objects_summary": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 172608,
+    "cost_usd": 0.855232,
+    "tool_calls": 17,
+    "turns": 16,
+    "tokens_total": 130967,
+    "tokens_input": 113682,
+    "tokens_output": 17285,
+    "tokens_reasoning": 4313,
+    "tokens_cache_read": 274020
+  },
+  "thumb": "media/one_shared_home_close.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "model",
+        "bytes": 1484796,
+        "meshes": 162,
+        "triangles": 44686,
+        "animations": 0,
+        "path": "media/one_shared_home.glb"
+      },
+      {
+        "type": "image",
+        "width": 1400,
+        "height": 1050,
+        "bytes": 139407,
+        "path": "media/one_shared_home_close.jpg",
+        "thumb": "media/one_shared_home_close.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1400,
+        "height": 1050,
+        "bytes": 133379,
+        "path": "media/one_shared_home_main.jpg",
+        "thumb": "media/one_shared_home_main.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1400,
+        "height": 1050,
+        "bytes": 116861,
+        "path": "media/one_shared_home_orbit.jpg",
+        "thumb": "media/one_shared_home_orbit.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

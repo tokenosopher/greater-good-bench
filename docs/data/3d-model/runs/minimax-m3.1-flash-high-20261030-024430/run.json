@@ -1,0 +1,111 @@
+{
+  "id": "minimax-m3.1-flash-high-20261030-024430",
+  "page": "3d-model",
+  "model": "openrouter/minimax/minimax-m3.1-flash",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-30T03:01:11Z",
+  "batch": "2026-10-30-024430-3d-model",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "DigitalOcean"
+    ],
+    "cost_usd": 0.011625690000000001,
+    "pi_cost_usd": 0.010463121
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 4,
+      "read": 3,
+      "bash": 2,
+      "mcp__blender__get_blendfile_summary_datablocks": 1,
+      "mcp__blender__get_objects_summary": 1,
+      "mcp__blender__render_thumbnail_to_path": 1,
+      "mcp__blender__render_viewport_to_path": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 45555,
+    "cost_usd": 0.011625690000000001,
+    "tool_calls": 13,
+    "turns": 13,
+    "tokens_total": 26423,
+    "tokens_input": 15847,
+    "tokens_output": 10576,
+    "tokens_reasoning": 3427,
+    "tokens_cache_read": 193536
+  },
+  "thumb": "media/solaqua_hero.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "model",
+        "bytes": 2235340,
+        "meshes": 119,
+        "triangles": 75366,
+        "animations": 0,
+        "path": "media/solaqua_civic_water_station.glb"
+      },
+      {
+        "type": "image",
+        "width": 1400,
+        "height": 1100,
+        "bytes": 145442,
+        "path": "media/solaqua_hero.jpg",
+        "thumb": "media/solaqua_hero.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

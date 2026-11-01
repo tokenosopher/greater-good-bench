@@ -1,0 +1,88 @@
+{
+  "id": "glm-5.3-prime-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/z-ai/glm-5.3-prime",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T20:53:18Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Alibaba"
+    ],
+    "cost_usd": 1.41869712,
+    "pi_cost_usd": 1.41869712
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 34,
+      "edit": 4,
+      "write": 3,
+      "read": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 466316,
+    "cost_usd": 1.41869712,
+    "tool_calls": 42,
+    "turns": 43,
+    "tokens_total": 120681,
+    "tokens_input": 66276,
+    "tokens_output": 54405,
+    "tokens_reasoning": 33019,
+    "tokens_cache_read": 1347072
+  },
+  "thumb": "media/pale-blue-dot.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 2000,
+        "height": 1250,
+        "bytes": 275540,
+        "path": "media/pale-blue-dot.jpg",
+        "thumb": "media/pale-blue-dot.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 1915322,
+        "path": "media/pale-blue-dot.png"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 94542,
+        "path": "media/pale-blue-dot.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make_svg.py",
+      "src/pale-blue-dot.svg",
+      "src/verify.py"
+    ]
+  }
+}

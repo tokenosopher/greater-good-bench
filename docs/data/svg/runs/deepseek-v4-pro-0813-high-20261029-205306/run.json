@@ -1,0 +1,97 @@
+{
+  "id": "deepseek-v4-pro-0813-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T20:53:06Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Together"
+    ],
+    "cost_usd": 0.35366358,
+    "pi_cost_usd": 0.41033926699999995
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 24,
+      "edit": 4,
+      "write": 3,
+      "read": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 458268,
+    "cost_usd": 0.35366358,
+    "tool_calls": 32,
+    "turns": 31,
+    "tokens_total": 103178,
+    "tokens_input": 63562,
+    "tokens_output": 39616,
+    "tokens_reasoning": 25194,
+    "tokens_cache_read": 868326
+  },
+  "thumb": "media/earth.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 161230,
+        "path": "media/earth.jpg",
+        "thumb": "media/earth.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 1920,
+        "height": 1080,
+        "duration_s": 8.0,
+        "bytes": 463919,
+        "transcoded": false,
+        "path": "media/earth.mp4",
+        "poster": "media/earth.poster.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 397100,
+        "path": "media/earth.png"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 47710,
+        "path": "media/earth.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make_svg.py",
+      "src/make_video.py"
+    ]
+  }
+}

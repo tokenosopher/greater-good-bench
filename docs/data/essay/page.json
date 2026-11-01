@@ -1,0 +1,872 @@
+{
+  "slug": "essay",
+  "title": "Essay",
+  "kind": "text",
+  "prompt": "Write an essay that, if everyone read it, would improve the world for the greatest number of people.",
+  "final_prompt": "Write an essay that, if everyone read it, would improve the world for the greatest number of people.\n\nDeliver the result as one Markdown file, working in the current directory.\n- Save it in ./output/ under any name ending in .md (for example ./output/essay.md). ./output/ must hold\n  exactly one .md file; anything else there is ignored.\n- The file is published as it is and shown as a page: headings, paragraphs, lists, block quotes, emphasis,\n  links and code blocks. No raw HTML (it is shown as plain text) and no images that need other files.\n- Keep it under 200 KB.\n- Keep notes, outlines, drafts and any scripts outside ./output/ (in the working directory or a\n  subdirectory): they're published as the source.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you wrote.\n",
+  "created": "2026-10-29T18:30:28Z",
+  "updated": "2026-10-30T02:31:17Z",
+  "runs": [
+    {
+      "id": "claude-fable-5-1-cc-high-20261029-183028",
+      "page": "essay",
+      "model": "anthropic/claude-fable-5-1",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T18:30:28Z",
+      "batch": "2026-10-29-183028-essay",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 220329,
+        "cost_usd": 1.1326785000000001,
+        "tool_calls": 2,
+        "turns": 3,
+        "tokens_total": 15036,
+        "tokens_input": 66,
+        "tokens_output": 14970,
+        "tokens_reasoning": 8525,
+        "tokens_cache_read": 32074
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 16418,
+        "words": 2903,
+        "title": "Everyone Else Is Reading This Too",
+        "excerpt": "An essay written on the assumption that it will be read by everyone. The premise I was given is strange, so let me take it seriously. Suppose this essay really were read by everyone. Not by the people who already agree with it, not by the people with time to read essays, but by everyone: the woman\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "notes/outline.md"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "claude-opus-5-5-cc-high-20261029-183028",
+      "page": "essay",
+      "model": "anthropic/claude-opus-5-5",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T18:30:28Z",
+      "batch": "2026-10-29-183028-essay",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 2,
+          "write": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 338153,
+        "cost_usd": 0.9198794000000001,
+        "tool_calls": 4,
+        "turns": 5,
+        "tokens_total": 31525,
+        "tokens_input": 10,
+        "tokens_output": 31515,
+        "tokens_reasoning": 17757,
+        "tokens_cache_read": 98257
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 36122,
+        "words": 6059,
+        "title": "To Everyone, at Once",
+        "excerpt": "An essay written for every person alive This essay was written for everyone. Not for everyone who agrees with me, or who speaks a certain language, or who reads a certain kind of book. It's for every person alive. So as you read it, picture who else is reading it. Your mother. Your neighbour. The\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "notes/plan.md"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6-astra-cx-high-20261029-183028",
+      "page": "essay",
+      "model": "openai/gpt-6-astra",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T18:30:28Z",
+      "batch": "2026-10-29-183028-essay",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 3,
+          "file_change": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 276496,
+        "cost_usd": 0.0,
+        "tool_calls": 4,
+        "turns": 1,
+        "tokens_total": 13531,
+        "tokens_input": 9622,
+        "tokens_output": 3909,
+        "tokens_reasoning": 1010,
+        "tokens_cache_read": 71552
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 11879,
+        "words": 1959,
+        "title": "Make It Possible to Say Something Is Wrong",
+        "excerpt": "A child breaks a cup. An adult hears the crash and comes into the kitchen. There are now two things to deal with: the broken cup, and what the child is learning about bringing this adult bad news. The cup is easy to see. The second thing may matter for decades. The adult can teach care with fragile\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "gpt-6.1-sol-cx-high-20261029-183028",
+      "page": "essay",
+      "model": "openai/gpt-6.1-sol",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T18:30:28Z",
+      "batch": "2026-10-29-183028-essay",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 3,
+          "file_change": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 161989,
+        "cost_usd": 0.0,
+        "tool_calls": 5,
+        "turns": 1,
+        "tokens_total": 9216,
+        "tokens_input": 4396,
+        "tokens_output": 4820,
+        "tokens_reasoning": 1783,
+        "tokens_cache_read": 84864
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 11633,
+        "words": 1921,
+        "title": "A World That Works on a Bad Day",
+        "excerpt": "A good society should be possible on a bad day. When you have slept badly. When someone you love is ill. When you are frightened, distracted, or wrong. When you cannot find the words, cannot afford the journey, cannot understand the form. We often imagine progress as a world full of better people\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4-pro-0813-high-20261029-204911",
+      "page": "essay",
+      "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T20:49:11Z",
+      "batch": "2026-10-29-204911-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Wafer"
+        ],
+        "cost_usd": 0.031746715,
+        "pi_cost_usd": 0.0566934475
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 60223,
+        "cost_usd": 0.031746715,
+        "tool_calls": 3,
+        "turns": 4,
+        "tokens_total": 12390,
+        "tokens_input": 5585,
+        "tokens_output": 6805,
+        "tokens_reasoning": 1174,
+        "tokens_cache_read": 16754
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 23358,
+        "words": 4004,
+        "title": "How to Be a Little Less Wrong, and a Little More Kind",
+        "excerpt": "An essay about the two skills \u2014 thinking clearly and treating people well \u2014 that make almost everything else better. What kind of essay helps the most people? Before saying anything useful, it's worth being honest about the assignment itself. If the goal is to improve the world for the greatest\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4.1-flash-1017-high-20261029-204911",
+      "page": "essay",
+      "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T20:49:11Z",
+      "batch": "2026-10-29-204911-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Wafer"
+        ],
+        "cost_usd": 0.00443304,
+        "pi_cost_usd": 0.003303065
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 5,
+          "edit": 2,
+          "read": 2,
+          "write": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 28933,
+        "cost_usd": 0.00443304,
+        "tool_calls": 11,
+        "turns": 12,
+        "tokens_total": 13252,
+        "tokens_input": 6257,
+        "tokens_output": 6995,
+        "tokens_reasoning": 6467,
+        "tokens_cache_read": 87168
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 15680,
+        "words": 2804,
+        "title": "Being Wrong, Cheaply",
+        "excerpt": "There is a particular half-second that decides much of what happens to us. It is the moment just after you discover you were wrong. A fact lands. The name you were sure of, the number you quoted, the judgment you made about a person, the plan you defended in a meeting. For a fraction of a second\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "notes/outline.md"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "grok-4.7-high-20261029-204911",
+      "page": "essay",
+      "model": "openrouter/x-ai/grok-4.7",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T20:49:11Z",
+      "batch": "2026-10-29-204911-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "xAI"
+        ],
+        "cost_usd": 0.941184,
+        "pi_cost_usd": 0.9411840000000001
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 15,
+          "read": 13,
+          "edit": 3,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 720403,
+        "cost_usd": 0.941184,
+        "tool_calls": 32,
+        "turns": 21,
+        "tokens_total": 172030,
+        "tokens_input": 131069,
+        "tokens_output": 40961,
+        "tokens_reasoning": 27507,
+        "tokens_cache_read": 866560
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 32033,
+        "words": 6024,
+        "title": "The Person in Front of You",
+        "excerpt": "Most of the harm people do to one another is done by people who believe, in the moment, that they are justified. Not by the rare monster who enjoys suffering. By the parent who is tired. The official who is owed a favor. The neighbor who heard a story. The driver who is late. The crowd that would\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "glm-5.3-prime-high-20261029-204911",
+      "page": "essay",
+      "model": "openrouter/z-ai/glm-5.3-prime",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T20:49:12Z",
+      "batch": "2026-10-29-204911-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Alibaba"
+        ],
+        "cost_usd": 0.0518796,
+        "pi_cost_usd": 0.0518796
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 39685,
+        "cost_usd": 0.0518796,
+        "tool_calls": 3,
+        "turns": 4,
+        "tokens_total": 8404,
+        "tokens_input": 4635,
+        "tokens_output": 3769,
+        "tokens_reasoning": 699,
+        "tokens_cache_read": 10240
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 13127,
+        "words": 2199,
+        "title": "The Skill of Being Wrong",
+        "excerpt": "A short essay about the one habit that, if everyone practiced it, would improve nearly everything. Why this essay exists Almost every large problem humans face is not a problem of resources or intelligence. We have enough food to feed everyone. We have enough energy technology to avoid the worst\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "qwen3.8-max-prime-high-20261029-204911",
+      "page": "essay",
+      "model": "openrouter/qwen/qwen3.8-max-prime",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T20:49:12Z",
+      "batch": "2026-10-29-204911-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Alibaba"
+        ],
+        "cost_usd": 0.512092,
+        "pi_cost_usd": 0.512092
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 7,
+          "read": 3,
+          "edit": 2,
+          "write": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 259778,
+        "cost_usd": 0.512092,
+        "tool_calls": 14,
+        "turns": 13,
+        "tokens_total": 56739,
+        "tokens_input": 35241,
+        "tokens_output": 21498,
+        "tokens_reasoning": 11585,
+        "tokens_cache_read": 226304
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 28575,
+        "words": 4973,
+        "title": "The Unglamorous Work",
+        "excerpt": "Nobody is coming to fix the world. That is better news than it sounds. Somewhere in early adulthood, most people make a discovery that rearranges everything and that almost nobody says out loud: there are no adults in the room. You find out that the people running the hospital, the ministry, the\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "notes/outline.md"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "minimax-m3.1-flash-high-20261029-204911",
+      "page": "essay",
+      "model": "openrouter/minimax/minimax-m3.1-flash",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T20:49:52Z",
+      "batch": "2026-10-29-204911-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "ModelRun"
+        ],
+        "cost_usd": 0.00433932,
+        "pi_cost_usd": 0.0039053879999999997
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 40284,
+        "cost_usd": 0.00433932,
+        "tool_calls": 3,
+        "turns": 4,
+        "tokens_total": 13557,
+        "tokens_input": 8736,
+        "tokens_output": 4821,
+        "tokens_reasoning": 520,
+        "tokens_cache_read": 9088
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 22662,
+        "words": 3490,
+        "title": "A More Good World Is a Practice, Not a Miracle",
+        "excerpt": "The world\u2019s problems are often described as if they were one enormous problem. They are not. There is no single evil to defeat and no single solution waiting to be discovered. There are billions of decisions, layered within institutions that reward some behaviors and punish others, producing\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "kimi-k3.1-pro-high-20261029-210238",
+      "page": "essay",
+      "model": "openrouter/moonshotai/kimi-k3.1-pro",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T21:02:38Z",
+      "batch": "2026-10-29-210238-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Moonshot AI"
+        ],
+        "cost_usd": 0.0437044,
+        "pi_cost_usd": 0.043704400000000004
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 165895,
+        "cost_usd": 0.0437044,
+        "tool_calls": 3,
+        "turns": 4,
+        "tokens_total": 7413,
+        "tokens_input": 4040,
+        "tokens_output": 3373,
+        "tokens_reasoning": 297,
+        "tokens_cache_read": 9472
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 13819,
+        "words": 2291,
+        "title": "The Next Person",
+        "excerpt": "A better world is not waiting for a better species. It is waiting, in part, for people like us\u2014distracted, frightened, generous, inconsistent people\u2014to make one small change in how we move through a day: treat the humanity of others as real, especially when it would be easier not to. This sounds too\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "muse-wonder-high-20261029-210238",
+      "page": "essay",
+      "model": "openrouter/meta/muse-wonder",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T21:02:38Z",
+      "batch": "2026-10-29-210238-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Meta"
+        ],
+        "cost_usd": 0.1502048,
+        "pi_cost_usd": 0.1502048
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 3,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 103048,
+        "cost_usd": 0.1502048,
+        "tool_calls": 4,
+        "turns": 5,
+        "tokens_total": 18314,
+        "tokens_input": 13610,
+        "tokens_output": 4704,
+        "tokens_reasoning": 1491,
+        "tokens_cache_read": 8424
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 12113,
+        "words": 2203,
+        "title": "The Next Person You Meet",
+        "excerpt": "The driver who cut you off this morning may have been careless. He may also have been rushing to a hospital, half-asleep after a night shift, or lost in a grief so fresh that the road had blurred. You do not know. I do not know. Yet most of us decide in half a second: idiot. The cashier is slow\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "gemini-4-argon-high-20261029-211244",
+      "page": "essay",
+      "model": "openrouter/google/gemini-4-argon",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-29T21:12:44Z",
+      "batch": "2026-10-29-211244-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "failed",
+      "error": "402: {\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 32596. To increase, visit https://openrouter.ai/settings/credits and add",
+      "route": {
+        "requested": null,
+        "served": [
+          "Google"
+        ],
+        "cost_usd": 0.061208000000000005,
+        "pi_cost_usd": 0.06120800000000001
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 1,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 430754,
+        "cost_usd": 0.061208000000000005,
+        "tool_calls": 2,
+        "turns": 4,
+        "tokens_total": 8956,
+        "tokens_input": 3544,
+        "tokens_output": 5412,
+        "tokens_reasoning": 3974,
+        "tokens_cache_read": 0
+      },
+      "thumb": null,
+      "output": null,
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "notes/architecture.md"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gemini-4-argon-high-20261030-021250",
+      "page": "essay",
+      "model": "openrouter/google/gemini-4-argon",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-10-30T02:12:50Z",
+      "batch": "2026-10-30-021250-essay",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "failed",
+      "error": "Network connection lost.",
+      "route": {
+        "requested": null,
+        "served": [
+          "Google"
+        ],
+        "cost_usd": 0.7905719,
+        "pi_cost_usd": 0.7905719000000002
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "write": 7,
+          "bash": 5,
+          "read": 4,
+          "edit": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 1107447,
+        "cost_usd": 0.7905719,
+        "tool_calls": 17,
+        "turns": 19,
+        "tokens_total": 185133,
+        "tokens_input": 142459,
+        "tokens_output": 42674,
+        "tokens_reasoning": 6347,
+        "tokens_cache_read": 789139
+      },
+      "thumb": null,
+      "output": null,
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "notes/01-brainstorm.md",
+          "notes/02-outline.md",
+          "notes/03-editorial-critique.md"
+        ]
+      },
+      "rank": null
+    }
+  ]
+}

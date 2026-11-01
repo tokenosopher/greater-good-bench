@@ -1,0 +1,26 @@
+import puppeteer from 'puppeteer-core';
+const browser=await puppeteer.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--no-sandbox']});
+const page=await browser.newPage();
+await page.evaluateOnNewDocument(()=>{
+ for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{get(){throw new Error('Storage forbidden');}});
+ Object.defineProperty(document,'cookie',{get(){throw new Error('Cookies forbidden');},set(){throw new Error('Cookies forbidden');}});
+});
+const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+await page.setViewport({width:390,height:844,deviceScaleFactor:1});
+await page.goto('http://localhost:8000',{waitUntil:'networkidle0'});
+await page.screenshot({path:'screenshots/mobile-fresh.jpg',type:'jpeg',quality:85,fullPage:true});
+await page.setOfflineMode(true);
+await page.click('[data-save="reach"]');
+await page.click('[data-open="reach"]');
+await page.click('#next-step');
+if(await page.evaluate(()=>document.activeElement.id)!=='action-title')throw new Error('Step focus');
+await page.click('#next-step');await page.click('#next-step');await page.click('#done-action');
+await page.click('#my-acts');
+if(!await page.$eval('.summary-box:nth-child(2) strong',e=>e.textContent==='1'))throw new Error('Offline completion');
+await page.keyboard.press('Escape');
+await page.setViewport({width:1440,height:1000,deviceScaleFactor:1});
+await page.evaluate(()=>{document.activeElement?.blur();window.scrollTo(0,0)});
+await new Promise(r=>setTimeout(r,400));
+await page.screenshot({path:'screenshots/desktop-final.jpg',type:'jpeg',quality:88,fullPage:true});
+console.log(JSON.stringify({offline:true,storageBlocked:true,keyboardFocus:true,errors}));
+await browser.close();

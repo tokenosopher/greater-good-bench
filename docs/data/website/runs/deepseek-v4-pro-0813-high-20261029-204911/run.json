@@ -1,0 +1,75 @@
+{
+  "id": "deepseek-v4-pro-0813-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:49:11Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Wafer"
+    ],
+    "cost_usd": 0.27450531,
+    "pi_cost_usd": 0.42553464399999985
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 17,
+      "edit": 5,
+      "write": 5,
+      "read": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 294524,
+    "cost_usd": 0.27450531,
+    "tool_calls": 29,
+    "turns": 27,
+    "tokens_total": 115821,
+    "tokens_input": 72784,
+    "tokens_output": 43037,
+    "tokens_reasoning": 9970,
+    "tokens_cache_read": 737055
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 57864,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "final-clarity.jpg",
+      "final-compass.jpg",
+      "final-home.jpg",
+      "final-kind.jpg",
+      "final-ripple.jpg",
+      "index.html",
+      "main.js",
+      "package-lock.json",
+      "package.json",
+      "styles.css"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "id": "gemini-4-argon-via-google-vertex-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/google/gemini-4-argon@google-vertex",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:12:51Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": {
+      "only": [
+        "google-vertex"
+      ],
+      "allow_fallbacks": false
+    },
+    "served": [
+      "Google"
+    ],
+    "cost_usd": 1.4727928,
+    "pi_cost_usd": 1.4727928000000003
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "write": 11,
+      "bash": 10,
+      "edit": 7,
+      "read": 5
+    }
+  },
+  "metrics": {
+    "duration_ms": 1627167,
+    "cost_usd": 1.4727928,
+    "tool_calls": 33,
+    "turns": 34,
+    "tokens_total": 243203,
+    "tokens_input": 147453,
+    "tokens_output": 95750,
+    "tokens_reasoning": 22791,
+    "tokens_cache_read": 2203868
+  },
+  "thumb": "media/break_the_chain.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 10.0,
+        "bytes": 1579393,
+        "transcoded": false,
+        "path": "media/break_the_chain.mp4",
+        "poster": "media/break_the_chain.poster.jpg",
+        "thumb": "media/break_the_chain.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/audio.js",
+      "src/characters.js",
+      "src/generate.js",
+      "src/renderer.js",
+      "src/scene.js",
+      "src/typography.js"
+    ]
+  }
+}

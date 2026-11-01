@@ -1,0 +1,76 @@
+{
+  "id": "claude-opus-5-5-cc-high-20261029-184357",
+  "page": "game",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T18:43:57Z",
+  "batch": "2026-10-29-184357-game",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 9,
+      "read": 9,
+      "write": 3
+    }
+  },
+  "metrics": {
+    "duration_ms": 608508,
+    "cost_usd": 1.9600017999999997,
+    "tool_calls": 21,
+    "turns": 17,
+    "tokens_total": 59818,
+    "tokens_input": 34,
+    "tokens_output": 59784,
+    "tokens_reasoning": 28757,
+    "tokens_cache_read": 905529
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "icon.svg",
+      "icon.svg.import",
+      "main.tscn",
+      "project.godot",
+      "scripts/content.gd",
+      "scripts/content.gd.uid",
+      "scripts/main.gd",
+      "scripts/main.gd.uid",
+      "scripts/town.gd",
+      "scripts/town.gd.uid"
+    ]
+  }
+}

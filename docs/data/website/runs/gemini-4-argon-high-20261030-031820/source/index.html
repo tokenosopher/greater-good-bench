@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE HUMAN FIELD MANUAL — Five Drills That Keep the World Alive</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23D9381E'/><path d='M14 7h4v7h7v4h-7v7h-4v-7H7v-4h7z' fill='%23fff'/></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ====================================================================
+       STICKY TOP BAR: NAVIGATION, READINESS & EMERGENCY SOS
+       ==================================================================== -->
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <a href="#top" class="brand-cluster">
+        <div class="brand-mark">+</div>
+        <div>
+          <span class="brand-title">The Human Field Manual</span>
+          <span class="brand-sub">OFFLINE PUBLIC COMMONS EDITION · REV 2.5</span>
+        </div>
+      </a>
+
+      <nav class="scale-nav" aria-label="Five Scales of Agency">
+        <a href="#scale-1" class="scale-nav-link" data-scale-nav="1">
+          <span class="nav-num">01</span> 4-Min CPR
+        </a>
+        <a href="#scale-2" class="scale-nav-link" data-scale-nav="2">
+          <span class="nav-num">02</span> 60s Reset
+        </a>
+        <a href="#scale-3" class="scale-nav-link" data-scale-nav="3">
+          <span class="nav-num">03</span> Conflict &amp; Trust
+        </a>
+        <a href="#scale-4" class="scale-nav-link" data-scale-nav="4">
+          <span class="nav-num">04</span> Water &amp; ORS
+        </a>
+        <a href="#scale-5" class="scale-nav-link" data-scale-nav="5">
+          <span class="nav-num">05</span> 100× Leverage
+        </a>
+        <a href="#scale-6" class="scale-nav-link">
+          <span class="nav-num">06</span> Pocket Card
+        </a>
+      </nav>
+
+      <div class="top-actions">
+        <button type="button" class="utility-btn" id="global-audio-btn" title="Toggle Web Audio Synthesizer">
+          🔊 Synth: ON
+        </button>
+        <button type="button" class="utility-btn" id="theme-toggle-btn" title="Switch Daylight / Night Mode">
+          ☾ Night Mode
+        </button>
+        <button type="button" class="utility-btn sos-btn" id="sos-modal-btn">
+          ⚡ QUICK SOS CARD
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       HERO SECTION: THE 5 CONCENTRIC SCALES OF HUMAN AGENCY
+       ==================================================================== -->
+  <section class="hero-section" id="top">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker">
+          <span class="hero-kicker-dot"></span>
+          UNIVERSAL CITIZEN TRAINING &amp; CALIBRATION INSTRUMENT
+        </div>
+        <h1 class="hero-title">
+          Five interactive drills that save lives, disarm conflict, and multiply human good.
+        </h1>
+        <p class="hero-lead">
+          Most preventable tragedy in the world persists not from malice, but from <strong>five gaps in everyday human calibration</strong>: freezing during a 4-minute medical emergency, acting inside a 90-second nervous-system hijack, retaliating against noisy misunderstandings, mismeasuring household life-support formulas, and underestimating our leverage to help strangers by 100×.
+        </p>
+
+        <div class="readiness-bar-card">
+          <div class="readiness-info">
+            <span class="readiness-label">Interactive Session Readiness</span>
+            <span class="readiness-status" id="readiness-status-text">
+              0 of 5 Interactive Drills Practiced — Start any simulator below
+            </span>
+          </div>
+          <div class="readiness-pips" title="Click any badge to jump to that drill">
+            <button type="button" class="readiness-pip" data-readiness-pip="1">01</button>
+            <button type="button" class="readiness-pip" data-readiness-pip="2">02</button>
+            <button type="button" class="readiness-pip" data-readiness-pip="3">03</button>
+            <button type="button" class="readiness-pip" data-readiness-pip="4">04</button>
+            <button type="button" class="readiness-pip" data-readiness-pip="5">05</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-scales-card">
+        <div class="hero-scales-header">
+          <span class="hero-scales-title">Concentric Scales of Responsibility</span>
+          <span class="panel-badge">10-MIN INTERACTIVE COURSE</span>
+        </div>
+        <div class="hero-scales-list">
+          <a href="#scale-1" class="scale-jump-row">
+            <span class="scale-badge s1">I</span>
+            <div>
+              <span class="scale-jump-name">Save a Body in Front of You</span>
+              <span class="scale-jump-desc">110 BPM CPR rhythm trainer, choking 5+5, stroke B.E.F.A.S.T. &amp; severe bleeding</span>
+            </div>
+            <span class="scale-jump-time">0–4 MIN</span>
+          </a>
+          <a href="#scale-2" class="scale-jump-row">
+            <span class="scale-badge s2">II</span>
+            <div>
+              <span class="scale-jump-name">Steady an Overwhelmed Nervous System</span>
+              <span class="scale-jump-desc">Physiological sigh alveolar pacer, vagal brake &amp; 90-second adrenaline timer</span>
+            </div>
+            <span class="scale-jump-time">60 SEC</span>
+          </a>
+          <a href="#scale-3" class="scale-jump-row">
+            <span class="scale-badge s3">III</span>
+            <div>
+              <span class="scale-jump-name">Repair Conflict &amp; Survive Noise</span>
+              <span class="scale-jump-desc">Nonviolent de-escalation forks &amp; Generous Tit-for-Tat game-theory sandbox</span>
+            </div>
+            <span class="scale-jump-time">5 MIN</span>
+          </a>
+          <a href="#scale-4" class="scale-jump-row">
+            <span class="scale-badge s4">IV</span>
+            <div>
+              <span class="scale-jump-name">Protect a Household in Crisis</span>
+              <span class="scale-jump-desc">WHO SGLT1 oral rehydration lab (6:½ ratio) &amp; emergency water disinfection</span>
+            </div>
+            <span class="scale-jump-time">24 HRS</span>
+          </a>
+          <a href="#scale-5" class="scale-jump-row">
+            <span class="scale-badge s5">V</span>
+            <div>
+              <span class="scale-jump-name">Multiply Your Good by 100×</span>
+              <span class="scale-jump-desc">Empirical anti-fatalism calibration &amp; high-leverage life-saving calculator</span>
+            </div>
+            <span class="scale-jump-time">LIFETIME</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ==================================================================
+         SCALE I: THE FIRST 4 MINUTES (SAVE A BODY)
+         ================================================================== -->
+    <section class="manual-section" id="scale-1">
+      <div class="section-header">
+        <div>
+          <div class="section-index-row">
+            <span class="section-tag s1">01 / SCALE I: THE BODY</span>
+            <span class="section-horizon">CRITICAL WINDOW: 0 TO 4 MINUTES</span>
+          </div>
+          <h2 class="section-title">Keep Oxygenated Blood Flowing Until Help Arrives</h2>
+          <p class="section-subtitle">
+            Roughly 70% of out-of-hospital cardiac arrests happen at home in front of family, yet fewer than 40% receive bystander CPR before the ambulance arrives—often because bystanders fear doing it wrong. Immediate hands-only compressions at <strong>100–120 BPM</strong> double or triple survival.
+          </p>
+        </div>
+        <div class="section-stat-callout">
+          <div class="stat-big tabular-nums">100–120 BPM</div>
+          <div class="stat-caption">Target compression rate at 5–6 cm depth (~2 pushes per second)</div>
+        </div>
+      </div>
+
+      <div class="workbench-grid">
+        <!-- Left: 4 Emergency Protocols -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Emergency Field Protocols</span>
+            <span class="panel-badge">SELECT SCENARIO</span>
+          </div>
+
+          <div class="tab-strip" role="tablist">
+            <button type="button" class="tab-btn active" data-protocol-tab="cpr">01. Cardiac Arrest</button>
+            <button type="button" class="tab-btn" data-protocol-tab="choking">02. Choking (5+5)</button>
+            <button type="button" class="tab-btn" data-protocol-tab="stroke">03. Stroke (BEFAST)</button>
+            <button type="button" class="tab-btn" data-protocol-tab="bleeding">04. Severe Bleed</button>
+          </div>
+
+          <div id="protocol-content-area"></div>
+        </div>
+
+        <!-- Right: Interactive CPR Compression & Perfusion Simulator -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Interactive CPR Rhythm &amp; Brain Perfusion Trainer</span>
+            <span class="panel-badge">TAP PAD OR SPACEBAR</span>
+          </div>
+
+          <div class="canvas-stage">
+            <canvas id="cpr-canvas" width="640" height="248"></canvas>
+            <div class="telemetry-strip">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Compression Rate</span>
+                <div class="telemetry-val tabular-nums" id="cpr-bpm-val" style="color: #34D399;">110 BPM</div>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Cerebral Perfusion</span>
+                <div class="telemetry-val tabular-nums" id="cpr-perfusion-val" style="color: #34D399;">78%</div>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Drill Mode</span>
+                <div class="telemetry-val tabular-nums" id="cpr-count-val">110 BPM Guide</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="cpr-feedback-banner" style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; padding: 0.65rem 0.8rem; background: var(--bg-canvas); color: #34D399; border-radius: var(--radius-sm); margin-top: 0.65rem;">
+            110 BPM GUIDE ACTIVE — Tap "PUSH CHEST" below (or press SPACEBAR) to practice hands-on compressions!
+          </div>
+
+          <div class="action-btn-row">
+            <button type="button" class="btn-primary rescue" id="cpr-compress-btn" style="flex: 1.4;">
+              ▼ PUSH CHEST HARD &amp; FAST (SPACEBAR)
+            </button>
+            <button type="button" class="btn-secondary active-toggle" id="cpr-guide-btn">
+              Auto-Demo: ON (110 BPM)
+            </button>
+            <button type="button" class="btn-secondary" id="cpr-metronome-btn">
+              110 BPM Audio Click: OFF
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SCALE II: THE FIRST 60 SECONDS (STEADY A MIND)
+         ================================================================== -->
+    <section class="manual-section" id="scale-2">
+      <div class="section-header">
+        <div>
+          <div class="section-index-row">
+            <span class="section-tag s2">02 / SCALE II: THE NERVOUS SYSTEM</span>
+            <span class="section-horizon">CRITICAL WINDOW: 60 TO 90 SECONDS</span>
+          </div>
+          <h2 class="section-title">Interrupt Panic &amp; Anger Before They Become Harm</h2>
+          <p class="section-subtitle">
+            You cannot calm an alarmed autonomic nervous system by telling yourself to "calm down." You must use a <strong>bottom-up mechanical lever</strong>: reinflating collapsed lung alveoli with a double inhale and triggering the vagus nerve with a prolonged exhale, while allowing 90 seconds for bloodstream adrenaline to clear.
+          </p>
+        </div>
+        <div class="section-stat-callout">
+          <div class="stat-big tabular-nums">2 IN : 1 LONG OUT</div>
+          <div class="stat-caption">The Physiological Sigh — fastest real-time CO2 offload &amp; vagal brake</div>
+        </div>
+      </div>
+
+      <div class="workbench-grid">
+        <!-- Left: Live Autonomic Breath Pacer -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Live Alveolar &amp; Vagus Nerve Breath Pacer</span>
+            <span class="panel-badge">RESPIRATORY SINUS ARRHYTHMIA</span>
+          </div>
+
+          <div class="tab-strip">
+            <button type="button" class="tab-btn active" data-breath-mode="sigh">01. Physiological Sigh</button>
+            <button type="button" class="tab-btn" data-breath-mode="box">02. Box Breath (4-4-4-4)</button>
+            <button type="button" class="tab-btn" data-breath-mode="downshift">03. 4–7–8 Downshift</button>
+          </div>
+
+          <p id="breath-mode-desc" style="font-size: 0.84rem; color: var(--ink-secondary); margin-bottom: 0.85rem;">
+            Two consecutive inhales through the nose (1st deep inhale fills ~80% of lungs; 2nd sharp top-up pops open collapsed alveoli), followed by a long, unhurried exhale through the mouth.
+          </p>
+
+          <div class="canvas-stage">
+            <canvas id="breath-canvas" width="620" height="245"></canvas>
+            <div class="telemetry-strip">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Simulated Heart Rate</span>
+                <div class="telemetry-val tabular-nums" id="breath-hr-val">82 BPM</div>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Vagal Brake Tone</span>
+                <div class="telemetry-val tabular-nums" id="breath-vagal-val" style="color: #34D399;">HIGH</div>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Session Progress</span>
+                <div class="telemetry-val tabular-nums" id="breath-cycles-val">0 cycles</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-btn-row">
+            <button type="button" class="btn-secondary" id="breath-audio-btn" style="width: 100%;">
+              Harmonic Breath Audio: OFF (Click to Enable Guided Tones)
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: 90-Second Amygdala Flush Timer & Cognitive Trap Unhooker -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">The 90-Second Rule &amp; Cognitive Defusion</span>
+            <span class="panel-badge">PREFRONTAL RECOVERY</span>
+          </div>
+
+          <!-- 90s Chemical Wave Box -->
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 0.95rem; margin-bottom: 1.15rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; text-transform: uppercase;">
+                Dr. Jill Bolte Taylor’s 90-Second Adrenaline Rule
+              </span>
+              <span class="control-val tabular-nums" id="amygdala-timer-val">90s</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--ink-secondary); margin-bottom: 0.65rem;">
+              From the moment an emotional trigger fires the amygdala, it takes <strong>less than 90 seconds</strong> for noradrenaline to surge through the blood and completely flush out—unless you re-trigger it with a mental loop.
+            </p>
+            <div class="meter-bar-bg" style="margin-bottom: 0.55rem;">
+              <div class="meter-bar-fill" id="amygdala-timer-bar" style="width: 100%; background: var(--accent-cobalt);"></div>
+            </div>
+            <div id="amygdala-timer-status" style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-primary); margin-bottom: 0.65rem;">
+              Ready: When triggered by anger or panic, observe the physical sensation for 90s without feeding the story.
+            </div>
+            <button type="button" class="btn-primary cobalt" id="amygdala-timer-btn" style="width: 100%;">
+              Start 90s Chemical Wave Timer
+            </button>
+          </div>
+
+          <!-- Cognitive Traps Switcher -->
+          <div style="margin-bottom: 0.4rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">
+              Unhook from the 4 Universal Cognitive Distortions:
+            </span>
+            <div class="tab-strip" id="trap-tabs-container"></div>
+            <div id="trap-detail-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SCALE III: THE 5-MINUTE BRIDGE (REPAIR CONFLICT & BUILD TRUST)
+         ================================================================== -->
+    <section class="manual-section" id="scale-3">
+      <div class="section-header">
+        <div>
+          <div class="section-index-row">
+            <span class="section-tag s3">03 / SCALE III: THE CONVERSATION</span>
+            <span class="section-horizon">CRITICAL WINDOW: 5 MINUTES</span>
+          </div>
+          <h2 class="section-title">Disarm Defensive Spirals &amp; Survive Misunderstandings</h2>
+          <p class="section-subtitle">
+            Relationships, teams, and communities rarely collapse because people wake up wanting war. They collapse because of <strong>reactive framing</strong> (blame vs. defensiveness) and <strong>communication noise</strong> (where a 10% rate of misread intent locks strict "eye-for-an-eye" players into endless vendettas).
+          </p>
+        </div>
+        <div class="section-stat-callout">
+          <div class="stat-big tabular-nums">OBSERVE → NEED</div>
+          <div class="stat-caption">Separate neutral facts from moral blame; forgive isolated noise</div>
+        </div>
+      </div>
+
+      <div class="workbench-grid equal">
+        <!-- Left: Branching Conflict De-escalation Simulator -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Interactive De-escalation Fork Simulator</span>
+            <span class="panel-badge">COMPARE 3 RESPONSES</span>
+          </div>
+
+          <div class="tab-strip">
+            <button type="button" class="tab-btn active" data-scenario-tab="0">01. Partner / Home</button>
+            <button type="button" class="tab-btn" data-scenario-tab="1">02. Workplace Crisis</button>
+            <button type="button" class="tab-btn" data-scenario-tab="2">03. Polarized Belief</button>
+          </div>
+
+          <div class="dialogue-box">
+            <span class="speaker-tag" id="conflict-speaker">EXHAUSTED PARTNER OR HOUSEMATE</span>
+            <p class="speaker-quote" id="conflict-quote"></p>
+          </div>
+
+          <div class="response-options" id="conflict-options"></div>
+
+          <div class="biometric-meters">
+            <div class="meter-card">
+              <div class="meter-header">
+                <span>MUTUAL THREAT (CORTISOL)</span>
+                <strong class="tabular-nums" id="cortisol-val">18%</strong>
+              </div>
+              <div class="meter-bar-bg">
+                <div class="meter-bar-fill" id="cortisol-bar" style="width: 18%; background: #10B981;"></div>
+              </div>
+            </div>
+            <div class="meter-card">
+              <div class="meter-header">
+                <span>PROBLEM-SOLVING BANDWIDTH</span>
+                <strong class="tabular-nums" id="bandwidth-val">92%</strong>
+              </div>
+              <div class="meter-bar-bg">
+                <div class="meter-bar-fill" id="bandwidth-bar" style="width: 92%; background: #10B981;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="clinical-note amber" id="conflict-outcome-box"></div>
+        </div>
+
+        <!-- Right: Game Theory of Noisy Trust Sandbox -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Game Theory Lab: Why Trust Fails in a Noisy World</span>
+            <span class="panel-badge">AXELROD &amp; NOWAK MODEL</span>
+          </div>
+
+          <p style="font-size: 0.83rem; color: var(--ink-secondary); margin-bottom: 0.85rem;">
+            In a noise-free world, <strong>Strict Tit-for-Tat</strong> (copying your partner’s last move) is unbeatable. But in real life, honest actions get misread (fatigue, clumsy phrasing, missed texts). Drag the <strong>Noise Slider</strong> and switch strategies to see what prevents mutual vendettas:
+          </p>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label class="control-label" for="trust-noise-slider">Misunderstanding / Communication Noise Rate</label>
+              <span class="control-val tabular-nums" id="trust-noise-val">10%</span>
+            </div>
+            <input type="range" id="trust-noise-slider" min="0" max="25" step="1" value="10" />
+          </div>
+
+          <div class="tab-strip">
+            <button type="button" class="tab-btn active" data-trust-strategy="generous">Generous Tit-for-Tat</button>
+            <button type="button" class="tab-btn" data-trust-strategy="tft">Strict Tit-for-Tat</button>
+            <button type="button" class="tab-btn" data-trust-strategy="always_coop">Always Nice</button>
+            <button type="button" class="tab-btn" data-trust-strategy="grudger">Hold Grudge</button>
+          </div>
+
+          <div class="canvas-stage">
+            <canvas id="trust-canvas" width="620" height="260"></canvas>
+          </div>
+
+          <div id="trust-summary-text" style="font-size: 0.82rem; padding: 0.7rem 0.85rem; background: var(--bg-subtle); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); margin-top: 0.75rem;"></div>
+
+          <div class="action-btn-row">
+            <button type="button" class="btn-secondary" id="trust-sim-btn" style="width: 100%;">
+              ↻ Re-Simulate 28 Interactions with New Random Noise Events
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SCALE IV: THE HOUSEHOLD FORMULAS (PUBLIC HEALTH & SELF-RELIANCE)
+         ================================================================== -->
+    <section class="manual-section" id="scale-4">
+      <div class="section-header">
+        <div>
+          <div class="section-index-row">
+            <span class="section-tag s4">04 / SCALE IV: THE HOUSEHOLD</span>
+            <span class="section-horizon">CRITICAL WINDOW: FIRST 24 HOURS</span>
+          </div>
+          <h2 class="section-title">Two Kitchen Formulas That Saved 70 Million Lives</h2>
+          <p class="section-subtitle">
+            <em>The Lancet</em> named Oral Rehydration Therapy potentially the most important medical advance of the 20th century. During severe stomach illness, heat waves, or infrastructure failures, knowing the exact <strong>SGLT1 sodium-glucose cotransport ratio</strong> and <strong>water disinfection dosage</strong> turns any kitchen into a life-saving clinic.
+          </p>
+        </div>
+        <div class="section-stat-callout">
+          <div class="stat-big tabular-nums">6 TSP : ½ TSP</div>
+          <div class="stat-caption">6 level tsp sugar + ½ level tsp salt per 1 Liter clean water</div>
+        </div>
+      </div>
+
+      <div class="workbench-grid equal">
+        <!-- Left: WHO Oral Rehydration Solution (ORS) Interactive Lab -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">WHO Oral Rehydration (SGLT1 Pump) Interactive Mixer</span>
+            <span class="panel-badge">1 LITER CLEAN WATER BASE</span>
+          </div>
+
+          <div class="tab-strip">
+            <button type="button" class="tab-btn active" data-ors-preset="who">✓ Exact WHO Recipe</button>
+            <button type="button" class="tab-btn" data-ors-preset="plain">Plain Water</button>
+            <button type="button" class="tab-btn" data-ors-preset="soda">Soda / Juice</button>
+            <button type="button" class="tab-btn" data-ors-preset="salty">Too Much Salt</button>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label class="control-label" for="ors-sugar-slider">Level Teaspoons of Sugar (in 1 Liter Water)</label>
+              <span class="control-val tabular-nums" id="ors-sugar-val">6.0 tsp (25g)</span>
+            </div>
+            <input type="range" id="ors-sugar-slider" min="0" max="12" step="0.5" value="6.0" />
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label class="control-label" for="ors-salt-slider">Level Teaspoons of Table Salt (in 1 Liter Water)</label>
+              <span class="control-val tabular-nums" id="ors-salt-val">0.50 tsp (2.8g)</span>
+            </div>
+            <input type="range" id="ors-salt-slider" min="0" max="2.5" step="0.05" value="0.5" />
+          </div>
+
+          <div class="canvas-stage">
+            <canvas id="ors-canvas" width="600" height="225"></canvas>
+            <div class="telemetry-strip" style="grid-template-columns: 1fr 1fr;">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Solution Osmolarity (Target ~245)</span>
+                <div class="telemetry-val tabular-nums" id="ors-osm-val">242 mOsm/L</div>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">Intestinal SGLT1 Water Flux</span>
+                <div class="telemetry-val tabular-nums" id="ors-flux-val">+96% Rapid Uptake</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="ors-status-banner" style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; padding: 0.65rem 0.8rem; background: var(--bg-canvas); color: #34D399; border-radius: var(--radius-sm); margin-top: 0.65rem;"></div>
+        </div>
+
+        <!-- Right: Emergency Safe Water Disinfection Calculator -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Emergency Water Disinfection Calculator</span>
+            <span class="panel-badge">WHO / EPA FIELD STANDARDS</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label class="control-label" for="water-vol-select">1. Select Container Volume</label>
+            </div>
+            <select id="water-vol-select" style="width: 100%; padding: 0.55rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); background: var(--bg-subtle); font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;">
+              <option value="1">1 Liter Bottle (1,000 mL / ~1 Quart)</option>
+              <option value="2">2 Liter Bottle (2,000 mL)</option>
+              <option value="4">4 Liter Jug (~1 US Gallon)</option>
+              <option value="20">20 Liter Jerrycan (5 US Gallons)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <span class="control-label">2. Water Clarity (Before Disinfection)</span>
+            </div>
+            <div class="tab-strip" style="margin-bottom: 0.5rem;">
+              <button type="button" class="tab-btn active" data-water-clarity="clear">Clear Water</button>
+              <button type="button" class="tab-btn" data-water-clarity="cloudy">Cloudy / Turbid (2× Dose)</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <span class="control-label">3. Disinfection Method Available</span>
+            </div>
+            <div class="tab-strip">
+              <button type="button" class="tab-btn active" data-water-method="bleach6">Bleach (5–6%)</button>
+              <button type="button" class="tab-btn" data-water-method="bleach8">Bleach (8.25%)</button>
+              <button type="button" class="tab-btn" data-water-method="boil">Rolling Boil</button>
+              <button type="button" class="tab-btn" data-water-method="sodis">Solar UV (SODIS)</button>
+            </div>
+          </div>
+
+          <div id="water-calc-output"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SCALE V: THE 100× MULTIPLIER (GLOBAL CALIBRATION & LEVERAGE)
+         ================================================================== -->
+    <section class="manual-section" id="scale-5">
+      <div class="section-header">
+        <div>
+          <div class="section-index-row">
+            <span class="section-tag s5">05 / SCALE V: THE WORLD</span>
+            <span class="section-horizon">CRITICAL WINDOW: YOUR LIFETIME</span>
+          </div>
+          <h2 class="section-title">Cure Fatalism &amp; Discover Your 100× Leverage</h2>
+          <p class="section-subtitle">
+            Good people fail to help the world for two cognitive reasons: <strong>doomerism</strong> (believing nothing ever improves, when child mortality has actually fallen by >75% in our lifetimes) and <strong>scope neglect</strong> (not realizing that the most rigorously tested global health programs do <strong>100× more good per dollar</strong> than average charity).
+          </p>
+        </div>
+        <div class="section-stat-callout">
+          <div class="stat-big tabular-nums">100× LEVERAGE</div>
+          <div class="stat-caption">Top-evidence global health interventions vs. median programs</div>
+        </div>
+      </div>
+
+      <div class="workbench-grid equal">
+        <!-- Left: 3-Question Global Reality Calibrator -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Global Progress &amp; Leverage Calibrator</span>
+            <span class="panel-badge">TEST YOUR INTUITION</span>
+          </div>
+
+          <div class="calibration-item">
+            <div class="control-label-row">
+              <label class="calibration-q" for="cal-q1-slider">
+                1. In 1990, 38% of humanity lived in extreme poverty. What share lives in extreme poverty today?
+              </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+              <input type="range" id="cal-q1-slider" min="2" max="60" step="1" value="34" />
+              <span class="control-val tabular-nums" id="cal-q1-val" style="white-space: nowrap;">Your Guess: 34%</span>
+            </div>
+            <div class="calibration-reveal" id="cal-q1-reveal">
+              <strong style="color: var(--status-ok);">EMPIRICAL REALITY: ~8.5%.</strong> Over 1.3 billion people have exited extreme poverty since 1990. In polls, 88% of the public guesses it stayed the same or doubled—fueling false despair.
+            </div>
+          </div>
+
+          <div class="calibration-item">
+            <div class="control-label-row">
+              <label class="calibration-q" for="cal-q2-slider">
+                2. In 1800, only 57% of children survived past age 5. What percentage of children in the world survive past age 5 today?
+              </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+              <input type="range" id="cal-q2-slider" min="40" max="99" step="1" value="74" />
+              <span class="control-val tabular-nums" id="cal-q2-val" style="white-space: nowrap;">Your Guess: 74%</span>
+            </div>
+            <div class="calibration-reveal" id="cal-q2-reveal">
+              <strong style="color: var(--status-ok);">EMPIRICAL REALITY: 96.3%.</strong> Thanks to ORS, vaccines, sanitation, and malaria nets, global child mortality has fallen from 43% to 3.7%. And almost all of the remaining 3.7% is preventable with existing tools.
+            </div>
+          </div>
+
+          <div class="calibration-item">
+            <div class="control-label-row">
+              <label class="calibration-q" for="cal-q3-slider">
+                3. How many times more healthy life-years per $1,000 do the top 1% most effective health interventions produce compared to a typical program?
+              </label>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;">
+              <input type="range" id="cal-q3-slider" min="2" max="120" step="1" value="8" />
+              <span class="control-val tabular-nums" id="cal-q3-val" style="white-space: nowrap;">Your Guess: 8×</span>
+            </div>
+            <div class="calibration-reveal" id="cal-q3-reveal">
+              <strong style="color: var(--status-ok);">EMPIRICAL REALITY: ~100× MORE (Disease Control Priorities / GiveWell).</strong> While a domestic guide dog or median program costs $40,000–$100,000+ per life-year, preventing malaria or Vitamin A deficiency costs ~$5 per child protected and ~$3,500–$4,500 per life saved.
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary emerald" id="cal-reveal-btn" style="width: 100%; margin-bottom: 0.85rem;">
+            Reveal Empirical Reality &amp; Compare My Calibration
+          </button>
+
+          <div class="canvas-stage">
+            <canvas id="calibration-canvas" width="580" height="205"></canvas>
+          </div>
+        </div>
+
+        <!-- Right: Personal 100x Leverage & Donor Calculator -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">Personal Life-Saving Leverage Simulator</span>
+            <span class="panel-badge">MONEY + BIOLOGICAL MULTIPLIERS</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label class="control-label" for="impact-income-slider">Annual Household Income / Budget</label>
+              <span class="control-val tabular-nums" id="impact-income-val">$55,000/yr</span>
+            </div>
+            <input type="range" id="impact-income-slider" min="15000" max="250000" step="5000" value="55000" />
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <label class="control-label" for="impact-pct-slider">High-Leverage Allocation (% Directed to Top Interventions)</label>
+              <span class="control-val tabular-nums" id="impact-pct-val">2.0% ($1,100/yr)</span>
+            </div>
+            <input type="range" id="impact-pct-slider" min="0.5" max="10.0" step="0.5" value="2.0" />
+          </div>
+
+          <div class="control-group">
+            <div class="control-label-row">
+              <span class="control-label">Time Horizon</span>
+            </div>
+            <div class="tab-strip" style="margin-bottom: 0.75rem;">
+              <button type="button" class="tab-btn" data-impact-horizon="1">1 Year</button>
+              <button type="button" class="tab-btn active" data-impact-horizon="10">10 Years (Decade)</button>
+              <button type="button" class="tab-btn" data-impact-horizon="25">25 Years (Career)</button>
+            </div>
+          </div>
+
+          <!-- Zero-Dollar Biological & Skill Multipliers -->
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); border-radius: var(--radius-sm); padding: 0.75rem 0.85rem; margin-bottom: 0.9rem;">
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 0.45rem;">
+              Zero-Dollar Biological &amp; Civic Multipliers (Check to Include):
+            </span>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; margin-bottom: 0.35rem; cursor: pointer;">
+              <input type="checkbox" data-donor-check="blood" checked />
+              <span><strong>Donate Blood 3×/year</strong> (1 hour each → separated into RBCs, platelets, plasma for up to 9 patients/yr)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; margin-bottom: 0.35rem; cursor: pointer;">
+              <input type="checkbox" data-donor-check="marrow" checked />
+              <span><strong>Join Stem Cell / Marrow Registry</strong> (5-min cheek swab → life-saving match pool for blood cancer patients)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; cursor: pointer;">
+              <input type="checkbox" data-donor-check="teach" checked />
+              <span><strong>Teach 2 People/Year CPR &amp; WHO ORS</strong> (Multiplies emergency survival in your neighborhood)</span>
+            </label>
+          </div>
+
+          <div class="impact-cards-grid">
+            <div class="impact-metric-card">
+              <div class="impact-metric-num tabular-nums" id="impact-out-nets">2,000</div>
+              <div class="impact-metric-label">Children Protected from Malaria</div>
+              <div class="impact-metric-sub">Insecticide-treated nets &amp; seasonal prophylaxis (~$5.50/child)</div>
+            </div>
+            <div class="impact-metric-card">
+              <div class="impact-metric-num tabular-nums" id="impact-out-vita">7,333</div>
+              <div class="impact-metric-label">Vitamin A Blindness-Prevention Years</div>
+              <div class="impact-metric-sub">High-dose capsules reducing child mortality by ~12–24% (~$1.50/yr)</div>
+            </div>
+            <div class="impact-metric-card">
+              <div class="impact-metric-num tabular-nums" id="impact-out-lives">2.75 Lives</div>
+              <div class="impact-metric-label">Statistical Human Lives Saved</div>
+              <div class="impact-metric-sub">Or ~88 years of healthy human life unlocked across top charities</div>
+            </div>
+            <div class="impact-metric-card">
+              <div class="impact-metric-num tabular-nums" id="impact-out-bio">110 People + Registry</div>
+              <div class="impact-metric-label">Direct Zero-Cost Local Impact</div>
+              <div class="impact-metric-sub">Acute hospital patients transfused + neighbors trained in CPR/ORS</div>
+            </div>
+          </div>
+
+          <div class="clinical-note emerald" id="impact-summary-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION 06: FOLDING POCKET FIELD CARD (OFFLINE EXPORT & PRINT)
+         ================================================================== -->
+    <section class="manual-section" id="scale-6">
+      <div class="section-header">
+        <div>
+          <div class="section-index-row">
+            <span class="section-tag s6">06 / OFFLINE REFERENCE</span>
+            <span class="section-horizon">KEEP IN WALLET, GLOVEBOX, OR FIRST-AID KIT</span>
+          </div>
+          <h2 class="section-title">The 1-Page Folding Pocket Field Card</h2>
+          <p class="section-subtitle">
+            When the power is out or someone collapses in front of you, you don’t need a 400-page textbook—you need six exact numbers and sequences. Save this high-resolution card to your phone photos or print a physical copy for your kitchen and glovebox.
+          </p>
+        </div>
+        <div class="action-btn-row" style="margin-top: 0;">
+          <button type="button" class="btn-primary rescue" id="download-card-btn">
+            ⬇ Download High-Res Field Card (.jpg)
+          </button>
+          <button type="button" class="btn-secondary" id="print-card-btn">
+            ⎙ Print 1-Page Sheet
+          </button>
+          <button type="button" class="btn-secondary" id="copy-card-btn">
+            Copy Text Summary
+          </button>
+        </div>
+      </div>
+
+      <div class="pocket-card-sheet">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-strong); padding-bottom: 0.65rem; flex-wrap: wrap; gap: 0.5rem;">
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em;">
+            THE HUMAN FIELD MANUAL — RAPID PROTOCOL CARD (CUT OR FOLD ALONG GRID)
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-muted);">
+            PUBLIC DOMAIN · SHARE FREELY
+          </span>
+        </div>
+
+        <div class="pocket-card-grid">
+          <div class="pocket-cell">
+            <div class="pocket-cell-head" style="color: var(--accent-rescue);">
+              <span>01 / CARDIAC ARREST (CPR)</span>
+              <span>0–4 MIN</span>
+            </div>
+            <ul class="pocket-list">
+              <li>1. Shake &amp; shout. If unresponsive &amp; not breathing normally (ignore gasping):</li>
+              <li>2. Call <strong>911 / 112</strong> on speakerphone &amp; send someone for an <strong>AED</strong>.</li>
+              <li>3. Push hard &amp; fast at center of chest: <strong>100–120 BPM</strong> (~2 pushes/sec).</li>
+              <li>4. Depth: <strong>5–6 cm (2–2.4 in)</strong>. Let chest recoil completely. Never pause &gt;10s.</li>
+            </ul>
+          </div>
+
+          <div class="pocket-cell">
+            <div class="pocket-cell-head" style="color: var(--accent-rescue);">
+              <span>02 / CHOKING, STROKE &amp; BLEED</span>
+              <span>IMMEDIATE</span>
+            </div>
+            <ul class="pocket-list">
+              <li>• <strong>Choking:</strong> Alternate <strong>5 back blows</strong> (between shoulder blades) + <strong>5 abdominal thrusts</strong> (fist thumb-in just above navel).</li>
+              <li>• <strong>Stroke (B.E.F.A.S.T.):</strong> Balance, Eyes, Face droop, Arm drift, Speech slur, <strong>Time</strong> (write down exact minute!). No aspirin.</li>
+              <li>• <strong>Severe Bleed:</strong> Continuous firm direct pressure for <strong>3–5 full min</strong> (do not peek). Limb artery → Tourniquet 5–8 cm above wound.</li>
+            </ul>
+          </div>
+
+          <div class="pocket-cell">
+            <div class="pocket-cell-head" style="color: var(--accent-cobalt);">
+              <span>03 / NERVOUS SYSTEM RESET</span>
+              <span>60–90 SEC</span>
+            </div>
+            <ul class="pocket-list">
+              <li>• <strong>Physiological Sigh (×3):</strong> Deep nasal inhale (80%) + sharp top-up nasal inhale (100%) → <strong>long, slow mouth exhale</strong>.</li>
+              <li>• <strong>90-Second Chemical Rule:</strong> Bloodstream adrenaline clears in 90s if you don’t feed the mental story. Never send a message inside the 90s wave.</li>
+              <li>• <strong>H.A.L.T. Check:</strong> Am I Hungry, Angry, Lonely, or Tired?</li>
+            </ul>
+          </div>
+
+          <div class="pocket-cell">
+            <div class="pocket-cell-head" style="color: var(--accent-amber);">
+              <span>04 / CONFLICT &amp; NOISY TRUST</span>
+              <span>5 MIN</span>
+            </div>
+            <ul class="pocket-list">
+              <li>• Drop "Always / Never" generalizations and counter-blame.</li>
+              <li>• <strong>Repair Script:</strong> <em>"When [neutral observation], I feel [emotion] because I need [shared value]. Would you be willing to [concrete action]?"</em></li>
+              <li>• <strong>Generous Tit-for-Tat:</strong> In a noisy world, forgive isolated misunderstandings once, communicate clearly, and maintain firm boundaries.</li>
+            </ul>
+          </div>
+
+          <div class="pocket-cell">
+            <div class="pocket-cell-head" style="color: var(--accent-teal);">
+              <span>05 / WHO ORS &amp; SAFE WATER</span>
+              <span>HOUSEHOLD</span>
+            </div>
+            <ul class="pocket-list">
+              <li>• <strong>WHO Oral Rehydration Solution:</strong> Mix <strong>1 Liter</strong> clean water + <strong>6 level tsp sugar</strong> (25g) + <strong>½ level tsp salt</strong> (2.6g).</li>
+              <li>• <strong>Taste Check:</strong> Must taste <em>no saltier than tears</em> (excess salt pulls water out of the body).</li>
+              <li>• <strong>Water Disinfection:</strong> <strong>2 drops</strong> plain 6% bleach per 1L (4 drops if cloudy), wait <strong>30 min</strong>; or <strong>1 min rolling boil</strong> (3 min &gt;2,000m).</li>
+            </ul>
+          </div>
+
+          <div class="pocket-cell">
+            <div class="pocket-cell-head" style="color: var(--accent-emerald);">
+              <span>06 / THE 100× GOOD MULTIPLIER</span>
+              <span>LIFETIME</span>
+            </div>
+            <ul class="pocket-list">
+              <li>• <strong>Reject Fatalism:</strong> Child survival rose from 57% (1800) to <strong>96.3%</strong> today; extreme poverty fell from 38% (1990) to <strong>8.5%</strong>.</li>
+              <li>• <strong>100× Rule:</strong> Top-tested health programs protect a child from malaria for <strong>~$5.50</strong> and save a statistical life for <strong>~$4,000</strong>.</li>
+              <li>• <strong>Zero-Cost Multipliers:</strong> Donate blood 3×/yr &amp; join the stem cell registry.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       QUICK SOS EMERGENCY MODAL (ZERO-SCROLL INSTANT ACCESS)
+       ==================================================================== -->
+  <div class="modal-backdrop" id="sos-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="sos-modal-title">
+    <div class="modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-rescue); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; color: var(--accent-rescue); text-transform: uppercase;">
+            ⚡ IMMEDIATE EMERGENCY ACTION CHECKLIST
+          </span>
+          <h3 id="sos-modal-title" style="font-family: var(--font-display); font-size: 1.45rem; font-weight: 700;">
+            First 60 Seconds in a Medical or Household Crisis
+          </h3>
+        </div>
+        <button type="button" class="btn-secondary" id="sos-close-btn">✕ Close (ESC)</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem;">
+        <div class="protocol-step">
+          <div class="step-num" style="background: var(--accent-rescue);">1</div>
+          <div class="step-body">
+            <h4>Unresponsive / Not Breathing Normally</h4>
+            <p>Call <strong>911 / 112 / 999</strong> on speakerphone. Push hard &amp; fast at center of chest: <strong>100–120 BPM</strong>, <strong>5–6 cm deep</strong>. Send someone for an AED. Ignore occasional gasps.</p>
+          </div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num" style="background: var(--accent-rescue);">2</div>
+          <div class="step-body">
+            <h4>Severe Choking (Cannot Speak/Cough)</h4>
+            <p>Bend person forward: give <strong>5 sharp back blows</strong> between shoulder blades with heel of hand, then <strong>5 abdominal thrusts</strong> (fist thumb-in just above navel). Repeat.</p>
+          </div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num" style="background: var(--accent-rescue);">3</div>
+          <div class="step-body">
+            <h4>Suspected Stroke (B.E.F.A.S.T.)</h4>
+            <p>Check <strong>Balance, Eyes, Face droop, Arm drift (10s), Speech slur</strong>. Call emergency services immediately and record the exact <strong>Last Known Well</strong> minute. Give NO food, drink, or aspirin.</p>
+          </div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num" style="background: var(--accent-rescue);">4</div>
+          <div class="step-body">
+            <h4>Life-Threatening Bleeding</h4>
+            <p>Press clean cloth directly on wound with both hands—hold firm, uninterrupted pressure for <strong>3–5 full minutes</strong> (do NOT lift cloth to peek). For arterial limb bleed, apply tourniquet high &amp; tight.</p>
+          </div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num" style="background: var(--accent-teal);">5</div>
+          <div class="step-body">
+            <h4>Dehydration / Oral Rehydration (ORS)</h4>
+            <p>Dissolve <strong>6 level teaspoons sugar + ½ level teaspoon salt in 1 Liter</strong> of clean/boiled water. Taste before giving: must be no saltier than tears. Sip continuously.</p>
+          </div>
+        </div>
+        <div class="protocol-step">
+          <div class="step-num" style="background: var(--accent-cobalt);">6</div>
+          <div class="step-body">
+            <h4>Acute Panic Attack / Shock</h4>
+            <p>Have person sit upright. Guide 3 <strong>Physiological Sighs</strong>: deep inhale through nose + second sharp top-up inhale through nose → long slow exhale through pursed lips.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <strong>THE HUMAN FIELD MANUAL</strong> · Built as a self-contained offline public commons instrument.
+    </div>
+    <div>
+      Sources: AHA/ERC Resuscitation Guidelines · WHO ORS Standards · Stanford Neurobiology · Axelrod Cooperation Tournaments · Our World in Data / GiveWell.
+    </div>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

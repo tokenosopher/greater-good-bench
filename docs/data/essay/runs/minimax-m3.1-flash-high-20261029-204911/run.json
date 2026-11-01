@@ -1,0 +1,60 @@
+{
+  "id": "minimax-m3.1-flash-high-20261029-204911",
+  "page": "essay",
+  "model": "openrouter/minimax/minimax-m3.1-flash",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T20:49:52Z",
+  "batch": "2026-10-29-204911-essay",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "ModelRun"
+    ],
+    "cost_usd": 0.00433932,
+    "pi_cost_usd": 0.0039053879999999997
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 40284,
+    "cost_usd": 0.00433932,
+    "tool_calls": 3,
+    "turns": 4,
+    "tokens_total": 13557,
+    "tokens_input": 8736,
+    "tokens_output": 4821,
+    "tokens_reasoning": 520,
+    "tokens_cache_read": 9088
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 22662,
+    "words": 3490,
+    "title": "A More Good World Is a Practice, Not a Miracle",
+    "excerpt": "The world\u2019s problems are often described as if they were one enormous problem. They are not. There is no single evil to defeat and no single solution waiting to be discovered. There are billions of decisions, layered within institutions that reward some behaviors and punish others, producing\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

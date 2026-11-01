@@ -1,0 +1,67 @@
+{
+  "id": "deepseek-v4.1-flash-1017-high-20261029-204911",
+  "page": "essay",
+  "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T20:49:11Z",
+  "batch": "2026-10-29-204911-essay",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Wafer"
+    ],
+    "cost_usd": 0.00443304,
+    "pi_cost_usd": 0.003303065
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 5,
+      "edit": 2,
+      "read": 2,
+      "write": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 28933,
+    "cost_usd": 0.00443304,
+    "tool_calls": 11,
+    "turns": 12,
+    "tokens_total": 13252,
+    "tokens_input": 6257,
+    "tokens_output": 6995,
+    "tokens_reasoning": 6467,
+    "tokens_cache_read": 87168
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 15680,
+    "words": 2804,
+    "title": "Being Wrong, Cheaply",
+    "excerpt": "There is a particular half-second that decides much of what happens to us. It is the moment just after you discover you were wrong. A fact lands. The name you were sure of, the number you quoted, the judgment you made about a person, the plan you defended in a meeting. For a fraction of a second\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "notes/outline.md"
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "glm-5.3-prime-high-20261030-024430",
+  "page": "3d-model",
+  "model": "openrouter/z-ai/glm-5.3-prime",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-30T02:59:08Z",
+  "batch": "2026-10-30-024430-3d-model",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Alibaba"
+    ],
+    "cost_usd": 7.49270232,
+    "pi_cost_usd": 7.492702320000004
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 68,
+      "bash": 28,
+      "edit": 6,
+      "write": 5,
+      "mcp__blender__get_objects_summary": 1,
+      "read": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 1804978,
+    "cost_usd": 7.49270232,
+    "tool_calls": 109,
+    "turns": 109,
+    "tokens_total": 332803,
+    "tokens_input": 186029,
+    "tokens_output": 146774,
+    "tokens_reasoning": 102327,
+    "tokens_cache_read": 10143232
+  },
+  "thumb": "media/render_closeup.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "model",
+        "bytes": 6846304,
+        "meshes": 10,
+        "triangles": 147396,
+        "animations": 0,
+        "path": "media/one_home_pale_blue_dot.glb"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 131663,
+        "path": "media/render_closeup.jpg",
+        "thumb": "media/render_closeup.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 68990,
+        "path": "media/render_dot.jpg",
+        "thumb": "media/render_dot.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1080,
+        "bytes": 185747,
+        "path": "media/render_hero.jpg",
+        "thumb": "media/render_hero.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "scripts/build_scene.py",
+      "scripts/final_renders.py",
+      "scripts/gen_stars.py",
+      "scripts/gen_textures.py",
+      "scripts/gen_textures_dbg.py",
+      "scripts/read_png.py"
+    ]
+  }
+}

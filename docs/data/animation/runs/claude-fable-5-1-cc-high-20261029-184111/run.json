@@ -1,0 +1,83 @@
+{
+  "id": "claude-fable-5-1-cc-high-20261029-184111",
+  "page": "animation",
+  "model": "anthropic/claude-fable-5-1",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:41:11Z",
+  "batch": "2026-10-29-184111-animation",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 10,
+      "read": 5
+    }
+  },
+  "metrics": {
+    "duration_ms": 456711,
+    "cost_usd": 2.650410999999999,
+    "tool_calls": 15,
+    "turns": 16,
+    "tokens_total": 33968,
+    "tokens_input": 482,
+    "tokens_output": 33486,
+    "tokens_reasoning": 15945,
+    "tokens_cache_read": 543644
+  },
+  "thumb": "media/hands_only_cpr.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 9.9,
+        "bytes": 386475,
+        "transcoded": false,
+        "path": "media/hands_only_cpr.mp4",
+        "poster": "media/hands_only_cpr.poster.jpg",
+        "thumb": "media/hands_only_cpr.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1280,
+        "height": 720,
+        "bytes": 65394,
+        "path": "media/hands_only_cpr_poster.png",
+        "thumb": "media/hands_only_cpr_poster.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/font.py",
+      "src/make.py",
+      "src/raster.py"
+    ]
+  }
+}

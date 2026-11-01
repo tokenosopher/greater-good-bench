@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3f0e8">
+  <meta name="description" content="Common Ground is a private, practical tool for turning difficult reactions into clearer, kinder conversations.">
+  <link rel="icon" href="data:,">
+  <title>Common Ground — Less reacting. More understanding.</title>
+  <style>:root{--paper: #f3f0e8;--paper-deep: #e9e4d9;--white: #fffdf8;--ink: #173c35;--ink-deep: #102e29;--muted: #6c756d;--coral: #ed725a;--coral-dark: #d95743;--yellow: #e7c76d;--line: rgba(23, 60, 53, .16);--serif: Georgia, "Times New Roman", serif;--sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;--shadow: 0 24px 70px rgba(19, 48, 42, .12)}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:clip}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}button,textarea,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{color:inherit}a{color:inherit;text-decoration:none}p,h1,h2,h3,blockquote{margin-top:0}svg{display:block}::selection{background:var(--yellow);color:var(--ink-deep)}:focus-visible{outline:3px solid var(--coral);outline-offset:4px}.skip-link{position:fixed;left:20px;top:-60px;z-index:100;padding:12px 20px;background:var(--white);border-radius:6px;box-shadow:var(--shadow)}.skip-link:focus{top:16px}.site-header{height:92px;padding:0 clamp(24px,5vw,76px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:20;background:var(--paper)}.brand{display:inline-flex;align-items:center;gap:11px;font-size:11px;line-height:1.05;font-weight:800;letter-spacing:1.5px}.brand-mark{width:35px;height:35px;flex:none}.main-nav{display:flex;align-items:center;gap:clamp(24px,3.2vw,50px);margin-left:55px}.main-nav a{font-size:13px;font-weight:600;position:relative}.main-nav a:after{content:"";position:absolute;height:1px;left:0;right:100%;bottom:-7px;background:var(--ink);transition:right .25s ease}.main-nav a:hover:after{right:0}.header-cta{display:flex;align-items:center;gap:24px;border-bottom:1px solid var(--ink);padding:8px 0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px}.header-cta span{color:var(--coral);font-size:18px}.hero{min-height:min(810px,calc(100vh - 92px));padding:76px clamp(24px,6.5vw,100px) 85px;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(400px,.92fr);align-items:center;gap:clamp(40px,6vw,100px);position:relative}.hero:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;right:-310px;top:-220px;background:#e7c76d1a;pointer-events:none}.hero-copy{max-width:760px;position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:11px;font-size:10px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:25px}.eyebrow-line{width:28px;height:2px;background:var(--coral)}h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}h1{font-size:clamp(62px,6.5vw,105px);line-height:.96;margin-bottom:31px}h1 em,h2 em{font-weight:400;color:var(--coral)}h1 em{position:relative}h1 em:after{content:"";position:absolute;left:1%;right:0;height:5px;bottom:-4px;border-top:2px solid var(--coral);border-radius:50%;transform:rotate(-1deg);opacity:.7}.hero-intro{max-width:560px;font-size:17px;line-height:1.7;color:#53655f;margin-bottom:30px}.hero-actions{display:flex;align-items:center;gap:29px;flex-wrap:wrap}.button{border:0;border-radius:3px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:26px;min-height:53px;padding:0 24px;font-size:12px;font-weight:750;letter-spacing:.35px;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}.button:hover{transform:translateY(-2px)}.button-primary{background:var(--ink);color:var(--white);box-shadow:0 8px 20px #173c351f}.button-primary:hover{background:#225248;box-shadow:0 12px 24px #173c3533}.button-primary span{color:var(--yellow);font-size:18px}.text-link{font-size:12px;font-weight:650;display:inline-flex;align-items:center;gap:10px}.play-icon{display:inline-grid;place-items:center;width:27px;height:27px;border:1px solid var(--line);border-radius:50%;font-size:8px;padding-left:2px}.trust-list{list-style:none;padding:0;margin:26px 0 0;display:flex;gap:25px;font-size:10px;color:var(--muted)}.trust-list li{display:flex;align-items:center;gap:6px}.trust-list span{color:var(--coral);font-size:11px}.hero-demo{position:relative;padding:45px 8px 50px;isolation:isolate}.orbit{position:absolute;border-radius:50%;z-index:-2}.orbit-one{width:95%;aspect-ratio:1;right:-7%;top:-3%;background:#e6c873;opacity:.85}.orbit-two{width:78%;aspect-ratio:1;right:2%;top:8%;background:#ed785f;opacity:.94;z-index:-1}.orbit-two:after{content:"";position:absolute;inset:13%;border:1px solid rgba(255,255,255,.28);border-radius:50%}.demo-spark{position:absolute;color:var(--ink);z-index:2;line-height:1}.spark-one{font-size:44px;right:-12px;top:4px;transform:rotate(12deg)}.spark-two{font-size:25px;left:-26px;bottom:61px;color:var(--paper)}.shift-card{background:var(--white);padding:25px 28px 0;min-height:403px;box-shadow:0 25px 60px #50361c38;transform:rotate(-2.5deg);border-radius:3px;position:relative;transition:transform .35s ease}.shift-card:hover{transform:rotate(-1deg) translateY(-3px)}.shift-card-top{display:flex;justify-content:space-between;gap:14px;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--line)}.mini-label{font-size:8px;font-weight:800;letter-spacing:1.6px}.shift-toggle{background:var(--paper);border-radius:30px;padding:3px;display:flex}.shift-toggle button{border:0;background:transparent;padding:7px 10px;font-size:9px;cursor:pointer;border-radius:20px;color:var(--muted)}.shift-toggle button.active{background:var(--ink);color:#fff}.quote-mark{position:absolute;top:78px;left:24px;font:70px/.8 var(--serif);color:var(--coral);opacity:.22}.shift-content{min-height:220px;padding:37px 8px 20px;position:relative}.shift-content.changing{animation:quote-in .35s ease}@keyframes quote-in{0%{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.shift-content blockquote{font:27px/1.35 var(--serif);letter-spacing:-.02em;margin:0 0 24px;min-height:108px}.shift-insight{display:flex;align-items:flex-start;gap:9px;color:var(--muted)}.insight-dot{width:6px;height:6px;margin-top:5px;background:var(--coral);border-radius:50%;flex:none}.shift-insight p{margin:0;font-size:10px;line-height:1.5}.shift-card-bottom{border-top:1px solid var(--line);min-height:65px;display:flex;align-items:center;gap:12px}.tiny-avatars{display:flex;padding-left:7px}.tiny-avatars span{width:27px;height:27px;margin-left:-7px;border:2px solid var(--white);border-radius:50%;background:var(--yellow);display:grid;place-items:center;font:11px var(--serif)}.tiny-avatars span+span{background:#b9d0c5}.shift-card-bottom p{font-size:9px;color:var(--muted);margin:0;flex:1}.shift-card-bottom svg{width:30px;color:var(--coral)}.demo-note{text-align:center;font:italic 14px/1.6 var(--serif);margin:38px 0 0;color:var(--ink);position:relative;z-index:2}.scroll-cue{position:absolute;bottom:29px;left:clamp(24px,6.5vw,100px);display:flex;gap:13px;align-items:center}.scroll-cue span{font-size:8px;letter-spacing:2px;font-weight:700}.scroll-cue i{width:48px;height:1px;background:var(--ink);position:relative}.scroll-cue i:after{content:"";position:absolute;width:5px;height:5px;border-right:1px solid;border-bottom:1px solid;transform:rotate(-45deg);right:0;top:-2px}.section{padding:110px clamp(24px,6.5vw,100px)}.section-heading{display:grid;grid-template-columns:1fr 1fr;column-gap:70px;align-items:end;margin-bottom:57px}.section-heading .eyebrow{grid-column:1 / -1}.section-heading h2,.practice-intro h2,.reset-copy h2,.guide-heading h2{font-size:clamp(45px,4.4vw,70px);line-height:1.03;margin-bottom:0}.section-heading>p:last-child{max-width:410px;color:var(--muted);font-size:14px;line-height:1.75;margin:0 0 5px auto}.principles{background:var(--white)}.principle-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.principle{padding:29px clamp(20px,2.2vw,35px) 31px;position:relative}.principle:first-child{padding-left:0}.principle:last-child{padding-right:0}.principle+.principle{border-left:1px solid var(--line)}.principle-number{font:italic 12px var(--serif);color:var(--coral);margin-bottom:34px}.principle-icon{width:44px;height:44px;margin-bottom:25px}.principle-icon svg{width:100%;height:100%;fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.principle h3{font:24px/1.15 var(--serif);letter-spacing:-.02em;margin-bottom:14px}.principle p{color:var(--muted);font-size:12px;line-height:1.75;min-height:65px;margin-bottom:22px}.principle-tag{font-size:8px;text-transform:uppercase;letter-spacing:1px;font-weight:750;color:var(--coral-dark)}.method-note{text-align:center;color:var(--muted);font:italic 13px var(--serif);margin:31px 0 0}.practice-shell{background:var(--ink-deep);color:var(--white);padding:100px clamp(24px,5vw,76px) 110px;position:relative;overflow:hidden}.practice-shell:before{content:"✳";position:absolute;right:-60px;top:-95px;font-size:300px;line-height:1;color:#ffffff06}.practice-intro{text-align:center;max-width:800px;margin:0 auto 55px;position:relative}.eyebrow-light{color:#d9ded8;justify-content:center}.practice-intro h2{margin-bottom:22px}.practice-intro h2 em{color:var(--yellow)}.practice-intro>p{color:#b5c1bb;font-size:14px;line-height:1.7;max-width:560px;margin:0 auto 22px}.privacy-note{display:inline-flex;align-items:center;gap:9px;font-size:9px;color:#9dafa7;text-align:left}.privacy-note svg{width:20px;height:20px;fill:none;stroke:var(--yellow);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}.privacy-note strong{color:#dbe3de;font-weight:600}.untangler{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(300px,.8fr);max-width:1180px;margin:auto;box-shadow:0 30px 90px #00000038;border-radius:6px;overflow:hidden;color:var(--ink)}.builder-panel{background:var(--white);padding:30px clamp(24px,3.2vw,46px) 34px;min-height:590px}.builder-header{display:flex;justify-content:space-between;align-items:center;gap:15px}.builder-header>div{display:flex;align-items:center;gap:15px}.step-count{font-size:9px;color:var(--muted);padding-left:15px;border-left:1px solid var(--line)}.reset-button{border:0;background:none;color:var(--muted);text-decoration:underline;text-underline-offset:3px;font-size:9px;cursor:pointer}.progress-track{height:2px;background:var(--paper-deep);margin-top:19px}.progress-track span{display:block;height:100%;width:25%;background:var(--coral);transition:width .35s ease}.step-dots{display:grid;grid-template-columns:repeat(4,1fr);margin:15px 0 33px}.step-dots button{border:0;padding:0;background:transparent;display:flex;align-items:center;gap:6px;font-size:8px;color:#9a9f98;cursor:pointer;text-align:left}.step-dots button:disabled{cursor:default}.step-dots button span{display:grid;place-items:center;width:19px;height:19px;border:1px solid #cdd0ca;border-radius:50%;font-size:8px}.step-dots button.active{color:var(--ink);font-weight:700}.step-dots button.active span{background:var(--ink);border-color:var(--ink);color:#fff}.step-dots button.complete span{background:#dce7df;border-color:#dce7df;color:var(--ink)}.practice-step{border:0;padding:0;margin:0;min-width:0;animation:step-in .3s ease}.practice-step[hidden]{display:none}@keyframes step-in{0%{opacity:0;transform:translate(8px)}to{opacity:1;transform:none}}.practice-step legend{font:34px/1.2 var(--serif);letter-spacing:-.025em;margin-bottom:10px;padding:0}.step-help{color:var(--muted);font-size:11px;line-height:1.6;margin-bottom:20px}.scenario-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:17px}.scenario-row>span{font-size:8px;color:var(--muted);margin-right:3px}.scenario-row button,.request-starters button{background:var(--paper);border:1px solid transparent;border-radius:20px;padding:6px 10px;font-size:8px;cursor:pointer;transition:background .2s,border-color .2s}.scenario-row button:hover,.request-starters button:hover{border-color:var(--coral);background:#fff5f0}.field-label{display:block;font-size:9px;font-weight:700;margin-bottom:7px}textarea{width:100%;resize:vertical;min-height:100px;background:#f8f6f0;border:1px solid #d9ddd5;border-radius:3px;padding:14px 15px;color:var(--ink);font-size:12px;line-height:1.65;transition:border-color .2s,box-shadow .2s}textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3px #173c3514}textarea::placeholder{color:#929b94}.field-meta{display:flex;justify-content:space-between;gap:12px;margin-top:7px;font-size:8px;color:#969e97}.field-nudge.warning{color:#b75c38}.choice-grid{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0 15px}.choice-chip{border:1px solid #d6dcd4;background:transparent;border-radius:30px;padding:10px 16px;font-size:11px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .18s ease}.choice-chip:before{content:"+";color:#a0aaa2;font-size:13px}.choice-chip:hover{border-color:var(--ink);transform:translateY(-1px)}.choice-chip.selected{background:var(--ink);color:var(--white);border-color:var(--ink)}.choice-chip.selected:before{content:"✓";color:var(--yellow)}.choice-note{font-size:9px;color:var(--muted);margin:0 0 25px}.gentle-tip{display:flex;gap:11px;background:#f3f2e9;border-left:2px solid var(--yellow);padding:12px 14px}.gentle-tip>span{color:var(--coral)}.gentle-tip p{margin:0;font-size:9px;line-height:1.65;color:var(--muted)}.gentle-tip strong{color:var(--ink)}.request-starters{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.form-error{color:#b54c39;font-size:10px;min-height:15px;margin:14px 0 0}.builder-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:5px}.builder-actions .button{min-height:43px;font-size:10px}.button-back{background:transparent;padding:0;color:var(--muted);gap:8px}.button-back:disabled{opacity:.35;cursor:default;transform:none}.button-next{background:var(--ink);color:var(--white);gap:18px}.button-next:hover{background:#25574c}.message-panel{background:#e9dfca;padding:31px clamp(23px,2.8vw,37px);display:flex;flex-direction:column;position:relative}.message-panel:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.17;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(23,60,53,.045) 4px)}.message-panel>*{position:relative;z-index:1}.message-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.live-indicator{display:flex;align-items:center;gap:5px;font-size:7px;font-weight:800;letter-spacing:1px}.live-indicator i{width:5px;height:5px;border-radius:50%;background:var(--coral)}.message-panel h3{font:27px/1.13 var(--serif);letter-spacing:-.02em;margin:29px 0 23px;max-width:230px}.message-paper{background:var(--white);padding:26px 24px;min-height:266px;box-shadow:0 8px 22px #3f341f14;transform:rotate(1.2deg);font:17px/1.6 var(--serif)}.message-paper p{margin:0;display:inline}.message-paper p:after{content:" "}.message-paper .placeholder{color:#a5a79d}.message-paper .placeholder span{border-bottom:1px dashed #c8c5b9}.message-note{color:#777b71;font-size:9px;line-height:1.6;margin:22px 0 15px}.copy-button{margin-top:auto;min-height:45px;display:flex;justify-content:center;align-items:center;gap:9px;border:1px solid var(--ink);background:transparent;font-size:10px;font-weight:700;cursor:pointer;transition:all .2s}.copy-button:hover{background:var(--ink);color:var(--white)}.copy-button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5}.copy-feedback{font-size:9px;text-align:center;min-height:13px;margin:9px 0 -5px}.reset-section{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(60px,10vw,150px);align-items:center;background:var(--paper)}.reset-copy h2{margin-bottom:25px}.reset-copy>p:not(.eyebrow){color:var(--muted);font-size:13px;line-height:1.8;max-width:500px}.reset-benefits{list-style:none;padding:0;margin:30px 0 0;max-width:480px}.reset-benefits li{border-top:1px solid var(--line);padding:13px 0;font-size:11px;display:flex;align-items:center;gap:17px}.reset-benefits span{font:italic 10px var(--serif);color:var(--coral)}.breathing-card{background:var(--white);padding:28px 30px 31px;box-shadow:var(--shadow);max-width:480px;width:100%;justify-self:center;text-align:center;border-radius:4px}.breathing-top{display:flex;justify-content:space-between;align-items:center}#breath-timer{font:16px var(--serif);color:var(--muted);font-variant-numeric:tabular-nums}.breath-space{width:260px;height:260px;position:relative;margin:20px auto 8px;display:grid;place-items:center}.breath-rings,.breath-rings i{position:absolute;inset:0}.breath-rings i{border:1px solid rgba(23,60,53,.1);border-radius:50%}.breath-rings i:nth-child(2){inset:22px}.breath-rings i:nth-child(3){inset:44px}.breath-circle{width:150px;height:150px;background:#d6e1d7;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;box-shadow:0 0 0 14px #d6e1d74d}.breath-circle:after{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.7);border-radius:50%}.breath-circle.inhale{animation:inhale 4s ease-in-out forwards}.breath-circle.exhale{animation:exhale 6s ease-in-out forwards}@keyframes inhale{0%{transform:scale(.78);background:#d6e1d7}to{transform:scale(1.2);background:#e7c76d}}@keyframes exhale{0%{transform:scale(1.2);background:#e7c76d}to{transform:scale(.78);background:#d6e1d7}}#breath-phase{font:24px var(--serif);position:relative;z-index:1}#breath-count{font-size:8px;letter-spacing:1px;text-transform:uppercase;margin-top:5px;position:relative;z-index:1}#breath-instruction{color:var(--muted);font-size:10px;line-height:1.6;min-height:32px;margin:0 0 18px}.button-breathe{background:var(--ink);color:#fff;margin:auto;min-height:45px;font-size:10px;gap:10px}.button-breathe .play-icon{border-color:#ffffff4d;width:22px;height:22px}.field-guide{background:var(--white)}.guide-heading{display:grid;grid-template-columns:1.3fr .7fr;align-items:end;gap:50px;margin-bottom:48px}.guide-heading>p{font-size:13px;line-height:1.75;color:var(--muted);max-width:390px;margin:0 0 5px}.guide-tabs{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}.guide-tabs button{border:0;border-bottom:3px solid transparent;background:transparent;padding:16px 12px;font-size:10px;color:var(--muted);cursor:pointer;margin-bottom:-1px}.guide-tabs button[aria-selected=true]{color:var(--ink);font-weight:750;border-color:var(--coral)}.guide-panel{display:grid;grid-template-columns:1fr 100px 1fr;gap:20px;align-items:center;padding:48px 0}.instead-card,.try-card{padding:32px 34px;min-height:210px;display:flex;flex-direction:column;justify-content:center}.instead-card{background:var(--paper)}.try-card{background:#e3ece5}.instead-card blockquote,.try-card blockquote{font:25px/1.4 var(--serif);letter-spacing:-.02em;margin:20px 0}.instead-card blockquote{color:#7c8179;text-decoration:line-through;text-decoration-color:#ed725a8c;text-decoration-thickness:1px}.draft-label,.try-label{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}.try-label{color:var(--coral-dark)}.guide-arrow{text-align:center;color:var(--coral)}.guide-arrow span{font:italic 12px var(--serif)}.guide-arrow svg{width:60px;margin-top:8px;fill:none;stroke:currentColor;stroke-width:1.2}.guide-panel.changing .instead-card,.guide-panel.changing .try-card{animation:quote-in .3s ease}.guide-footer{border-top:1px solid var(--line);padding-top:31px;display:flex;align-items:center;justify-content:space-between;gap:30px}.guide-footer p{font:italic 18px/1.5 var(--serif);margin:0}.closing{background:var(--ink);color:var(--white);min-height:590px;padding:90px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}.closing .eyebrow{margin-bottom:27px}.closing h2{font-size:clamp(45px,5vw,76px);line-height:1.06;margin-bottom:34px;position:relative;z-index:2}.closing h2 em{color:var(--yellow)}.button-coral{background:var(--coral);color:var(--ink-deep);position:relative;z-index:2}.button-coral:hover{background:#f28670}.closing-art span{position:absolute;border:1px solid rgba(255,255,255,.07);border-radius:50%;width:650px;height:650px;left:calc(50% - 325px);top:calc(50% - 325px)}.closing-art span+span{width:850px;height:850px;left:calc(50% - 425px);top:calc(50% - 425px)}.closing-art i{position:absolute;font-style:normal;color:var(--coral);font-size:35px;left:18%;top:26%;opacity:.8}.site-footer{background:var(--ink-deep);color:#aebcb5;padding:35px clamp(24px,5vw,76px);display:grid;grid-template-columns:1fr 1fr 1.6fr auto;align-items:center;gap:35px;border-top:1px solid rgba(255,255,255,.08)}.footer-brand{color:var(--white)}.site-footer>p{font:italic 12px var(--serif);margin:0}.site-footer .footer-note{font:8px/1.7 var(--sans);color:#82978e}.back-top{width:36px;height:36px;border:1px solid #466159;display:grid;place-items:center;border-radius:50%}.back-top:hover{color:var(--yellow);border-color:var(--yellow)}.toast{position:fixed;z-index:100;bottom:25px;left:50%;transform:translate(-50%,20px);background:var(--ink-deep);color:var(--white);padding:13px 20px;border-radius:4px;box-shadow:var(--shadow);font-size:11px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}.toast.show{opacity:1;transform:translate(-50%)}.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.visible{opacity:1;transform:none}.reveal-delay{transition-delay:.12s}@media(max-width:1100px){.hero{grid-template-columns:1.05fr .95fr;gap:35px;padding-left:45px;padding-right:45px}h1{font-size:clamp(58px,7vw,78px)}.hero-demo{padding-left:0;padding-right:0}.shift-card{padding-left:22px;padding-right:22px}.shift-card-top{align-items:flex-start}.shift-card-top>.mini-label{max-width:80px;line-height:1.5}.shift-content blockquote{font-size:23px}.principle h3{font-size:21px}.untangler{grid-template-columns:1.25fr .75fr}.message-paper{font-size:15px;padding:22px 19px}.site-footer{grid-template-columns:1fr 1fr auto}.footer-brand+p{display:none}}@media(max-width:820px){.site-header{height:78px}.main-nav{display:none}.hero{min-height:auto;grid-template-columns:1fr;padding-top:60px;padding-bottom:85px;gap:40px}.hero-copy{max-width:650px}h1{font-size:clamp(57px,11vw,86px)}.hero-intro{max-width:520px}.hero-demo{max-width:520px;width:90%;margin:0 auto}.shift-card-top>.mini-label{max-width:none}.shift-content blockquote{font-size:26px}.scroll-cue{bottom:26px}.section-heading{grid-template-columns:1fr}.section-heading>p:last-child{margin:24px 0 0}.principle-grid{grid-template-columns:1fr 1fr}.principle:nth-child(3){border-left:0;border-top:1px solid var(--line);padding-left:0}.principle:nth-child(4){border-top:1px solid var(--line)}.principle p{min-height:auto}.untangler{grid-template-columns:1fr;max-width:650px}.message-panel{min-height:490px}.message-panel h3{max-width:none}.message-paper{font-size:18px}.reset-section{grid-template-columns:1fr;gap:45px}.reset-copy{max-width:620px}.guide-heading{grid-template-columns:1fr;gap:22px}.guide-tabs{grid-template-columns:1fr 1fr}.guide-panel{grid-template-columns:1fr 60px 1fr;gap:10px}.instead-card,.try-card{padding:26px 22px}.instead-card blockquote,.try-card blockquote{font-size:21px}}@media(max-width:560px){.site-header{padding:0 20px}.header-cta{font-size:9px;gap:10px}.brand{font-size:9px}.brand-mark{width:31px;height:31px}.hero{padding:47px 22px 78px}.eyebrow{font-size:8px;letter-spacing:1.7px;margin-bottom:20px}h1{font-size:clamp(45px,13vw,64px);line-height:.98}.hero-intro{font-size:15px}.hero-actions{align-items:flex-start;gap:20px;flex-direction:column}.trust-list{gap:12px;flex-wrap:wrap}.hero-demo{width:94%;padding-top:30px}.shift-card{min-height:420px;padding:20px 18px 0}.shift-card-top{flex-direction:column}.shift-card-top>.mini-label{max-width:none}.shift-content{padding-top:30px}.shift-content blockquote{font-size:24px}.demo-note{font-size:12px}.scroll-cue{left:22px}.section{padding:75px 22px}.section-heading h2,.practice-intro h2,.reset-copy h2,.guide-heading h2{font-size:43px}.principle-grid{grid-template-columns:1fr}.principle,.principle:first-child,.principle:nth-child(3),.principle:last-child{padding:26px 0;border-left:0;border-top:1px solid var(--line)}.principle:first-child{border-top:0}.principle-number,.principle-icon{margin-bottom:17px}.method-note{line-height:1.6}.practice-shell{padding:75px 14px}.practice-intro{padding:0 10px}.builder-panel{padding:24px 19px 27px;min-height:610px}.builder-header>div{flex-direction:column;align-items:flex-start;gap:5px}.step-count{border:0;padding:0}.step-dots button{flex-direction:column;align-items:flex-start;gap:5px}.practice-step legend{font-size:30px}.scenario-row{gap:5px}.scenario-row>span{width:100%}.choice-chip{padding:9px 12px;font-size:10px}.builder-actions .button{padding:0 15px}.button-next{gap:8px}.message-panel{padding:28px 22px}.breathing-card{padding:23px 18px}.breath-space{width:240px;height:240px}.guide-tabs{display:flex;overflow-x:auto}.guide-tabs button{flex:0 0 48%}.guide-panel{grid-template-columns:1fr;padding:30px 0}.guide-arrow{display:flex;align-items:center;justify-content:center;gap:12px}.guide-arrow svg{transform:rotate(90deg);width:35px;margin:0}.instead-card,.try-card{min-height:190px}.guide-footer{flex-direction:column;align-items:flex-start}.closing{min-height:540px}.closing h2{font-size:44px}.site-footer{grid-template-columns:1fr auto;gap:25px}.site-footer .footer-note{grid-column:1 / -1;grid-row:2}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#practice">Skip to the conversation tool</a>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Common Ground home">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 7.2A12.8 12.8 0 0 0 7.2 20c0 2.4.7 4.7 1.9 6.7l-1.7 5.4 5.7-1.5A12.8 12.8 0 1 0 20 7.2Z" fill="currentColor"/>
+        <path d="M20 12.1a7.9 7.9 0 1 0 6.9 11.8l4.1 1.1-1.2-3.9A7.9 7.9 0 0 0 20 12.1Z" fill="#ef725a"/>
+      </svg>
+      <span>COMMON<br>GROUND</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#practice">The practice</a>
+      <a href="#reset">Take a pause</a>
+      <a href="#field-guide">Field guide</a>
+    </nav>
+    <a class="header-cta" href="#practice">Start a repair <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span>A practice for being human</p>
+        <h1 id="hero-title">Less reacting.<br>More <em>understanding.</em></h1>
+        <p class="hero-intro">A private space to untangle what you’re feeling, understand what you need, and find words that bring you closer—not further apart.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#practice">Untangle a conversation <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#reset"><span class="play-icon" aria-hidden="true">▶</span> I need a minute first</a>
+        </div>
+        <ul class="trust-list" aria-label="Privacy and access features">
+          <li><span aria-hidden="true">✓</span> Nothing is saved</li>
+          <li><span aria-hidden="true">✓</span> No sign-up</li>
+          <li><span aria-hidden="true">✓</span> Always free</li>
+        </ul>
+      </div>
+
+      <div class="hero-demo reveal reveal-delay" aria-label="Example of reframing a reactive message">
+        <div class="orbit orbit-one" aria-hidden="true"></div>
+        <div class="orbit orbit-two" aria-hidden="true"></div>
+        <span class="demo-spark spark-one" aria-hidden="true">✳</span>
+        <span class="demo-spark spark-two" aria-hidden="true">✳</span>
+        <div class="shift-card">
+          <div class="shift-card-top">
+            <span class="mini-label">THE TWO-MINUTE SHIFT</span>
+            <div class="shift-toggle" role="group" aria-label="Show the reactive or repaired message">
+              <button class="active" type="button" data-shift="reflex" aria-pressed="true">The reflex</button>
+              <button type="button" data-shift="repair" aria-pressed="false">The repair</button>
+            </div>
+          </div>
+          <div class="quote-mark" aria-hidden="true">“</div>
+          <div class="shift-content" aria-live="polite">
+            <blockquote id="shift-quote">You never listen to me. You obviously don’t care about what I have to say.</blockquote>
+            <div class="shift-insight" id="shift-insight">
+              <span class="insight-dot"></span>
+              <p>A judgment, a generalization, and a guess about their intentions.</p>
+            </div>
+          </div>
+          <div class="shift-card-bottom">
+            <div class="tiny-avatars" aria-hidden="true"><span>Y</span><span>T</span></div>
+            <p id="shift-caption">Same hurt. Different doorway.</p>
+            <svg viewBox="0 0 45 20" aria-hidden="true"><path d="M1 10h40m-7-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+        </div>
+        <p class="demo-note">You don’t have to be calm to begin.<br>You only have to be willing to pause.</p>
+      </div>
+      <a href="#why" class="scroll-cue" aria-label="Scroll to learn how it works"><span>SCROLL TO CONNECT</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <section class="principles section" id="why" aria-labelledby="principles-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span>A small but radical idea</p>
+        <h2 id="principles-title">Most conflicts aren’t about<br>who’s <em>right.</em></h2>
+        <p>They’re about something that matters, asking to be heard. Four small shifts help us hear it.</p>
+      </div>
+      <ol class="principle-grid">
+        <li class="principle reveal">
+          <div class="principle-number">01</div>
+          <div class="principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M7 12h34v24H7zM7 12l17 13 17-13M7 36l12-14m22 14L29 22"/></svg>
+          </div>
+          <h3>Start with the moment</h3>
+          <p>Describe what a camera could capture. No motives, labels, or “always” and “never.”</p>
+          <span class="principle-tag">Observation, not evaluation</span>
+        </li>
+        <li class="principle reveal">
+          <div class="principle-number">02</div>
+          <div class="principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M24 41S6 31 6 18a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 13-18 23-18 23Z"/><path d="M13 24h6l3-7 5 14 3-7h6"/></svg>
+          </div>
+          <h3>Name your inner weather</h3>
+          <p>“Hurt” opens a door that “you don’t care” closes. Feelings are information, not indictments.</p>
+          <span class="principle-tag">Feelings, not accusations</span>
+        </li>
+        <li class="principle reveal">
+          <div class="principle-number">03</div>
+          <div class="principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="8"/><path d="M24 7v9m0 16v9M7 24h9m16 0h9"/></svg>
+          </div>
+          <h3>Find what matters</h3>
+          <p>Under frustration is often a need for respect, rest, clarity, trust, or connection.</p>
+          <span class="principle-tag">Needs, not blame</span>
+        </li>
+        <li class="principle reveal">
+          <div class="principle-number">04</div>
+          <div class="principle-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M8 9h32v25H23L12 41v-7H8Z"/><path d="M16 18h16M16 25h10"/></svg>
+          </div>
+          <h3>Make a doable ask</h3>
+          <p>Invite one specific, positive action. A real request leaves room for the other person to say no.</p>
+          <span class="principle-tag">Requests, not demands</span>
+        </li>
+      </ol>
+      <p class="method-note reveal">Inspired by the principles of Nonviolent Communication. Made for ordinary, imperfect humans.</p>
+    </section>
+
+    <section class="practice-shell" id="practice" aria-labelledby="practice-title">
+      <div class="practice-intro reveal">
+        <p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span>Your turn</p>
+        <h2 id="practice-title">Turn a reaction into<br><em>a conversation.</em></h2>
+        <p>Think of one real moment. We’ll take it apart gently, then put it into words you can actually say.</p>
+        <div class="privacy-note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg><span><strong>This stays with you.</strong> Your words never leave this page.</span></div>
+      </div>
+
+      <div class="untangler reveal">
+        <div class="builder-panel">
+          <div class="builder-header">
+            <div>
+              <span class="mini-label">THE CONVERSATION UNTANGLER</span>
+              <span class="step-count" id="step-count">Step 1 of 4</span>
+            </div>
+            <button type="button" class="reset-button" id="reset-practice" aria-label="Clear the conversation and start over">Start over</button>
+          </div>
+          <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+          <div class="step-dots" aria-label="Practice progress">
+            <button class="active" type="button" data-go-step="0" aria-current="step"><span>1</span>Moment</button>
+            <button type="button" data-go-step="1" disabled><span>2</span>Feeling</button>
+            <button type="button" data-go-step="2" disabled><span>3</span>Need</button>
+            <button type="button" data-go-step="3" disabled><span>4</span>Request</button>
+          </div>
+
+          <form id="practice-form" novalidate>
+            <fieldset class="practice-step active" data-step="0">
+              <legend>What happened?</legend>
+              <p class="step-help">Stick to what a camera would have caught. Just this one moment, without interpreting it.</p>
+              <div class="scenario-row" aria-label="Try an example">
+                <span>Try an example:</span>
+                <button type="button" data-scenario="meeting">Interrupted</button>
+                <button type="button" data-scenario="message">Unanswered text</button>
+                <button type="button" data-scenario="chores">Household tasks</button>
+              </div>
+              <label class="field-label" for="observation">The observable moment</label>
+              <textarea id="observation" rows="4" maxlength="360" placeholder="During our meeting today, I was interrupted while I was explaining my idea…"></textarea>
+              <div class="field-meta"><span id="observation-nudge" class="field-nudge">Tip: begin with “When…” or “During…”</span><span id="observation-count">0 / 360</span></div>
+            </fieldset>
+
+            <fieldset class="practice-step" data-step="1" hidden>
+              <legend>How did it land?</legend>
+              <p class="step-help">Choose up to three honest feelings. Not what they did wrong—what happened inside you.</p>
+              <div class="choice-grid feeling-grid" id="feeling-choices" aria-label="Choose your feelings"></div>
+              <p class="choice-note" id="feeling-note">There are no wrong answers here.</p>
+              <div class="gentle-tip"><span aria-hidden="true">↳</span><p><strong>A useful distinction:</strong> “I feel ignored” points at their behavior. “I feel lonely” or “I feel frustrated” names your experience.</p></div>
+            </fieldset>
+
+            <fieldset class="practice-step" data-step="2" hidden>
+              <legend>What mattered to you?</legend>
+              <p class="step-help">Under every difficult feeling is something you value. Choose one or two needs.</p>
+              <div class="choice-grid need-grid" id="need-choices" aria-label="Choose your needs"></div>
+              <p class="choice-note" id="need-note">Needs are universal. Strategies are how we meet them.</p>
+              <div class="gentle-tip"><span aria-hidden="true">↳</span><p><strong>You’re not being needy.</strong> Naming a need makes the conversation about something both people can understand.</p></div>
+            </fieldset>
+
+            <fieldset class="practice-step" data-step="3" hidden>
+              <legend>What could you ask for?</legend>
+              <p class="step-help">Make it specific, positive, and doable now. A request is an invitation, not a test.</p>
+              <label class="field-label" for="request">One clear next step</label>
+              <textarea id="request" rows="3" maxlength="280" placeholder="Would you be willing to let me finish my thought before responding?"></textarea>
+              <div class="field-meta"><span id="request-nudge" class="field-nudge">Try “Could we…” or “Would you be willing to…”</span><span id="request-count">0 / 280</span></div>
+              <div class="request-starters" aria-label="Request sentence starters">
+                <button type="button" data-starter="Could we ">Could we…</button>
+                <button type="button" data-starter="Would you be willing to ">Would you be willing to…</button>
+                <button type="button" data-starter="Can we agree to ">Can we agree to…</button>
+              </div>
+            </fieldset>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+            <div class="builder-actions">
+              <button class="button button-back" id="back-step" type="button" disabled><span aria-hidden="true">←</span> Back</button>
+              <button class="button button-next" id="next-step" type="button">Next: name the feeling <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="message-panel" aria-labelledby="message-title">
+          <div class="message-top">
+            <span class="mini-label">YOUR WORDS, PUT TOGETHER</span>
+            <span class="live-indicator"><i></i> LIVE</span>
+          </div>
+          <h3 id="message-title">A message you can stand behind.</h3>
+          <div class="message-paper" id="message-preview" aria-live="polite">
+            <p id="preview-observation" class="placeholder">When <span>the moment you describe</span>,</p>
+            <p id="preview-feeling" class="placeholder">I felt <span>your feeling</span></p>
+            <p id="preview-need" class="placeholder">because I needed <span>what matters to you</span>.</p>
+            <p id="preview-request" class="placeholder">Would you be willing to <span>one clear next step</span>?</p>
+          </div>
+          <p class="message-note">Say it in your own voice. You don’t need to use every line.</p>
+          <button class="copy-button" id="copy-message" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg><span>Copy my message</span></button>
+          <p class="copy-feedback" id="copy-feedback" role="status"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="reset-section section" id="reset" aria-labelledby="reset-title">
+      <div class="reset-copy reveal">
+        <p class="eyebrow"><span class="eyebrow-line"></span>Before the words</p>
+        <h2 id="reset-title">Give your nervous system<br><em>a way out.</em></h2>
+        <p>You don’t have to solve everything while your body is sounding an alarm. Take one minute to make a little room between what happened and what you do next.</p>
+        <ul class="reset-benefits">
+          <li><span>01</span>Breathe in gently through your nose.</li>
+          <li><span>02</span>Let the exhale be a little longer.</li>
+          <li><span>03</span>Return when you feel 1% more choice.</li>
+        </ul>
+      </div>
+      <div class="breathing-card reveal">
+        <div class="breathing-top"><span class="mini-label">A 60-SECOND RESET</span><span id="breath-timer">1:00</span></div>
+        <div class="breath-space">
+          <div class="breath-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="breath-circle" id="breath-circle"><span id="breath-phase">Ready?</span><small id="breath-count">just as you are</small></div>
+        </div>
+        <p id="breath-instruction">No need to take a deep breath.<br>Just let it be easy.</p>
+        <button class="button button-breathe" id="breath-toggle" type="button"><span class="play-icon" aria-hidden="true">▶</span><span>Begin one minute</span></button>
+      </div>
+    </section>
+
+    <section class="field-guide section" id="field-guide" aria-labelledby="guide-title">
+      <div class="guide-heading reveal">
+        <div>
+          <p class="eyebrow"><span class="eyebrow-line"></span>Keep this in your pocket</p>
+          <h2 id="guide-title">Words that <em>open doors.</em></h2>
+        </div>
+        <p>A few translations for the moments when your first draft is more likely to start a fight than finish one.</p>
+      </div>
+      <div class="guide-tabs reveal" role="tablist" aria-label="Conversation situations">
+        <button type="button" role="tab" aria-selected="true" aria-controls="guide-panel" id="tab-listen" data-guide="listen">When you feel unheard</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="guide-panel" id="tab-defensive" data-guide="defensive" tabindex="-1">When they get defensive</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="guide-panel" id="tab-boundary" data-guide="boundary" tabindex="-1">When you need a boundary</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="guide-panel" id="tab-online" data-guide="online" tabindex="-1">Before you post online</button>
+      </div>
+      <div class="guide-panel reveal" id="guide-panel" role="tabpanel" aria-labelledby="tab-listen" tabindex="0">
+        <div class="instead-card">
+          <span class="mini-label">THE FIRST DRAFT</span>
+          <blockquote id="guide-instead">“You never listen to me.”</blockquote>
+          <span class="draft-label">Closed with a conclusion</span>
+        </div>
+        <div class="guide-arrow" aria-hidden="true"><span>instead</span><svg viewBox="0 0 64 24"><path d="M1 12h59m-8-8 8 8-8 8"/></svg></div>
+        <div class="try-card">
+          <span class="mini-label">THE DOORWAY</span>
+          <blockquote id="guide-try">“I want to understand each other. Could we each take two minutes to speak without interrupting?”</blockquote>
+          <span class="try-label">Open with a shared purpose</span>
+        </div>
+      </div>
+      <div class="guide-footer reveal"><p>Kindness doesn’t mean avoiding the hard thing.<br>It means making it possible to hear.</p><a href="#practice" class="button button-primary">Try it with your words <span aria-hidden="true">↑</span></a></div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="closing-art" aria-hidden="true"><span></span><span></span><i>✳</i></div>
+      <p class="eyebrow eyebrow-light">A world with more common ground</p>
+      <h2 id="closing-title">One conversation<br>won’t fix <em>everything.</em><br>It can change <em>what happens next.</em></h2>
+      <a href="#practice" class="button button-coral">Begin with yours <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#top"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 7.2A12.8 12.8 0 0 0 7.2 20c0 2.4.7 4.7 1.9 6.7l-1.7 5.4 5.7-1.5A12.8 12.8 0 1 0 20 7.2Z" fill="currentColor"/><path d="M20 12.1a7.9 7.9 0 1 0 6.9 11.8l4.1 1.1-1.2-3.9A7.9 7.9 0 0 0 20 12.1Z" fill="#ef725a"/></svg><span>COMMON<br>GROUND</span></a>
+    <p>Made for the space between people.</p>
+    <p class="footer-note">A self-guided reflection tool, not a substitute for professional support.<br>If you’re in immediate danger, prioritize safety and contact local emergency support.</p>
+    <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module">var H=["angry","anxious","disappointed","embarrassed","frustrated","hurt","lonely","overwhelmed","sad","uncertain","worried","resentful"],Y=["to be heard","clarity","consideration","trust","respect","rest","support","fairness","autonomy","reliability","connection","reassurance"],j={meeting:"During our meeting today, I was interrupted twice while I was explaining my idea",message:"When I saw that my message from yesterday still had no reply, even though we had agreed to make a decision today",chores:"When I came home and saw the dishes still in the sink after we had agreed to share the cleaning"},F=["Next: name the feeling","Next: find the need","Next: make a request","Finish my message"],M=o=>o.trim().replace(/[.!?]+$/,""),W=o=>o&&o.charAt(0).toUpperCase()+o.slice(1),T=o=>o&&o.charAt(0).toLowerCase()+o.slice(1);function I(o){return o.length<2?o[0]||"":o.length===2?`${o[0]} and ${o[1]}`:`${o.slice(0,-1).join(", ")}, and ${o.at(-1)}`}function B(o){let t={step:0,furthestStep:0,feelings:[],needs:[]},y=document.querySelector("#practice-form"),p=[...document.querySelectorAll(".practice-step")],g=[...document.querySelectorAll("[data-go-step]")],i=document.querySelector("#observation"),c=document.querySelector("#request"),a=document.querySelector("#next-step"),d=document.querySelector("#back-step"),s=document.querySelector("#form-error"),l=document.querySelector("#reset-practice"),h=!1,b;function C(e,r,n){let u=document.querySelector(e);r.forEach(m=>{let w=document.createElement("button");w.type="button",w.className="choice-chip",w.textContent=m,w.dataset.value=m,w.setAttribute("aria-pressed","false"),w.addEventListener("click",()=>{let k=t[n],$=k.indexOf(m),N=n==="feelings"?3:2;if($>=0)k.splice($,1);else if(k.length<N)k.push(m);else{o(`Choose up to ${N}. Remove one to make another choice.`);return}s.textContent="",q(u,k),f()}),u.append(w)})}function q(e,r){[...e.children].forEach(n=>{let u=r.includes(n.dataset.value);n.classList.toggle("selected",u),n.setAttribute("aria-pressed",String(u))})}C("#feeling-choices",H,"feelings"),C("#need-choices",Y,"needs");function L(){let e=M(i.value);return e?/^(when|during|after|before|while|as)\b/i.test(e)?W(e):`When ${T(e)}`:""}function A(){let e=M(c.value);return e?/^(could|would|can|will|are|is|do|did|may|might|shall)\b/i.test(e)?`${W(e)}?`:`Would you be willing to ${T(e)}?`:""}function S(e,r,n){let u=document.querySelector(e);if(u.classList.toggle("placeholder",!r),u.replaceChildren(),r)u.textContent=r;else{u.append(document.createTextNode(n.before));let m=document.createElement("span");m.textContent=n.highlight,u.append(m,document.createTextNode(n.after))}}function f(){let e=L(),r=t.feelings.length?`I felt ${I(t.feelings)}`:"",n=t.needs.length?`because I needed ${I(t.needs)}.`:"",u=A();S("#preview-observation",e?`${e},`:"",{before:"When ",highlight:"the moment you describe",after:","}),S("#preview-feeling",r,{before:"I felt ",highlight:"your feeling",after:""}),S("#preview-need",n,{before:"because I needed ",highlight:"what matters to you",after:"."}),S("#preview-request",u,{before:"Would you be willing to ",highlight:"one clear next step",after:"?"})}function E(){let e=[],r=L();if(r&&e.push(`${r},`),t.feelings.length){let n=`I felt ${I(t.feelings)}`;t.needs.length?n+=` because I needed ${I(t.needs)}.`:n+=".",e.push(n)}else t.needs.length&&e.push(`This mattered to me because I needed ${I(t.needs)}.`);return c.value.trim()&&e.push(A()),e.join(" ")}function v(){return t.step===0&&i.value.trim().length<8?(s.textContent="Add a little more detail about this one moment.",i.focus(),!1):t.step===1&&t.feelings.length===0?(s.textContent="Choose at least one feeling. An honest guess is enough.",document.querySelector("#feeling-choices button")?.focus(),!1):t.step===2&&t.needs.length===0?(s.textContent="Choose one thing that mattered to you.",document.querySelector("#need-choices button")?.focus(),!1):t.step===3&&c.value.trim().length<5?(s.textContent="Add one small, specific action to ask for.",c.focus(),!1):(s.textContent="",!0)}function x(e,r=!0){t.step=Math.max(0,Math.min(3,e)),t.furthestStep=Math.max(t.furthestStep,t.step),p.forEach((n,u)=>{let m=u===t.step;n.hidden=!m,n.classList.toggle("active",m)}),g.forEach((n,u)=>{n.disabled=u>t.furthestStep,n.classList.toggle("active",u===t.step),n.classList.toggle("complete",u<t.step),u===t.step?n.setAttribute("aria-current","step"):n.removeAttribute("aria-current")}),document.querySelector("#step-count").textContent=`Step ${t.step+1} of 4`,document.querySelector("#progress-bar").style.width=`${(t.step+1)*25}%`,a.innerHTML=`${F[t.step]} <span aria-hidden="true">→</span>`,d.disabled=t.step===0,s.textContent="",r&&p[t.step].querySelector("legend")?.focus({preventScroll:!0})}a.addEventListener("click",()=>{v()&&(t.step<3?x(t.step+1):(document.querySelector(".message-panel").scrollIntoView({behavior:"smooth",block:"center"}),document.querySelector("#copy-message").focus({preventScroll:!0}),o("Your message is ready. Make it sound like you.")))}),d.addEventListener("click",()=>x(t.step-1)),g.forEach(e=>{e.addEventListener("click",()=>x(Number(e.dataset.goStep)))}),y.addEventListener("submit",e=>e.preventDefault()),y.addEventListener("keydown",e=>{e.key==="Enter"&&(e.metaKey||e.ctrlKey)&&(e.preventDefault(),a.click())}),document.querySelectorAll("[data-scenario]").forEach(e=>{e.addEventListener("click",()=>{i.value=j[e.dataset.scenario],i.dispatchEvent(new Event("input")),i.focus(),i.setSelectionRange(i.value.length,i.value.length)})}),i.addEventListener("input",()=>{let e=i.value.length;document.querySelector("#observation-count").textContent=`${e} / 360`;let r=document.querySelector("#observation-nudge"),n=/\b(always|never|obviously|clearly|lazy|selfish|stupid|rude|doesn['’]t care|don['’]t care)\b/i.test(i.value);r.classList.toggle("warning",n),r.textContent=n?"Could a camera verify that? Try describing only this specific moment.":e>0?"Good—keep it specific to this one moment.":"Tip: begin with “When…” or “During…”",s.textContent="",f()}),c.addEventListener("input",()=>{let e=c.value.length;document.querySelector("#request-count").textContent=`${e} / 280`;let r=document.querySelector("#request-nudge"),n=/^(be better|do better|stop it|change|care more|be nice|fix this)[.!?]*$/i.test(c.value.trim());r.classList.toggle("warning",n),r.textContent=n?"What would “better” look like? Name one observable action.":"Try “Could we…” or “Would you be willing to…”",s.textContent="",f()}),document.querySelectorAll("[data-starter]").forEach(e=>{e.addEventListener("click",()=>{let r=c.value.trim(),n=e.dataset.starter;if(!r||/^(could we|would you be willing to|can we agree to)\s*$/i.test(r))c.value=n;else{let u=r.replace(/^(could we|would you be willing to|can we agree to)\s+/i,"");c.value=n+T(u)}c.dispatchEvent(new Event("input")),c.focus(),c.setSelectionRange(c.value.length,c.value.length)})});async function R(e){if(navigator.clipboard&&window.isSecureContext)try{return await navigator.clipboard.writeText(e),!0}catch{}let r=document.createElement("textarea");r.value=e,r.setAttribute("readonly",""),r.style.cssText="position:fixed;left:-9999px;top:0;",document.body.append(r),r.select();let n=!1;try{n=document.execCommand("copy")}catch{n=!1}return r.remove(),n}document.querySelector("#copy-message").addEventListener("click",async()=>{let e=E(),r=document.querySelector("#copy-feedback");if(!e){r.textContent="Start with the moment, then your draft will appear here.",x(0,!1),i.focus();return}let n=await R(e);r.textContent=n?"Copied. Take a breath before you send it.":"Copy not available—select your message above instead.",n&&o("Message copied to your clipboard.")});function U(){i.value="",c.value="",t.feelings=[],t.needs=[],t.furthestStep=0,q(document.querySelector("#feeling-choices"),t.feelings),q(document.querySelector("#need-choices"),t.needs),i.dispatchEvent(new Event("input")),c.dispatchEvent(new Event("input")),document.querySelector("#copy-feedback").textContent="",l.textContent="Start over",h=!1,x(0,!1),o("A clean page. Nothing was saved.")}l.addEventListener("click",()=>{if((i.value||c.value||t.feelings.length||t.needs.length)&&!h){h=!0,l.textContent="Clear everything?",clearTimeout(b),b=setTimeout(()=>{h=!1,l.textContent="Start over"},3500);return}clearTimeout(b),U()}),f(),x(0,!1)}function D(){let o=document.querySelector("#breath-toggle"),t=o.querySelector("span:last-child"),y=o.querySelector(".play-icon"),p=document.querySelector("#breath-circle"),g=document.querySelector("#breath-phase"),i=document.querySelector("#breath-count"),c=document.querySelector("#breath-timer"),a=document.querySelector("#breath-instruction"),d=!1,s=0,l=0,h=null,b="";function C(f,E){f!==b&&(b=f,p.classList.remove("inhale","exhale"),p.offsetWidth,p.classList.add(f),g.textContent=f==="inhale"?"Breathe in":"Breathe out",a.innerHTML=f==="inhale"?"Let the breath arrive.<br>No forcing, no filling up.":"Unclench your jaw.<br>Let the breath leave slowly.");let v=f==="inhale"?4:6;i.textContent=`${Math.max(1,v-Math.floor(E))} seconds`}function q(){clearInterval(h),h=null,d=!1,s=0,b="",p.classList.remove("inhale","exhale"),g.textContent="A little room.",i.textContent="notice what changed",c.textContent="1:00",a.innerHTML="You don’t have to feel completely calm.<br>A little more choice is enough.",t.textContent="Begin another minute",y.textContent="▶",o.setAttribute("aria-pressed","false")}function L(){let f=s+(performance.now()-l);if(f>=6e4){q();return}let E=Math.ceil((6e4-f)/1e3);c.textContent=`0:${String(E).padStart(2,"0")}`;let v=f/1e3%10;v<4?C("inhale",v):C("exhale",v-4)}function A(){d=!0,l=performance.now(),t.textContent="Pause for now",y.textContent="Ⅱ",o.setAttribute("aria-pressed","true"),L(),h=setInterval(L,150)}function S(){s+=performance.now()-l,clearInterval(h),h=null,d=!1,b="",p.classList.remove("inhale","exhale"),g.textContent="Paused",i.textContent="take all the time you need",a.innerHTML="There is no perfect way to do this.<br>Continue whenever you’re ready.",t.textContent="Continue breathing",y.textContent="▶",o.setAttribute("aria-pressed","false")}o.setAttribute("aria-pressed","false"),o.addEventListener("click",()=>d?S():A())}var z={reflex:{quote:"You never listen to me. You obviously don’t care about what I have to say.",insight:"A judgment, a generalization, and a guess about their intentions.",caption:"Same hurt. Different doorway."},repair:{quote:"When I was interrupted just now, I felt frustrated because I need to be heard. Could you let me finish before you respond?",insight:"A specific moment, an honest feeling, a shared need, and a clear request.",caption:"Clear enough to hear. Open enough to answer."}},G={listen:{instead:"“You never listen to me.”",try:"“I want to understand each other. Could we each take two minutes to speak without interrupting?”",label:"Open with a shared purpose"},defensive:{instead:"“Why are you being so defensive?”",try:"“I’m not trying to attack you. Would it help to take a break and come back to this in twenty minutes?”",label:"Lower the threat, keep the thread"},boundary:{instead:"“You can’t talk to me like that.”",try:"“I want to work this out, and I’m not willing to continue while we’re shouting. I’ll come back at 7.”",label:"Say what you will do, not what they must"},online:{instead:"“Anyone who believes that is an idiot.”",try:"“I see this differently. The part I’m concerned about is… What am I missing about your perspective?”",label:"Be firm about ideas, curious about people"}};function O(){let o=window.matchMedia("(prefers-reduced-motion: reduce)").matches,t=document.querySelectorAll(".reveal");if(o||!("IntersectionObserver"in window))t.forEach(a=>a.classList.add("visible"));else{let a=new IntersectionObserver(d=>{d.forEach(s=>{s.isIntersecting&&(s.target.classList.add("visible"),a.unobserve(s.target))})},{threshold:.08,rootMargin:"0px 0px -30px"});t.forEach(d=>a.observe(d))}let y=[...document.querySelectorAll("[data-shift]")],p=document.querySelector(".shift-content");y.forEach(a=>{a.addEventListener("click",()=>{let d=a.dataset.shift,s=z[d];y.forEach(l=>{let h=l===a;l.classList.toggle("active",h),l.setAttribute("aria-pressed",String(h))}),document.querySelector("#shift-quote").textContent=s.quote,document.querySelector("#shift-insight p").textContent=s.insight,document.querySelector("#shift-caption").textContent=s.caption,p.classList.remove("changing"),p.offsetWidth,p.classList.add("changing")})});let g=[...document.querySelectorAll("[data-guide]")],i=document.querySelector("#guide-panel");function c(a,d=!1){let s=G[a.dataset.guide];g.forEach(l=>{let h=l===a;l.setAttribute("aria-selected",String(h)),l.tabIndex=h?0:-1}),i.setAttribute("aria-labelledby",a.id),document.querySelector("#guide-instead").textContent=s.instead,document.querySelector("#guide-try").textContent=s.try,i.querySelector(".try-label").textContent=s.label,i.classList.remove("changing"),i.offsetWidth,i.classList.add("changing"),d&&a.focus()}g.forEach((a,d)=>{a.addEventListener("click",()=>c(a)),a.addEventListener("keydown",s=>{let l;s.key==="ArrowRight"&&(l=(d+1)%g.length),s.key==="ArrowLeft"&&(l=(d-1+g.length)%g.length),s.key==="Home"&&(l=0),s.key==="End"&&(l=g.length-1),l!==void 0&&(s.preventDefault(),c(g[l],!0))})})}var P;function _(o){let t=document.querySelector("#toast");clearTimeout(P),t.textContent=o,t.classList.add("show"),P=setTimeout(()=>t.classList.remove("show"),3200)}O();B(_);D();
+</script>
+</body>
+</html>

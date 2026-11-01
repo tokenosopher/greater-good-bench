@@ -1,0 +1,71 @@
+{
+  "id": "gpt-6.1-sol-cx-high-20261029-183606",
+  "page": "svg",
+  "model": "openai/gpt-6.1-sol",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:36:06Z",
+  "batch": "2026-10-29-183606-svg",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 6
+    }
+  },
+  "metrics": {
+    "duration_ms": 203109,
+    "cost_usd": 0.0,
+    "tool_calls": 6,
+    "turns": 1,
+    "tokens_total": 33977,
+    "tokens_input": 23725,
+    "tokens_output": 10252,
+    "tokens_reasoning": 4155,
+    "tokens_cache_read": 213376
+  },
+  "thumb": "media/everyone-is-someone.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 258466,
+        "path": "media/everyone-is-someone.jpg",
+        "thumb": "media/everyone-is-someone.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 73968,
+        "path": "media/everyone-is-someone.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make_poster.py",
+      "src/outline_text.swift"
+    ]
+  }
+}

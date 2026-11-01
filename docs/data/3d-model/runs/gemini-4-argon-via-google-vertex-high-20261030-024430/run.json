@@ -1,0 +1,153 @@
+{
+  "id": "gemini-4-argon-via-google-vertex-high-20261030-024430",
+  "page": "3d-model",
+  "model": "openrouter/google/gemini-4-argon@google-vertex",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-30T02:44:30Z",
+  "batch": "2026-10-30-024430-3d-model",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": {
+      "only": [
+        "google-vertex"
+      ],
+      "allow_fallbacks": false
+    },
+    "served": [
+      "Google"
+    ],
+    "cost_usd": 1.6739736,
+    "pi_cost_usd": 1.6739736
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 25,
+      "read": 25,
+      "bash": 1,
+      "mcp__blender__get_blendfile_summary_datablocks": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 1706681,
+    "cost_usd": 1.6739736,
+    "tool_calls": 52,
+    "turns": 40,
+    "tokens_total": 358797,
+    "tokens_input": 269429,
+    "tokens_output": 89368,
+    "tokens_reasoning": 26237,
+    "tokens_cache_read": 2414356
+  },
+  "thumb": "media/01_hero_overview.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 171411,
+        "path": "media/01_hero_overview.jpg",
+        "thumb": "media/01_hero_overview.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 169868,
+        "path": "media/02_3q_sanctuary_panorama.jpg",
+        "thumb": "media/02_3q_sanctuary_panorama.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1000,
+        "bytes": 143476,
+        "path": "media/03_station1_clean_water_filter.jpg",
+        "thumb": "media/03_station1_clean_water_filter.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1000,
+        "bytes": 180904,
+        "path": "media/04_station2_oral_rehydration_tippytap.jpg",
+        "thumb": "media/04_station2_oral_rehydration_tippytap.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1000,
+        "bytes": 186399,
+        "path": "media/05_station3_cpr_and_recovery_position.jpg",
+        "thumb": "media/05_station3_cpr_and_recovery_position.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1000,
+        "bytes": 142409,
+        "path": "media/06_station4_rocket_stove_keyhole_garden.jpg",
+        "thumb": "media/06_station4_rocket_stove_keyhole_garden.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 12408108,
+        "meshes": 584,
+        "triangles": 353158,
+        "animations": 0,
+        "path": "media/commons_of_life.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

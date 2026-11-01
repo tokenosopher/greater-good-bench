@@ -1,0 +1,54 @@
+{
+  "id": "gpt-6.1-sol-cx-high-20261029-183028",
+  "page": "essay",
+  "model": "openai/gpt-6.1-sol",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-essay",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 3,
+      "file_change": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 161989,
+    "cost_usd": 0.0,
+    "tool_calls": 5,
+    "turns": 1,
+    "tokens_total": 9216,
+    "tokens_input": 4396,
+    "tokens_output": 4820,
+    "tokens_reasoning": 1783,
+    "tokens_cache_read": 84864
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 11633,
+    "words": 1921,
+    "title": "A World That Works on a Bad Day",
+    "excerpt": "A good society should be possible on a bad day. When you have slept badly. When someone you love is ill. When you are frightened, distracted, or wrong. When you cannot find the words, cannot afford the journey, cannot understand the form. We often imagine progress as a world full of better people\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": null
+}

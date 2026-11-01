@@ -1,0 +1,54 @@
+{
+  "id": "gpt-6-astra-cx-high-20261029-183028",
+  "page": "essay",
+  "model": "openai/gpt-6-astra",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-essay",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 3,
+      "file_change": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 276496,
+    "cost_usd": 0.0,
+    "tool_calls": 4,
+    "turns": 1,
+    "tokens_total": 13531,
+    "tokens_input": 9622,
+    "tokens_output": 3909,
+    "tokens_reasoning": 1010,
+    "tokens_cache_read": 71552
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 11879,
+    "words": 1959,
+    "title": "Make It Possible to Say Something Is Wrong",
+    "excerpt": "A child breaks a cup. An adult hears the crash and comes into the kitchen. There are now two things to deal with: the broken cup, and what the child is learning about bringing this adult bad news. The cup is easy to see. The second thing may matter for decades. The adult can teach care with fragile\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": null
+}

@@ -1,0 +1,79 @@
+{
+  "id": "kimi-k3.1-pro-high-20261030-031820",
+  "page": "website",
+  "model": "openrouter/moonshotai/kimi-k3.1-pro",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-30T03:18:20Z",
+  "batch": "2026-10-30-031820-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Moonshot AI"
+    ],
+    "cost_usd": 0.4788546,
+    "pi_cost_usd": 0.47885459999999996
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 8,
+      "write": 8,
+      "read": 6,
+      "edit": 3
+    }
+  },
+  "metrics": {
+    "duration_ms": 778771,
+    "cost_usd": 0.4788546,
+    "tool_calls": 25,
+    "turns": 20,
+    "tokens_total": 71975,
+    "tokens_input": 42370,
+    "tokens_output": 29605,
+    "tokens_reasoning": 4923,
+    "tokens_cache_read": 490323
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 58722,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "breathing.js",
+      "check.mjs",
+      "desktop.jpg",
+      "guide.jpg",
+      "index.html",
+      "main.js",
+      "mobile.jpg",
+      "package-lock.json",
+      "package.json",
+      "practice.jpg",
+      "practice.js",
+      "reset.jpg",
+      "styles.css",
+      "ui.js"
+    ]
+  }
+}

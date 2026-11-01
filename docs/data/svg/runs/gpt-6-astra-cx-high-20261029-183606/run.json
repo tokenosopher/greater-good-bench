@@ -1,0 +1,71 @@
+{
+  "id": "gpt-6-astra-cx-high-20261029-183606",
+  "page": "svg",
+  "model": "openai/gpt-6-astra",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:36:06Z",
+  "batch": "2026-10-29-183606-svg",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 6
+    }
+  },
+  "metrics": {
+    "duration_ms": 162477,
+    "cost_usd": 0.0,
+    "tool_calls": 6,
+    "turns": 1,
+    "tokens_total": 11184,
+    "tokens_input": 7073,
+    "tokens_output": 4111,
+    "tokens_reasoning": 1149,
+    "tokens_cache_read": 157184
+  },
+  "thumb": "media/let-the-hurt-end-here.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 180120,
+        "path": "media/let-the-hurt-end-here.png",
+        "thumb": "media/let-the-hurt-end-here.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1800,
+        "bytes": 154914,
+        "path": "media/let-the-hurt-end-here.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make.py",
+      "src/outline.swift"
+    ]
+  }
+}

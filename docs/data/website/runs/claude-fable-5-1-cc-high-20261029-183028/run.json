@@ -1,0 +1,83 @@
+{
+  "id": "claude-fable-5-1-cc-high-20261029-183028",
+  "page": "website",
+  "model": "anthropic/claude-fable-5-1",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-website",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 12,
+      "read": 11
+    }
+  },
+  "metrics": {
+    "duration_ms": 656903,
+    "cost_usd": 3.97959375,
+    "tool_calls": 23,
+    "turns": 15,
+    "tokens_total": 49323,
+    "tokens_input": 450,
+    "tokens_output": 48873,
+    "tokens_reasoning": 5741,
+    "tokens_cache_read": 686735
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 68555,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "drills.js",
+      "index.html",
+      "lessons.js",
+      "main.js",
+      "package-lock.json",
+      "package.json",
+      "regions.js",
+      "shots/bleed-drill.jpg",
+      "shots/choking.jpg",
+      "shots/cpr-drill.jpg",
+      "shots/cpr.jpg",
+      "shots/crisis-drill.jpg",
+      "shots/final.jpg",
+      "shots/home.jpg",
+      "shots/mobile.jpg",
+      "shots/order-drill.jpg",
+      "shots/quick-mobile.jpg",
+      "shots/share.jpg",
+      "style.css",
+      "util.js"
+    ]
+  }
+}

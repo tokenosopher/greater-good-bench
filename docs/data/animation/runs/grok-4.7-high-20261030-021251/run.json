@@ -1,0 +1,75 @@
+{
+  "id": "grok-4.7-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/x-ai/grok-4.7",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:12:51Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "xAI"
+    ],
+    "cost_usd": 3.460182,
+    "pi_cost_usd": 3.4601819999999996
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "read": 36,
+      "bash": 18,
+      "edit": 10,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 1895548,
+    "cost_usd": 3.460182,
+    "tool_calls": 65,
+    "turns": 45,
+    "tokens_total": 290973,
+    "tokens_input": 170902,
+    "tokens_output": 120071,
+    "tokens_reasoning": 84731,
+    "tokens_cache_read": 4795904
+  },
+  "thumb": "media/be-gentle.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 10.0,
+        "bytes": 651266,
+        "transcoded": false,
+        "path": "media/be-gentle.mp4",
+        "poster": "media/be-gentle.poster.jpg",
+        "thumb": "media/be-gentle.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/render.py"
+    ]
+  }
+}

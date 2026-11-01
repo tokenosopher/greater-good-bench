@@ -1,0 +1,60 @@
+{
+  "id": "kimi-k3.1-pro-high-20261029-210238",
+  "page": "essay",
+  "model": "openrouter/moonshotai/kimi-k3.1-pro",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T21:02:38Z",
+  "batch": "2026-10-29-210238-essay",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Moonshot AI"
+    ],
+    "cost_usd": 0.0437044,
+    "pi_cost_usd": 0.043704400000000004
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 165895,
+    "cost_usd": 0.0437044,
+    "tool_calls": 3,
+    "turns": 4,
+    "tokens_total": 7413,
+    "tokens_input": 4040,
+    "tokens_output": 3373,
+    "tokens_reasoning": 297,
+    "tokens_cache_read": 9472
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 13819,
+    "words": 2291,
+    "title": "The Next Person",
+    "excerpt": "A better world is not waiting for a better species. It is waiting, in part, for people like us\u2014distracted, frightened, generous, inconsistent people\u2014to make one small change in how we move through a day: treat the humanity of others as real, especially when it would be easier not to. This sounds too\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

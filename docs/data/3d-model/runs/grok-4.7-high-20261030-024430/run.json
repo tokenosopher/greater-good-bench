@@ -1,0 +1,132 @@
+{
+  "id": "grok-4.7-high-20261030-024430",
+  "page": "3d-model",
+  "model": "openrouter/x-ai/grok-4.7",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-30T02:44:30Z",
+  "batch": "2026-10-30-024430-3d-model",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "xAI"
+    ],
+    "cost_usd": 3.122868,
+    "pi_cost_usd": 3.1228679999999995
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 27,
+      "read": 17,
+      "bash": 4,
+      "mcp__blender__get_python_api_docs": 3,
+      "mcp__blender__search_api_docs": 2,
+      "mcp__blender__render_thumbnail_to_path": 1,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 1875919,
+    "cost_usd": 3.122868,
+    "tool_calls": 55,
+    "turns": 51,
+    "tokens_total": 293536,
+    "tokens_input": 173971,
+    "tokens_output": 119565,
+    "tokens_reasoning": 77428,
+    "tokens_cache_read": 4115072
+  },
+  "thumb": "media/held-in-common-around.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1500,
+        "height": 1200,
+        "bytes": 129555,
+        "path": "media/held-in-common-around.jpg",
+        "thumb": "media/held-in-common-around.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1500,
+        "height": 1200,
+        "bytes": 195223,
+        "path": "media/held-in-common-hands.jpg",
+        "thumb": "media/held-in-common-hands.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1500,
+        "height": 1200,
+        "bytes": 140541,
+        "path": "media/held-in-common-hero.jpg",
+        "thumb": "media/held-in-common-hero.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 2800724,
+        "meshes": 65,
+        "triangles": 126528,
+        "animations": 0,
+        "path": "media/held-in-common.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "build_scene.py"
+    ]
+  }
+}

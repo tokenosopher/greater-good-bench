@@ -1,0 +1,77 @@
+{
+  "id": "gemini-4-argon-high-20261030-031820",
+  "page": "website",
+  "model": "openrouter/google/gemini-4-argon",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-30T03:18:20Z",
+  "batch": "2026-10-30-031820-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Google"
+    ],
+    "cost_usd": 1.2207314,
+    "pi_cost_usd": 1.2207314000000002
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "write": 11,
+      "read": 10,
+      "bash": 9,
+      "edit": 9
+    }
+  },
+  "metrics": {
+    "duration_ms": 1424904,
+    "cost_usd": 1.2207314,
+    "tool_calls": 39,
+    "turns": 29,
+    "tokens_total": 214055,
+    "tokens_input": 134471,
+    "tokens_output": 79584,
+    "tokens_reasoning": 17055,
+    "tokens_cache_read": 1559494
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 126643,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "index.html",
+      "main.js",
+      "package-lock.json",
+      "package.json",
+      "src/audio.js",
+      "src/section1-cpr.js",
+      "src/section2-breath.js",
+      "src/section3-conflict.js",
+      "src/section4-water.js",
+      "src/section5-leverage.js",
+      "src/section6-card.js",
+      "styles.css"
+    ]
+  }
+}

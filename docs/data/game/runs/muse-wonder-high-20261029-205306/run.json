@@ -1,0 +1,70 @@
+{
+  "id": "muse-wonder-high-20261029-205306",
+  "page": "game",
+  "model": "openrouter/meta/muse-wonder",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T21:07:33Z",
+  "batch": "2026-10-29-205306-game",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Meta"
+    ],
+    "cost_usd": 0.9369808,
+    "pi_cost_usd": 0.9369808
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 7,
+      "write": 6,
+      "edit": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 262228,
+    "cost_usd": 0.9369808,
+    "tool_calls": 14,
+    "turns": 13,
+    "tokens_total": 131490,
+    "tokens_input": 107688,
+    "tokens_output": 23802,
+    "tokens_reasoning": 6800,
+    "tokens_cache_read": 150944
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "main.gd",
+      "main.gd.uid",
+      "main.tscn",
+      "project.godot"
+    ]
+  }
+}

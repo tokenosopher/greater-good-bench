@@ -1,0 +1,60 @@
+{
+  "id": "muse-wonder-high-20261029-210238",
+  "page": "essay",
+  "model": "openrouter/meta/muse-wonder",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T21:02:38Z",
+  "batch": "2026-10-29-210238-essay",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Meta"
+    ],
+    "cost_usd": 0.1502048,
+    "pi_cost_usd": 0.1502048
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 3,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 103048,
+    "cost_usd": 0.1502048,
+    "tool_calls": 4,
+    "turns": 5,
+    "tokens_total": 18314,
+    "tokens_input": 13610,
+    "tokens_output": 4704,
+    "tokens_reasoning": 1491,
+    "tokens_cache_read": 8424
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 12113,
+    "words": 2203,
+    "title": "The Next Person You Meet",
+    "excerpt": "The driver who cut you off this morning may have been careless. He may also have been rushing to a hospital, half-asleep after a night shift, or lost in a grief so fresh that the road had blurred. You do not know. I do not know. Yet most of us decide in half a second: idiot. The cashier is slow\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

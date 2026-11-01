@@ -1,0 +1,71 @@
+{
+  "id": "deepseek-v4-pro-0813-high-20261030-034211",
+  "page": "game",
+  "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-30T03:42:11Z",
+  "batch": "2026-10-30-034211-game",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Wafer",
+      "Sail Research"
+    ],
+    "cost_usd": 0.16011720999999998,
+    "pi_cost_usd": 0.286894521
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 10,
+      "write": 6,
+      "edit": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 319675,
+    "cost_usd": 0.16011720999999998,
+    "tool_calls": 18,
+    "turns": 19,
+    "tokens_total": 95940,
+    "tokens_input": 65806,
+    "tokens_output": 30134,
+    "tokens_reasoning": 20382,
+    "tokens_cache_read": 390116
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "main.gd",
+      "main.gd.uid",
+      "main.tscn",
+      "project.godot"
+    ]
+  }
+}

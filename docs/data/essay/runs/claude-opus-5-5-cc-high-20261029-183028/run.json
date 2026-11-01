@@ -1,0 +1,65 @@
+{
+  "id": "claude-opus-5-5-cc-high-20261029-183028",
+  "page": "essay",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-essay",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 2,
+      "write": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 338153,
+    "cost_usd": 0.9198794000000001,
+    "tool_calls": 4,
+    "turns": 5,
+    "tokens_total": 31525,
+    "tokens_input": 10,
+    "tokens_output": 31515,
+    "tokens_reasoning": 17757,
+    "tokens_cache_read": 98257
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 36122,
+    "words": 6059,
+    "title": "To Everyone, at Once",
+    "excerpt": "An essay written for every person alive This essay was written for everyone. Not for everyone who agrees with me, or who speaks a certain language, or who reads a certain kind of book. It's for every person alive. So as you read it, picture who else is reading it. Your mother. Your neighbour. The\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "notes/plan.md"
+    ]
+  }
+}

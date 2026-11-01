@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c0a">
+<meta name="description" content="An evidence-based field guide to the highest-leverage actions available to an ordinary person — and a calculator for what happens when millions of us take them.">
+<title>MULTIPLIER — The most good you can do, ranked</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#lab">Skip to the impact lab</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Multiplier, back to top">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span>MULTIPLIER</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#exchange">Exchange rate</a>
+      <a href="#lab">Impact lab</a>
+      <a href="#atlas">Atlas</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#method">Method</a>
+    </nav>
+    <a class="nav-cta" href="#lab">Find your leverage</a>
+  </div>
+</header>
+
+<main>
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="top">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="dot"></span>An evidence-based field guide</p>
+        <h1>The most good<br>you can do,<br><em>ranked.</em></h1>
+        <p class="hero-lede">
+          Most of us want to help. Almost none of us know where our hours and
+          dollars go furthest. This is a working map of the highest-leverage
+          actions available to an ordinary person — and a calculator for what
+          happens when millions of us take them.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#lab">Open the impact lab <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#atlas">See the 18 actions</a>
+        </div>
+        <ul class="hero-stats" aria-label="Key estimates">
+          <li><span class="stat-num">$5,500</span><span class="stat-label">≈ one life saved<br>from malaria</span></li>
+          <li><span class="stat-num">$100</span><span class="stat-label">≈ one healthy<br>year of life</span></li>
+          <li><span class="stat-num">$27</span><span class="stat-label">≈ one tonne of CO2<br>avoided</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-panel">
+        <div class="panel-head">
+          <span class="mono">THE WHOLE SPECIES</span>
+          <span class="mono dim" id="hero-clock">8.0B</span>
+        </div>
+        <div class="dotfield-wrap">
+          <canvas id="dotfield" aria-hidden="true"></canvas>
+        </div>
+        <div class="panel-foot">
+          <p><strong>800 dots. 8 billion people.</strong><br>Every dot is ten million human lives. A few are lit. The rest are waiting for a better decision.</p>
+          <p class="mono dim tiny">ONE DOT ≈ 10,000,000 PEOPLE</p>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"><span></span>scroll to begin</div>
+  </section>
+
+  <!-- ========================== EXCHANGE RATE ========================== -->
+  <section class="section exchange" id="exchange">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot"></span>The exchange rate</p>
+        <h2>A life has a price.<br>It is lower than you think.</h2>
+        <p class="lede">
+          The most uncomfortable finding in modern philanthropy is also the most
+          useful: in the poorest places on Earth, a small amount of money buys an
+          enormous amount of health. That is not a metaphor. It is a budget line.
+        </p>
+      </div>
+
+      <div class="ledger" role="table" aria-label="What money buys">
+        <div class="ledger-head mono" role="row">
+          <span>Spend</span><span>On this</span><span>Or on this</span>
+        </div>
+        <div class="ledger-row" role="row">
+          <span class="ledger-amt">$120</span>
+          <span class="ledger-what">Dinner for two, with wine</span>
+          <span class="ledger-alt"><b>1.2 healthy years</b> for a child who would otherwise miss school</span>
+        </div>
+        <div class="ledger-row" role="row">
+          <span class="ledger-amt">$1,200</span>
+          <span class="ledger-what">A new phone</span>
+          <span class="ledger-alt"><b>12 healthy years</b> — or roughly a quarter of a human life</span>
+        </div>
+        <div class="ledger-row is-key" role="row">
+          <span class="ledger-amt">$5,500</span>
+          <span class="ledger-what">A used car</span>
+          <span class="ledger-alt"><b>One life saved</b> from malaria, with bed nets and case management</span>
+        </div>
+        <div class="ledger-row" role="row">
+          <span class="ledger-amt">$30,000</span>
+          <span class="ledger-what">A wedding</span>
+          <span class="ledger-alt"><b>Five lives saved</b> — five people who would otherwise be mourned</span>
+        </div>
+      </div>
+
+      <p class="fineprint">
+        Estimates are midpoints for a typical high-performing charity; the real
+        range is wide. The point is not the exact number. The point is the order
+        of magnitude — and what it implies about where your next dollar goes.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== LAB ============================== -->
+  <section class="section lab" id="lab">
+    <div class="container">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow"><span class="dot"></span>01 — The impact lab</p>
+          <h2>Move the number.<br>Watch the world change.</h2>
+        </div>
+        <p class="lede side">
+          Choose a yearly giving budget and a cause mix. The outputs are estimates,
+          not promises — but they are honest arithmetic on top of real
+          cost-effectiveness data.
+        </p>
+      </div>
+
+      <div class="lab-grid">
+        <div class="lab-controls">
+          <div class="control-block">
+            <div class="control-label">
+              <span>Annual giving</span>
+              <output class="mono big-out" id="budget-out">$1,000</output>
+            </div>
+            <input type="range" id="budget" min="0" max="25000" step="100" value="1000"
+                   aria-label="Annual giving budget in dollars">
+            <div class="range-scale mono"><span>$0</span><span>$12.5k</span><span>$25k</span></div>
+            <div class="quick-row" id="budget-presets">
+              <button class="chip" data-budget="100">$100</button>
+              <button class="chip" data-budget="1000">$1k</button>
+              <button class="chip" data-budget="5000">$5k</button>
+              <button class="chip" data-budget="15000">$15k</button>
+            </div>
+          </div>
+
+          <div class="control-block">
+            <div class="control-label">
+              <span>Cause mix</span>
+              <button class="text-btn" id="reset-mix">Reset</button>
+            </div>
+            <div class="mix" id="mix"></div>
+            <div class="quick-row" id="mix-presets">
+              <button class="chip" data-mix="lives">Lives first</button>
+              <button class="chip" data-mix="balanced">Balanced</button>
+              <button class="chip" data-mix="climate">Climate</button>
+              <button class="chip" data-mix="animals">Animals</button>
+            </div>
+          </div>
+
+          <p class="fineprint tight">
+            The health mix blends bed nets, deworming and vitamin A. Climate
+            dollars go to policy advocacy, clean cooking and solar. Animal dollars
+            go to cage-free campaigns and alternative-protein research.
+          </p>
+        </div>
+
+        <div class="lab-output">
+          <div class="allocation-bar" aria-hidden="true">
+            <span class="seg seg-health" id="seg-health"></span>
+            <span class="seg seg-climate" id="seg-climate"></span>
+            <span class="seg seg-animals" id="seg-animals"></span>
+          </div>
+          <div class="allocation-legend" id="allocation-legend"></div>
+
+          <div class="outcome-primary">
+            <p class="mono outcome-label">HEALTHY YEARS GAINED</p>
+            <div class="outcome-number" id="qaly-out">6.0</div>
+            <p class="outcome-sub" id="lives-out">≈ 0.13 lives — one life for every $7,600 given</p>
+          </div>
+
+          <div class="outcome-grid">
+            <div class="outcome-tile">
+              <span class="mono tile-label">CO2e AVOIDED</span>
+              <span class="outcome-value" id="co2-out">9.3 t</span>
+              <span class="tile-sub" id="co2-sub">≈ 5.8 transatlantic flights</span>
+            </div>
+            <div class="outcome-tile">
+              <span class="mono tile-label">ANIMALS SPARED</span>
+              <span class="outcome-value" id="animals-out">200</span>
+              <span class="tile-sub" id="animals-sub">≈ 200 hens out of cages for a year</span>
+            </div>
+            <div class="outcome-tile">
+              <span class="mono tile-label">PER $100</span>
+              <span class="outcome-value" id="per100-out">1.0 yr</span>
+              <span class="tile-sub">healthy life, on this mix</span>
+            </div>
+          </div>
+
+          <p class="fineprint tight">
+            Assumes ~45 healthy years per life saved. Diminishing returns,
+            implementation quality and local context all move the real number.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== ATLAS ============================== -->
+  <section class="section atlas" id="atlas">
+    <div class="container">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow"><span class="dot"></span>02 — The atlas</p>
+          <h2>Eighteen actions,<br>ranked by leverage.</h2>
+        </div>
+        <p class="lede side">
+          Money is only one lever. Time, voice, body and career are others.
+          Filter the list, open a card, then add what you can actually do to your
+          portfolio.
+        </p>
+      </div>
+
+      <div class="atlas-toolbar">
+        <div class="filters" id="filters" role="group" aria-label="Filter actions by type"></div>
+        <div class="sort-wrap">
+          <label class="mono tiny" for="sort">SORT</label>
+          <select id="sort">
+            <option value="leverage">Overall leverage</option>
+            <option value="qaly">Healthy years</option>
+            <option value="co2">CO2e avoided</option>
+            <option value="animals">Animals spared</option>
+            <option value="effort">Lowest effort</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="atlas-grid" id="atlas-grid"></div>
+      <p class="fineprint">
+        Leverage is an editorial composite across health, climate, animals and
+        systemic reach — not a single scientific unit. The individual metrics on
+        each card are the numbers to argue with. Sources and assumptions are in
+        <a href="#method">Method</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ PORTFOLIO ============================ -->
+  <section class="section portfolio" id="portfolio">
+    <div class="container">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow"><span class="dot"></span>03 — Your portfolio</p>
+          <h2>What one person<br>adds up to.</h2>
+        </div>
+        <p class="lede side">
+          Select actions in the atlas. Then scale the result: you, a town, a
+          million people, everyone. Collective change is just individual change
+          with better arithmetic.
+        </p>
+      </div>
+
+      <div class="portfolio-panel" id="portfolio-panel">
+        <div class="portfolio-empty" id="portfolio-empty">
+          <span class="empty-mark" aria-hidden="true">✳</span>
+          <p><strong>Your portfolio is empty.</strong><br>Add an action from the atlas to see what it adds up to.</p>
+          <a class="btn btn-ghost" href="#atlas">Browse the atlas</a>
+        </div>
+        <div class="portfolio-content" id="portfolio-content" hidden>
+          <div class="portfolio-top">
+            <div class="scale-wrap">
+              <span class="mono tiny">SCALE THE RESULT</span>
+              <div class="scale-row" id="scale-row" role="group" aria-label="Scale multiplier"></div>
+            </div>
+            <div class="portfolio-count mono" id="portfolio-count">0 actions</div>
+          </div>
+
+          <div class="portfolio-stats">
+            <div class="pstat">
+              <span class="mono tile-label">HEALTHY YEARS</span>
+              <span class="pstat-num" id="p-qaly">0</span>
+              <span class="tile-sub" id="p-lives">≈ 0 lives</span>
+            </div>
+            <div class="pstat">
+              <span class="mono tile-label">CO2e AVOIDED</span>
+              <span class="pstat-num" id="p-co2">0 t</span>
+              <span class="tile-sub" id="p-co2-sub">≈ 0 cars off the road</span>
+            </div>
+            <div class="pstat">
+              <span class="mono tile-label">ANIMALS SPARED</span>
+              <span class="pstat-num" id="p-animals">0</span>
+              <span class="tile-sub" id="p-animals-sub">per year, mostly from diet and advocacy</span>
+            </div>
+          </div>
+
+          <div class="portfolio-bottom">
+            <div class="summary-block">
+              <span class="mono tiny">YOUR COMMITMENT, IN PLAIN TEXT</span>
+              <p id="portfolio-summary">—</p>
+            </div>
+            <div class="summary-actions">
+              <button class="btn btn-primary" id="copy-summary">Copy summary</button>
+              <button class="text-btn" id="clear-portfolio">Clear all</button>
+            </div>
+          </div>
+          <p class="fineprint tight">
+            Illustrative. Scaling assumes identical impact per person and no
+            diminishing returns; in reality the millionth dollar is harder than
+            the first. Use the direction, not the decimal.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= RIPPLE ============================= -->
+  <section class="section ripple" id="ripple">
+    <div class="container">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow"><span class="dot"></span>04 — The multiplier</p>
+          <h2>The most underrated<br>action is telling<br>someone.</h2>
+        </div>
+        <p class="lede side">
+          An action you take once is a data point. An action you pass on becomes a
+          cascade. Drag the numbers and watch a single conversation turn into a
+          movement.
+        </p>
+      </div>
+
+      <div class="ripple-grid">
+        <div class="ripple-canvas-wrap">
+          <svg id="ripple-svg" viewBox="0 0 600 600" role="img" aria-label="A network of people reached by passing on an action"></svg>
+          <div class="ripple-badge mono" id="ripple-badge">120 PEOPLE</div>
+        </div>
+        <div class="ripple-controls">
+          <div class="control-block">
+            <div class="control-label">
+              <span>People you personally tell</span>
+              <output class="mono" id="people-out">3</output>
+            </div>
+            <input type="range" id="people" min="1" max="5" step="1" value="3" aria-label="People you tell">
+          </div>
+          <div class="control-block">
+            <div class="control-label">
+              <span>Times it gets passed on</span>
+              <output class="mono" id="depth-out">4</output>
+            </div>
+            <input type="range" id="depth" min="1" max="5" step="1" value="4" aria-label="Times the action is passed on">
+          </div>
+          <div class="ripple-result">
+            <p class="mono tile-label">PEOPLE REACHED</p>
+            <p class="ripple-big" id="ripple-people">120</p>
+            <div class="ripple-lines">
+              <div><span class="mono dim">IF EACH GIVES $100</span><span id="ripple-money">$12,000</span></div>
+              <div><span class="mono dim">HEALTHY YEARS</span><span id="ripple-qaly">122</span></div>
+              <div><span class="mono dim">LIVES SAVED</span><span id="ripple-lives">≈ 2.7</span></div>
+            </div>
+          </div>
+          <p class="fineprint tight">
+            A cascade model, not a forecast. Real networks overlap, saturate and
+            forget. But the first few shares are nearly free — which is exactly
+            why they are the highest-leverage thing on this page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= METHOD ============================= -->
+  <section class="section method" id="method">
+    <div class="container method-grid">
+      <div class="method-intro">
+        <p class="eyebrow"><span class="dot"></span>The method</p>
+        <h2>How these<br>numbers are made.</h2>
+        <p class="lede">
+          Every figure here is a midpoint estimate assembled from published
+          cost-effectiveness research. The ranges are real and the uncertainty is
+          large. That is a reason to update, not a reason to do nothing.
+        </p>
+        <p class="fineprint">
+          Nothing on this page is financial, medical or legal advice. If you are
+          considering donating a kidney or blood, talk to a clinician. If you are
+          considering a career change, talk to people who have done it.
+        </p>
+      </div>
+
+      <div class="accordion" id="accordion">
+        <details open>
+          <summary><span class="mono dim">01</span> Health: the $100 healthy year</summary>
+          <div class="acc-body">
+            <p>Bed nets, deworming and vitamin A are among the most studied
+            interventions in global health. We blend them at 50/30/20 and use an
+            average cost of roughly <b>$100 per healthy life-year</b>, with about
+            <b>45 healthy years</b> gained per death averted. That puts a life at
+            roughly $4,500–$5,500, consistent with GiveWell's estimates for the
+            Against Malaria Foundation.</p>
+            <p class="src mono">Sources: GiveWell cost-effectiveness analyses; Cochrane reviews; WHO.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="mono dim">02</span> Climate: the $27 tonne</summary>
+          <div class="acc-body">
+            <p>Climate dollars are split between policy advocacy, clean cookstoves
+            and solar, at an average of about <b>$27 per tonne of CO2e avoided</b>.
+            Advocacy dominates because policy changes move entire markets; it also
+            has the widest error bars. Personal actions use consumption-based
+            estimates (one long-haul round trip ≈ 1.6 t; a heat pump ≈ 2.4 t/yr).</p>
+            <p class="src mono">Sources: Project Drawdown; EPA greenhouse gas equivalencies; IEA.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="mono dim">03</span> Animals: the $0.75 animal</summary>
+          <div class="acc-body">
+            <p>Corporate cage-free campaigns and alternative-protein research are
+            cost-effective ways to reduce animal suffering. We use roughly
+            <b>$0.75 per animal spared a year of confinement</b>, while noting that
+            welfare quality matters as much as headcount. A plant-rich diet is
+            treated as sparing about 50 animals a year for a typical heavy meat
+            eater who halves consumption.</p>
+            <p class="src mono">Sources: Animal Charity Evaluators; Faunalytics; Open Philanthropy.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="mono dim">04</span> Leverage, effort and the fine print</summary>
+          <div class="acc-body">
+            <p>The "overall leverage" sort is an editorial composite — a judgment
+            about expected impact, tractability and reach, not a physical quantity.
+            Healthy-year, CO2 and animal figures are separate and not converted
+            into one another. Effort and cost labels describe the action, not the
+            evidence.</p>
+            <p>Where a number is highly uncertain — voting, careers, advocacy — the
+            card says so. We would rather show a wide range than a fake decimal.
+            If you find a better estimate, the arithmetic is open source and easy
+            to change.</p>
+            <p class="src mono">This page stores nothing, tracks nothing and runs entirely offline.</p>
+          </div>
+        </details>
+        <details>
+          <summary><span class="mono dim">05</span> What we are not claiming</summary>
+          <div class="acc-body">
+            <p>We are not claiming that giving is a substitute for systemic change,
+            or that cost-effectiveness is the only thing that matters. Care,
+            solidarity and local knowledge are not line items. We are claiming
+            something narrower and harder to ignore: <b>at the margin, some
+            actions do far more good than others</b> — and most people have never
+            been shown the menu.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <!-- ============================= CLOSING ============================= -->
+  <section class="section closing" id="start">
+    <div class="container closing-inner">
+      <p class="eyebrow"><span class="dot"></span>The only step left</p>
+      <h2>Pick one thing.<br>Do it <em>this week.</em></h2>
+      <p class="lede">
+        The distance between knowing and doing is where most good dies. You do
+        not need to be perfect, or rich, or certain. You need one action, taken
+        before the feeling fades.
+      </p>
+      <div class="closing-actions">
+        <a class="btn btn-primary" href="#atlas">Choose your action <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#lab">Recalculate your giving</a>
+      </div>
+      <p class="closing-note mono">START SMALL · TELL SOMEONE · SCALE LATER</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <span class="brand"><span class="brand-mark" aria-hidden="true">✳</span> MULTIPLIER</span>
+      <p class="fineprint">A public-good field guide. No accounts, no ads, no tracking.<br>Works offline, forever.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#lab">Impact lab</a>
+      <a href="#atlas">Atlas</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#method">Method</a>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+  <div class="container footer-fine mono">
+    <span>ESTIMATES ARE MIDPOINTS, NOT GUARANTEES</span>
+    <span>✳</span>
+    <span>BUILT TO BE SHARED</span>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

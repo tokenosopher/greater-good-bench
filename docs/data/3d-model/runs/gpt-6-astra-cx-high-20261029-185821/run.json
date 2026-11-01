@@ -1,0 +1,109 @@
+{
+  "id": "gpt-6-astra-cx-high-20261029-185821",
+  "page": "3d-model",
+  "model": "openai/gpt-6-astra",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-29T18:58:31Z",
+  "batch": "2026-10-29-185821-3d-model",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 9,
+      "bash": 2,
+      "mcp__blender__search_api_docs": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 729671,
+    "cost_usd": 0.0,
+    "tool_calls": 12,
+    "turns": 1,
+    "tokens_total": 43919,
+    "tokens_input": 27344,
+    "tokens_output": 16575,
+    "tokens_reasoning": 5009,
+    "tokens_cache_read": 837632
+  },
+  "thumb": "media/01-the-common-table.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 269503,
+        "path": "media/01-the-common-table.jpg",
+        "thumb": "media/01-the-common-table.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1200,
+        "bytes": 293090,
+        "path": "media/02-a-place-for-you.jpg",
+        "thumb": "media/02-a-place-for-you.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 13371256,
+        "meshes": 42,
+        "triangles": 484736,
+        "animations": 0,
+        "path": "media/the-common-table.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": null
+}

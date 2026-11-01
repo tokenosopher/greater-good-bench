@@ -1,0 +1,1098 @@
+{
+  "slug": "svg",
+  "title": "SVG",
+  "kind": "media",
+  "prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.",
+  "final_prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n",
+  "created": "2026-10-29T18:36:06Z",
+  "updated": "2026-10-30T03:18:17Z",
+  "runs": [
+    {
+      "id": "claude-fable-5-1-cc-high-20261029-183606",
+      "page": "svg",
+      "model": "anthropic/claude-fable-5-1",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:36:06Z",
+      "batch": "2026-10-29-183606-svg",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 5,
+          "read": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 296992,
+        "cost_usd": 1.7520342500000001,
+        "tool_calls": 9,
+        "turns": 10,
+        "tokens_total": 22402,
+        "tokens_input": 290,
+        "tokens_output": 22112,
+        "tokens_reasoning": 8197,
+        "tokens_cache_read": 234217
+      },
+      "thumb": "media/four-things.svg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1000,
+            "height": 1400,
+            "bytes": 14214,
+            "path": "media/four-things.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_poster.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "claude-opus-5-5-cc-high-20261029-183606",
+      "page": "svg",
+      "model": "anthropic/claude-opus-5-5",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:36:06Z",
+      "batch": "2026-10-29-183606-svg",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 6,
+          "read": 3,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 304213,
+        "cost_usd": 0.9734866,
+        "tool_calls": 10,
+        "turns": 9,
+        "tokens_total": 30754,
+        "tokens_input": 18,
+        "tokens_output": 30736,
+        "tokens_reasoning": 11222,
+        "tokens_cache_read": 232073
+      },
+      "thumb": "media/ors.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1200,
+            "height": 1940,
+            "bytes": 329381,
+            "path": "media/ors.png",
+            "thumb": "media/ors.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1200,
+            "height": 1940,
+            "bytes": 45320,
+            "path": "media/ors.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_ors.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6-astra-cx-high-20261029-183606",
+      "page": "svg",
+      "model": "openai/gpt-6-astra",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:36:06Z",
+      "batch": "2026-10-29-183606-svg",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 6
+        }
+      },
+      "metrics": {
+        "duration_ms": 162477,
+        "cost_usd": 0.0,
+        "tool_calls": 6,
+        "turns": 1,
+        "tokens_total": 11184,
+        "tokens_input": 7073,
+        "tokens_output": 4111,
+        "tokens_reasoning": 1149,
+        "tokens_cache_read": 157184
+      },
+      "thumb": "media/let-the-hurt-end-here.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1440,
+            "height": 1800,
+            "bytes": 180120,
+            "path": "media/let-the-hurt-end-here.png",
+            "thumb": "media/let-the-hurt-end-here.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1440,
+            "height": 1800,
+            "bytes": 154914,
+            "path": "media/let-the-hurt-end-here.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make.py",
+          "src/outline.swift"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.1-sol-cx-high-20261029-183606",
+      "page": "svg",
+      "model": "openai/gpt-6.1-sol",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:36:06Z",
+      "batch": "2026-10-29-183606-svg",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 6
+        }
+      },
+      "metrics": {
+        "duration_ms": 203109,
+        "cost_usd": 0.0,
+        "tool_calls": 6,
+        "turns": 1,
+        "tokens_total": 33977,
+        "tokens_input": 23725,
+        "tokens_output": 10252,
+        "tokens_reasoning": 4155,
+        "tokens_cache_read": 213376
+      },
+      "thumb": "media/everyone-is-someone.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1440,
+            "height": 1800,
+            "bytes": 258466,
+            "path": "media/everyone-is-someone.jpg",
+            "thumb": "media/everyone-is-someone.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1440,
+            "height": 1800,
+            "bytes": 73968,
+            "path": "media/everyone-is-someone.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_poster.py",
+          "src/outline_text.swift"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4-pro-0813-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T20:53:06Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Together"
+        ],
+        "cost_usd": 0.35366358,
+        "pi_cost_usd": 0.41033926699999995
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 24,
+          "edit": 4,
+          "write": 3,
+          "read": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 458268,
+        "cost_usd": 0.35366358,
+        "tool_calls": 32,
+        "turns": 31,
+        "tokens_total": 103178,
+        "tokens_input": 63562,
+        "tokens_output": 39616,
+        "tokens_reasoning": 25194,
+        "tokens_cache_read": 868326
+      },
+      "thumb": "media/earth.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1080,
+            "bytes": 161230,
+            "path": "media/earth.jpg",
+            "thumb": "media/earth.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration_s": 8.0,
+            "bytes": 463919,
+            "transcoded": false,
+            "path": "media/earth.mp4",
+            "poster": "media/earth.poster.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1080,
+            "bytes": 397100,
+            "path": "media/earth.png"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1080,
+            "bytes": 47710,
+            "path": "media/earth.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_svg.py",
+          "src/make_video.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4.1-flash-1017-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T20:53:06Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Cohere"
+        ],
+        "cost_usd": 0.097896504,
+        "pi_cost_usd": 0.037404468999999996
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 25,
+          "read": 17,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 477498,
+        "cost_usd": 0.097896504,
+        "tool_calls": 43,
+        "turns": 41,
+        "tokens_total": 340719,
+        "tokens_input": 290996,
+        "tokens_output": 49723,
+        "tokens_reasoning": 31161,
+        "tokens_cache_read": 1389184
+      },
+      "thumb": "media/kindness-ripples-poster.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1200,
+            "height": 1500,
+            "bytes": 96980,
+            "path": "media/kindness-ripples-poster.jpg",
+            "thumb": "media/kindness-ripples-poster.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 1080,
+            "height": 1350,
+            "duration_s": 8.0,
+            "bytes": 287269,
+            "transcoded": false,
+            "path": "media/kindness-ripples.mp4",
+            "poster": "media/kindness-ripples.poster.jpg",
+            "thumb": "media/kindness-ripples.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1200,
+            "height": 1500,
+            "bytes": 225804,
+            "path": "media/kindness-ripples.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gemini-4-argon-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/google/gemini-4-argon",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T20:53:06Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "failed",
+      "error": "400: {\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"Gemini models require OpenRouter reasoning details to be preserved in each request. Please refer to our docs: https://openrouter",
+      "route": {
+        "requested": null,
+        "served": [
+          "Google"
+        ],
+        "cost_usd": 0.008426,
+        "pi_cost_usd": 0.008426
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 12533,
+        "cost_usd": 0.008426,
+        "tool_calls": 1,
+        "turns": 2,
+        "tokens_total": 2337,
+        "tokens_input": 1868,
+        "tokens_output": 469,
+        "tokens_reasoning": 426,
+        "tokens_cache_read": 0
+      },
+      "thumb": null,
+      "output": null,
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "kimi-k3.1-pro-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/moonshotai/kimi-k3.1-pro",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T20:53:06Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Moonshot AI"
+        ],
+        "cost_usd": 0.1573898,
+        "pi_cost_usd": 0.1573898
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 6,
+          "read": 3,
+          "edit": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 315186,
+        "cost_usd": 0.1573898,
+        "tool_calls": 12,
+        "turns": 13,
+        "tokens_total": 27583,
+        "tokens_input": 18263,
+        "tokens_output": 9320,
+        "tokens_reasoning": 3902,
+        "tokens_cache_read": 138319
+      },
+      "thumb": "media/kindness.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 2000,
+            "bytes": 409988,
+            "path": "media/kindness.png",
+            "thumb": "media/kindness.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 2000,
+            "bytes": 9144,
+            "path": "media/kindness.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "make_poster.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "glm-5.3-prime-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/z-ai/glm-5.3-prime",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T20:53:18Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Alibaba"
+        ],
+        "cost_usd": 1.41869712,
+        "pi_cost_usd": 1.41869712
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 34,
+          "edit": 4,
+          "write": 3,
+          "read": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 466316,
+        "cost_usd": 1.41869712,
+        "tool_calls": 42,
+        "turns": 43,
+        "tokens_total": 120681,
+        "tokens_input": 66276,
+        "tokens_output": 54405,
+        "tokens_reasoning": 33019,
+        "tokens_cache_read": 1347072
+      },
+      "thumb": "media/pale-blue-dot.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 2000,
+            "height": 1250,
+            "bytes": 275540,
+            "path": "media/pale-blue-dot.jpg",
+            "thumb": "media/pale-blue-dot.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 1000,
+            "bytes": 1915322,
+            "path": "media/pale-blue-dot.png"
+          },
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 1000,
+            "bytes": 94542,
+            "path": "media/pale-blue-dot.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_svg.py",
+          "src/pale-blue-dot.svg",
+          "src/verify.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "qwen3.8-max-prime-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/qwen/qwen3.8-max-prime",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T20:58:21Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Alibaba"
+        ],
+        "cost_usd": 1.530956,
+        "pi_cost_usd": 1.530956
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 13,
+          "read": 7,
+          "edit": 4,
+          "write": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 650359,
+        "cost_usd": 1.530956,
+        "tool_calls": 26,
+        "turns": 27,
+        "tokens_total": 151709,
+        "tokens_input": 102250,
+        "tokens_output": 49459,
+        "tokens_reasoning": 35831,
+        "tokens_cache_read": 1056896
+      },
+      "thumb": "media/shared-breath-still.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 1600,
+            "bytes": 585125,
+            "path": "media/shared-breath-still.png",
+            "thumb": "media/shared-breath-still.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 1080,
+            "height": 1080,
+            "duration_s": 10.0,
+            "bytes": 730264,
+            "transcoded": false,
+            "path": "media/shared-breath.mp4",
+            "poster": "media/shared-breath.poster.jpg",
+            "thumb": "media/shared-breath.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1200,
+            "height": 1200,
+            "bytes": 247135,
+            "path": "media/shared-breath.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/font.py",
+          "src/make.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "minimax-m3.1-flash-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/minimax/minimax-m3.1-flash",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T21:01:04Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "ModelRun"
+        ],
+        "cost_usd": 0.00817668,
+        "pi_cost_usd": 0.007359012000000001
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 5,
+          "read": 1,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 47173,
+        "cost_usd": 0.00817668,
+        "tool_calls": 7,
+        "turns": 7,
+        "tokens_total": 30482,
+        "tokens_input": 23492,
+        "tokens_output": 6990,
+        "tokens_reasoning": 2122,
+        "tokens_cache_read": 30592
+      },
+      "thumb": "media/future-is-a-shared-project.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 1000,
+            "bytes": 238716,
+            "path": "media/future-is-a-shared-project.jpg",
+            "thumb": "media/future-is-a-shared-project.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 1000,
+            "bytes": 11154,
+            "path": "media/future-is-a-shared-project.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/poster.svg"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "muse-wonder-high-20261029-205306",
+      "page": "svg",
+      "model": "openrouter/meta/muse-wonder",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T21:01:05Z",
+      "batch": "2026-10-29-205306-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Meta"
+        ],
+        "cost_usd": 0.5011072,
+        "pi_cost_usd": 0.5011072
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 5,
+          "read": 2,
+          "edit": 1,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 156873,
+        "cost_usd": 0.5011072,
+        "tool_calls": 9,
+        "turns": 10,
+        "tokens_total": 70938,
+        "tokens_input": 58026,
+        "tokens_output": 12912,
+        "tokens_reasoning": 4045,
+        "tokens_cache_read": 53816
+      },
+      "thumb": "media/one-home.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1080,
+            "height": 1350,
+            "bytes": 280638,
+            "path": "media/one-home.png",
+            "thumb": "media/one-home.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1080,
+            "height": 1350,
+            "bytes": 12786,
+            "path": "media/one-home.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_poster.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gemini-4-argon-high-20261030-023118",
+      "page": "svg",
+      "model": "openrouter/google/gemini-4-argon",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:31:18Z",
+      "batch": "2026-10-30-023118-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "failed",
+      "error": "Network connection lost.",
+      "route": {
+        "requested": null,
+        "served": [
+          "Google AI Studio"
+        ],
+        "cost_usd": 0.2606479,
+        "pi_cost_usd": 0.26064790000000004
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 4,
+          "read": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 2819197,
+        "cost_usd": 0.2606479,
+        "tool_calls": 5,
+        "turns": 12,
+        "tokens_total": 42413,
+        "tokens_input": 20640,
+        "tokens_output": 21773,
+        "tokens_reasoning": 21264,
+        "tokens_cache_read": 16379
+      },
+      "thumb": null,
+      "output": null,
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "grok-4.7-high-20261030-023118",
+      "page": "svg",
+      "model": "openrouter/x-ai/grok-4.7",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:31:18Z",
+      "batch": "2026-10-30-023118-svg",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "xAI"
+        ],
+        "cost_usd": 3.807944,
+        "pi_cost_usd": 3.807944000000001
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "read": 33,
+          "bash": 24,
+          "edit": 6,
+          "write": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 2081648,
+        "cost_usd": 3.807944,
+        "tool_calls": 67,
+        "turns": 53,
+        "tokens_total": 286666,
+        "tokens_input": 160973,
+        "tokens_output": 125693,
+        "tokens_reasoning": 88791,
+        "tokens_cache_read": 5463680
+      },
+      "thumb": "media/someone-is-home.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 900,
+            "height": 1200,
+            "duration_s": 9.79,
+            "bytes": 237756,
+            "transcoded": false,
+            "path": "media/someone-is-home.mp4",
+            "poster": "media/someone-is-home.poster.jpg",
+            "thumb": "media/someone-is-home.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1200,
+            "height": 1600,
+            "bytes": 188255,
+            "path": "media/someone-is-home.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/build_poster.py",
+          "src/fontpath.py",
+          "src/render_film.py"
+        ]
+      },
+      "rank": null
+    }
+  ]
+}

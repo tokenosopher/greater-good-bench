@@ -1,0 +1,73 @@
+{
+  "id": "kimi-k3.1-pro-high-20261029-205306",
+  "page": "game",
+  "model": "openrouter/moonshotai/kimi-k3.1-pro",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T20:53:06Z",
+  "batch": "2026-10-29-205306-game",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Moonshot AI"
+    ],
+    "cost_usd": 0.4465446,
+    "pi_cost_usd": 0.44654460000000007
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 14,
+      "edit": 7,
+      "write": 7,
+      "read": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 986292,
+    "cost_usd": 0.4465446,
+    "tool_calls": 30,
+    "turns": 24,
+    "tokens_total": 62273,
+    "tokens_input": 35656,
+    "tokens_output": 26617,
+    "tokens_reasoning": 8516,
+    "tokens_cache_read": 545313
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "icon.svg",
+      "icon.svg.import",
+      "main.gd",
+      "main.gd.uid",
+      "main.tscn",
+      "project.godot"
+    ]
+  }
+}

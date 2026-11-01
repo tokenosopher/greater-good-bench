@@ -1,0 +1,1483 @@
+[
+  {
+    "type": "session",
+    "version": 3,
+    "id": "01a18ac1-143d-7162-94bc-a554e15ebbf4",
+    "timestamp": "2026-10-30T03:01:11.869Z",
+    "cwd": "~/dev/art-crit-runs/2026-10-30-024430-3d-model/minimax-m3.1-flash-high-20261030-024430/work"
+  },
+  {
+    "type": "model_change",
+    "id": "950a1439",
+    "parentId": null,
+    "timestamp": "2026-10-30T03:01:11.904Z",
+    "provider": "openrouter",
+    "modelId": "minimax/minimax-m3.1-flash"
+  },
+  {
+    "type": "thinking_level_change",
+    "id": "293891f7",
+    "parentId": "950a1439",
+    "timestamp": "2026-10-30T03:01:11.904Z",
+    "thinkingLevel": "high"
+  },
+  {
+    "type": "message",
+    "id": "a68a80c3",
+    "parentId": "293891f7",
+    "timestamp": "2026-10-30T03:01:12.399Z",
+    "message": {
+      "role": "system",
+      "content": "",
+      "sections": {
+        "preamble": "You are an expert coding assistant operating inside pi, a coding agent harness. You help users by reading files, executing commands, editing code, and writing new files.",
+        "tools": "<tools>\n- read: Read file contents\n- bash: Execute bash commands (ls, grep, find, etc.)\n- edit: Make precise file edits with exact text replacement, including multiple disjoint edits in one call\n- write: Create or overwrite files\n\nIn addition to the tools above, you may have access to other custom tools depending on the project.\n</tools>",
+        "rules": "<rules>\n- Use bash for file operations like ls, rg, find\n- Use read to examine files instead of cat or sed.\n- You can inspect PI_* environment variables for current model and session details.\n- Use edit for precise changes (edits[].oldText must match exactly)\n- When changing multiple separate locations in one file, use one edit call with multiple entries in edits[] instead of multiple edit calls\n- Each edits[].oldText is matched against the original file, not after earlier edits are applied. Do not emit overlapping or nested edits. Merge nearby changes into one edit.\n- Keep edits[].oldText as small as possible while still being unique in the file. Do not pad with large unchanged regions.\n- Use write only for new files or complete rewrites.\n- Be concise in your responses\n- Show file paths clearly when working with files\n</rules>",
+        "docs": "<docs>\nPi documentation (read only when the user asks about pi itself, its SDK, extensions, themes, skills, or TUI):\n- Main documentation: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/README.md\n- Additional docs: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/docs\n- Examples: ~/.pi/agent/install/releases/1.4.0/node_modules/@earendil-works/pi-coding-agent/examples (extensions, custom tools, SDK)\n- When reading pi docs or examples, resolve docs/... under Additional docs and examples/... under Examples, not the current working directory\n- When asked about: extensions (docs/extensions.md, examples/extensions/), themes (docs/themes.md), skills (docs/skills.md), prompt templates (docs/prompt-templates.md), TUI components (docs/tui.md), keybindings (docs/keybindings.md), SDK integrations (docs/sdk.md), custom providers (docs/custom-provider.md), adding models (docs/models.md), pi packages (docs/packages.md), environment variables (docs/environment-variables.md), MCP servers (docs/mcp.md), codemode scripts and non-LLM models such as classifiers and image models (docs/codemode.md)\n- When working on pi topics, read the docs and examples, and follow .md cross-references before implementing\n- Always read pi .md files completely and follow links to related docs (e.g., tui.md for TUI API details)\n</docs>",
+        "cwd": "<cwd>\n~/dev/art-crit-runs/2026-10-30-024430-3d-model/minimax-m3.1-flash-high-20261030-024430/work\n</cwd>"
+      },
+      "timestamp": 1793329272399,
+      "toolsAdded": [
+        {
+          "name": "read",
+          "description": "Read the contents of a file. Supports text files and images (jpg, png, gif, webp, bmp). Images are sent as attachments. For text files, output is truncated to 2000 lines or 50KB (whichever is hit first). Use offset/limit for large files. When you need the full file, continue with offset until complete.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to read (relative or absolute)"
+              },
+              "offset": {
+                "type": "number",
+                "description": "Line number to start reading from (1-indexed)"
+              },
+              "limit": {
+                "type": "number",
+                "description": "Maximum number of lines to read"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "bash",
+          "description": "Execute a bash command in the current working directory. Returns stdout and stderr. Output is truncated to last 2000 lines or 50KB (whichever is hit first). If truncated, full output is saved to a temp file. Optionally provide a timeout in seconds.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "command"
+            ],
+            "properties": {
+              "command": {
+                "type": "string",
+                "description": "Shell command to execute"
+              },
+              "timeout": {
+                "type": "number",
+                "description": "Timeout in seconds (optional, no default timeout)"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "edit",
+          "description": "Edit a single file using exact text replacement. Every edits[].oldText must match a unique, non-overlapping region of the original file. If two changes affect the same block or nearby lines, merge them into one edit instead of emitting overlapping edits. Do not include large unchanged regions just to connect distant changes.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path",
+              "edits"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to edit (relative or absolute)"
+              },
+              "edits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "oldText",
+                    "newText"
+                  ],
+                  "properties": {
+                    "oldText": {
+                      "type": "string",
+                      "description": "Exact text for one targeted replacement. It must be unique in the original file and must not overlap with any other edits[].oldText in the same call."
+                    },
+                    "newText": {
+                      "type": "string",
+                      "description": "Replacement text for this targeted edit."
+                    }
+                  }
+                },
+                "description": "One or more targeted replacements. Each edit is matched against the original file, not incrementally. Do not include overlapping or nested edits. If two changes touch the same block or nearby lines, merge them into one edit instead."
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "write",
+          "description": "Write content to a file. Creates the file if it doesn't exist, overwrites if it does. Automatically creates parent directories.",
+          "parameters": {
+            "type": "object",
+            "required": [
+              "path",
+              "content"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Path to the file to write (relative or absolute)"
+              },
+              "content": {
+                "type": "string",
+                "description": "Content to write to the file"
+              }
+            }
+          },
+          "constrainedSampling": {
+            "type": "json_schema",
+            "strict": "prefer"
+          }
+        },
+        {
+          "name": "mcp__blender__execute_blender_code",
+          "description": "Execute Python code in the connected Blender instance.\n\nThe code runs in Blender's Python environment with full access to ``bpy``.\nTo return data, assign a JSON-serialisable dict to a variable named ``result``.\nDeferred completion via ``check_is_finished`` is only supported by the\ninteractive addon server, and is rejected in background mode.",
+          "parameters": {
+            "properties": {
+              "code": {
+                "title": "Code",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code"
+            ],
+            "title": "execute_blender_codeArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__execute_blender_code_for_cli",
+          "description": "Execute Python code in a background Blender process.\n\nOpens *blend_file* with ``blender --background`` and runs *code*.\nAssign a dict to ``result`` to return data.",
+          "parameters": {
+            "properties": {
+              "blend_file": {
+                "title": "Blend File",
+                "type": "string"
+              },
+              "code": {
+                "title": "Code",
+                "type": "string"
+              }
+            },
+            "required": [
+              "blend_file",
+              "code"
+            ],
+            "title": "execute_blender_code_for_cliArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_datablocks",
+          "description": "Return a summary of the blend file: data-block counts, active workspace, and render engine.",
+          "parameters": {
+            "properties": {},
+            "title": "get_blendfile_summary_datablocksArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_datablocks_for_cli",
+          "description": "Return a data-block summary by opening *blend_file* in background Blender.",
+          "parameters": {
+            "properties": {
+              "blend_file": {
+                "title": "Blend File",
+                "type": "string"
+              }
+            },
+            "required": [
+              "blend_file"
+            ],
+            "title": "get_blendfile_summary_datablocks_for_cliArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_missing_files",
+          "description": "Report external file references that are missing from disk\n(images, libraries, fonts, sounds, movie clips, caches, sequences).",
+          "parameters": {
+            "properties": {},
+            "title": "get_blendfile_summary_missing_filesArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_missing_files_for_cli",
+          "description": "Report missing file references by opening *blend_file* in background Blender.",
+          "parameters": {
+            "properties": {
+              "blend_file": {
+                "title": "Blend File",
+                "type": "string"
+              }
+            },
+            "required": [
+              "blend_file"
+            ],
+            "title": "get_blendfile_summary_missing_files_for_cliArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_of_linked_libraries",
+          "description": "Return a tree of directly and indirectly linked library files.",
+          "parameters": {
+            "properties": {},
+            "title": "get_blendfile_summary_of_linked_librariesArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_of_linked_libraries_for_cli",
+          "description": "Return linked-library info by opening *blend_file* in background Blender.",
+          "parameters": {
+            "properties": {
+              "blend_file": {
+                "title": "Blend File",
+                "type": "string"
+              }
+            },
+            "required": [
+              "blend_file"
+            ],
+            "title": "get_blendfile_summary_of_linked_libraries_for_cliArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_path_info",
+          "description": "Simple/fast access to the blend file's path, save status, age, and backups.",
+          "parameters": {
+            "properties": {},
+            "title": "get_blendfile_summary_path_infoArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_path_info_for_cli",
+          "description": "Return path info by opening *blend_file* in background Blender.",
+          "parameters": {
+            "properties": {
+              "blend_file": {
+                "title": "Blend File",
+                "type": "string"
+              }
+            },
+            "required": [
+              "blend_file"
+            ],
+            "title": "get_blendfile_summary_path_info_for_cliArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_usage_guess",
+          "description": "Guess the primary use-cases of the current blend file (scored 0-100 with certainty).",
+          "parameters": {
+            "properties": {},
+            "title": "get_blendfile_summary_usage_guessArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_blendfile_summary_usage_guess_for_cli",
+          "description": "Guess use-cases by opening *blend_file* in background Blender.",
+          "parameters": {
+            "properties": {
+              "blend_file": {
+                "title": "Blend File",
+                "type": "string"
+              }
+            },
+            "required": [
+              "blend_file"
+            ],
+            "title": "get_blendfile_summary_usage_guess_for_cliArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_object_detail_summary",
+          "description": "Return a structured summary of the object identified by *name*.\n\nIncludes type, transforms, parent, children, modifiers, constraints,\nmaterials, visibility, data-block name, and collections.",
+          "parameters": {
+            "properties": {
+              "name": {
+                "title": "Name",
+                "type": "string"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "title": "get_object_detail_summaryArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_objects_summary",
+          "description": "Return the scene's collection hierarchy and their objects.\n\nEach collection lists its objects (name, type, parent, data name,\nselection, visibility) and nested child collections.",
+          "parameters": {
+            "properties": {},
+            "title": "get_objects_summaryArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__get_python_api_docs",
+          "description": "Return the Blender Python API docs for *identifier*, or list\nmodules matching a trailing-``*`` discovery pattern.\n\n*identifier* should be a fully-qualified Python name (e.g.\n``bpy.app`` or ``bpy.types.Scene.frame_current``).\nThe trailing-``*`` forms are supported as discovery entry-points:\n\n- ``*`` enumerates the top-level modules (``bpy``, ``bmesh``,\n  ``mathutils``, ``gpu``, ...).\n- ``X.*`` enumerates the direct-child identifiers under the\n  *X* namespace (``bpy.*`` -> ``bpy.app``, ``bpy.context``, ...).\n\nBoth return a ``namespace`` response even when ``X.rst`` would\notherwise resolve to ``exact``; the ``.*`` form lets an agent\nforce the child listing.\n\nThe response always carries ``kind``, ``found``, and ``identifier``.\nThe remaining keys depend on ``kind``:\n\n- ``\"exact\"`` (``found=True``): ``<identifier>.rst`` was read.\n  Extra keys: ``content`` (RST text), ``examples``. When the\n  file exceeds 32 KB, ``content`` is replaced with a dot-point\n  summary of the file's top-level definitions (prefixed by a\n  header noting the truncation) and ``examples`` is empty -\n  re-query individual members for their rendered blocks.\n- ``\"namespace\"`` (``found=True``):\n  no ``<identifier>.rst`` but ``<identifier>.<child>.rst`` siblings exist.\n  Extra key: ``submodules`` (list of child identifiers).\n- ``\"definition\"`` (``found=True``):\n  *identifier* is defined inside a parent RST\n  (e.g. ``bpy.props.IntProperty`` lives in ``bpy.props.rst``).\n  Extra keys: ``content`` (rendered block), ``examples``.\n- ``\"partial\"`` (``found=False``):\n  the parent RST was located but the trailing component isn't defined in it.\n  Extra keys:\n  - ``parent`` the identifier whose RST was loaded.\n  - ``available`` top-level definitions in that RST.\n  - ``submodules`` sibling identifiers ``<parent>.<child>`` with their own RSTs,\n    filtered to those whose last component contains every character of the missing tail.\n\n  For a toctree landing page like ``bpy.types`` ``available`` is empty and ``submodules``\n  is the near-miss list; for a self-contained module like ``bpy.props`` it's the reverse.\n- ``\"suggestions\"`` (``found=False``):\n  no direct match, but *identifier* appears as a component of other files.\n  Extra key: ``suggestions`` (list of full identifiers).\n- ``\"missing\"`` (``found=False``): nothing matched.\n\n``examples`` (present on the ``exact`` and ``definition`` kinds)\nis a list of ``{path, content}`` entries referenced from this documentation.",
+          "parameters": {
+            "properties": {
+              "identifier": {
+                "title": "Identifier",
+                "type": "string"
+              }
+            },
+            "required": [
+              "identifier"
+            ],
+            "title": "get_python_api_docsArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__render_thumbnail_to_path",
+          "description": "Render a small, low-quality thumbnail to *output_path* (temporarily overrides settings).",
+          "parameters": {
+            "properties": {
+              "output_path": {
+                "title": "Output Path",
+                "type": "string"
+              }
+            },
+            "required": [
+              "output_path"
+            ],
+            "title": "render_thumbnail_to_pathArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__render_viewport_to_path",
+          "description": "Render the current scene to *output_path* using current render settings.",
+          "parameters": {
+            "properties": {
+              "output_path": {
+                "title": "Output Path",
+                "type": "string"
+              }
+            },
+            "required": [
+              "output_path"
+            ],
+            "title": "render_viewport_to_pathArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__search_api_docs",
+          "description": "Full-text search over the bundled Blender Python API reference.\n\nReturns a ranked list of hits. Each hit has:\n\n- ``path``: file path relative to the bundled docs.\n- ``text``: the matching paragraph plus ``context``\n  paragraphs on either side.\n- ``breadcrumb``: the section path containing the hit\n  (``Section > Sub-section > ...``).\n- ``index``: the hit's position in the result list.\n- ``score``: a relevance score; higher is better.\n\nThe query is tokenised on whitespace and matched\ncase-insensitively. Every token must appear somewhere in\nthe paragraph body, the file path, or an enclosing section\ntitle - in any order. Common English stop-words (``the``,\n``a``, ``how``, ``to``, ...) are dropped, so natural\nphrasings like ``\"how to bake\"`` work as expected. Regular\nexpressions are not supported.\n\nUse ``context`` to pull more surrounding paragraphs into\neach hit (symmetric, default 0). Use ``index`` with the\nposition of a previous hit (same query) to get that hit\nalone with its text widened to its enclosing section.\n\nRead-only; consults bundled RST files only.",
+          "parameters": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 20,
+                "title": "Max Results",
+                "type": "integer"
+              },
+              "context": {
+                "default": 0,
+                "title": "Context",
+                "type": "integer"
+              },
+              "index": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Index"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_api_docsArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "mcp__blender__search_manual_docs",
+          "description": "Full-text search over the bundled Blender user manual.\n\nReturns a ranked list of hits. Each hit has:\n\n- ``path``: file path relative to the bundled docs.\n- ``text``: the matching paragraph plus ``context``\n  paragraphs on either side.\n- ``breadcrumb``: the section path containing the hit\n  (``Section > Sub-section > ...``).\n- ``index``: the hit's position in the result list.\n- ``score``: a relevance score; higher is better.\n\nThe query is tokenised on whitespace and matched\ncase-insensitively. Every token must appear somewhere in\nthe paragraph body, the file path, or an enclosing section\ntitle - in any order. Common English stop-words (``the``,\n``a``, ``how``, ``to``, ...) are dropped, so natural\nphrasings like ``\"how to bake\"`` work as expected. Regular\nexpressions are not supported.\n\nUse ``context`` to pull more surrounding paragraphs into\neach hit (symmetric, default 0). Use ``index`` with the\nposition of a previous hit (same query) to get that hit\nalone with its text widened to its enclosing section.\n\nRead-only; consults bundled RST files only.",
+          "parameters": {
+            "properties": {
+              "query": {
+                "title": "Query",
+                "type": "string"
+              },
+              "max_results": {
+                "default": 20,
+                "title": "Max Results",
+                "type": "integer"
+              },
+              "context": {
+                "default": 0,
+                "title": "Context",
+                "type": "integer"
+              },
+              "index": {
+                "anyOf": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "default": null,
+                "title": "Index"
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "title": "search_manual_docsArguments",
+            "type": "object"
+          }
+        },
+        {
+          "name": "list_mcp_resources",
+          "description": "Lists resources provided by MCP servers. Resources allow servers to share data that provides context to language models, such as files, database schemas, or application-specific information. Prefer resources over web search when possible.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "server": {
+                "type": "string",
+                "description": "MCP server name. Omit to list every server with resources."
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Opaque cursor from a previous call with the same server; omit for the first page."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "list_mcp_resource_templates",
+          "description": "Lists resource templates provided by MCP servers. Parameterized resource templates allow servers to share data that takes parameters and provides context to language models, such as files, database schemas, or application-specific information. Prefer resource templates over web search when possible.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "server": {
+                "type": "string",
+                "description": "MCP server name. Omit to list every server with resources."
+              },
+              "cursor": {
+                "type": "string",
+                "description": "Opaque cursor from a previous call with the same server; omit for the first page."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        {
+          "name": "read_mcp_resource",
+          "description": "Read a specific resource from an MCP server given the server name and resource URI.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "server": {
+                "type": "string",
+                "description": "MCP server name exactly as configured. Must match the 'server' field returned by list_mcp_resources."
+              },
+              "uri": {
+                "type": "string",
+                "description": "Resource URI to read. Must be one of the URIs returned by list_mcp_resources."
+              }
+            },
+            "required": [
+              "server",
+              "uri"
+            ],
+            "additionalProperties": false
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "message",
+    "id": "adc0cf21",
+    "parentId": "a68a80c3",
+    "timestamp": "2026-10-30T03:01:12.399Z",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Make a 3D model that, if everyone saw it, would improve the world for the greatest number of people.\n\nMake it in Blender, working in the current directory.\n- A Blender 5 instance is running for you with no window (background mode). Use it through the `blender`\n  MCP tools: run Python (`bpy`) with execute_blender_code, and look things up with the API and manual\n  search tools. Blender's working directory is the current directory. The scene starts as Blender's\n  default one (a cube, a camera and a light).\n- There is no window to screenshot. To check your work, render it to an image file and look at the image\n  (render_thumbnail_to_path, render_viewport_to_path, or a render of the scene camera to a file).\n  Keep renders quick: a single tool call may take at most 5 minutes. Save what you look at as .jpg rather\n  than .png (set the render's image format to JPEG, or convert it before reading): each image you read\n  stays in your context, and a long session of large .png renders can hit the provider's per-request\n  image limit and end the run.\n- Build it in Blender itself; don't write the model or the images any other way.\n- Save the finished result in ./output/ (only what is in ./output/ is published):\n  - the model or scene as one .glb file (glTF binary), shown on the site in an interactive 3D viewer:\n    `bpy.ops.export_scene.gltf(filepath=..., export_format='GLB')`, without Draco or meshopt\n    compression, at most 15 MB;\n  - one or more final renders as .png or .jpg, at most 2 MB each, from camera angles you choose.\n  At most 8 files in all.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything (no asset\n  libraries or add-ons).\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n"
+        }
+      ],
+      "timestamp": 1793329272398
+    }
+  },
+  {
+    "type": "message",
+    "id": "e563d65c",
+    "parentId": "adc0cf21",
+    "timestamp": "2026-10-30T03:01:15.119Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "We need create concept art model improving world greatest people. Need build Blender, render inspect, save glb and image. Need perhaps current blender file. Need use MCP. We can design \"universal clean water pump / solar water kiosk\" benefiting many, perhaps \"SunWell Solar Water & Air Hub\" with elevated rainwater gathering? Need 3D model visually compelling and meaningful.\n\nPotential object: \"Solar Water & Air Hub\" modular public utility: solar panel canopy, rain harvesting cistern, UV purification tap, water dispenser, air-quality monitor, lantern, repair kiosk. Represents scalable infrastructure helping access clean water and climate resilience. Build in Blender via code. Need no window. We can script polished model with curved forms. Could also have blue, yellow, teal materials, signage text maybe. Need maybe human-scale.\n\nWe'll create a single hero model \"Solaqua Civic Water Station\": cylindrical white water tower base? Better scene asset:\n- central rain-harvesting cistern, vertically ribbed cylinder pale cream, around 1m tall\n- lower basin/dispenser attached with three taps and accessible basin\n- solar canopy on four curved legs, deep blue panel, amber fascia\n- rear vertical wind turbine? Avoid complexity.\n- side solar-powered UV purification module with transparent blue bottle? Maybe.\n- glowing water-level indicator.\n- greenery integrated bench planter around.\n- filtration kiosk with public information board.\n\nSince request greatest number, maybe icon of \"solar-powered community water & cooling station\" with drinking fountain, water purification, charging shelf, public lighting, temperature-controlled shaded seating. Clean water access massive impact. We can make believable modern public service station.\n\nNeed scene and output. Need maybe remove cube and camera/light, set camera and render studio environment. Use geometry via bpy primitives, bevels, curves, materials, parenting? Export glb only selected objects? scene collection maybe export all incl ground/camera? glTF excludes camera? lights included maybe. Better export model collection excluding studio ground/lights/camera, perhaps export selected model objects. Need ensure one GLB <=15mb.\n\nNeed inspect with render and perhaps thumbnail. We can script detailed model. Let's first inspect scene summary maybe execute code."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_a1612930c52e4393b1a1d980",
+          "name": "mcp__blender__get_blendfile_summary_datablocks",
+          "arguments": {}
+        },
+        {
+          "type": "toolCall",
+          "id": "call_43a6533185ec4d79a507c72e",
+          "name": "mcp__blender__get_objects_summary",
+          "arguments": {}
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 5725,
+        "output": 496,
+        "cacheRead": 128,
+        "cacheWrite": 0,
+        "reasoning": 447,
+        "totalTokens": 6349,
+        "cost": {
+          "input": 0.000772875,
+          "output": 0.00026784,
+          "cacheRead": 1.728e-06,
+          "cacheWrite": 0,
+          "total": 0.001042443
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329272412,
+      "responseId": "gen-1793329272-dXi8S30AfY7hVm9SgeDb",
+      "rawStopReason": "tool_calls",
+      "durationMs": 2705,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "6ed06201",
+    "parentId": "e563d65c",
+    "timestamp": "2026-10-30T03:01:15.143Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_a1612930c52e4393b1a1d980",
+      "toolName": "mcp__blender__get_blendfile_summary_datablocks",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"status\": \"ok\",\n    \"datablock_counts\": {\n      \"all_ids\": 38,\n      \"cameras\": 1,\n      \"collections\": 1,\n      \"images\": 2,\n      \"lights\": 1,\n      \"linestyles\": 1,\n      \"materials\": 2,\n      \"meshes\": 1,\n      \"objects\": 3,\n      \"palettes\": 1,\n      \"scenes\": 1,\n      \"screens\": 11,\n      \"window_managers\": 1,\n      \"workspaces\": 11,\n      \"worlds\": 1\n    },\n    \"render_engine\": \"BLENDER_EEVEE\",\n    \"scene_name\": \"Scene\",\n    \"workspaces\": [\n      \"Animation\",\n      \"Compositing\",\n      \"Geometry Nodes\",\n      \"Layout\",\n      \"Modeling\",\n      \"Rendering\",\n      \"Scripting\",\n      \"Sculpting\",\n      \"Shading\",\n      \"Texture Paint\",\n      \"UV Editing\"\n    ],\n    \"active_workspace\": \"Layout\"\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "get_blendfile_summary_datablocks"
+      },
+      "isError": false,
+      "durationMs": 20,
+      "timestamp": 1793329275143
+    }
+  },
+  {
+    "type": "message",
+    "id": "92cb5101",
+    "parentId": "6ed06201",
+    "timestamp": "2026-10-30T03:01:15.143Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_43a6533185ec4d79a507c72e",
+      "toolName": "mcp__blender__get_objects_summary",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"status\": \"ok\",\n    \"scene_name\": \"Scene\",\n    \"active_workspace\": \"Layout\",\n    \"active_object\": \"Cube\",\n    \"object_mode\": \"OBJECT\",\n    \"camera_object\": \"Camera\",\n    \"collections\": [\n      {\n        \"name\": \"Scene Collection\",\n        \"exclude\": false,\n        \"hide_viewport\": false,\n        \"objects\": [],\n        \"children\": [\n          {\n            \"name\": \"Collection\",\n            \"exclude\": false,\n            \"hide_viewport\": false,\n            \"objects\": [\n              {\n                \"name\": \"Camera\",\n                \"type\": \"CAMERA\",\n                \"parent\": null,\n                \"data_name\": \"Camera\",\n                \"selected\": false,\n                \"visible\": true,\n                \"hide_viewport\": false\n              },\n              {\n                \"name\": \"Cube\",\n                \"type\": \"MESH\",\n                \"parent\": null,\n                \"data_name\": \"Cube\",\n                \"selected\": true,\n                \"visible\": true,\n                \"hide_viewport\": false\n              },\n              {\n                \"name\": \"Light\",\n                \"type\": \"LIGHT\",\n                \"parent\": null,\n                \"data_name\": \"Light\",\n                \"selected\": false,\n                \"visible\": true,\n                \"hide_viewport\": false\n              }\n            ],\n            \"children\": []\n          }\n        ]\n      }\n    ]\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "get_objects_summary"
+      },
+      "isError": false,
+      "durationMs": 20,
+      "timestamp": 1793329275143
+    }
+  },
+  {
+    "type": "message",
+    "id": "54486070",
+    "parentId": "92cb5101",
+    "timestamp": "2026-10-30T03:01:27.650Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need execute code. Build via script. We can perhaps do in several calls: materials/helpers + main objects, then details, then studio/render/export.\n\nNeed understand Blender 5 maybe EEVEE id changed? Current BLENDER_EEVEE. We'll use CYCLES perhaps CPU render maybe time. Eevee quick. Use scene.render.engine='BLENDER_EEVEE' perhaps in Blender 5 it says BLENDER_EEVEE_NEXT maybe 4.2 is BLENDER_EEVEE_NEXT but current reports BLENDER_EEVEE, Blender 5 likely restored. Fine.\n\nGeometry detailed:\nCoordinate meters. base platform 3.8 x 3.2 x .18 at z .09, rounded corners? cube bevel.\nCanopy centered x0, y0.25. four legs perhaps x\u00b11.55, y\u00b11.15 from z .18 to 2.65. cylindrical angled? easiest cylinders. gold crossbar.\nSolar canopy: sloping panels, maybe two blue rectangular panels each at z 2.75, dimensions (1.35,1.45,.09), rotated x 8deg, separated. Dark blue with grid lines (thin cylinders or bars). Use panel cubes + thin grid bars. Since canopy should collect rain, gutter along front edge (silver tube).\nCentral cistern at x=-0.35? keep centered maybe x=-0.55,y=0.25, cylinder radius .55 depth1.3 z1.05. Off-white material. water level indicator vertical blue glass strip on front. top dome using UV sphere flattened? use half cylinder? UV sphere scaled gives dome but intersects.\nDispensing module at x=0.55,y=-0.45. front-facing toward camera y=-. Lower basin accessible. Could be blue cabinet at z1.15, dimensions .65,.4,.8. On front, spouts metallic horizontal, levers. Fountain bowl torus? use cylinder half? a shallow bowl using mesh lathe. Can create bowl via cone with radius1 .22 radius2 .32 depth .08? cone operator vertices 48 with top radius2 maybe cone oriented Z. bowl top open absent, but silver flat cap. Better create UV sphere cut? use mesh lathe helper ring profile to make basin. Build mesh manually with rings.\nWater splash maybe cyan curves? optional.\n\nRain collection gutter from canopy front to cistern, pipe curved with polyline bevel. UV filter module maybe attached side.\n\nAlso public bench planter right side x1.15? circular bench around tree? But too much. Add accessible bench front-right integrated planter with green plants. Could make seat 1.0x.42 and legs.\n\nPoster/info sign left rear with aqua icon \"WATER\" maybe text object. Font default. text objects likely export as mesh in glb? glTF exporter maybe text not included unless converted. We'll convert texts to meshes before export. Use text labels \"CLEAN WATER\", icon droplet. A droplet shape using mesh teardrop (lathe profile).\n\nLighting: warm solar beacon? Canopy integrated LED strip emissive.\nAccessibility: low fountain at z .75, wheelchair space underneath, contrasting colors.\n\nNeed model maybe isolate on round base with grass and water waves? But publication should model not scene. Could include base and model.\n\nLet's script helpers and objects. Ensure naming collections. We'll create collection \"SOLAQUA_MODEL\" and \"STUDIO\". Clear default objects. Material nodes BSDF compatibility. For transparency etc use alpha. Need modern. Add world.\n\nLet's use bevel modifiers, weighted normals maybe Blender warns but okay. For cylinders smooth. For cubes apply scale then bevel.\nNeed perhaps custom rounded rectangle platform via cube bevel.\n\nFunctions:\nmat(name, color, metallic=0, rough=.4, transmission=0, emission=None)\nadd_cube(name, loc, scale, mat, bevel=.05, rot=(0,0,0))\nadd_cyl(name, loc, radius, depth, mat, vertices=48, rot, bevel=.02)\nuv_sphere.\n\nMake solar panels with frame backing cube and inset top dark blue slightly above, with grid bars. Two panels perhaps each 1.45 x 1.55, rotated x 8\u00b0? Blender cube dimensions. Set dimensions and apply scale. top faces details need rotate matching. easiest parent panel parts to Empty rotated? Then group and export all. Create root Empty and parent. But helper can set rotation on each. Local bars positions computed with Euler? Create each panel as Empty at center with rotation x=10\u00b0 then child cubes local coordinates. Parent then set matrix_parent_inverse? easiest bpy object parent and local coords remain if assigning parent after location? Blender assignment parent doesn't preserve world automatically; setting obj.parent = root while local transform unchanged, so local coordinates interpreted relative root. So set child local.\n\nCanopy overall maybe panels horizontal enough.\nGutter front edge under panels at y=-1.25? Camera from (6,-8,5) look toward origin.\n\nCistern at x=-0.65,y=0.25. top z1.65. canopy z2.65.\n\nDispenser at x=0.65,y=-0.25, cabinet front y=-0.5. basin z.75.\nTank overflow pipe.\n\nInfo sign x=-1.55,y=-0.75 maybe front left, facing y=-. Sign board at z1.35. But could clutter. Place on left leg.\nBench front-right x1.2,y=-0.8? overlaps fountain. Put bench right back x1.35,y0.6 maybe.\nPlanter integrated with cistern left? circular seat around tank? no.\n\nNeed \"greatest number\" perhaps product combines:\n- rainwater harvest\n- solar purification\n- drinking water\n- public charging\n- warm/cool refuge? Could add phone charging shelf with USB icons.\n- emergency lighting.\n\nCould include a mini side panel \"POWER + FILTER\" purple module.\n\nLet's construct."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_7bf5f1ce85ed45be90d6437e",
+          "name": "mcp__blender__execute_blender_code",
+          "arguments": {
+            "code": "import bpy, math, random\nfrom mathutils import Vector\n\n# Reset scene\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete(use_global=False)\nfor c in list(bpy.data.collections):\n    if c.name != 'Collection':\n        bpy.data.collections.remove(c)\n\nscene = bpy.context.scene\nmodel_col = bpy.data.collections.new('SOLAQUA_MODEL')\nscene.collection.children.link(model_col)\nstudio_col = bpy.data.collections.new('STUDIO')\nscene.collection.children.link(studio_col)\n\n# Materials\ndef mat(name, color, metallic=0.0, rough=0.4, transmission=0.0, emission=None, emission_strength=0.0):\n    m = bpy.data.materials.new(name)\n    m.use_nodes = True\n    bs = m.node_tree.nodes.get('Principled BSDF')\n    bs.inputs['Base Color'].default_value = (*color, 1)\n    bs.inputs['Metallic'].default_value = metallic\n    bs.inputs['Roughness'].default_value = rough\n    if 'Transmission Weight' in bs.inputs:\n        bs.inputs['Transmission Weight'].default_value = transmission\n    elif 'Transmission' in bs.inputs:\n        bs.inputs['Transmission'].default_value = transmission\n    if emission:\n        if 'Emission Color' in bs.inputs:\n            bs.inputs['Emission Color'].default_value = (*emission, 1)\n            bs.inputs['Emission Strength'].default_value = emission_strength\n        elif 'Emission' in bs.inputs:\n            bs.inputs['Emission'].default_value = (*emission, 1)\n            if 'Emission Strength' in bs.inputs:\n                bs.inputs['Emission Strength'].default_value = emission_strength\n    m.diffuse_color = (*color, 1)\n    return m\n\nivory = mat('Warm porcelain', (0.88,0.86,0.76), rough=0.32)\nwhite = mat('Soft white', (0.93,0.95,0.91), rough=0.28)\nteal = mat('Vital teal', (0.03,0.52,0.55), rough=0.25)\nnavy = mat('Solar navy', (0.018,0.055,0.12), metallic=0.25, rough=0.24)\nblue = mat('Solar blue', (0.035,0.20,0.40), metallic=0.35, rough=0.2)\ncyan = mat('Water cyan', (0.05,0.70,0.88), transmission=0.35, rough=0.12)\ngold = mat('Solar amber', (0.96,0.55,0.08), metallic=0.15, rough=0.28)\nsilver = mat('Brushed steel', (0.55,0.62,0.65), metallic=0.82, rough=0.24)\ndark = mat('Graphite', (0.025,0.035,0.04), metallic=0.15, rough=0.38)\ngreen = mat('Living green', (0.12,0.42,0.19), rough=0.72)\nsoil = mat('Soil', (0.11,0.07,0.04), rough=0.9)\nsand = mat('Warm paving', (0.68,0.63,0.51), rough=0.78)\nled = mat('Warm LED', (1.0,0.68,0.28), rough=0.25, emission=(1.0,0.42,0.08), emission_strength=4)\naqua_glow = mat('Aqua glow', (0.0,0.8,1.0), rough=0.2, emission=(0.0,0.55,0.8), emission_strength=2.5)\n\ndef move_to(obj, col):\n    for c in list(obj.users_collection):\n        c.objects.unlink(obj)\n    col.objects.link(obj)\n\ndef finish(obj, name, material=None, bevel=0.0, smooth=False):\n    obj.name = name\n    move_to(obj, model_col)\n    if material:\n        obj.data.materials.append(material)\n    if bevel > 0:\n        mod = obj.modifiers.new('Soft manufactured edges', 'BEVEL')\n        mod.width = bevel\n        mod.segments = 3\n        # planar shading after bevel\n        try:\n            obj.data.polygons.foreach_set('use_smooth', [False]*len(obj.data.polygons))\n        except: pass\n    if smooth:\n        for p in obj.data.polygons: p.use_smooth = True\n    return obj\n\ndef cube(name, loc, dims, material, bevel=0.04, rot=(0,0,0), parent=None):\n    bpy.ops.mesh.primitive_cube_add(location=loc)\n    o = bpy.context.object\n    o.dimensions = dims\n    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)\n    o.rotation_euler = rot\n    finish(o, name, material, bevel)\n    if parent: o.parent = parent\n    return o\n\ndef cyl(name, loc, r, depth, material, rot=(0,0,0), bevel=0.015, verts=48, parent=None):\n    bpy.ops.mesh.primitive_cylinder_add(vertices=verts, radius=r, depth=depth, location=loc)\n    o = bpy.context.object\n    o.rotation_euler = rot\n    finish(o, name, material, bevel, smooth=True)\n    if parent: o.parent = parent\n    return o\n\ndef sphere(name, loc, scale, material, parent=None):\n    bpy.ops.mesh.primitive_uv_sphere_add(segments=48, ring_count=24, location=loc)\n    o = bpy.context.object\n    o.scale = scale\n    bpy.ops.object.transform_apply(location=False, rotation=False, scale=True)\n    finish(o, name, material, 0, True)\n    if parent: o.parent = parent\n    return o\n\ndef torus(name, loc, major, minor, material, rot=(0,0,0), parent=None):\n    bpy.ops.mesh.primitive_torus_add(major_radius=major, minor_radius=minor, major_segments=48, minor_segments=12, location=loc)\n    o = bpy.context.object\n    o.rotation_euler = rot\n    finish(o, name, material, 0, True)\n    if parent: o.parent = parent\n    return o\n\ndef pipe(name, points, radius, material, parent=None):\n    cu = bpy.data.curves.new(name, 'CURVE')\n    cu.dimensions='3D'; cu.resolution_u=12; cu.bevel_depth=radius; cu.bevel_resolution=4\n    sp = cu.splines.new('POLY'); sp.points.add(len(points)-1)\n    for p,co in zip(sp.points, points): p.co=(*co,1)\n    o=bpy.data.objects.new(name,cu); model_col.objects.link(o)\n    o.data.materials.append(material)\n    if parent: o.parent=parent\n    return o\n\n# Grounded accessibility plinth\ncube('Paved community plinth', (0,0,0.10), (4.5,3.8,0.20), sand, 0.12)\ncube('Inlaid blue safety route', (0,-1.63,0.205), (3.55,0.14,0.015), teal, 0.025)\n# three tactile-looking paving stripes\nfor x in [-1.55,-1.35,-1.15]:\n    cube('Tactile guide mark', (x,-1.62,0.218), (0.08,0.32,0.02), gold, 0.012)\n\n# Canopy columns and structure\nfor x in [-1.72,1.72]:\n    for y in [-1.28,1.24]:\n        cyl('Canopy post', (x,y,1.43), 0.065, 2.5, silver, bevel=0.012)\n        cyl('Canopy foot', (x,y,0.28), 0.13, 0.12, dark, bevel=0.02)\n# cross beams\ncube('Front canopy beam', (0,-1.28,2.66), (3.55,0.12,0.14), gold, 0.035)\ncube('Rear canopy beam', (0,1.24,2.66), (3.55,0.12,0.14), gold, 0.035)\nfor x in [-1.72,1.72]:\n    cube('Side canopy beam', (x,0,2.66), (0.12,2.58,0.14), gold, 0.035)\n\n# Solar panels on tilted local roots\npanel_roots=[]\nfor idx,x in enumerate([-0.83,0.83]):\n    root=bpy.data.objects.new(f'Solar array {idx+1}', None); model_col.objects.link(root)\n    root.location=(x,-0.02,2.78); root.rotation_euler=(math.radians(8),0,0)\n    panel_roots.append(root)\n    cube('PV aluminum frame', (0,0,0), (1.52,2.24,0.11), silver, 0.045, parent=root)\n    cube('PV deep blue cell field', (0,0,0.064), (1.40,2.12,0.025), blue, 0.025, parent=root)\n    # fine cell grid\n    for gx in [-0.42,0,0.42]:\n        cube('PV cell column', (gx,0,0.082), (0.012,2.04,0.008), navy, 0.003, parent=root)\n    for gy in [-0.72,-0.36,0,0.36,0.72]:\n        cube('PV cell row', (0,gy,0.083), (1.34,0.012,0.008), navy, 0.003, parent=root)\n\n# Rain gutter and downpipe\npipe('Rain gutter', [(-1.52,-1.18,2.71),(1.52,-1.18,2.71)], 0.055, silver)\npipe('Gutter to tank', [(-0.72,-1.18,2.70),(-0.72,-1.08,2.36),(-0.72,-0.72,1.92),(-0.65,-0.12,1.76)], 0.055, teal)\ncyl('Tank inlet collar',(-0.65,-0.12,1.77),0.11,0.10,dark)\n\n# Main cistern\ncyl('Rainwater cistern',(-0.65,0.25,1.02),0.58,1.62,ivory,bevel=0.045)\nsphere('Cistern domed lid',(-0.65,0.25,1.82),(0.58,0.58,0.16),white)\ncyl('Tank lid rim',(-0.65,0.25,1.73),0.61,0.07,teal,bevel=0.015)\n# tank bands\nfor z in [0.52,1.48]:\n    torus('Cistern reinforcing band',(-0.65,0.25,z),0.585,0.025,teal)\n# vertical sight glass on front-right\ncube('Water sight glass frame',(-0.33,-0.27,1.04),(0.12,0.07,1.18),dark,0.025)\ncube('Water sight glass',(-0.33,-0.315,1.04),(0.075,0.025,1.08),cyan,0.012)\nfor z in [0.57,0.83,1.09,1.35,1.53]:\n    cube('Water level tick',(-0.21,-0.355,z),(0.065,0.012,0.018),white,0.004)\n# brand droplet relief\nsphere('Tank droplet emblem',(-0.70,-0.345,1.17),(0.12,0.035,0.17),teal)\nsphere('Tank droplet cutout',(-0.70,-0.38,1.19),(0.055,0.018,0.095),white)\n\n# Base of cistern and plumbing\ncyl('Tank plinth',(-0.65,0.25,0.28),0.64,0.16,teal,bevel=0.025)\npipe('Visible filtered feed', [(-0.08,0.05,0.62),(-0.08,-0.22,0.62),(-0.08,-0.48,0.62),(0.43,-0.48,0.62),(0.43,-0.48,0.88)], 0.045, silver)\n\n# Accessible drinking fountain / purification cabinet\ncube('Purification cabinet',(0.72,-0.25,1.12),(0.72,0.58,0.92),white,0.10)\ncube('Purifier teal service face',(0.72,-0.555,1.28),(0.54,0.025,0.43),teal,0.045)\ncube('Filter status window',(0.72,-0.575,1.36),(0.36,0.02,0.12),navy,0.025)\ncyl('Filter status light',(0.91,-0.594,1.36),0.026,0.018,aqua_glow,rot=(math.pi/2,0,0),bevel=0.005)\n# faucets\nfor i,x in enumerate([0.53,0.83]):\n    pipe('Drinking faucet',[(x,-0.59,1.21),(x,-0.70,1.21),(x,-0.73,1.13)],0.022,silver)\n    cyl('Faucet lever',(x+0.045,-0.64,1.255),0.018,0.09,teal,rot=(0,math.pi/2,0),bevel=0.004)\n# basin: custom shallow bowl\nverts=[]; faces=[]\nrings=[(0.02,0.60),(0.16,0.78),(0.30,0.98),(0.34,1.0)]\nn=48\nfor rr,zz in rings:\n    for i in range(n):\n        a=2*math.pi*i/n\n        verts.append((rr*math.cos(a), rr*math.sin(a), zz))\nfor j in range(len(rings)-1):\n    for i in range(n):\n        a=j*n+i; b=j*n+(i+1)%n; c=(j+1)*n+(i+1)%n; d=(j+1)*n+i\n        faces.append((a,b,c,d))\no=bpy.data.objects.new('Accessible stainless basin',bpy.data.meshes.new('Basin mesh'))\nmodel_col.objects.link(o); o.location=(0.72,-0.58,0.73); o.data.materials.append(silver)\nfor v,co in zip(o.data.vertices,verts): v.co=co\no.data.from_pydata(verts,[],faces); o.data.update()\nfor p in o.data.polygons:p.use_smooth=True\n# interior water disc\ncyl('Clean water in basin',(0.72,-0.58,0.91),0.18,0.012,cyan,bevel=0,verts=48)\n\n# Warm LED underside canopy\ncube('Canopy task light',(0,-0.72,2.57),(2.3,0.075,0.035),led,0.015)\n\n# Info board attached to left column\ncube('Information board post',(-1.72,-1.36,1.55),(0.065,0.065,1.65),silver,0.012)\ncube('Public information board',(-1.72,-1.39,1.74),(0.62,0.07,0.78),navy,0.06)\n# teal header and simple white info bars\ncube('Info header stripe',(-1.72,-1.434,2.01),(0.50,0.018,0.12),teal,0.025)\nfor i,w in enumerate([0.39,0.31,0.43]):\n    cube('Public information line',(-1.75+w*0.1,-1.435,1.83-i*0.15),(w,0.014,0.025),white,0.008)\n# droplet icon\nsphere('Info droplet',(-1.72,-1.46,1.69),(0.07,0.02,0.10),cyan)\n\n# Side power-and-filter cabinet\ncube('Side power module',(1.25,0.66,0.72),(0.50,0.48,0.95),teal,0.08)\ncube('Power module door',(1.25,0.425,0.75),(0.39,0.03,0.70),white,0.035)\nfor z in [0.58,0.72,0.86]:\n    cube('Vent slot',(1.25,0.401,z),(0.22,0.014,0.025),dark,0.006)\n# USB shelf and plug points\ncube('Phone charging ledge',(0.72,-0.62,0.63),(0.55,0.28,0.06),gold,0.025)\nfor x in [0.60,0.72,0.84]:\n    cube('USB socket',(x,-0.765,0.665),(0.055,0.018,0.025),dark,0.006)\n\n# Bench planter to right\ncube('Bench seat',(1.18,0.66,0.60),(1.15,0.48,0.11),ivory,0.05)\nfor x in [0.78,1.58]:\n    cube('Bench leg',(x,0.66,0.37),(0.09,0.36,0.45),teal,0.025)\ncube('Integrated planter box',(1.18,0.95,0.68),(1.15,0.28,0.28),dark,0.04)\ncube('Planter soil',(1.18,0.95,0.825),(1.02,0.20,0.03),soil,0.015)\nrandom.seed(4)\nfor i in range(11):\n    x=0.69+i*0.098\n    h=random.uniform(0.16,0.32)\n    cyl('Planter stem',(x,0.95,0.83+h/2),0.012,h,green,bevel=0,verts=12)\n    sphere('Planter leaf',(x,0.95,0.85+h),(0.065,0.035,0.12),green)\n\n# Small bollard lights around rear\nfor x in [-1.35,1.35]:\n    cyl('Solar bollard base',(x,1.50,0.38),0.10,0.38,dark,bevel=0.02)\n    cyl('Solar bollard diffuser',(x,1.50,0.62),0.075,0.13,led,bevel=0.025)\n\n# Scene lighting/world\nscene.render.engine='BLENDER_EEVEE'\nscene.render.resolution_x=1400\nscene.render.resolution_y=1100\nscene.render.resolution_percentage=100\nscene.render.image_settings.file_format='JPEG'\nscene.render.image_settings.quality=90\nscene.render.film_transparent=False\nworld=bpy.data.worlds.new('Soft civic sky'); scene.world=world; world.use_nodes=True\nworld.node_tree.nodes['Background'].inputs['Color'].default_value=(0.18,0.26,0.30,1)\nworld.node_tree.nodes['Background'].inputs['Strength'].default_value=0.7\n\n# Ground in studio collection\nbpy.ops.mesh.primitive_plane_add(size=200, location=(0,0,-0.01)); ground=bpy.context.object; ground.name='Studio ground'; move_to(ground,studio_col); ground.data.materials.append(sand)\n\n# Key/fill/rim lights\ndef area(name, loc, energy, size, color, target=(0,0,1.2)):\n    d=bpy.data.lights.new(name,'AREA'); d.energy=energy; d.shape='DISK'; d.size=size; d.color=color\n    o=bpy.data.objects.new(name,d); studio_col.objects.link(o); o.location=loc\n    o.rotation_euler=(Vector(target)-o.location).to_track_quat('-Z','Y').to_euler(); return o\narea('Large warm key',(-4,-5,8),1500,5,(1.0,0.82,0.62))\narea('Cool sky fill',(5,-1,6),1100,4,(0.58,0.78,1.0))\narea('Golden rim',(2,5,6),1300,3,(1.0,0.55,0.22))\n\n# Camera\ncam_data=bpy.data.cameras.new('Hero camera'); cam=bpy.data.objects.new('Hero camera',cam_data); studio_col.objects.link(cam)\ncam.location=(6.8,-9.2,6.0); target=Vector((0,0,1.35)); cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler(); cam_data.lens=55\nscene.camera=cam\n\n# Color management\nscene.view_settings.view_transform='AgX'\ntry: scene.view_settings.look='AgX - Medium High Contrast'\nexcept: pass\n\n# Save blend\nimport os\nos.makedirs('output',exist_ok=True)\nbpy.ops.wm.save_as_mainfile(filepath='output/solaqua_civic_water_station.blend')\nresult={'objects':len(model_col.objects),'materials':len(bpy.data.materials),'blend':'output/solaqua_civic_water_station.blend'}"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 639,
+        "output": 6155,
+        "cacheRead": 6272,
+        "cacheWrite": 0,
+        "reasoning": 1234,
+        "totalTokens": 13066,
+        "cost": {
+          "input": 8.6265e-05,
+          "output": 0.0033237,
+          "cacheRead": 8.4672e-05,
+          "cacheWrite": 0,
+          "total": 0.003494637
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329275156,
+      "responseId": "gen-1793329275-2uI8haeo9eM9xv7qEo8E",
+      "rawStopReason": "tool_calls",
+      "durationMs": 12493,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "428620b0",
+    "parentId": "54486070",
+    "timestamp": "2026-10-30T03:01:28.030Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_7bf5f1ce85ed45be90d6437e",
+      "toolName": "mcp__blender__execute_blender_code",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"objects\": 116,\n    \"materials\": 16,\n    \"blend\": \"output/solaqua_civic_water_station.blend\"\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "execute_blender_code"
+      },
+      "isError": false,
+      "durationMs": 378,
+      "timestamp": 1793329288030
+    }
+  },
+  {
+    "type": "message",
+    "id": "515d1c53",
+    "parentId": "428620b0",
+    "timestamp": "2026-10-30T03:01:28.824Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need render inspect. use thumbnail to jpg maybe."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_3e0af3ede05e4fe5bd8efc64",
+          "name": "mcp__blender__render_thumbnail_to_path",
+          "arguments": {
+            "output_path": "output/preview.jpg"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 71,
+        "output": 54,
+        "cacheRead": 13056,
+        "cacheWrite": 0,
+        "reasoning": 13,
+        "totalTokens": 13181,
+        "cost": {
+          "input": 9.585e-06,
+          "output": 2.9160000000000002e-05,
+          "cacheRead": 0.00017625600000000001,
+          "cacheWrite": 0,
+          "total": 0.000215001
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329288036,
+      "responseId": "gen-1793329288-MFrzmCSoqJ6ZXY0n1LqW",
+      "rawStopReason": "tool_calls",
+      "durationMs": 787,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "7143bbaf",
+    "parentId": "515d1c53",
+    "timestamp": "2026-10-30T03:01:31.220Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_3e0af3ede05e4fe5bd8efc64",
+      "toolName": "mcp__blender__render_thumbnail_to_path",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"status\": \"ok\",\n    \"filepath\": \"/var/folders/8w/xb9tnd4d15zd0bn_p2nwt36c0000gn/T/blender_HoMRcw/blender_mcp/preview.jpg\",\n    \"message\": null\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "render_thumbnail_to_path"
+      },
+      "isError": false,
+      "durationMs": 2394,
+      "timestamp": 1793329291219
+    }
+  },
+  {
+    "type": "message",
+    "id": "3748b7ca",
+    "parentId": "7143bbaf",
+    "timestamp": "2026-10-30T03:01:32.091Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Tool returned temp path maybe output not actually. Need read image path perhaps."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_2cb507a368a94443ab6a256c",
+          "name": "read",
+          "arguments": {
+            "path": "/var/folders/8w/xb9tnd4d15zd0bn_p2nwt36c0000gn/T/blender_HoMRcw/blender_mcp/preview.jpg",
+            "offset": 1,
+            "limit": 50
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 212,
+        "output": 99,
+        "cacheRead": 13056,
+        "cacheWrite": 0,
+        "reasoning": 17,
+        "totalTokens": 13367,
+        "cost": {
+          "input": 2.862e-05,
+          "output": 5.346e-05,
+          "cacheRead": 0.00017625600000000001,
+          "cacheWrite": 0,
+          "total": 0.000258336
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329291226,
+      "responseId": "gen-1793329291-oghJ4iWFbwSl2sNGkzV2",
+      "rawStopReason": "tool_calls",
+      "durationMs": 865,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "9c3d451c",
+    "parentId": "3748b7ca",
+    "timestamp": "2026-10-30T03:01:32.170Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_2cb507a368a94443ab6a256c",
+      "toolName": "read",
+      "content": [
+        {
+          "type": "text",
+          "text": "Read image file [image/jpeg]"
+        },
+        {
+          "type": "image",
+          "data": "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",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "isError": false,
+      "durationMs": 52,
+      "timestamp": 1793329292170
+    }
+  },
+  {
+    "type": "message",
+    "id": "3b261515",
+    "parentId": "9c3d451c",
+    "timestamp": "2026-10-30T03:01:33.376Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Preview looks good overall but quite small thumbnail. Need high-quality render inspect. Need maybe main central cistern appears with purifier and plan. The bowl is at front. Add sign text maybe better, hero visual. Render viewport current settings output path likely. Use render_viewport_to_path output_path absolute? output/preview_high.jpg maybe tool."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_3fe89e3d521c4c12916185eb",
+          "name": "mcp__blender__render_viewport_to_path",
+          "arguments": {
+            "output_path": "output/solaqua_hero.jpg"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 191,
+        "output": 113,
+        "cacheRead": 13312,
+        "cacheWrite": 0,
+        "reasoning": 69,
+        "totalTokens": 13616,
+        "cost": {
+          "input": 2.5785e-05,
+          "output": 6.102e-05,
+          "cacheRead": 0.000179712,
+          "cacheWrite": 0,
+          "total": 0.000266517
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329292176,
+      "responseId": "gen-1793329292-2SzlA3azzR3aAp2JDjS0",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1199,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "0fafff2f",
+    "parentId": "3b261515",
+    "timestamp": "2026-10-30T03:01:34.984Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_3fe89e3d521c4c12916185eb",
+      "toolName": "mcp__blender__render_viewport_to_path",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"status\": \"ok\",\n    \"filepath\": \"/var/folders/8w/xb9tnd4d15zd0bn_p2nwt36c0000gn/T/blender_HoMRcw/blender_mcp/solaqua_hero.jpg\",\n    \"message\": null\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "render_viewport_to_path"
+      },
+      "isError": false,
+      "durationMs": 1606,
+      "timestamp": 1793329294984
+    }
+  },
+  {
+    "type": "message",
+    "id": "944140f3",
+    "parentId": "0fafff2f",
+    "timestamp": "2026-10-30T03:01:36.089Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "toolCall",
+          "id": "call_a08a7eb716464e3eaa7d838f",
+          "name": "read",
+          "arguments": {
+            "path": "/var/folders/8w/xb9tnd4d15zd0bn_p2nwt36c0000gn/T/blender_HoMRcw/blender_mcp/solaqua_hero.jpg",
+            "offset": 1,
+            "limit": 50
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 138,
+        "output": 86,
+        "cacheRead": 13568,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 13792,
+        "cost": {
+          "input": 1.863e-05,
+          "output": 4.644e-05,
+          "cacheRead": 0.000183168,
+          "cacheWrite": 0,
+          "total": 0.000248238
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329294992,
+      "responseId": "gen-1793329295-UJo792zZYQo7fZ5TgXKl",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1096,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "846d7ffa",
+    "parentId": "944140f3",
+    "timestamp": "2026-10-30T03:01:36.190Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_a08a7eb716464e3eaa7d838f",
+      "toolName": "read",
+      "content": [
+        {
+          "type": "text",
+          "text": "Read image file [image/jpeg]"
+        },
+        {
+          "type": "image",
+          "data": "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",
+          "mimeType": "image/jpeg",
+          "sourceMimeType": "image/jpeg",
+          "bytes": 131352
+        }
+      ],
+      "isError": false,
+      "durationMs": 58,
+      "timestamp": 1793329296190
+    }
+  },
+  {
+    "type": "message",
+    "id": "f1b7dd60",
+    "parentId": "846d7ffa",
+    "timestamp": "2026-10-30T03:01:41.755Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Looks polished. But basin weird: funnel at top above cabinet! Wait our custom bowl at z .73 but image shows big funnel at 1.3? Actually likely faucet pipe? Let's inspect: Big funnel is bowl due to our custom bowl center at z.73 but profile z up to1 so extends to 1.73? Ah ring profile zz 0.6 to1.0; center loc z .73, top at1.73. Mist! We intended shallow but profile radius maps z .6..1 and scaled? So bowl huge vertical 0.4, top at 1.73. In image, large funnel between tank and cabinet. Need fix basin geometry: create bowl as shallow lathe profile with ring (r,z): (.02,0),(.13,.04),(.24,.12),(.31,.14). Then loc z .73 top .87. Need remove existing object mesh and create. Also faucet at 1.21 now should be above basin top .87, should lower faucets to around .95? Cabinet face z 1.28. Water fountain lower tap at .98. Big bowl should under faucets around .75-.89. So basin top .89 and faucet spout .98. Cabinet maybe centered 1.12 height .92 => .66..1.58. fine.\n\nAlso water disc currently z.91 radius .18 okay. But bowl should visible under taps. Remove existing and reconstruct. Need adjust faucet spout coordinates from 1.21/1.13 to .98/.92 maybe; cabinet service face remains. Two faucets mounted at .98 from lower teal panel. In image faucets tiny at center around1.0 maybe yes. Let's edit object mesh positions in script and faucet pipe curve points. Better remove old mesh, create new, and replace pipe points for Drinking faucet. Need perhaps spouts are the little pipe visible in front of cabinet and end above weird giant bowl? Image shows little faucet at z1.0. fine.\n\nAlso tank sight glass frame black is visible. Main tank emblem currently ring due overlapping white sphere? image shows hollow ring, not droplet. okay abstract.\n\nNeed add text \"CLEAN WATER\" maybe on info board, but current board small lines. A text element helps. We can add 3D text as separate model, convert mesh before export. Add brand on canopy front gold beam: \"SOLAQUA\" dark text, centered at y=-1.36 z2.6. Text oriented in XZ plane facing -Y. Blender text defaults in XY plane with local normal +Z. Rotation (90\u00b0,0,0) maps local normal to -Y, local x world X, local y world Z. Great. position(-0.38,-1.35,2.56), size .13, extrude .004. Text \"SOLAQUA\". Another info \"CLEAN WATER\" size .09 on board. Need ensure no dependence on default font external. Convert to mesh.\n\nNeed perhaps have a small 3D water droplet logo on fascia.\n\nNeed maybe create arrow motifs on power module? not necessary.\n\nNeed export glb without Draco. Blender export parameters may changed. use export_format='GLB', export_apply=True? no. Need selection only model collection objects. Text converted. Export at output/solaqua_civic_water_station.glb.\n\nBut before, fix bowl and add text. Also maybe platform size 4.5 etc. Great.\n\nNeed perhaps render second angle maybe front close-up. User asks one or more. At most 8 files. Can provide two final renders. We should ensure in output actual files because tools temp path not output. We can use execute code bpy.ops.render.render(write_still=True) with filepath output/... then export. Then read from output. Great.\n\nLet's script fix, text. Also possibly adjust basin bottom. Use remove old object. Remove drinking faucet curves and recreate lower. Need identify names. Could remove and make new curves but move to model. helper maybe in new execute define pipe. use bpy data directly.\n\nText: create font objects, set extrude, align center. Convert. assign dark. Need perhaps board text.\n\nLet's execute."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_3ffe5b53407047c490adcf59",
+          "name": "mcp__blender__execute_blender_code",
+          "arguments": {
+            "code": "import bpy, math, os\nfrom mathutils import Vector\nmodel_col=bpy.data.collections['SOLAQUA_MODEL']\nsteel=bpy.data.materials['Brushed steel']; cyan=bpy.data.materials['Water cyan']; dark=bpy.data.materials['Graphite']; white=bpy.data.materials['Soft white']\n\n# Remove the incorrectly tall basin and faucers\nfor o in list(bpy.data.objects):\n    if o.name in ['Accessible stainless basin','Clean water in basin'] or o.name.startswith('Drinking faucet'):\n        bpy.data.objects.remove(o,do_unlink=True)\n\n# Recreate a shallow spun-metal bowl\nverts=[]; faces=[]; n=64\nprofile=[(0.025,0.00),(0.11,0.025),(0.22,0.09),(0.31,0.135),(0.315,0.15)]\nfor rr,zz in profile:\n    for i in range(n):\n        a=2*math.pi*i/n\n        verts.append((rr*math.cos(a),rr*math.sin(a),zz))\nfor j in range(len(profile)-1):\n    for i in range(n):\n        a=j*n+i; b=j*n+(i+1)%n; c=(j+1)*n+(i+1)%n; d=(j+1)*n+i\n        faces.append((a,b,c,d))\nmesh=bpy.data.meshes.new('Accessible basin spun mesh'); o=bpy.data.objects.new('Accessible stainless basin',mesh); model_col.objects.link(o)\no.location=(0.72,-0.58,0.73); mesh.from_pydata(verts,[],faces); mesh.update(); mesh.materials.append(steel)\nfor p in mesh.polygons:p.use_smooth=True\n# subtle basin interior water\nbpy.ops.mesh.primitive_cylinder_add(vertices=48,radius=0.115,depth=0.008,location=(0.72,-0.58,0.795))\nw=bpy.context.object; w.name='Clean water in basin'; w.data.materials.append(cyan)\nfor c in list(w.users_collection): c.objects.unlink(w)\nmodel_col.objects.link(w)\n\n# Lower, ergonomic faucet curves\ndef pipe(name, points, radius, material):\n    cu=bpy.data.curves.new(name,'CURVE'); cu.dimensions='3D'; cu.resolution_u=12; cu.bevel_depth=radius; cu.bevel_resolution=4\n    sp=cu.splines.new('POLY'); sp.points.add(len(points)-1)\n    for p,co in zip(sp.points,points):p.co=(*co,1)\n    ob=bpy.data.objects.new(name,cu); model_col.objects.link(ob); ob.data.materials.append(material); return ob\nfor i,x in enumerate([0.54,0.83]):\n    pipe('Drinking faucet',[(x,-0.585,1.04),(x,-0.68,1.04),(x,-0.715,0.955)],0.021,steel)\n    bpy.ops.mesh.primitive_cylinder_add(vertices=24,radius=0.018,depth=0.09,location=(x+0.045,-0.64,1.075),rotation=(0,math.pi/2,0))\n    lev=bpy.context.object; lev.name='Faucet lever'; lev.data.materials.append(bpy.data.materials['Vital teal'])\n    for c in list(lev.users_collection):c.objects.unlink(lev)\n    model_col.objects.link(lev)\n\n# Add raised brand and service lettering, converted for portable GLB\ndef text_mesh(name, body, loc, size, material, rotation=(math.pi/2,0,0), extrude=0.003):\n    cu=bpy.data.curves.new(name,'FONT'); cu.body=body; cu.align_x='CENTER'; cu.align_y='CENTER'; cu.size=size; cu.extrude=extrude; cu.bevel_depth=0.0008; cu.bevel_resolution=2\n    ob=bpy.data.objects.new(name,cu); model_col.objects.link(ob); ob.location=loc; ob.rotation_euler=rotation; ob.data.materials.append(material)\n    bpy.ops.object.select_all(action='DESELECT'); ob.select_set(True); bpy.context.view_layer.objects.active=ob\n    bpy.ops.object.convert(target='MESH')\n    return ob\n\ntext_mesh('SOLAQUA canopy name','SOLAQUA',(0,-1.351,2.665),0.135,dark)\ntext_mesh('Clean water sign title','CLEAN WATER',(-1.72,-1.451,1.86),0.072,white)\n\n# Subtle water service icon on fascia\nbpy.ops.mesh.primitive_uv_sphere_add(segments=32,ring_count=16,location=(1.36,-1.36,2.67),scale=(0.055,0.018,0.075))\nd=bpy.context.object; d.name='Canopy water droplet'; d.data.materials.append(bpy.data.materials['Vital teal'])\nfor c in list(d.users_collection):c.objects.unlink(d)\nmodel_col.objects.link(d)\n\nbpy.ops.wm.save_as_mainfile(filepath='output/solaqua_civic_water_station.blend')\nresult={'fixed_basin':True,'model_objects':len(model_col.objects)}"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 2083,
+        "output": 2056,
+        "cacheRead": 13696,
+        "cacheWrite": 0,
+        "reasoning": 871,
+        "totalTokens": 17835,
+        "cost": {
+          "input": 0.00028120500000000003,
+          "output": 0.00111024,
+          "cacheRead": 0.000184896,
+          "cacheWrite": 0,
+          "total": 0.001576341
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329296197,
+      "responseId": "gen-1793329296-5YiTZ3g0QXvhcTHstukX",
+      "rawStopReason": "tool_calls",
+      "durationMs": 5557,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "bb711728",
+    "parentId": "f1b7dd60",
+    "timestamp": "2026-10-30T03:01:41.830Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_3ffe5b53407047c490adcf59",
+      "toolName": "mcp__blender__execute_blender_code",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"fixed_basin\": true,\n    \"model_objects\": 121\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "execute_blender_code"
+      },
+      "isError": false,
+      "durationMs": 74,
+      "timestamp": 1793329301830
+    }
+  },
+  {
+    "type": "message",
+    "id": "5de68bbb",
+    "parentId": "bb711728",
+    "timestamp": "2026-10-30T03:01:43.615Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Render again high to output via execute code perhaps inspect. Use current camera and render."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_d8ab4b9cf15e4224a53d1885",
+          "name": "mcp__blender__execute_blender_code",
+          "arguments": {
+            "code": "import bpy, os\nscene=bpy.context.scene\nos.makedirs('output',exist_ok=True)\nscene.render.image_settings.file_format='JPEG'\nscene.render.image_settings.quality=92\nscene.render.filepath='output/solaqua_hero.jpg'\nbpy.ops.render.render(write_still=True)\nresult={'path':scene.render.filepath,'exists':os.path.exists(scene.render.filepath),'size':os.path.getsize(scene.render.filepath) if os.path.exists(scene.render.filepath) else 0}"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 88,
+        "output": 158,
+        "cacheRead": 17792,
+        "cacheWrite": 0,
+        "reasoning": 19,
+        "totalTokens": 18038,
+        "cost": {
+          "input": 1.188e-05,
+          "output": 8.532e-05,
+          "cacheRead": 0.000240192,
+          "cacheWrite": 0,
+          "total": 0.000337392
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329301837,
+      "responseId": "gen-1793329301-V7QZanbqmdHBSyW16ojb",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1778,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "059b5b4a",
+    "parentId": "5de68bbb",
+    "timestamp": "2026-10-30T03:01:45.094Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_d8ab4b9cf15e4224a53d1885",
+      "toolName": "mcp__blender__execute_blender_code",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"path\": \"output/solaqua_hero.jpg\",\n    \"exists\": true,\n    \"size\": 145442\n  }\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "execute_blender_code"
+      },
+      "isError": false,
+      "durationMs": 1478,
+      "timestamp": 1793329305094
+    }
+  },
+  {
+    "type": "message",
+    "id": "2aa32fb6",
+    "parentId": "059b5b4a",
+    "timestamp": "2026-10-30T03:01:46.829Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "toolCall",
+          "id": "call_04c95b336257442c9b69307f",
+          "name": "read",
+          "arguments": {
+            "path": "output/solaqua_hero.jpg",
+            "offset": 1,
+            "limit": 50
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 174,
+        "output": 51,
+        "cacheRead": 17920,
+        "cacheWrite": 0,
+        "reasoning": 0,
+        "totalTokens": 18145,
+        "cost": {
+          "input": 2.349e-05,
+          "output": 2.754e-05,
+          "cacheRead": 0.00024192000000000001,
+          "cacheWrite": 0,
+          "total": 0.00029295000000000005
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329305099,
+      "responseId": "gen-1793329305-UuUA63BqTwBfpLBYrxdj",
+      "rawStopReason": "tool_calls",
+      "durationMs": 1730,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "7a7784bf",
+    "parentId": "2aa32fb6",
+    "timestamp": "2026-10-30T03:01:46.903Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_04c95b336257442c9b69307f",
+      "toolName": "read",
+      "content": [
+        {
+          "type": "text",
+          "text": "Read image file [image/jpeg]"
+        },
+        {
+          "type": "image",
+          "data": "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",
+          "mimeType": "image/jpeg",
+          "sourceMimeType": "image/jpeg",
+          "bytes": 145442
+        }
+      ],
+      "isError": false,
+      "durationMs": 37,
+      "timestamp": 1793329306903
+    }
+  },
+  {
+    "type": "message",
+    "id": "540a4d97",
+    "parentId": "7a7784bf",
+    "timestamp": "2026-10-30T03:01:49.269Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Looks good. Text SOLAQUA slightly small but okay. Board CLEAN WATER tiny because font size relative? Board 0.62m, text .072, 10 chars width maybe .42 fits. It looks small but okay.\n\nNeed maybe second front angle close-up to show fountain. Could render lower camera from (5,-7,4) maybe. But hero enough one or more. User says one or more. One final render okay. Yet output currently includes .blend plus hero + maybe preview? preview wasn't output actually temp. Let's list."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_e273da6fcb6d4460abe47875",
+          "name": "bash",
+          "arguments": {
+            "command": "find output -maxdepth 1 -type f -print -exec ls -lh {} \\;",
+            "timeout": 30
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 2084,
+        "output": 169,
+        "cacheRead": 18048,
+        "cacheWrite": 0,
+        "reasoning": 116,
+        "totalTokens": 20301,
+        "cost": {
+          "input": 0.00028134,
+          "output": 9.126e-05,
+          "cacheRead": 0.000243648,
+          "cacheWrite": 0,
+          "total": 0.000616248
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329306911,
+      "responseId": "gen-1793329306-AUnRCRPM6UoZmQch3VvM",
+      "rawStopReason": "tool_calls",
+      "durationMs": 2358,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "e5ff72a4",
+    "parentId": "540a4d97",
+    "timestamp": "2026-10-30T03:01:49.284Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_e273da6fcb6d4460abe47875",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "output/solaqua_civic_water_station.blend1\n-rw-r--r--@ 1 ekho  staff   289K Oct 30 03:01 output/solaqua_civic_water_station.blend1\noutput/solaqua_hero.jpg\n-rw-r--r--@ 1 ekho  staff   142K Oct 30 03:01 output/solaqua_hero.jpg\noutput/solaqua_civic_water_station.blend\n-rw-r--r--@ 1 ekho  staff   489K Oct 30 03:01 output/solaqua_civic_water_station.blend\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 14,
+      "timestamp": 1793329309283
+    }
+  },
+  {
+    "type": "message",
+    "id": "97b16d9b",
+    "parentId": "e5ff72a4",
+    "timestamp": "2026-10-30T03:01:51.937Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need export GLB. Need exclude studio and ground, maybe select model objects only. glTF exporter in Blender 5 param maybe use_selection True. bpy.ops.export_scene.gltf(filepath=..., export_format='GLB', use_selection=True, export_apply=True, export_materials='EXPORT'). Could fail export_apply no? typical. Need convert curve objects to mesh? glTF can export curves? Blender glTF exporter may export curves? Typically only meshes, curves converted? \"Only meshes\" and other types ignored unless export_apply? Text already converted. Pipe curves are CURVE and likely not exported by glTF. Need convert all CURVE/FONT/SURFACE to MESH before export, maybe duplicate? We can convert in place for pipes. Select all curve objects and convert. Since exported object names. Do that. Also empties roots with children; if selection includes empties and children. Select model objects excluding empties? Export selected includes children? use_selection True exports selected only and children maybe yes. Need include roots to preserve transforms but children have parent; selecting child and parent enough. We'll select model objects all including empties. Convert curves in place. Use active object, bpy.ops.object.convert target MESH. For each curve individually to avoid selected all.\n\nNeed glb size <=15MB likely tiny. Export no Draco. After export verify file. Need maybe export from scene uses modifiers. export_apply=True. Ensure no world floor. Great.\n\nLet's execute conversion and export."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_6a71fa1759d4489faad42232",
+          "name": "mcp__blender__execute_blender_code",
+          "arguments": {
+            "code": "import bpy, os\nmodel_col=bpy.data.collections['SOLAQUA_MODEL']\n# Convert all curve geometry to meshes for reliable glTF portability\nconverted=[]\nfor o in list(model_col.objects):\n    if o.type=='CURVE':\n        bpy.ops.object.select_all(action='DESELECT')\n        o.select_set(True); bpy.context.view_layer.objects.active=o\n        bpy.ops.object.convert(target='MESH')\n        converted.append(o.name)\n# Select complete model, excluding studio floor, camera and lights\nbpy.ops.object.select_all(action='DESELECT')\nfor o in model_col.objects:\n    o.select_set(True)\nbpy.context.view_layer.objects.active=model_col.objects[0]\npath='output/solaqua_civic_water_station.glb'\nbpy.ops.export_scene.gltf(filepath=path, export_format='GLB', use_selection=True, export_apply=True, export_materials='EXPORT', export_cameras=False, export_lights=False)\nresult={'converted_curves':len(converted),'glb_exists':os.path.exists(path),'glb_bytes':os.path.getsize(path) if os.path.exists(path) else 0,'selected':len(model_col.objects)}"
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 230,
+        "output": 589,
+        "cacheRead": 20224,
+        "cacheWrite": 0,
+        "reasoning": 305,
+        "totalTokens": 21043,
+        "cost": {
+          "input": 3.105e-05,
+          "output": 0.00031806,
+          "cacheRead": 0.000273024,
+          "cacheWrite": 0,
+          "total": 0.0006221340000000001
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329309289,
+      "responseId": "gen-1793329309-C4gsGCULToR5bluFDIc9",
+      "rawStopReason": "tool_calls",
+      "durationMs": 2648,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "0dc87c6a",
+    "parentId": "97b16d9b",
+    "timestamp": "2026-10-30T03:01:52.133Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_6a71fa1759d4489faad42232",
+      "toolName": "mcp__blender__execute_blender_code",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"result\": {\n    \"converted_curves\": 5,\n    \"glb_exists\": true,\n    \"glb_bytes\": 2235340,\n    \"selected\": 121\n  },\n  \"stdout\": \"INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib\\nINFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib\\n03:01:52 | INFO: Starting glTF 2.0 export\\n03:01:52 | INFO: Extracting primitive: Accessible basin spun mesh\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.057\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.058\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.056\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.001\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.003\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.005\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.007\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.002\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.004\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.006\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.040\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.015\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Torus\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Torus.001\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.031\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Clean water sign title\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Drinking faucet.002\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Drinking faucet.003\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.013\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.014\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.032\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.033\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.012\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.039\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.006\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Gutter to tank\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.003\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.043\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.041\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.002\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.059\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.001\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.052\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.004\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.005\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.006\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.007\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.008\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.009\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.010\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.011\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.012\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.013\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.014\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.060\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.016\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.017\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.018\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.019\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.020\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.021\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.022\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.023\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.024\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.025\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.026\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.048\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.042\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.044\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.045\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.046\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.037\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.038\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Rain gutter\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.009\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.007\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.008\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.009\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.047\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: SOLAQUA canopy name\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.010\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.012\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.013\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.014\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.015\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.016\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.017\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.018\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.019\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.011\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.020\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.022\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.023\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.024\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.025\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.026\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.027\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.028\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.029\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.021\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.027\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.029\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.028\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.030\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.003\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.004\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.005\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.002\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Sphere.001\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.008\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.010\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cylinder.011\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.053\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.054\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.055\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.049\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.050\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.051\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Visible filtered feed\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.032\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.033\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.034\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.035\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.036\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.031\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Extracting primitive: Cube.030\\n03:01:52 | INFO: Primitives created: 1\\n03:01:52 | INFO: Finished glTF 2.0 export in 0.11057901382446289 s\\n\\n\"\n}"
+        }
+      ],
+      "details": {
+        "server": "blender",
+        "tool": "execute_blender_code"
+      },
+      "isError": false,
+      "durationMs": 195,
+      "timestamp": 1793329312132
+    }
+  },
+  {
+    "type": "message",
+    "id": "6345a4e9",
+    "parentId": "0dc87c6a",
+    "timestamp": "2026-10-30T03:01:54.676Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Good. Need maybe inspect glb perhaps use CLI summary? export okay. Need final output only at most 8 files; currently 4: blend, blend1, jpg, glb. User says \"Save finished result in output/ (only what is in output is published): model or scene as one glb, one or more final renders\". Could include blend not prohibited but at most8. Blend1 is backup unwanted. remove blend1 perhaps and maybe blend (not required but scene okay). They say model or scene as one glb, only what published. Better output should have glb + jpg only to avoid unnecessary. Remove blend and blend1? But maybe final result includes only those two, clean. Use bash rm within current dir allowed. Then maybe verify glb and image sizes. Need perhaps create second render? Not necessary. One hero enough. Could create front detail jpg for more richness but user asks one or more. One okay. At most2MB each (jpg 142K). GLB 2.2MB.\n\nNeed perhaps ensure model glb includes ground? excluded. It includes plinth and all model. Great.\n\nNeed maybe render after converting curves did not alter scene. no need.\n\nShould we save blend? not needed. But current scene saved before curve conversion. GLB is authoritative. Remove blend files to meet one .glb exactly and jpg. Use bash rm output/solaqua...blend*. Also maybe ensure current dir output only two."
+        },
+        {
+          "type": "toolCall",
+          "id": "call_2ada94dd35e84da2a4c55810",
+          "name": "bash",
+          "arguments": {
+            "command": "rm -f output/solaqua_civic_water_station.blend output/solaqua_civic_water_station.blend1 && find output -maxdepth 1 -type f -print -exec ls -lh {} \\;",
+            "timeout": 30
+          }
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 4100,
+        "output": 387,
+        "cacheRead": 20992,
+        "cacheWrite": 0,
+        "reasoning": 307,
+        "totalTokens": 25479,
+        "cost": {
+          "input": 0.0005535000000000001,
+          "output": 0.00020898,
+          "cacheRead": 0.000283392,
+          "cacheWrite": 0,
+          "total": 0.001045872
+        }
+      },
+      "stopReason": "toolUse",
+      "timestamp": 1793329312138,
+      "responseId": "gen-1793329312-vF8Rjlcy5VFp1sYOeod2",
+      "rawStopReason": "tool_calls",
+      "durationMs": 2538,
+      "thinkingLevel": "high"
+    }
+  },
+  {
+    "type": "message",
+    "id": "95ccdc95",
+    "parentId": "6345a4e9",
+    "timestamp": "2026-10-30T03:01:54.689Z",
+    "message": {
+      "role": "toolResult",
+      "toolCallId": "call_2ada94dd35e84da2a4c55810",
+      "toolName": "bash",
+      "content": [
+        {
+          "type": "text",
+          "text": "output/solaqua_civic_water_station.glb\n-rw-r--r--@ 1 ekho  staff   2.1M Oct 30 03:01 output/solaqua_civic_water_station.glb\noutput/solaqua_hero.jpg\n-rw-r--r--@ 1 ekho  staff   142K Oct 30 03:01 output/solaqua_hero.jpg\n"
+        }
+      ],
+      "isError": false,
+      "durationMs": 12,
+      "timestamp": 1793329314689
+    }
+  },
+  {
+    "type": "message",
+    "id": "b115c4a0",
+    "parentId": "95ccdc95",
+    "timestamp": "2026-10-30T03:01:56.577Z",
+    "message": {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "Need perhaps final summary short. Mention concept. No more tools. Ensure no claim actual water purification? visual includes purification cabinet. Great."
+        },
+        {
+          "type": "text",
+          "text": "Created **SOLAQUA**, a solar-powered community water station designed as a scalable public-service hub.\n\n### Features modeled\n- Rainwater collection with roof gutter and cistern\n- Dual solar-panel canopy\n- Accessible filtered drinking fountain\n- Visible water-level indicator\n- Purification and power modules\n- Public information board and branding\n- Phone-charging ledge\n- Warm nighttime task lighting\n- Integrated bench and planter\n- Tactile paving and wheelchair-accessible design\n\n### Published files\n- `output/solaqua_civic_water_station.glb` \u2014 interactive 3D model\n- `output/solaqua_hero.jpg` \u2014 final presentation render"
+        }
+      ],
+      "api": "openai-completions",
+      "provider": "openrouter",
+      "model": "minimax/minimax-m3.1-flash",
+      "usage": {
+        "input": 112,
+        "output": 163,
+        "cacheRead": 25472,
+        "cacheWrite": 0,
+        "reasoning": 29,
+        "totalTokens": 25747,
+        "cost": {
+          "input": 1.5120000000000001e-05,
+          "output": 8.802e-05,
+          "cacheRead": 0.000343872,
+          "cacheWrite": 0,
+          "total": 0.000447012
+        }
+      },
+      "stopReason": "stop",
+      "timestamp": 1793329314694,
+      "responseId": "gen-1793329314-Ae9Qo1wCTSTA84Zl17iT",
+      "rawStopReason": "stop",
+      "durationMs": 1883,
+      "thinkingLevel": "high"
+    }
+  }
+]

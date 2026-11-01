@@ -1,0 +1,70 @@
+{
+  "id": "gpt-6-astra-cx-high-20261029-183028",
+  "page": "website",
+  "model": "openai/gpt-6-astra",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T18:30:28Z",
+  "batch": "2026-10-29-183028-website",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 13
+    }
+  },
+  "metrics": {
+    "duration_ms": 647311,
+    "cost_usd": 0.0,
+    "tool_calls": 13,
+    "turns": 1,
+    "tokens_total": 45005,
+    "tokens_input": 22593,
+    "tokens_output": 22412,
+    "tokens_reasoning": 2089,
+    "tokens_cache_read": 477696
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 49374,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "check.mjs",
+      "index.html",
+      "main.js",
+      "offline-check.mjs",
+      "package-lock.json",
+      "package.json",
+      "screenshots/completed.jpg",
+      "screenshots/desktop-final.jpg",
+      "screenshots/desktop.jpg",
+      "screenshots/mobile-dialog.jpg",
+      "screenshots/mobile-fresh.jpg",
+      "screenshots/mobile.jpg",
+      "screenshots/saved.jpg",
+      "styles.css"
+    ]
+  }
+}

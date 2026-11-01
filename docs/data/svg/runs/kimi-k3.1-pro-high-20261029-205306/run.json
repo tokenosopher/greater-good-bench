@@ -1,0 +1,79 @@
+{
+  "id": "kimi-k3.1-pro-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/moonshotai/kimi-k3.1-pro",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T20:53:06Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Moonshot AI"
+    ],
+    "cost_usd": 0.1573898,
+    "pi_cost_usd": 0.1573898
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 6,
+      "read": 3,
+      "edit": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 315186,
+    "cost_usd": 0.1573898,
+    "tool_calls": 12,
+    "turns": 13,
+    "tokens_total": 27583,
+    "tokens_input": 18263,
+    "tokens_output": 9320,
+    "tokens_reasoning": 3902,
+    "tokens_cache_read": 138319
+  },
+  "thumb": "media/kindness.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 409988,
+        "path": "media/kindness.png",
+        "thumb": "media/kindness.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 9144,
+        "path": "media/kindness.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "make_poster.py"
+    ]
+  }
+}

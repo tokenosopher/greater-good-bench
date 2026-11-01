@@ -1,0 +1,118 @@
+{
+  "id": "gpt-6.1-sol-cx-high-20261029-185821",
+  "page": "3d-model",
+  "model": "openai/gpt-6.1-sol",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-29T18:58:31Z",
+  "batch": "2026-10-29-185821-3d-model",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 14,
+      "file_change": 5,
+      "bash": 2,
+      "mcp__blender__get_python_api_docs": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 512176,
+    "cost_usd": 0.0,
+    "tool_calls": 22,
+    "turns": 1,
+    "tokens_total": 51807,
+    "tokens_input": 34931,
+    "tokens_output": 16876,
+    "tokens_reasoning": 5496,
+    "tokens_cache_read": 975872
+  },
+  "thumb": "media/01-common-ground.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1680,
+        "bytes": 189412,
+        "path": "media/01-common-ground.jpg",
+        "thumb": "media/01-common-ground.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1440,
+        "bytes": 147503,
+        "path": "media/02-a-future-worth-tending.jpg",
+        "thumb": "media/02-a-future-worth-tending.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 3992040,
+        "meshes": 69,
+        "triangles": 189148,
+        "animations": 0,
+        "path": "media/common-ground.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "art_helpers.py",
+      "geography.py",
+      "hands.py",
+      "stage.py"
+    ]
+  }
+}

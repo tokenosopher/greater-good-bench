@@ -1,0 +1,70 @@
+{
+  "id": "minimax-m3.1-flash-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/minimax/minimax-m3.1-flash",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:54:10Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "DigitalOcean"
+    ],
+    "cost_usd": 0.02277294,
+    "pi_cost_usd": 0.020495646
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 14,
+      "edit": 4,
+      "write": 4,
+      "read": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 89174,
+    "cost_usd": 0.02277294,
+    "tool_calls": 24,
+    "turns": 21,
+    "tokens_total": 31366,
+    "tokens_input": 6690,
+    "tokens_output": 24676,
+    "tokens_reasoning": 3794,
+    "tokens_cache_read": 464256
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 51490,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "home-desktop.jpg",
+      "index.html",
+      "main.js",
+      "mobile-interaction.jpg",
+      "styles.css"
+    ]
+  }
+}

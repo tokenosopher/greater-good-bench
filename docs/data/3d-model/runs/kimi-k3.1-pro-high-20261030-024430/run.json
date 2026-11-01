@@ -1,0 +1,116 @@
+{
+  "id": "kimi-k3.1-pro-high-20261030-024430",
+  "page": "3d-model",
+  "model": "openrouter/moonshotai/kimi-k3.1-pro",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-30T02:44:30Z",
+  "batch": "2026-10-30-024430-3d-model",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Moonshot AI"
+    ],
+    "cost_usd": 0.3912718,
+    "pi_cost_usd": 0.3912718
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 4,
+      "read": 3,
+      "bash": 1,
+      "mcp__blender__get_objects_summary": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 877566,
+    "cost_usd": 0.3912718,
+    "tool_calls": 9,
+    "turns": 9,
+    "tokens_total": 71112,
+    "tokens_input": 45167,
+    "tokens_output": 25945,
+    "tokens_reasoning": 7360,
+    "tokens_cache_read": 207439
+  },
+  "thumb": "media/common_ground.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "model",
+        "bytes": 6697408,
+        "meshes": 391,
+        "triangles": 293692,
+        "animations": 0,
+        "path": "media/common_ground.glb"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 341782,
+        "path": "media/common_ground.jpg",
+        "thumb": "media/common_ground.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1300,
+        "bytes": 283964,
+        "path": "media/many_hands.jpg",
+        "thumb": "media/many_hands.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

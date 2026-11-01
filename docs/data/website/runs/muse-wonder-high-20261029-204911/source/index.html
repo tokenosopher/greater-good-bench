@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8 Billion Neighbors — a field guide to being human, together</title>
+<meta name="description" content="A seven-minute interactive journey from scale to empathy to one small, real act of kindness.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%23ff5c39'/><circle cx='38' cy='38' r='14' fill='%23ffd166'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="8 Billion Neighbors home">
+    <span class="brand-dot" aria-hidden="true"></span>
+    <span>8 BILLION <em>neighbors</em></span>
+  </a>
+  <div class="journey" aria-label="Your journey progress">
+    <span class="journey-label">YOUR JOURNEY</span>
+    <span class="lights" id="journeyLights" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i>
+    </span>
+    <span class="journey-count" id="journeyCount">0 / 5</span>
+  </div>
+  <a class="top-cta" href="#mission">Get a kindness mission →</a>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="globe" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="pulse"></span> A 7-MINUTE JOURNEY · NO SIGN-UP · NOTHING TO BUY</p>
+      <h1>You are one.<br>Of <span class="highlight">8.2 billion.</span></h1>
+      <p class="lede">That doesn’t make you small. It makes you <strong>connected</strong> — to more kindness, courage and common ground than any human in history has ever had within reach.</p>
+      <p class="lede-small">This page will shrink the world to human size, lend you another life for a moment, calm your nervous system, and leave you with one small act you can actually do today.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#village">Begin the journey ↓</a>
+        <button class="btn btn-ghost" id="heroMission">Give me a 2-minute mission</button>
+      </div>
+      <ul class="hero-stats">
+        <li><strong data-count="8200000000">8.2B</strong><span>people breathing now</span></li>
+        <li><strong>~140M</strong><span>born this year</span></li>
+        <li><strong>1</strong><span>act needed from you</span></li>
+      </ul>
+    </div>
+    <div class="hero-card" aria-hidden="true">
+      <span class="hero-card-tag">RIGHT NOW, SOMEWHERE</span>
+      <p id="nowText">A nurse in Nairobi is starting a night shift.</p>
+      <span class="hero-card-foot"><i></i> and so is someone near you</span>
+    </div>
+    <a class="scroll-hint" href="#village" aria-label="Scroll down">scroll<span></span></a>
+  </section>
+
+  <!-- MANIFESTO STRIP -->
+  <section class="strip" aria-label="What this page believes">
+    <p><span>We are not 8 billion strangers.</span> We are 8 billion nervous systems, childhoods, hungers, jokes and hopes — briefly awake at the same time. <em>That is not a crisis. That is company.</em></p>
+  </section>
+
+  <!-- 01 VILLAGE -->
+  <section class="section" id="village">
+    <div class="section-head">
+      <span class="num">01</span>
+      <div>
+        <p class="kicker">SHRINK THE WORLD</p>
+        <h2>If Earth were a village of 100 people…</h2>
+        <p class="section-lede">Big numbers numb us. One hundred neighbors don’t. Tap a fact — see the village change. Some of this is hard. Much of it is progress our grandparents would call miraculous.</p>
+      </div>
+    </div>
+
+    <div class="village-layout">
+      <div class="village-card">
+        <div class="people-grid" id="peopleGrid" role="img" aria-label="One hundred dots, each representing about 82 million people"></div>
+        <div class="village-caption">
+          <span class="legend"><i class="sw sw-on"></i><span id="legendOn">has it</span></span>
+          <span class="legend"><i class="sw sw-off"></i><span id="legendOff">doesn’t yet</span></span>
+          <span class="village-note">● 1 dot ≈ 82 million people</span>
+        </div>
+      </div>
+      <div class="village-side">
+        <div class="fact-tabs" id="factTabs" role="tablist" aria-label="Village facts"></div>
+        <div class="fact-detail">
+          <p class="fact-big"><span id="factNumber">74</span><small id="factUnit"> of 100</small></p>
+          <p class="fact-text" id="factText"></p>
+          <p class="fact-hope" id="factHope"></p>
+          <p class="fact-source" id="factSource"></p>
+        </div>
+        <button class="btn btn-dark" id="villageDone">I see the village ✓</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ANOTHER LIFE -->
+  <section class="section section-life" id="life">
+    <div class="section-head">
+      <span class="num">02</span>
+      <div>
+        <p class="kicker">BORROW ANOTHER LIFE</p>
+        <h2>The lottery none of us entered</h2>
+        <p class="section-lede">You didn’t choose your birthplace, first language, or the body you woke up in. Neither did anyone else. Press the button. Meet a composite neighbor — then notice what you share.</p>
+      </div>
+    </div>
+
+    <div class="life-layout">
+      <div class="life-card" id="lifeCard">
+        <div class="life-top">
+          <div class="avatar" id="lifeAvatar">A</div>
+          <div>
+            <h3 id="lifeName">Press the button</h3>
+            <p id="lifeMeta">A life is waiting to be noticed</p>
+          </div>
+          <span class="life-badge" id="lifeBadge">EARTH · NOW</span>
+        </div>
+        <div class="life-rows">
+          <p><span>THIS MORNING</span><b id="lifeMorning">—</b></p>
+          <p><span>WORK OF THEIR HANDS</span><b id="lifeWork">—</b></p>
+          <p><span>A SMALL JOY</span><b id="lifeJoy">—</b></p>
+          <p><span>ON THEIR MIND</span><b id="lifeWorry">—</b></p>
+          <p><span>IF YOU MET, THEY’D OFFER</span><b id="lifeOffer">—</b></p>
+        </div>
+        <button class="btn btn-ghost btn-small hidden" id="shareBtn">What do we share? ↓</button>
+        <div class="shared hidden" id="sharedBox">
+          <p class="shared-title">You both —</p>
+          <ul id="sharedList"></ul>
+          <p class="shared-foot">Different lottery tickets. Same species, same century, same sky.</p>
+        </div>
+      </div>
+      <div class="life-side">
+        <button class="btn btn-primary btn-big" id="lifeBtn">🎲 &nbsp;Meet a neighbor</button>
+        <p class="life-count"><strong id="lifeCount">0</strong> lives visited this session</p>
+        <div class="empathy-meter">
+          <div class="empathy-head"><span>THE WORLD FEELS</span><b id="empathyLabel">very far away</b></div>
+          <div class="meter"><i id="empathyBar"></i></div>
+          <p>Distance is mostly unfamiliarity. Every life you can imagine makes the next stranger easier to be kind to.</p>
+        </div>
+        <blockquote>“Everyone you meet is fighting a battle you know nothing about. Be kind. Always.”<cite>— a reminder pinned above many desks, for good reason</cite></blockquote>
+      </div>
+    </div>
+    <p class="fineprint">Composite portraits woven from common human experiences — not real individuals. Figures elsewhere on this page are rounded global estimates (UN / World Bank / WHO, ~2024); treat them as orientation, not precision.</p>
+  </section>
+
+  <!-- 03 COMMON GROUND -->
+  <section class="section" id="ground">
+    <div class="section-head">
+      <span class="num">03</span>
+      <div>
+        <p class="kicker">GUESS TOGETHER</p>
+        <h2>We agree more than the feed suggests</h2>
+        <p class="section-lede">Outrage is loud; agreement is quiet. Guess how many of your fellow humans share each simple hope — then see. Most of us are standing on the same ground, facing different storms.</p>
+      </div>
+    </div>
+
+    <div class="ground-layout">
+      <div class="quiz-card">
+        <div class="quiz-progress"><span id="quizStep">QUESTION 1 OF 4</span><span id="quizScore">Common ground found: 0</span></div>
+        <h3 id="quizQ">How many people in 100 agree that…</h3>
+        <p class="quiz-statement" id="quizStatement"></p>
+        <div class="slider-row">
+          <input type="range" id="quizSlider" min="0" max="100" value="50" aria-label="Your guess, percent">
+          <output id="quizGuess">50%</output>
+        </div>
+        <div class="bar-wrap hidden" id="quizReveal">
+          <div class="bar-row"><span>YOU GUESSED</span><div class="bar bar-you"><i id="barYou"></i></div><b id="barYouVal"></b></div>
+          <div class="bar-row"><span>PEOPLE AGREE</span><div class="bar bar-real"><i id="barReal"></i></div><b id="barRealVal"></b></div>
+          <p class="quiz-note" id="quizNote"></p>
+        </div>
+        <div class="quiz-actions">
+          <button class="btn btn-primary" id="quizCheck">Reveal the truth</button>
+          <button class="btn btn-dark hidden" id="quizNext">Next hope →</button>
+        </div>
+      </div>
+      <aside class="ground-side">
+        <div class="big-agree"><strong id="agreeAvg">—</strong><span>average agreement across these hopes, once revealed</span></div>
+        <p>The loudest voices are rarely the majority. When we assume everyone disagrees with us, we stop talking — and the assumption becomes the only true part.</p>
+        <p class="ground-callout">Try this week: ask one person what they <em>hope</em> for, before what they’re against.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 04 BREATHE -->
+  <section class="section section-breathe" id="breathe">
+    <div class="breathe-inner">
+      <p class="kicker light">04 · BREATHE TOGETHER</p>
+      <h2>Right now, 8.2 billion people are doing this with you.</h2>
+      <div class="breath-stage">
+        <div class="breath-ring" id="breathRing"><span id="breathWord">ready?</span></div>
+      </div>
+      <p class="breath-sub" id="breathSub">One slow breath won’t fix the world. It will fix the next minute — and the world is made of next minutes.</p>
+      <div class="breath-controls">
+        <button class="btn btn-sun" id="breathBtn">Start breathing together</button>
+        <span class="breath-stats"><strong id="cycleCount">0</strong> breaths here · <strong id="worldBreaths">0</strong> taken by humanity while you read this</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 MISSION -->
+  <section class="section" id="mission">
+    <div class="section-head">
+      <span class="num">05</span>
+      <div>
+        <p class="kicker">THE WHOLE POINT</p>
+        <h2>One small act. Today. For real.</h2>
+        <p class="section-lede">Kindness research keeps finding the same thing: small, specific, completed acts lift the giver as reliably as the receiver. So don’t “be a better person.” Just do one of these — we’ll make it embarrassingly doable.</p>
+      </div>
+    </div>
+
+    <div class="mission-controls">
+      <div class="control-group"><span>WHERE ARE YOU?</span><div class="chips" id="whereChips"></div></div>
+      <div class="control-group"><span>HOW LONG HAVE YOU GOT?</span><div class="chips" id="timeChips"></div></div>
+    </div>
+
+    <div class="mission-layout">
+      <article class="mission-card" id="missionCard">
+        <div class="mission-top"><span class="mission-tag" id="missionTag">YOUR MISSION</span><span class="mission-time" id="missionTime">⏱ 2 minutes</span></div>
+        <h3 id="missionTitle">Pick a place and a time — your mission appears here.</h3>
+        <p id="missionBody">It will be specific: exact words, exact steps, no vague “be nice” allowed.</p>
+        <ol class="mission-steps" id="missionSteps"></ol>
+        <div class="timer hidden" id="timerBox"><span id="timerDisplay">02:00</span><button class="btn btn-ghost btn-small" id="timerBtn">Start timer</button></div>
+        <div class="mission-actions">
+          <button class="btn btn-ghost" id="shuffleMission">↻ &nbsp;Another one</button>
+          <button class="btn btn-primary" id="acceptMission">I’ll do this one ✓</button>
+          <button class="btn btn-sun hidden" id="doneMission">I did it — plant a seed 🌱</button>
+        </div>
+        <p class="mission-accepted hidden" id="missionAccepted">Locked in. No account, no streak, no guilt if life intervenes — just come back and pick another. The garden below keeps what you grow.</p>
+      </article>
+
+      <aside class="ripple-card">
+        <h3>The ripple maths</h3>
+        <p>If just this many people did one kind act a week…</p>
+        <input type="range" id="rippleSlider" min="1" max="100" value="10" aria-label="Percent of humanity">
+        <p class="ripple-big"><strong id="ripplePeople">820 million</strong> people</p>
+        <ul class="ripple-list">
+          <li><b id="rippleActs">42.6 billion</b><span>kind acts a year</span></li>
+          <li><b id="rippleReach">~3 each</b><span>witnesses per act, on average*</span></li>
+          <li><b id="rippleDays">117 million</b><span>better days, every day</span></li>
+        </ul>
+        <p class="fineprint">*Illustrative arithmetic, not a forecast. But the direction is real: witnessed kindness makes witnesses kinder. It propagates.</p>
+      </aside>
+    </div>
+
+    <div class="garden">
+      <div class="garden-head"><h3>Your kindness garden</h3><span id="gardenCount">0 seeds planted — your first is waiting above</span></div>
+      <div class="garden-bed" id="gardenBed"><p class="garden-empty" id="gardenEmpty">🌱 &nbsp;Complete a mission and a flower grows here. No watering required — except doing it again.</p></div>
+    </div>
+  </section>
+
+  <!-- 06 LIGHT -->
+  <section class="section section-light" id="light">
+    <div class="section-head light-head">
+      <span class="num num-light">06</span>
+      <div>
+        <p class="kicker light">LEAVE A LIGHT ON</p>
+        <h2>Before you go, add yours.</h2>
+        <p class="section-lede light-lede">Choose one word you’d wish on all 8.2 billion of us. It joins the constellation — a reminder, next time the world feels dark, of how many lamps are lit.</p>
+      </div>
+    </div>
+    <div class="word-chips" id="wordChips"></div>
+    <div class="constellation-wrap">
+      <canvas id="constellation" aria-label="A constellation of lights added by visitors"></canvas>
+      <button class="btn btn-sun btn-big light-btn" id="lightBtn">✦ &nbsp;Add my light</button>
+      <p class="light-count"><strong id="lightCount">12,408</strong> lights already here · <span id="myWordEcho">yours could be next</span></p>
+    </div>
+
+    <div class="plan-card">
+      <h3>Your take-away plan <span>(the whole site, on one card)</span></h3>
+      <p id="planText">Meet a neighbor above, take a breath, and do one small kind act today. That’s it. That’s the plan.</p>
+      <div class="plan-actions">
+        <button class="btn btn-primary" id="copyPlan">Copy my plan</button>
+        <a class="btn btn-ghost" href="#top">Back to the top ↑</a>
+      </div>
+      <p class="copy-note" id="copyNote" role="status"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="foot-big">The world isn’t improved by everyone becoming extraordinary.<br>It’s improved by ordinary people doing small things, <em>at planetary scale.</em></p>
+    <p class="foot-small">8 BILLION NEIGHBORS · Made to be shared, remixed and argued with kindly · No tracking, no accounts, nothing stored — this page forgets you, but we hope you won’t forget each other.</p>
+  </footer>
+</main>
+
+<div class="toast hidden" id="toast" role="status"></div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

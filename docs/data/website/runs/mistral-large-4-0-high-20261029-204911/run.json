@@ -1,0 +1,88 @@
+{
+  "id": "mistral-large-4-0-high-20261029-204911",
+  "page": "website",
+  "model": "openrouter/mistralai/mistral-large-4-0",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-10-29T20:53:05Z",
+  "batch": "2026-10-29-204911-website",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Mistral"
+    ],
+    "cost_usd": 0.2556589,
+    "pi_cost_usd": 0.2556589000000001
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "read": 18,
+      "bash": 11,
+      "write": 7,
+      "edit": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 678302,
+    "cost_usd": 0.2556589,
+    "tool_calls": 40,
+    "turns": 30,
+    "tokens_total": 134659,
+    "tokens_input": 87791,
+    "tokens_output": 46868,
+    "tokens_reasoning": 21838,
+    "tokens_cache_read": 1368320
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 580940,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "01-hero.jpg",
+      "02-idea.jpg",
+      "03-math.jpg",
+      "04-interventions.jpg",
+      "05-objections.jpg",
+      "06-givewell-pledge.jpg",
+      "07-pledge.jpg",
+      "08-footer.jpg",
+      "09-math-interacted.jpg",
+      "10-quiz.jpg",
+      "11-pledge-interacted.jpg",
+      "12-mobile-hero.jpg",
+      "13-mobile-math.jpg",
+      "14-mobile-pledge.jpg",
+      "README.md",
+      "globe.js",
+      "index.html",
+      "main.js",
+      "mobile.js",
+      "model.js",
+      "package-lock.json",
+      "package.json",
+      "shoot.js",
+      "styles.css"
+    ]
+  }
+}

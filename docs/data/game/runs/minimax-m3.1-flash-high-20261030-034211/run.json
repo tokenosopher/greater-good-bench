@@ -1,0 +1,75 @@
+{
+  "id": "minimax-m3.1-flash-high-20261030-034211",
+  "page": "game",
+  "model": "openrouter/minimax/minimax-m3.1-flash",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-30T03:44:37Z",
+  "batch": "2026-10-30-034211-game",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Together"
+    ],
+    "cost_usd": 0.03820104,
+    "pi_cost_usd": 0.03438093600000001
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 18,
+      "write": 12,
+      "edit": 8,
+      "read": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 213756,
+    "cost_usd": 0.03820104,
+    "tool_calls": 40,
+    "turns": 39,
+    "tokens_total": 100885,
+    "tokens_input": 76724,
+    "tokens_output": 24161,
+    "tokens_reasoning": 8220,
+    "tokens_cache_read": 813056
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "main.tscn",
+      "project.godot",
+      "scripts/background.gd",
+      "scripts/background.gd.uid",
+      "scripts/board.gd",
+      "scripts/board.gd.uid",
+      "scripts/main.gd",
+      "scripts/main.gd.uid"
+    ]
+  }
+}

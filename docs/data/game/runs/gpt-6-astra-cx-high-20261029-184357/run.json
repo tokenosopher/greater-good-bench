@@ -1,0 +1,76 @@
+{
+  "id": "gpt-6-astra-cx-high-20261029-184357",
+  "page": "game",
+  "model": "openai/gpt-6-astra",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T18:43:57Z",
+  "batch": "2026-10-29-184357-game",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 16,
+      "file_change": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 854104,
+    "cost_usd": 0.0,
+    "tool_calls": 20,
+    "turns": 1,
+    "tokens_total": 77870,
+    "tokens_input": 47487,
+    "tokens_output": 30383,
+    "tokens_reasoning": 4650,
+    "tokens_cache_read": 514560
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      ".gitignore",
+      ".validation/01-welcome.png",
+      ".validation/02-resident.png",
+      ".validation/03-build.png",
+      ".validation/04-help.png",
+      ".validation/05-neighborhood.png",
+      ".validation/06-ending.png",
+      "README.md",
+      "export_presets.cfg",
+      "icon.svg",
+      "icon.svg.import",
+      "main.gd",
+      "main.gd.uid",
+      "main.tscn",
+      "project.godot",
+      "tests/capture.gd",
+      "tests/capture.gd.uid",
+      "tests/smoke.gd",
+      "tests/smoke.gd.uid"
+    ]
+  }
+}

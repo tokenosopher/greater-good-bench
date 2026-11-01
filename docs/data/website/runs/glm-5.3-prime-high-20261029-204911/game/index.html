@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Where You Stand — the good you could do</title>
+<meta name="description" content="An honest calculator: where your income stands among 8 billion people, and how many lives a slice of it could save through the world's most effective charities." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23f5b25b'/%3E%3Ccircle cx='11' cy='6' r='2' fill='%23fff'/%3E%3C/svg%3E" />
+<style>:root{--bg: #0a0e13;--panel: #121822;--panel-2: #0e141d;--line: #1f2937;--text: #e8edf4;--muted: #93a0b4;--faint: #6b7787;--amber: #f5b25b;--amber-soft: rgba(245, 178, 91, .14);--teal: #5ecfc0;--poor: #5c7698}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}main{max-width:1080px;margin:0 auto;padding:0 24px}h1,h2,.cert-lives{font-family:Georgia,Times New Roman,Songti SC,serif;font-weight:400;letter-spacing:.01em}em{color:var(--amber);font-style:italic}.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:0 auto;padding:14px 24px;background:#0a0e13e0;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}.brand{font-family:Georgia,serif;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:.04em}.topbar nav{display:flex;gap:22px}.topbar nav a{color:var(--muted);text-decoration:none;font-size:14px}.topbar nav a:hover{color:var(--amber)}.hero{text-align:center;padding:96px 0 72px}.kicker{text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--teal);margin-bottom:26px}.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.12;margin:0 0 22px}.lede{max-width:640px;margin:0 auto 44px;color:var(--muted);font-size:18px}.lede strong{color:var(--text)}.hero-stat{display:inline-block;padding:22px 34px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,var(--panel),var(--panel-2))}.hero-num{font-size:56px;font-weight:200;color:var(--amber);font-variant-numeric:tabular-nums;line-height:1.1}.hero-label{color:var(--muted);font-size:14px;max-width:400px}.footnote{margin-top:18px;color:var(--faint);font-size:12.5px;font-style:italic}.section{padding:64px 0 8px}.section-head{margin-bottom:30px}.section h2{font-size:clamp(26px,3.6vw,36px);margin:0 0 10px}.section-sub{color:var(--muted);max-width:620px;margin:0;font-size:16.5px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px}.stand-grid{display:grid;grid-template-columns:5fr 6fr;gap:20px;align-items:stretch}.stand-grid>.panel{min-width:0}.control-label{display:block;font-size:14px;color:var(--muted);margin-bottom:8px}.hint{color:var(--faint);font-size:12.5px}#income-input{width:100%;padding:12px 14px;font-size:24px;color:var(--text);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;font-variant-numeric:tabular-nums}#income-input:focus{outline:2px solid var(--amber);outline-offset:-2px}input[type=range]{width:100%;margin:22px 0 6px;accent-color:var(--amber);cursor:pointer}.slider-scale{display:flex;justify-content:space-between;color:var(--faint);font-size:11.5px}.rank-line{margin-top:14px;color:var(--muted);font-size:15px}.rank-line b{color:var(--text)}.rank-note{margin-top:18px;color:var(--faint);font-size:12.5px}.dots-panel{display:flex;flex-direction:column;justify-content:center}#dots{display:block;width:100%;height:auto}.dots-legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;font-size:13px;color:var(--muted)}.sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px}.sw-poor{background:#5c7698cc}.sw-you{background:#fff}.sw-rich{background:#f5b25bd9}.give-controls{margin-bottom:22px}.give-slider-row{max-width:560px}.give-amount{font-size:18px;color:var(--muted);margin-top:6px}.give-amount b{color:var(--amber);font-size:22px;font-variant-numeric:tabular-nums}.pledge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.pledge-btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel-2);color:var(--muted);font-size:14px;cursor:pointer}.pledge-btn:hover{border-color:var(--amber);color:var(--text)}.pledge-btn.active{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 20px;text-align:center}.stat-hero{grid-column:span 2;background:radial-gradient(120% 160% at 50% -30%,var(--amber-soft),transparent 60%),var(--panel);border-color:#f5b25b59}.stat-num{font-size:clamp(34px,4.5vw,52px);font-weight:200;color:var(--amber);font-variant-numeric:tabular-nums;line-height:1.15}.stat-label{margin-top:6px;color:var(--text);font-size:15px}.stat-note{margin-top:8px;color:var(--faint);font-size:13px}.stat-note span{color:var(--muted)}.fineprint{color:var(--faint);font-size:13px;max-width:720px;margin-top:22px}.translator{max-width:720px}.price-row{display:flex;align-items:center;gap:0;margin-top:4px;max-width:280px}.currency{font-size:24px;color:var(--muted);padding:12px 0 12px 14px;background:var(--panel-2);border:1px solid var(--line);border-right:0;border-radius:10px 0 0 10px}#price-input{flex:1;padding:12px 14px;font-size:24px;color:var(--text);background:var(--panel-2);border:1px solid var(--line);border-radius:0 10px 10px 0;font-variant-numeric:tabular-nums;min-width:0}#price-input:focus{outline:2px solid var(--amber);outline-offset:-2px}input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none}input[type=number]{-moz-appearance:textfield;appearance:textfield}.translator-out{font-size:18px;margin:24px 0 6px;max-width:640px}.translator-out b{color:var(--amber);font-variant-numeric:tabular-nums}.objections{display:grid;gap:12px}.objections details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:4px 22px;transition:border-color .25s}.objections details[open]{border-color:#f5b25b66}.objections summary{cursor:pointer;padding:16px 0;font-family:Georgia,serif;font-size:17.5px;list-style:none;position:relative;color:var(--text)}.objections summary::marker{display:none}.objections summary:after{content:"+";position:absolute;right:4px;color:var(--amber);font-size:20px;transition:transform .25s}.objections details[open] summary:after{transform:rotate(45deg)}.objections details p{color:var(--muted);margin:0 0 20px;max-width:720px}.objections details p em{color:var(--text);font-style:italic}.certificate{max-width:640px;margin:0 auto;text-align:center;border:1px solid rgba(245,178,91,.5);border-radius:4px;padding:44px 36px 36px;background:var(--panel-2);box-shadow:0 0 0 6px var(--bg),0 0 0 7px var(--line)}.cert-ornament{color:var(--amber);font-size:22px;margin-bottom:14px}.cert-line{font-family:Georgia,serif;font-size:19px;margin:8px 0;color:var(--text)}.cert-line b{color:var(--amber)}.cert-close{color:var(--muted);margin-top:20px;font-size:16px}.cert-lives{font-size:clamp(40px,6vw,58px);color:var(--amber);margin:4px 0 8px;font-weight:400}.cert-lives b{font-variant-numeric:tabular-nums}#name-input{margin-top:20px;padding:11px 14px;width:min(300px,100%);background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);font-size:15px;text-align:center}#name-input:focus{outline:2px solid var(--amber);outline-offset:-2px}.cert-note{color:var(--faint);font-size:12.5px;margin-top:16px;font-style:italic}.sources ul{color:var(--muted);max-width:760px;padding-left:20px;font-size:14px}.sources li{margin-bottom:10px}.sources b{color:var(--text)}footer{margin-top:70px;padding:30px 24px 44px;text-align:center;border-top:1px solid var(--line);color:var(--faint);font-size:13.5px}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{transition:none}}@media(max-width:880px){.stand-grid{grid-template-columns:1fr}.results-grid{grid-template-columns:1fr 1fr}.stat-hero{grid-column:span 2}}@media(max-width:560px){.topbar nav{display:none}.hero{padding:64px 0 48px}.results-grid{grid-template-columns:1fr}.stat-hero{grid-column:span 1}.hero-stat{padding:18px 22px}.panel{padding:20px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#top">Where&nbsp;You&nbsp;Stand</a>
+  <nav>
+    <a href="#stand">Where you stand</a>
+    <a href="#give">What giving does</a>
+    <a href="#objections">Objections</a>
+    <a href="#pledge">Pledge</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <p class="kicker">An honest calculator about your income — and what it could do</p>
+    <h1>You are probably <em>richer</em><br />than you think.</h1>
+    <p class="lede">
+      Most people reading this are in the richest slice of humanity that has ever lived —
+      and the price of saving a human life through the most effective charities is now
+      measured in <strong>thousands</strong>, not millions, of dollars.
+      Enter your income below and see what that means in concrete terms.
+    </p>
+    <div class="hero-stat">
+      <div class="hero-num"><span id="malaria-count">0</span></div>
+      <div class="hero-label">
+        children are estimated to have died of malaria since you opened this page —
+        one roughly every 70 seconds, nearly all from <em>preventable</em> causes.
+      </div>
+    </div>
+    <p class="footnote">WHO World Malaria Report 2024: 597,000 malaria deaths in 2023, ~76% among children under&nbsp;5.</p>
+  </section>
+
+  <section id="stand" class="section">
+    <div class="section-head reveal">
+      <h2>Where you stand</h2>
+      <p class="section-sub">Every dot below is about 8 million people, ordered by income, poorest first.</p>
+    </div>
+    <div class="stand-grid reveal">
+      <div class="panel controls">
+        <label class="control-label" for="income-input">Your yearly income, before tax
+          <span class="hint">(in your own currency — close enough for an estimate)</span>
+        </label>
+        <input id="income-input" type="text" inputmode="numeric" value="45,000" autocomplete="off" />
+        <input id="income-slider" type="range" min="0" max="100" step="0.1" value="79"
+               aria-label="Income on a logarithmic scale" />
+        <div class="rank-line"><span id="stand-lead">—</span></div>
+        <div class="rank-line">That makes you roughly the
+          <b id="rank">—</b> richest person on Earth,
+          out of 8.1 billion.
+        </div>
+        <div class="rank-line">You are richer than <b><span id="richer-count">—</span></b> people —
+          about <b><span id="richer-pct">—</span>%</b> of humanity.
+        </div>
+        <p class="rank-note">Approximate, based on World Bank and Our World in Data global income
+          distributions (2019–2023, PPP-adjusted). Your exact rank may differ; the order of
+          magnitude will not.</p>
+      </div>
+      <div class="panel dots-panel">
+        <canvas id="dots" role="img" aria-label="A field of one thousand dots, one per 8 million people. Dots poorer than you are dim, dots richer than you are gold, and your position is a pulsing white dot."></canvas>
+        <div class="dots-legend">
+          <span><i class="sw sw-poor"></i> living on less than you</span>
+          <span><i class="sw sw-you"></i> you</span>
+          <span><i class="sw sw-rich"></i> richer than you</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="give" class="section">
+    <div class="section-head reveal">
+      <h2>What a slice of it could do</h2>
+      <p class="section-sub">
+        Not the slice you spend on rent or groceries — the slice you'd never miss.
+        These are the measured, published cost-effectiveness numbers of the charities
+        GiveWell considers the best in the world.
+      </p>
+    </div>
+
+    <div class="panel give-controls reveal">
+      <div class="give-slider-row">
+        <label class="control-label" for="pct-slider">
+          Portion of your income you give away: <b><span id="pct-display">5</span>%</b>
+        </label>
+        <input id="pct-slider" type="range" min="0.5" max="15" step="0.5" value="5" />
+        <div class="slider-scale"><span>0.5%</span><span>5%</span><span>10%</span><span>15%</span></div>
+      </div>
+      <div class="give-amount">= <b id="donation-annual">$—</b> per year</div>
+      <div class="pledge-row">
+        <button class="pledge-btn" data-pct="1" id="pledge-1">Try 1%</button>
+        <button class="pledge-btn" data-pct="5" id="pledge-5">5% (the classic)</button>
+        <button class="pledge-btn" data-pct="10" id="pledge-10">10% (the Giving What We Can pledge)</button>
+      </div>
+    </div>
+
+    <div class="results-grid reveal">
+      <div class="stat stat-hero">
+        <div class="stat-num"><span id="r-lives-decade">—</span></div>
+        <div class="stat-label">lives saved over the <b>next decade</b></div>
+        <div class="stat-note">and roughly <span id="r-lives-40">—</span> over a 40-year career, at this level of giving</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span id="r-nets">—</span></div>
+        <div class="stat-label">mosquito nets per year</div>
+        <div class="stat-note">protecting about <span id="r-protected">—</span> people from malaria each year</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span id="r-deworm">—</span></div>
+        <div class="stat-label">children dewormed per year</div>
+        <div class="stat-note">deworming costs under a dollar per child and measurably raises their lifetime earnings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num"><span id="r-dalys">—</span></div>
+        <div class="stat-label">years of healthy life gained in a decade</div>
+        <div class="stat-note"><span id="r-dalys-note">—</span> over a 40-year career</div>
+      </div>
+    </div>
+
+    <p class="fineprint reveal">
+      Figures are GiveWell's 2023–24 estimates for its top charities: ~$5 per bed net,
+      ~$5,000 per death averted, ~$1.25 per child-year of vitamin A, under $1 per
+      child-year of deworming, ~$150 per year of healthy life (conservative). Estimates
+      carry real uncertainty — they are also the most rigorously measured numbers in
+      philanthropy. Giving is not a substitute for fixing systems; it's the part you can
+      measure tonight.
+    </p>
+  </section>
+
+  <section id="translate" class="section">
+    <div class="section-head reveal">
+      <h2>The translator</h2>
+      <p class="section-sub">Type in anything you spend money on. See what it is, at the other end of your income bracket.</p>
+    </div>
+    <div class="panel translator reveal">
+      <label class="control-label" for="price-input">Price of a thing:
+        <span class="hint">(a dinner out, a gadget, a month of streaming)</span>
+      </label>
+      <div class="price-row">
+        <span class="currency">$</span>
+        <input id="price-input" type="number" min="1" max="100000" value="20" />
+      </div>
+      <p class="translator-out">
+        That's <b><span id="tr-nets">4</span></b> malaria bed nets — protecting
+        <b><span id="tr-people">8</span></b> people while they sleep — or
+        <b><span id="tr-deworm">27</span></b> children dewormed for a year,
+        or <b><span id="tr-life">0.4</span>%</b> of the cost of saving a life.
+      </p>
+      <p class="fineprint">Yes, that coffee really is one bed net. No, you don't have to give up the coffee —
+      that's why the calculator works in percentages.</p>
+    </div>
+  </section>
+
+  <section id="objections" class="section">
+    <div class="section-head reveal">
+      <h2>The objections — taken seriously</h2>
+      <p class="section-sub">You're right to be skeptical. Here are the honest answers.</p>
+    </div>
+    <div class="objections reveal">
+      <details>
+        <summary>“I'm not rich. I can barely pay my own bills.”</summary>
+        <p>“Rich” is relative — and you're reading this on a computer. If you earn $40,000 a
+        year, you out-earn roughly 94% of humanity. You don't need to be a billionaire to
+        save a life; you need $5,000 — often less — and a well-chosen charity. For most
+        people in the global top 10%, that's months, not decades, of discretionary spending.</p>
+      </details>
+      <details>
+        <summary>“My donation is a drop in the ocean.”</summary>
+        <p>A life is not an ocean. $5,000 to a top-rated malaria charity is, with high
+        probability, a specific child who doesn't die. Almost no one ever saves a life.
+        You can do it within a year — quietly, anonymously, from a couch.</p>
+      </details>
+      <details>
+        <summary>“Charities are wasteful and corrupt.”</summary>
+        <p>This was the hard problem, and it's been solved about as well as it can be.
+        GiveWell spends years auditing charities and publishes all of its math, mistakes
+        included. Its top charities deliver bed nets for ~$5 and vitamin A for ~$1.25,
+        with independent monitoring and randomized-trial evidence. If you distrust one
+        charity, that's an argument for <em>better</em> giving, not for no giving —
+        and “no giving” has a body count too.</p>
+      </details>
+      <details>
+        <summary>“Aid creates dependency.”</summary>
+        <p>Bed nets, deworming and vitamin A are cheap, time-limited, and measured by
+        randomized controlled trials; programs are increasingly handed to national
+        governments to run themselves. Since 2000, simple interventions like these have
+        helped cut child deaths from ~10 million a year to under 5 million — one of the
+        best-evidenced success stories in all of development.</p>
+      </details>
+      <details>
+        <summary>“We should fix the root causes instead.”</summary>
+        <p>Do both — the critique is fair, and it applies to your consumption too. But a
+        child with malaria tonight cannot wait for structural reform, and bed nets work
+        tonight. Giving and system-change aren't rivals; the same dollar just can't do
+        both, so the decision deserves to be deliberate rather than default.</p>
+      </details>
+      <details>
+        <summary>“I already give to local causes / my alma mater.”</summary>
+        <p>Local causes matter, and that's your call. But the math is stubborn: $5,000 in a
+        rich country might buy a nicer mural or a marginally better library; $5,000 in the
+        poorest places buys a life. The whole point of this page is one question:
+        <em>if you're giving anyway, how much good do you want it to do?</em></p>
+      </details>
+    </div>
+  </section>
+
+  <section id="pledge" class="section">
+    <div class="section-head reveal">
+      <h2>Make it real</h2>
+      <p class="section-sub">Pick a level above, add your name, and read it aloud.</p>
+    </div>
+    <div class="certificate reveal">
+      <div class="cert-ornament">❦</div>
+      <p class="cert-line">I, <b id="cert-name">A Person Who Read This Page</b>,</p>
+      <p class="cert-line">give <b><span id="cert-pct">5</span>%</b> of my income —
+        <b><span id="cert-amount">$—</span></b> this year —</p>
+      <p class="cert-line">to the charities that do the most measurable good in the world.</p>
+      <p class="cert-line cert-close">Kept for a working life, this is estimated to save</p>
+      <p class="cert-lives"><b><span id="cert-lives">—</span></b> lives.</p>
+      <input id="name-input" type="text" placeholder="Type your name…" autocomplete="off" maxlength="60" />
+      <p class="cert-note">Nothing is stored or sent anywhere — this page has no memory,
+        by design. The only copy that exists is the one you keep, in your head or in ink.</p>
+    </div>
+  </section>
+
+  <section class="section sources">
+    <h2>Sources &amp; caveats</h2>
+    <ul>
+      <li><b>GiveWell</b>, “Cost-Effectiveness Analyses — Top Charities” (2023–24): bed nets ~$5;
+        ~$3,500–5,500 per death averted (top-charity average; $5,000 used here); vitamin A
+        supplementation ~$1.25 per child-year; deworming &lt;$1 per child-year.</li>
+      <li><b>WHO</b>, World Malaria Report 2024: 597,000 malaria deaths in 2023, ~76% children under 5
+        (≈ one child death per ~70 seconds).</li>
+      <li><b>World Bank Poverty &amp; Inequality Platform</b> and <b>Our World in Data</b>,
+        global income distribution, 2019–2023, PPP-adjusted international dollars.</li>
+      <li><b>Give What We Can</b> (10% pledge) and <b>The Life You Could Save</b> (1%+ pledge).</li>
+    </ul>
+    <p class="fineprint">All numbers are estimates — deliberately on the conservative side where
+    uncertain. This page runs entirely in your browser, stores nothing, tracks nothing, and asks
+    for nothing. It only asks you to look, once, at the actual math.</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Built to be seen once. Share it with someone who earns what you do. — no tracking, no storage, one file.</p>
+</footer>
+
+<script type="module">var S=(t,e,n)=>()=>{if(n)throw n[0];try{return t&&(e=t(t=0)),e}catch(o){throw n=[o],o}};var W=(t,e)=>()=>{try{return e||t((e={exports:{}}).exports,e),e.exports}catch(n){throw e=0,n}};function Y(t){let e=Math.min(100,Math.max(0,t));for(let n=1;n<v.length;n++){let[o,i]=v[n-1],[a,s]=v[n];if(e<=a){if(i===0)return e/a*s;let d=(Math.log(e||1e-9)-Math.log(o))/(Math.log(a)-Math.log(o));return i*Math.pow(s/i,d)}}return v[v.length-1][1]}function A(t){if(t<=0)return 0;let e=0,n=100;for(let o=0;o<60;o++){let i=(e+n)/2;Y(i)<t?e=i:n=i}return(e+n)/2}function D(t,e){let n=t*e/100,o=40;return{annual:n,nets:n/l.net,protected:n/l.net*2,livesYear:n/l.life,livesDecade:n*10/l.life,lives40:n*o/l.life,dalysDecade:n*10/l.dalys,dalys40:n*o/l.dalys,deworm:n/l.deworm,vita:n/l.vita,eyes:n/l.eyes}}var v,l,N=S(()=>{v=[[0,0],[2,210],[5,320],[10,420],[20,700],[30,1e3],[40,1600],[50,2900],[60,4400],[70,6800],[80,10500],[90,21e3],[95,34e3],[98,6e4],[99,9e4],[99.5,14e4],[99.9,45e4],[100,3e6]];l={net:5,life:5e3,dalys:150,vita:1.25,deworm:.75,eyes:50}});var I,B,H,x,k=S(()=>{I=[92,116,152,.35],B=[245,178,91,.65],H=[255,255,255,1],x=class{constructor(e){this.canvas=e,this.ctx=e.getContext("2d"),this.dots=[],this.userIndex=-1,this.waveStart=-1,this.reduced=matchMedia("(prefers-reduced-motion: reduce)").matches,this._resize=()=>this.layout(),addEventListener("resize",this._resize),this.layout(),this._loop=n=>this.frame(n),requestAnimationFrame(this._loop)}layout(){let e=Math.min(2,devicePixelRatio||1),n=Math.max(240,this.canvas.clientWidth||this.canvas.parentElement.clientWidth),o=n<480?40:50,i=1e3/o,a=8,s=(n-a*2)/o,d=s*1.25,u=d*i+a*2;this.canvas.width=Math.round(n*e),this.canvas.height=Math.round(u*e),this.canvas.style.height=`${u}px`,this.ctx.setTransform(e,0,0,e,0,0),this.radius=Math.max(1.5,Math.min(4,s*.28)),this.dots=Array.from({length:1e3},(p,m)=>({x:a+(m%o+.5)*s,y:a+(Math.floor(m/o)+.5)*d,phase:Math.random()*Math.PI*2,c:[...I],t:[...I]}))}setPercentile(e){let n=Math.min(999,Math.max(0,Math.round(e/100*1e3)));for(let o=0;o<1e3;o++){let i=o<n?I:o===n?H:B;this.dots[o].t=i,this.reduced&&(this.dots[o].c=i)}this.userIndex=n,this.waveStart=performance.now()}frame(e){let n=this.ctx;n.clearRect(0,0,this.canvas.width,this.canvas.height);let o=this.waveStart>0?(e-this.waveStart)/700*1e3:1/0;for(let i=0;i<1e3;i++){let a=this.dots[i],s=Math.abs(i-this.userIndex),d=this.reduced?1:Math.min(1,Math.max(0,(o-s)/60));for(let f=0;f<4;f++)a.c[f]+=(a.t[f]-a.c[f])*(d===1?1:1-Math.pow(1-d,3));let[u,p,m,T]=a.c,U=this.reduced?1:.82+.18*Math.sin(e*.0012+a.phase),z=i===this.userIndex?this.radius*(1.6+.5*Math.sin(e*.005)):this.radius;n.beginPath(),n.arc(a.x,a.y,z,0,Math.PI*2),n.fillStyle=`rgba(${u|0},${p|0},${m|0},${(T*U).toFixed(3)})`,n.fill()}requestAnimationFrame(this._loop)}destroy(){removeEventListener("resize",this._resize)}}});function h(t,e=0){return(e?Number(t.toFixed(e)):Math.round(t)).toLocaleString("en-US")}function L(t){return t>=1e9?`${(t/1e9).toFixed(t/1e9>=10?1:2)} billion`:t>=1e6?`${(t/1e6).toFixed(t/1e6>=10?0:1)} million`:t>=1e4?`${Math.round(t/1e3)},000`:Math.round(t).toLocaleString("en-US")}function O(t){return t>=1e6?`${(t/1e6).toFixed(t/1e6>=10?0:1)} million`:Math.round(t).toLocaleString("en-US")}function _(t){return t>=1e4?`$${(Math.round(t/100)*100).toLocaleString("en-US")}`:`$${Math.round(t).toLocaleString("en-US")}`}function M(t,e,{decimals:n=0,formatter:o=a=>h(a,n),duration:i=500}={}){t._tween&&cancelAnimationFrame(t._tween);let a=typeof t._value=="number"?t._value:0;if(matchMedia("(prefers-reduced-motion: reduce)").matches||a===e){t._value=e,t.textContent=o(e);return}let s=performance.now(),d=u=>{let p=Math.min(1,(u-s)/i),m=a+(e-a)*X(p);t.textContent=o(m),p<1?t._tween=requestAnimationFrame(d):(t._value=e,t._tween=null)};t._tween=requestAnimationFrame(d)}var X,R=S(()=>{X=t=>1-Math.pow(1-t,3)});var Q=W(()=>{N();k();R();var c={income:45e3,pct:5},r=t=>document.querySelector(t);(()=>{let t=r("#malaria-count"),e=Date.now(),n=()=>{let o=Math.floor((Date.now()-e)/1e3/70);M(t,o,{duration:300})};n(),setInterval(n,1e3)})();var j=new x(r("#dots")),F=r("#income-input"),$=r("#income-slider"),G=t=>500*Math.pow(2e3,t/100),J=t=>Math.log(t/500)/Math.log(2e3)*100;function P(t,e=!1){c.income=Math.max(500,Math.min(2e6,Math.round(t)||500)),F.value=c.income.toLocaleString("en-US"),e||($.value=J(c.income).toFixed(2)),w()}$.addEventListener("input",()=>P(G(+$.value),!0));F.addEventListener("change",()=>P(parseInt(String(F.value).replace(/[^0-9]/g,""),10)));var b=r("#pct-slider");b.addEventListener("input",()=>{c.pct=+b.value,w()});r("#pledge-1").addEventListener("click",()=>g(1));r("#pledge-5").addEventListener("click",()=>g(5));r("#pledge-10").addEventListener("click",()=>g(10));function g(t){c.pct=t,b.value=t,w();for(let e of document.querySelectorAll(".pledge-btn"))e.classList.toggle("active",+e.dataset.pct===t)}var E=r("#price-input");E.addEventListener("change",()=>y());E.addEventListener("input",()=>y());function y(){let t=Math.max(.5,Math.min(1e5,parseFloat(E.value)||20)),e=t/5,n=t/.75,o=t/5e3*100;r("#tr-nets").textContent=h(e,e<10?1:0),r("#tr-people").textContent=h(e*2,e*2<10?1:0),r("#tr-deworm").textContent=h(n,n<10?1:0),r("#tr-life").textContent=o>=1?h(o):o.toFixed(2)}var q=r("#name-input");q.addEventListener("input",()=>w());function w(){let t=A(c.income);j.setPercentile(t),M(r("#richer-count"),81e8*t/100,{formatter:L,duration:600}),r("#richer-pct").textContent=t>=99.9?"99.9+":t.toFixed(1),r("#rank").textContent=O(81e8*(1-t/100)),r("#stand-lead").textContent=t>=90?`You are richer than roughly ${L(81e8*t/100)} people.`:`You are richer than about ${t.toFixed(0)}% of humanity.`;let e=D(c.income,c.pct);r("#donation-annual").textContent=_(e.annual),r("#pct-display").textContent=c.pct;let n=(i,a,s=0)=>M(r(i),a,{decimals:s}),o=i=>i<20?i.toFixed(1).replace(/\.0$/,""):h(i);n("#r-lives-decade",e.livesDecade,e.livesDecade<20?1:0),n("#r-lives-40",e.lives40,e.lives40<20?1:0),n("#r-nets",e.nets,e.nets<10?1:0),n("#r-protected",e.protected,e.protected<10?1:0),n("#r-deworm",e.deworm,e.deworm<10?1:0),n("#r-dalys",e.dalysDecade,e.dalysDecade<10?1:0),r("#r-dalys-note").textContent=`over a 40-year career: ${h(e.dalys40)} years`,r("#cert-name").textContent=q.value.trim()||"A Person Who Read This Page",r("#cert-pct").textContent=c.pct,r("#cert-amount").textContent=_(e.annual),r("#cert-lives").textContent=e.lives40<20?e.lives40.toFixed(1).replace(/\.0$/,""):h(e.lives40),y()}var K=new IntersectionObserver(t=>{for(let e of t)e.isIntersecting&&e.target.classList.add("visible")},{threshold:.12});document.querySelectorAll(".reveal").forEach(t=>K.observe(t));P(c.income);g(5);y()});export default Q();
+</script>
+</body>
+</html>

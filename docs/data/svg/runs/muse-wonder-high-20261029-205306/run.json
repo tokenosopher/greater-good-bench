@@ -1,0 +1,79 @@
+{
+  "id": "muse-wonder-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/meta/muse-wonder",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T21:01:05Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Meta"
+    ],
+    "cost_usd": 0.5011072,
+    "pi_cost_usd": 0.5011072
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 5,
+      "read": 2,
+      "edit": 1,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 156873,
+    "cost_usd": 0.5011072,
+    "tool_calls": 9,
+    "turns": 10,
+    "tokens_total": 70938,
+    "tokens_input": 58026,
+    "tokens_output": 12912,
+    "tokens_reasoning": 4045,
+    "tokens_cache_read": 53816
+  },
+  "thumb": "media/one-home.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1080,
+        "height": 1350,
+        "bytes": 280638,
+        "path": "media/one-home.png",
+        "thumb": "media/one-home.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1080,
+        "height": 1350,
+        "bytes": 12786,
+        "path": "media/one-home.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make_poster.py"
+    ]
+  }
+}

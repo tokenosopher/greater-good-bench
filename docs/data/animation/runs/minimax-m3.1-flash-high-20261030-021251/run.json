@@ -1,0 +1,83 @@
+{
+  "id": "minimax-m3.1-flash-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/minimax/minimax-m3.1-flash",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:23:57Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Together"
+    ],
+    "cost_usd": 0.011612009999999999,
+    "pi_cost_usd": 0.010450809
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 11,
+      "read": 3,
+      "edit": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 163808,
+    "cost_usd": 0.011612009999999999,
+    "tool_calls": 17,
+    "turns": 15,
+    "tokens_total": 30952,
+    "tokens_input": 20363,
+    "tokens_output": 10589,
+    "tokens_reasoning": 4065,
+    "tokens_cache_read": 146944
+  },
+  "thumb": "media/pass-it-on-poster.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 960,
+        "height": 540,
+        "bytes": 47213,
+        "path": "media/pass-it-on-poster.jpg",
+        "thumb": "media/pass-it-on-poster.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 960,
+        "height": 540,
+        "duration_s": 10.0,
+        "bytes": 318890,
+        "transcoded": false,
+        "path": "media/pass-it-on.mp4",
+        "poster": "media/pass-it-on.poster.jpg",
+        "thumb": "media/pass-it-on.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/render_animation.py"
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="t d">
+<title id="t">We Share One Home</title>
+<desc id="d">Diverse people holding hands in front of planet Earth. Breathe before you react, listen before you judge, help someone today, leave it better than you found it.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#04142B"/><stop offset=".55" stop-color="#082F49"/>
+    <stop offset=".82" stop-color="#0B5563"/><stop offset="1" stop-color="#0E7C6B"/>
+  </linearGradient>
+  <radialGradient id="ocean" cx=".35" cy=".3" r=".9">
+    <stop offset="0" stop-color="#8FE3FF"/><stop offset=".45" stop-color="#2FA8DD"/><stop offset="1" stop-color="#1266A8"/>
+  </radialGradient>
+  <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+    <stop offset="0" stop-color="#FFC857" stop-opacity=".85"/><stop offset=".55" stop-color="#FF9E5A" stop-opacity=".28"/><stop offset="1" stop-color="#FF9E5A" stop-opacity="0"/>
+  </radialGradient>
+  <clipPath id="earthClip"><circle cx="540" cy="650" r="272"/></clipPath>
+  <style>
+    .title{font-family:Arial,Helvetica,sans-serif;font-weight:900;letter-spacing:1px}
+    .sans{font-family:Arial,Helvetica,sans-serif}
+    .star{animation:tw 2.8s ease-in-out infinite}
+    .float{animation:fl 7s ease-in-out infinite;transform-origin:540px 650px}
+    .rays{animation:spin 90s linear infinite;transform-origin:540px 650px}
+    .wave{animation:wv 9s linear infinite}
+    @keyframes tw{0%,100%{opacity:.25}50%{opacity:1}}
+    @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes wv{to{transform:translateX(-120px)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+  </style>
+</defs>
+
+<rect width="1080" height="1350" fill="url(#sky)"/>
+<circle class="star" style="animation-delay:0.00s" cx="70" cy="90" r="3" fill="#FFF6E5" opacity="0.9"/><circle class="star" style="animation-delay:0.37s" cx="150" cy="300" r="2" fill="#FFF6E5" opacity="0.6"/><circle class="star" style="animation-delay:0.74s" cx="940" cy="110" r="3" fill="#FFF6E5" opacity="0.8"/><circle class="star" style="animation-delay:1.11s" cx="990" cy="330" r="2" fill="#FFF6E5" opacity="0.6"/><circle class="star" style="animation-delay:1.48s" cx="60" cy="520" r="2" fill="#FFF6E5" opacity="0.5"/><circle class="star" style="animation-delay:1.85s" cx="1010" cy="560" r="2" fill="#FFF6E5" opacity="0.5"/><circle class="star" style="animation-delay:2.22s" cx="210" cy="180" r="2" fill="#FFF6E5" opacity="0.7"/><circle class="star" style="animation-delay:2.59s" cx="870" cy="230" r="2" fill="#FFF6E5" opacity="0.7"/><circle class="star" style="animation-delay:2.96s" cx="420" cy="70" r="2" fill="#FFF6E5" opacity="0.6"/><circle class="star" style="animation-delay:3.33s" cx="660" cy="50" r="3" fill="#FFF6E5" opacity="0.7"/>
+<circle cx="540" cy="650" r="360" fill="url(#glow)"/>
+
+<!-- header -->
+<text class="sans" x="540" y="82" text-anchor="middle" font-size="25" letter-spacing="6" fill="#7ED3F7">FOR EVERY HUMAN &#8226; ALL 8 BILLION OF US</text>
+<text class="title" x="540" y="180" text-anchor="middle" font-size="94" fill="#FFF6E5">WE SHARE</text>
+<text class="title" x="540" y="272" text-anchor="middle" font-size="94" fill="#FFC857">ONE HOME</text>
+<text class="sans" x="540" y="318" text-anchor="middle" font-size="27" fill="#DFF6FF">UN SOLO HOGAR &#8226; &#19968;&#20010;&#23478; &#8226; &#2319;&#2325; &#2361;&#2368; &#2328;&#2352; &#8226; &#1576;&#1610;&#1578;&#1612; &#1608;&#1575;&#1581;&#1583;&#1612; &#8226; UN SEUL FOYER</text>
+
+<!-- earth -->
+<g class="float">
+  <circle cx="540" cy="650" r="284" fill="none" stroke="#BDEFFF" stroke-width="3" opacity=".7"/>
+  <circle cx="540" cy="650" r="272" fill="url(#ocean)"/>
+  <g clip-path="url(#earthClip)" fill="#69BE7B">
+    <path d="M300 520 Q340 440 440 455 Q500 465 465 520 Q430 545 440 580 Q400 620 350 590 Q290 575 300 520Z"/>
+    <path d="M430 610 Q480 600 485 660 Q480 740 445 790 Q415 730 430 610Z" fill="#57A96B"/>
+    <path d="M575 505 Q640 455 700 490 Q680 540 620 545 Q565 545 575 505Z" fill="#8BC98A"/>
+    <path d="M585 565 Q650 545 675 610 Q665 690 610 715 Q565 650 585 565Z" fill="#E8B86B"/>
+    <path d="M690 470 Q800 410 885 480 Q900 560 810 585 Q730 570 700 520Z" fill="#7CC47F"/>
+    <path d="M728 642 Q782 632 798 672 Q782 716 736 700 Q714 668 728 642Z" fill="#E8B86B"/>
+    <ellipse cx="540" cy="392" rx="150" ry="34" fill="#FFFFFF" opacity=".9"/>
+    <ellipse cx="430" cy="700" rx="130" ry="20" fill="#FFF" opacity=".35" transform="rotate(-14 430 700)"/>
+    <ellipse cx="700" cy="590" rx="150" ry="18" fill="#FFF" opacity=".3" transform="rotate(12 700 590)"/>
+    <ellipse cx="560" cy="820" rx="180" ry="26" fill="#FFF" opacity=".45"/>
+  </g>
+  <circle cx="540" cy="650" r="272" fill="none" stroke="#EAF9FF" stroke-width="4" opacity=".85"/>
+</g>
+
+<!-- waves + people -->
+<path class="wave" d="M-120 950 Q-60 920 0 950 T120 950 T240 950 T360 950 T480 950 T600 950 T720 950 T840 950 T960 950 T1080 950 T1200 950 L1200 1015 L-120 1015Z" fill="#0FB5A8" opacity=".55"/>
+<path d="M0 982 Q60 958 120 982 T240 982 T360 982 T480 982 T600 982 T720 982 T840 982 T960 982 T1080 982 L1080 1025 L0 1025Z" fill="#0A7C78"/>
+<path d="M 171 826 Q 189 852 211 852" stroke="#8D5524" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 251 838 Q 233 852 211 852" stroke="#C68642" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="211" cy="852" r="7" fill="#C68642"/><path d="M 285 838 Q 303 883 321 883" stroke="#C68642" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 357 888 Q 339 883 321 883" stroke="#FFDBAC" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="321" cy="883" r="7" fill="#FFDBAC"/><path d="M 387 888 Q 405 881 422 881" stroke="#FFDBAC" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 457 834 Q 439 881 422 881" stroke="#F1C27D" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="422" cy="881" r="7" fill="#F1C27D"/><path d="M 499 834 Q 517 865 540 865" stroke="#F1C27D" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 582 857 Q 564 865 540 865" stroke="#5C3A21" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="540" cy="865" r="7" fill="#5C3A21"/><path d="M 618 857 Q 636 864 660 864" stroke="#5C3A21" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 703 832 Q 685 864 660 864" stroke="#E0AC69" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="660" cy="864" r="7" fill="#E0AC69"/><path d="M 745 832 Q 763 858 785 858" stroke="#E0AC69" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 825 843 Q 807 858 785 858" stroke="#FFDBAC" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="785" cy="858" r="7" fill="#FFDBAC"/><path d="M 859 843 Q 877 883 895 883" stroke="#FFDBAC" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 931 882 Q 913 883 895 883" stroke="#8D5524" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="895" cy="883" r="7" fill="#8D5524"/><path d="M 129 826 Q 113 860 119 878" stroke="#8D5524" stroke-width="11" stroke-linecap="round" fill="none"/><path d="M 961 882 Q 977 916 971 934" stroke="#8D5524" stroke-width="11" stroke-linecap="round" fill="none"/>
+<rect x="129.0" y="807.96" width="42" height="90.222" rx="14" fill="#0FB5A8"/><path d="M 137.0 889.98 L 135.0 972 M 163.0 889.98 L 165.0 972" stroke="#173A5E" stroke-width="11" stroke-linecap="round"/><circle cx="150" cy="777.98" r="23.98" fill="#8D5524"/><path d="M 126.02 774.98 A 23.98 23.98 0 1 1 173.98 774.98 Z" fill="#173A5E"/><path d="M 268 812.44 L 300 972 L 236 972 Z" fill="#FF6B5A"/><rect x="251" y="812.44" width="34" height="34" rx="11" fill="#FF6B5A"/><path d="M 241.78 800.22 A 26.22 28.22 0 1 1 294.22 800.22 L 292.22 830.44 L 243.78 830.44 Z" fill="#7A2E6D"/><circle cx="268" cy="792.22" r="20.22" fill="#C68642"/><rect x="357.0" y="870.3599999999999" width="30" height="77.6400000000001" rx="13" fill="#FFC857"/><path d="M 362.0 946 L 360.0 972 M 382.0 946 L 384.0 972" stroke="#2A9D8F" stroke-width="9" stroke-linecap="round"/><circle cx="372" cy="849.18" r="15.18" fill="#FFDBAC"/><path d="M 356.82 846.18 A 15.18 15.18 0 1 1 387.18 846.18 Z" fill="#2A9D8F"/><rect x="457.0" y="815.76" width="42" height="85.93200000000002" rx="14" fill="#FFF6E5"/><path d="M 465.0 893.88 L 463.0 972 M 491.0 893.88 L 493.0 972" stroke="#173A5E" stroke-width="11" stroke-linecap="round"/><circle cx="478" cy="786.88" r="22.88" fill="#F1C27D"/><path d="M 455.12 784.88 A 22.88 22.88 0 1 1 500.88 784.88 Z" fill="#E8E8E8"/><path d="M 506 845.76 L 512 972" stroke="#D9C9A8" stroke-width="6" stroke-linecap="round"/><circle cx="606" cy="938" r="31" fill="none" stroke="#EAF6FF" stroke-width="7"/><circle cx="606" cy="938" r="5" fill="#EAF6FF"/><path d="M 600 892.72 L 636 914 L 640 956" stroke="#173A5E" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="582.0" y="840.72" width="36" height="62" rx="14" fill="#8B6FD8"/><circle cx="600" cy="815.36" r="19.36" fill="#5C3A21"/><path d="M 580.64 812.36 A 19.36 19.36 0 1 1 619.36 812.36 Z" fill="#173A5E"/><rect x="703.0" y="814.2" width="42" height="86.78999999999998" rx="14" fill="#2A9D8F"/><path d="M 711.0 893.1 L 709.0 972 M 737.0 893.1 L 739.0 972" stroke="#FFC857" stroke-width="11" stroke-linecap="round"/><circle cx="724" cy="785.1" r="23.1" fill="#E0AC69"/><path d="M 697.9 781.1 A 26.1 23.1 0 1 1 750.1 781.1 Z" fill="#FFC857"/><circle cx="724" cy="760.0" r="6" fill="#FFC857"/><path d="M 842 817.1199999999999 L 874 972 L 810 972 Z" fill="#FF8FA3"/><rect x="825" y="817.1199999999999" width="34" height="34" rx="11" fill="#FF8FA3"/><circle cx="842" cy="797.56" r="21.56" fill="#FFDBAC"/><path d="M 820.44 794.56 A 21.56 21.56 0 1 1 863.56 794.56 Z" fill="#5B3A8E"/><rect x="931.0" y="864.1199999999999" width="30" height="83.88000000000011" rx="13" fill="#7ED3F7"/><path d="M 936.0 946 L 934.0 972 M 956.0 946 L 958.0 972" stroke="#FF6B5A" stroke-width="9" stroke-linecap="round"/><circle cx="946" cy="842.06" r="16.06" fill="#8D5524"/><path d="M 929.94 839.06 A 16.06 16.06 0 1 1 962.06 839.06 Z" fill="#FF6B5A"/>
+
+<!-- four habits -->
+<g>
+  <rect x="56" y="1032" width="968" height="196" rx="28" fill="#FFF6E5"/>
+  <line x1="298" y1="1062" x2="298" y2="1198" stroke="#E7D9BE" stroke-width="2"/>
+  <line x1="540" y1="1062" x2="540" y2="1198" stroke="#E7D9BE" stroke-width="2"/>
+  <line x1="782" y1="1062" x2="782" y2="1198" stroke="#E7D9BE" stroke-width="2"/>
+
+  <g transform="translate(177 1098)" stroke="#0E7C86" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M-42 -24 H14 a11 11 0 1 0 -11 -11"/><path d="M-42 0 H32 a11 11 0 1 1 -11 11"/><path d="M-42 24 H8 a10 10 0 1 0 -10 -10"/>
+  </g>
+  <text class="sans" x="177" y="1164" text-anchor="middle" font-size="27" font-weight="800" fill="#12324A">1. BREATHE</text>
+  <text class="sans" x="177" y="1196" text-anchor="middle" font-size="21" fill="#476173">before you react</text>
+
+  <g transform="translate(419 1102)" fill="none" stroke="#D94F3D" stroke-width="7" stroke-linecap="round">
+    <path d="M-8 -36 C22 -36 32 -14 26 8 C21 27 8 40 -6 36 C-22 31 -26 12 -14 4 C-4 -3 8 -8 4 -20 C1 -28 -8 -30 -14 -24"/>
+    <path d="M-14 4 C-24 -12 -20 -28 -8 -36" opacity=".55"/>
+  </g>
+  <text class="sans" x="419" y="1164" text-anchor="middle" font-size="27" font-weight="800" fill="#12324A">2. LISTEN</text>
+  <text class="sans" x="419" y="1196" text-anchor="middle" font-size="21" fill="#476173">before you judge</text>
+
+  <path d="M661 1140 Q610 1100 622 1074 Q632 1054 661 1070 Q690 1054 700 1074 Q712 1100 661 1140Z" fill="#E8435F"/>
+  <path d="M622 1122 Q661 1152 700 1122" fill="none" stroke="#B7791F" stroke-width="6" stroke-linecap="round"/>
+  <text class="sans" x="661" y="1164" text-anchor="middle" font-size="27" font-weight="800" fill="#12324A">3. HELP</text>
+  <text class="sans" x="661" y="1196" text-anchor="middle" font-size="21" fill="#476173">someone today</text>
+
+  <path d="M903 1148 L903 1102" stroke="#2F8F4E" stroke-width="7" stroke-linecap="round"/>
+  <path d="M903 1108 Q868 1108 864 1076 Q896 1078 903 1108Z" fill="#57B96B"/>
+  <path d="M903 1098 Q938 1098 942 1066 Q910 1068 903 1098Z" fill="#2F8F4E"/>
+  <text class="sans" x="903" y="1164" text-anchor="middle" font-size="27" font-weight="800" fill="#12324A">4. REPAIR</text>
+  <text class="sans" x="903" y="1196" text-anchor="middle" font-size="21" fill="#476173">leave it better</text>
+</g>
+
+<text class="title" x="540" y="1292" text-anchor="middle" font-size="31" fill="#FFF6E5">NO &#8220;US vs. THEM.&#8221; ONLY US. &#8594; PASS IT ON</text>
+</svg>

@@ -1,0 +1,49 @@
+{
+  "id": "gemini-4-argon-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/google/gemini-4-argon",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T20:53:06Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "failed",
+  "error": "400: {\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"Gemini models require OpenRouter reasoning details to be preserved in each request. Please refer to our docs: https://openrouter",
+  "route": {
+    "requested": null,
+    "served": [
+      "Google"
+    ],
+    "cost_usd": 0.008426,
+    "pi_cost_usd": 0.008426
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 12533,
+    "cost_usd": 0.008426,
+    "tool_calls": 1,
+    "turns": 2,
+    "tokens_total": 2337,
+    "tokens_input": 1868,
+    "tokens_output": 469,
+    "tokens_reasoning": 426,
+    "tokens_cache_read": 0
+  },
+  "thumb": null,
+  "output": null,
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

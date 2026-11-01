@@ -1,0 +1,129 @@
+{
+  "id": "claude-opus-5-5-cc-high-20261029-185821",
+  "page": "3d-model",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-29T18:58:31Z",
+  "batch": "2026-10-29-185821-3d-model",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 35,
+      "read": 26,
+      "bash": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 1026490,
+    "cost_usd": 2.7935795999999997,
+    "tool_calls": 65,
+    "turns": 60,
+    "tokens_total": 56267,
+    "tokens_input": 120,
+    "tokens_output": 56147,
+    "tokens_reasoning": 20261,
+    "tokens_cache_read": 3373118
+  },
+  "thumb": "media/ors_giving_sips_closeup.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 80167,
+        "path": "media/ors_giving_sips_closeup.jpg",
+        "thumb": "media/ors_giving_sips_closeup.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1000,
+        "bytes": 176479,
+        "path": "media/ors_how_to_make_hero.jpg",
+        "thumb": "media/ors_how_to_make_hero.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 96608,
+        "path": "media/ors_ingredients_closeup.jpg",
+        "thumb": "media/ors_ingredients_closeup.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 6673444,
+        "meshes": 198,
+        "triangles": 177922,
+        "animations": 0,
+        "path": "media/ors_oral_rehydration_diorama.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "scripts/arms.py",
+      "scripts/helpers.py"
+    ]
+  }
+}

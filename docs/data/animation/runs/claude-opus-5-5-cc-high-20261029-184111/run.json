@@ -1,0 +1,85 @@
+{
+  "id": "claude-opus-5-5-cc-high-20261029-184111",
+  "page": "animation",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:41:11Z",
+  "batch": "2026-10-29-184111-animation",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 10,
+      "read": 7,
+      "write": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 530375,
+    "cost_usd": 1.5164195999999996,
+    "tool_calls": 21,
+    "turns": 18,
+    "tokens_total": 45060,
+    "tokens_input": 36,
+    "tokens_output": 45024,
+    "tokens_reasoning": 22078,
+    "tokens_cache_read": 721938
+  },
+  "thumb": "media/wash-your-hands-poster.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1080,
+        "height": 1350,
+        "bytes": 272036,
+        "path": "media/wash-your-hands-poster.png",
+        "thumb": "media/wash-your-hands-poster.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 1080,
+        "height": 1080,
+        "duration_s": 10.0,
+        "bytes": 1537636,
+        "transcoded": false,
+        "path": "media/wash-your-hands.mp4",
+        "poster": "media/wash-your-hands.poster.jpg",
+        "thumb": "media/wash-your-hands.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/poster.js",
+      "src/raster.js",
+      "src/render.js",
+      "src/scene.js"
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "id": "glm-5.3-prime-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/z-ai/glm-5.3-prime",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:21:16Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Alibaba"
+    ],
+    "cost_usd": 1.98983352,
+    "pi_cost_usd": 1.98983352
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 23,
+      "edit": 6,
+      "read": 4,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 571894,
+    "cost_usd": 1.98983352,
+    "tool_calls": 34,
+    "turns": 34,
+    "tokens_total": 155307,
+    "tokens_input": 87817,
+    "tokens_output": 67490,
+    "tokens_reasoning": 50198,
+    "tokens_cache_read": 2053632
+  },
+  "thumb": "media/pale_blue_dot.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 800,
+        "height": 450,
+        "duration_s": 10.0,
+        "bytes": 426626,
+        "transcoded": false,
+        "path": "media/pale_blue_dot.mp4",
+        "poster": "media/pale_blue_dot.poster.jpg",
+        "thumb": "media/pale_blue_dot.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 800,
+        "height": 450,
+        "bytes": 35629,
+        "path": "media/poster_earth.jpg",
+        "thumb": "media/poster_earth.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 800,
+        "height": 450,
+        "bytes": 15691,
+        "path": "media/poster_message.jpg",
+        "thumb": "media/poster_message.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/render.py"
+    ]
+  }
+}

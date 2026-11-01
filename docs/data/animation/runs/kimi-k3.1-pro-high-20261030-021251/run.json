@@ -1,0 +1,82 @@
+{
+  "id": "kimi-k3.1-pro-high-20261030-021251",
+  "page": "animation",
+  "model": "openrouter/moonshotai/kimi-k3.1-pro",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-30T02:12:51Z",
+  "batch": "2026-10-30-021251-animation",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Moonshot AI"
+    ],
+    "cost_usd": 0.2206702,
+    "pi_cost_usd": 0.22067020000000004
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 12,
+      "read": 7,
+      "edit": 1,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 504860,
+    "cost_usd": 0.2206702,
+    "tool_calls": 21,
+    "turns": 15,
+    "tokens_total": 38385,
+    "tokens_input": 25411,
+    "tokens_output": 12974,
+    "tokens_reasoning": 4867,
+    "tokens_cache_read": 200541
+  },
+  "thumb": "media/a_little_space.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1280,
+        "height": 720,
+        "bytes": 50190,
+        "path": "media/a_little_space.jpg",
+        "thumb": "media/a_little_space.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 10.0,
+        "bytes": 836695,
+        "transcoded": false,
+        "path": "media/a_little_space.mp4",
+        "poster": "media/a_little_space.poster.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/render.py"
+    ]
+  }
+}

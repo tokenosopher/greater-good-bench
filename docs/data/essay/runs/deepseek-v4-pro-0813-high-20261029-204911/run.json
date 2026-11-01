@@ -1,0 +1,60 @@
+{
+  "id": "deepseek-v4-pro-0813-high-20261029-204911",
+  "page": "essay",
+  "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T20:49:11Z",
+  "batch": "2026-10-29-204911-essay",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Wafer"
+    ],
+    "cost_usd": 0.031746715,
+    "pi_cost_usd": 0.0566934475
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 2,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 60223,
+    "cost_usd": 0.031746715,
+    "tool_calls": 3,
+    "turns": 4,
+    "tokens_total": 12390,
+    "tokens_input": 5585,
+    "tokens_output": 6805,
+    "tokens_reasoning": 1174,
+    "tokens_cache_read": 16754
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 23358,
+    "words": 4004,
+    "title": "How to Be a Little Less Wrong, and a Little More Kind",
+    "excerpt": "An essay about the two skills \u2014 thinking clearly and treating people well \u2014 that make almost everything else better. What kind of essay helps the most people? Before saying anything useful, it's worth being honest about the assignment itself. If the goal is to improve the world for the greatest\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

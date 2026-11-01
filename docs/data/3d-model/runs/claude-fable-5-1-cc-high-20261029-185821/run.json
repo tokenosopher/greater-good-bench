@@ -1,0 +1,123 @@
+{
+  "id": "claude-fable-5-1-cc-high-20261029-185821",
+  "page": "3d-model",
+  "model": "anthropic/claude-fable-5-1",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-10-29T18:58:31Z",
+  "batch": "2026-10-29-185821-3d-model",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "mcp__blender__execute_blender_code": 14,
+      "read": 11,
+      "bash": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 631014,
+    "cost_usd": 2.8535100000000004,
+    "tool_calls": 27,
+    "turns": 28,
+    "tokens_total": 27598,
+    "tokens_input": 866,
+    "tokens_output": 26732,
+    "tokens_reasoning": 10617,
+    "tokens_cache_read": 1012680
+  },
+  "thumb": "media/ors_recipe_closeup_spoons.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "model",
+        "bytes": 7322540,
+        "meshes": 40,
+        "triangles": 206492,
+        "animations": 0,
+        "path": "media/ors_recipe.glb"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 115958,
+        "path": "media/ors_recipe_closeup_spoons.jpg",
+        "thumb": "media/ors_recipe_closeup_spoons.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 123938,
+        "path": "media/ors_recipe_main.jpg",
+        "thumb": "media/ors_recipe_main.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 144795,
+        "path": "media/ors_recipe_side.jpg",
+        "thumb": "media/ors_recipe_side.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

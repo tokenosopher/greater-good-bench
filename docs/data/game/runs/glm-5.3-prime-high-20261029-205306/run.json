@@ -1,0 +1,74 @@
+{
+  "id": "glm-5.3-prime-high-20261029-205306",
+  "page": "game",
+  "model": "openrouter/z-ai/glm-5.3-prime",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T20:53:17Z",
+  "batch": "2026-10-29-205306-game",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Alibaba"
+    ],
+    "cost_usd": 0.5346264000000001,
+    "pi_cost_usd": 0.5346264000000001
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 10,
+      "write": 9,
+      "edit": 6
+    }
+  },
+  "metrics": {
+    "duration_ms": 281209,
+    "cost_usd": 0.5346264000000001,
+    "tool_calls": 25,
+    "turns": 23,
+    "tokens_total": 53279,
+    "tokens_input": 28940,
+    "tokens_output": 24339,
+    "tokens_reasoning": 8792,
+    "tokens_cache_read": 427520
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": false,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "main.tscn",
+      "project.godot",
+      "scripts/aid.gd",
+      "scripts/aid.gd.uid",
+      "scripts/cooperate.gd",
+      "scripts/cooperate.gd.uid",
+      "scripts/main.gd",
+      "scripts/main.gd.uid"
+    ]
+  }
+}

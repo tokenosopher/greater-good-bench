@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A Little Better — tools for clearer thinking, kinder acting</title>
+  <meta name="description" content="Private, offline tools that help anyone think more clearly, speak more plainly, and act more kindly." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21a9 9 0 1 1 9-9M12 21a9 9 0 1 0-9-9M12 14l3-3M9 17l1.5-1.5' fill='none' stroke='%23c0562f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 21a9 9 0 1 0-9-9"/><path d="M12 14l3-3"/><path d="M9 17l1.5-1.5"/></svg>
+        </span>
+        <span class="brand-name">A Little Better</span>
+      </div>
+      <p class="tagline" id="tagline">Every mind, a little clearer. Every word, a little plainer. Every day, a little kinder.</p>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Small tools, <em>world-sized</em> return.</h1>
+      <p class="lead">
+        Clea­rer thinking, plainer speaking, and kinder acting are the cheapest
+        improvements with the biggest ripple. These tools don&#8217;t need your
+        account, your data, or the internet. They&#8217;re just structure for a
+        mind that wants to do good &mdash; and a few minutes with them can change
+        the next decision you make, the next thing you write, and the next thing
+        you do.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#clarity">Write more plainly</a>
+        <a class="btn btn-ghost" href="#compass">Decide more wisely</a>
+        <a class="btn btn-ghost" href="#ripple">Act more kindly</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="Tools">
+    <div class="wrap tab-list" role="tablist">
+      <button role="tab" id="tab-clarity" aria-controls="panel-clarity" aria-selected="true" class="tab is-active" data-panel="clarity">
+        <span class="tab-icon" aria-hidden="true">✎</span> Plain Words
+      </button>
+      <button role="tab" id="tab-compass" aria-controls="panel-compass" aria-selected="false" class="tab" data-panel="compass">
+        <span class="tab-icon" aria-hidden="true">◎</span> Decision Compass
+      </button>
+      <button role="tab" id="tab-kindspeech" aria-controls="panel-kindspeech" aria-selected="false" class="tab" data-panel="kindspeech">
+        <span class="tab-icon" aria-hidden="true">♥</span> Kind Speech
+      </button>
+      <button role="tab" id="tab-ripple" aria-controls="panel-ripple" aria-selected="false" class="tab" data-panel="ripple">
+        <span class="tab-icon" aria-hidden="true">〰</span> The Ripple
+      </button>
+      <button role="tab" id="tab-why" aria-controls="panel-why" aria-selected="false" class="tab" data-panel="why">
+        <span class="tab-icon" aria-hidden="true">☀</span> Why
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div class="wrap">
+
+      <!-- ============ PLAIN WORDS ============ -->
+      <section class="panel is-active" id="panel-clarity" role="tabpanel" aria-labelledby="tab-clarity" tabindex="0">
+        <div class="panel-intro">
+          <h2>Plain Words</h2>
+          <p>Jargon and fog keep knowledge trapped where only some people can reach it. Clear writing widens the circle of who can understand &mdash; and be helped by &mdash; your ideas. Paste anything and watch it get easier to read.</p>
+        </div>
+
+        <div class="clarity-grid">
+          <div class="editor-card">
+            <label class="visually-hidden" for="clarity-input">Text to simplify</label>
+            <textarea id="clarity-input" spellcheck="false" placeholder="Paste an email, a memo, a school note, a contract clause — anything.&#10;&#10;e.g.  “We regret to inform you that, due to unforeseen circumstances of an operational nature, the aforementioned service will be temporarily suspended…”"></textarea>
+            <div class="editor-toolbar">
+              <button id="btn-sample" class="btn btn-ghost btn-sm" type="button">Try an example</button>
+              <button id="btn-simplify" class="btn btn-sm" type="button" disabled>✨ Simplify common gobbledygook</button>
+              <button id="btn-clear" class="btn btn-ghost btn-sm" type="button">Clear</button>
+            </div>
+          </div>
+
+          <aside class="metrics" aria-live="polite">
+            <div class="gauge" id="grade-gauge">
+              <div class="gauge-ring" id="gauge-ring" style="--pct: 0">
+                <div class="gauge-value"><span id="grade-num">—</span><span class="gauge-unit">grade</span></div>
+              </div>
+              <p class="gauge-label" id="grade-label">Add text to see its reading level.</p>
+            </div>
+            <dl class="metric-list">
+              <div class="metric"><dt>Words</dt><dd id="m-words">0</dd></div>
+              <div class="metric"><dt>Sentences</dt><dd id="m-sentences">0</dd></div>
+              <div class="metric"><dt>Avg. sentence</dt><dd id="m-avg">—</dd></div>
+              <div class="metric"><dt>Hard words</dt><dd id="m-hard">0</dd></div>
+              <div class="metric"><dt>Read time</dt><dd id="m-time">—</dd></div>
+            </dl>
+          </aside>
+        </div>
+
+        <div class="insights" id="clarity-insights" hidden>
+          <h3 class="visually-hidden">Suggestions</h3>
+          <ul id="insight-list"></ul>
+        </div>
+      </section>
+
+      <!-- ============ DECISION COMPASS ============ -->
+      <section class="panel" id="panel-compass" role="tabpanel" aria-labelledby="tab-compass" tabindex="0" hidden>
+        <div class="panel-intro">
+          <h2>Decision Compass</h2>
+          <p>A hard choice feels noisy because it&#8217;s made of many smaller questions. This walks you through them one at a time, in private &mdash; nothing you type leaves this page &mdash; and leaves you with a clear written case for one honest next step.</p>
+        </div>
+
+        <div class="compass" id="compass">
+          <ol class="steps-progress" id="steps-progress" aria-label="Progress"></ol>
+
+          <div class="step" id="step-0">
+            <h3><span class="step-kicker">Step 1 of 6</span> Name the decision</h3>
+            <label class="field-label" for="c-decision">What are you trying to decide?</label>
+            <textarea id="c-decision" rows="2" placeholder="e.g. Whether to take the job in another city; whether to speak up about a problem at work…"></textarea>
+            <label class="field-label" for="c-why">Why does it matter? What do you care about most here?</label>
+            <textarea id="c-why" rows="2" placeholder="e.g. My family&#8217;s stability, my long-term growth, honesty…"></textarea>
+          </div>
+
+          <div class="step" id="step-1" hidden>
+            <h3><span class="step-kicker">Step 2 of 6</span> Who is affected?</h3>
+            <label class="field-label" for="c-affected">List everyone this touches &mdash; you, family, colleagues, strangers, future people, the planet.</label>
+            <textarea id="c-affected" rows="3" placeholder="One per line.&#10;Me&#10;My partner&#10;My team&#10;People who use our product"></textarea>
+            <p class="hint">If you can only keep one person&#8217;s interests in view, keep the one least able to speak for themselves.</p>
+          </div>
+
+          <div class="step" id="step-2" hidden>
+            <h3><span class="step-kicker">Step 3 of 6</span> List your options</h3>
+            <p class="hint">Two is the minimum; &#8220;wait and learn more&#8221; is a valid option too.</p>
+            <div id="option-list" class="option-list"></div>
+            <button class="btn btn-ghost btn-sm" id="btn-add-option" type="button">+ Add an option</button>
+          </div>
+
+          <div class="step" id="step-3" hidden>
+            <h3><span class="step-kicker">Step 4 of 6</span> Weigh each option</h3>
+            <p class="hint">For each option, note what gets better and what gets worse — for whom, and how much it probably matters.</p>
+            <div id="weigh-list" class="weigh-list"></div>
+          </div>
+
+          <div class="step" id="step-4" hidden>
+            <h3><span class="step-kicker">Step 5 of 6</span> Two honesty tests</h3>
+            <label class="field-label" for="c-universal">Universality — would I want <strong>everyone</strong> to choose as I&#8217;m about to? If not, why is my case special?</label>
+            <textarea id="c-universal" rows="2" placeholder="e.g. It&#8217;s fine if only I do this, because… / It would break down if everyone did this, so…"></textarea>
+            <label class="field-label" for="c-year">The long view — will I be glad I chose this a year from now? What would I tell a friend in my shoes?</label>
+            <textarea id="c-year" rows="2" placeholder="e.g. A year from now I&#8217;ll be glad I…"></textarea>
+          </div>
+
+          <div class="step" id="step-5" hidden>
+            <h3><span class="step-kicker">Step 6 of 6</span> Your compass reading</h3>
+            <p class="hint">Here is the whole of it. Read it back once. If one option now looks obviously right, take one small step toward it today. If none does, your next step is <strong>to learn the one fact you&#8217;re missing.</strong></p>
+            <div class="summary-box" id="compass-summary" role="document" aria-label="Your decision summary"></div>
+            <div class="summary-actions">
+              <button class="btn btn-primary" id="btn-copy-summary" type="button">Copy summary</button>
+              <button class="btn btn-ghost" id="btn-restart" type="button">Start over</button>
+            </div>
+            <p class="copied-note" id="copied-note" role="status"></p>
+          </div>
+
+          <div class="step-nav">
+            <button class="btn btn-ghost" id="btn-prev" type="button" disabled>← Back</button>
+            <button class="btn btn-primary" id="btn-next" type="button">Next →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ KIND SPEECH ============ -->
+      <section class="panel" id="panel-kindspeech" role="tabpanel" aria-labelledby="tab-kindspeech" tabindex="0" hidden>
+        <div class="panel-intro">
+          <h2>Kind Speech</h2>
+          <p>The same facts can land as an injury or an invitation. Before you send a message you might regret, run it through three lenses. The words stay yours; the harm doesn&#8217;t have to.</p>
+        </div>
+
+        <div class="kind-grid">
+          <div class="editor-card">
+            <label class="visually-hidden" for="kind-input">Message to check</label>
+            <textarea id="kind-input" spellcheck="false" placeholder="Paste the message you&#8217;re about to send — the difficult email, the heated reply, the review, the group-chat comment…"></textarea>
+            <div class="editor-toolbar">
+              <button id="btn-kind-sample" class="btn btn-ghost btn-sm" type="button">Try an example</button>
+              <button id="btn-kind-clear" class="btn btn-ghost btn-sm" type="button">Clear</button>
+            </div>
+          </div>
+          <aside class="kind-lenses" id="kind-lenses" aria-live="polite">
+            <ul class="lens-list"></ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ THE RIPPLE ============ -->
+      <section class="panel" id="panel-ripple" role="tabpanel" aria-labelledby="tab-ripple" tabindex="0" hidden>
+        <div class="panel-intro">
+          <h2>The Ripple</h2>
+          <p>Big problems are defeated the same way they&#8217;re built: one small act at a time, repeated. Pick one tiny kindness and see what a single, ordinary day of it compounds into.</p>
+        </div>
+
+        <div class="ripple-grid">
+          <form class="ripple-form" id="ripple-form" autocomplete="off">
+            <label class="field-label" for="ripple-act">Choose a small daily act</label>
+            <select id="ripple-act">
+              <option value="1">Help one person carry something (1 person/day)</option>
+              <option value="1">Explain something patiently to someone who&#8217;s stuck (1 person/day)</option>
+              <option value="1">Thank one person who rarely gets thanked (1 person/day)</option>
+              <option value="3">Pick up three pieces of litter (3 pieces/day)</option>
+              <option value="1">Check in on one person who might be lonely (1 person/day)</option>
+              <option value="1">Write one honest, specific compliment (1 person/day)</option>
+              <option value="2">Teach someone one skill they can keep using (1 lesson/day)</option>
+              <option value="custom">Something of my own…</option>
+            </select>
+            <label class="field-label" for="ripple-custom" id="ripple-custom-label" hidden>Your act, and how many each day</label>
+            <div class="custom-row" id="ripple-custom-row" hidden>
+              <input type="text" id="ripple-custom" placeholder="e.g. Call my grandmother" />
+              <input type="number" id="ripple-custom-n" value="1" min="1" max="999" step="1" aria-label="How many each day" />
+            </div>
+            <label class="field-label" for="ripple-years">Keep it up for</label>
+            <div class="range-row">
+              <input type="range" id="ripple-years" min="1" max="50" value="10" />
+              <output id="ripple-years-out" for="ripple-years">10 years</output>
+            </div>
+            <p class="ripple-result" id="ripple-result" aria-live="polite"></p>
+          </form>
+
+          <div class="ripple-viz">
+            <svg id="ripple-svg" viewBox="0 0 400 300" role="img" aria-label="Chart showing how the acts accumulate over time"></svg>
+            <p class="hint viz-caption" id="ripple-caption"></p>
+          </div>
+        </div>
+
+        <div class="today-card">
+          <h3>Today&#8217;s one-degree turn</h3>
+          <p class="today-act" id="today-act">—</p>
+          <button class="btn btn-ghost btn-sm" id="btn-today" type="button">Another idea</button>
+        </div>
+      </section>
+
+      <!-- ============ WHY ============ -->
+      <section class="panel" id="panel-why" role="tabpanel" aria-labelledby="tab-why" tabindex="0" hidden>
+        <div class="panel-intro">
+          <h2>Why this, why now</h2>
+          <p>If everyone who can read this got a little clearer, a little plainer, and a little kinder, the same disagreements, instructions, and decisions would produce far less confusion and far less harm. That&#8217;s the whole idea. Nothing here is magic &mdash; it&#8217;s the disciplined practice of ordinary goodness.</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card">
+            <h3><span class="tab-icon" aria-hidden="true">✎</span> Clear words are a kindness</h3>
+            <p>Most of the world reads in a language they didn&#8217;t grow up with, or with limited literacy, or in a hurry. Every needless long word is a lock. Plain language is how knowledge, rights, and safety actually reach people.</p>
+          </article>
+          <article class="why-card">
+            <h3><span class="tab-icon" aria-hidden="true">◎</span> Slow decisions age well</h3>
+            <p>Most regret comes not from failing to decide, but from deciding with only one perspective in the room. Cheap structure &mdash; naming who&#8217;s affected, and asking whether the rule scales to everyone &mdash; beats cleverness.</p>
+          </article>
+          <article class="why-card">
+            <h3><span class="tab-icon" aria-hidden="true">♥</span> Kindness is a habit, not a mood</h3>
+            <p>The people who change communities aren&#8217;t unusually saintly; they&#8217;ve just made small generous acts routine. Habits are built by repeating tiny, scheduled things &mdash; exactly what a compounding chart makes visible.</p>
+          </article>
+          <article class="why-card">
+            <h3><span class="tab-icon" aria-hidden="true">🪶</span> Private by design</h3>
+            <p>No accounts, no trackers, no requests to any server. Your decisions and messages are yours alone &mdash; they live only in this tab. Kindness includes not treating people as data.</p>
+          </article>
+        </div>
+        <blockquote class="epigraph">
+          <p>&#8220;Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it&#8217;s the only thing that ever has.&#8221;</p>
+          <footer>&mdash; Margaret Mead</footer>
+        </blockquote>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p><span class="brand-name">A Little Better</span> &mdash; clear words, wise decisions, kind acts. Made to be copied, shared, and translated freely.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

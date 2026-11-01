@@ -1,0 +1,872 @@
+{
+  "slug": "game",
+  "title": "Game",
+  "kind": "godot",
+  "prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.",
+  "final_prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.\n\nBuild this as a complete, playable Godot 4.7.2 project in the current directory.\n- Use the gl_compatibility renderer, and don't enable thread support (it must run as a web export).\n- Set a main scene in project.godot. Add a short README.md with run instructions.\n- Keep it self-contained: no downloads, external assets or plugins.\n- Only create or edit files inside the current directory. Don't export the project; that happens afterwards.\n- Check it loads: run `godot --headless --path . --editor --quit` and fix any errors.\n- Finish with a short summary of what you built.\n",
+  "created": "2026-10-29T18:43:57Z",
+  "updated": "2026-10-30T03:58:46Z",
+  "runs": [
+    {
+      "id": "claude-fable-5-1-cc-high-20261029-184357",
+      "page": "game",
+      "model": "anthropic/claude-fable-5-1",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T18:43:57Z",
+      "batch": "2026-10-29-184357-game",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 14
+        }
+      },
+      "metrics": {
+        "duration_ms": 532729,
+        "cost_usd": 3.0899590000000003,
+        "tool_calls": 14,
+        "turns": 15,
+        "tokens_total": 40864,
+        "tokens_input": 450,
+        "tokens_output": 40414,
+        "tokens_reasoning": 16256,
+        "tokens_cache_read": 507356
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "icon.svg",
+          "icon.svg.import",
+          "project.godot",
+          "scenes/Main.tscn",
+          "scripts/Face.gd",
+          "scripts/Face.gd.uid",
+          "scripts/Household.gd",
+          "scripts/Household.gd.uid",
+          "scripts/LakeView.gd",
+          "scripts/LakeView.gd.uid",
+          "scripts/Main.gd",
+          "scripts/Main.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "claude-opus-5-5-cc-high-20261029-184357",
+      "page": "game",
+      "model": "anthropic/claude-opus-5-5",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T18:43:57Z",
+      "batch": "2026-10-29-184357-game",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 9,
+          "read": 9,
+          "write": 3
+        }
+      },
+      "metrics": {
+        "duration_ms": 608508,
+        "cost_usd": 1.9600017999999997,
+        "tool_calls": 21,
+        "turns": 17,
+        "tokens_total": 59818,
+        "tokens_input": 34,
+        "tokens_output": 59784,
+        "tokens_reasoning": 28757,
+        "tokens_cache_read": 905529
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "icon.svg",
+          "icon.svg.import",
+          "main.tscn",
+          "project.godot",
+          "scripts/content.gd",
+          "scripts/content.gd.uid",
+          "scripts/main.gd",
+          "scripts/main.gd.uid",
+          "scripts/town.gd",
+          "scripts/town.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6-astra-cx-high-20261029-184357",
+      "page": "game",
+      "model": "openai/gpt-6-astra",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T18:43:57Z",
+      "batch": "2026-10-29-184357-game",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 16,
+          "file_change": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 854104,
+        "cost_usd": 0.0,
+        "tool_calls": 20,
+        "turns": 1,
+        "tokens_total": 77870,
+        "tokens_input": 47487,
+        "tokens_output": 30383,
+        "tokens_reasoning": 4650,
+        "tokens_cache_read": 514560
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          ".gitignore",
+          ".validation/01-welcome.png",
+          ".validation/02-resident.png",
+          ".validation/03-build.png",
+          ".validation/04-help.png",
+          ".validation/05-neighborhood.png",
+          ".validation/06-ending.png",
+          "README.md",
+          "export_presets.cfg",
+          "icon.svg",
+          "icon.svg.import",
+          "main.gd",
+          "main.gd.uid",
+          "main.tscn",
+          "project.godot",
+          "tests/capture.gd",
+          "tests/capture.gd.uid",
+          "tests/smoke.gd",
+          "tests/smoke.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.1-sol-cx-high-20261029-184357",
+      "page": "game",
+      "model": "openai/gpt-6.1-sol",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T18:43:57Z",
+      "batch": "2026-10-29-184357-game",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 15
+        }
+      },
+      "metrics": {
+        "duration_ms": 786985,
+        "cost_usd": 0.0,
+        "tool_calls": 15,
+        "turns": 1,
+        "tokens_total": 52401,
+        "tokens_input": 17901,
+        "tokens_output": 34500,
+        "tokens_reasoning": 10292,
+        "tokens_cache_read": 686976
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          ".gitignore",
+          "README.md",
+          "checks/gameplay.gd",
+          "checks/gameplay.gd.uid",
+          "export_presets.cfg",
+          "game.gd",
+          "game.gd.uid",
+          "icon.svg",
+          "icon.svg.import",
+          "main.tscn",
+          "project.godot"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4.1-flash-1017-high-20261029-205306",
+      "page": "game",
+      "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T20:53:06Z",
+      "batch": "2026-10-29-205306-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Wafer"
+        ],
+        "cost_usd": 0.146959046,
+        "pi_cost_usd": 0.082682151
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 40,
+          "read": 22,
+          "write": 12
+        }
+      },
+      "metrics": {
+        "duration_ms": 859621,
+        "cost_usd": 0.146959046,
+        "tool_calls": 74,
+        "turns": 71,
+        "tokens_total": 535076,
+        "tokens_input": 430295,
+        "tokens_output": 104781,
+        "tokens_reasoning": 102498,
+        "tokens_cache_read": 5904512
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          ".gitignore",
+          "README.md",
+          "export_presets.cfg",
+          "icon.svg",
+          "icon.svg.import",
+          "main.tscn",
+          "project.godot",
+          "scripts/audio.gd",
+          "scripts/audio.gd.uid",
+          "scripts/background.gd",
+          "scripts/background.gd.uid",
+          "scripts/data.gd",
+          "scripts/data.gd.uid",
+          "scripts/interest_card.gd",
+          "scripts/interest_card.gd.uid",
+          "scripts/main.gd",
+          "scripts/main.gd.uid",
+          "scripts/party_panel.gd",
+          "scripts/party_panel.gd.uid",
+          "scripts/trust_meter.gd",
+          "scripts/trust_meter.gd.uid",
+          "scripts/ui_kit.gd",
+          "scripts/ui_kit.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "kimi-k3.1-pro-high-20261029-205306",
+      "page": "game",
+      "model": "openrouter/moonshotai/kimi-k3.1-pro",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T20:53:06Z",
+      "batch": "2026-10-29-205306-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Moonshot AI"
+        ],
+        "cost_usd": 0.4465446,
+        "pi_cost_usd": 0.44654460000000007
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 14,
+          "edit": 7,
+          "write": 7,
+          "read": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 986292,
+        "cost_usd": 0.4465446,
+        "tool_calls": 30,
+        "turns": 24,
+        "tokens_total": 62273,
+        "tokens_input": 35656,
+        "tokens_output": 26617,
+        "tokens_reasoning": 8516,
+        "tokens_cache_read": 545313
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "icon.svg",
+          "icon.svg.import",
+          "main.gd",
+          "main.gd.uid",
+          "main.tscn",
+          "project.godot"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "glm-5.3-prime-high-20261029-205306",
+      "page": "game",
+      "model": "openrouter/z-ai/glm-5.3-prime",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T20:53:17Z",
+      "batch": "2026-10-29-205306-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Alibaba"
+        ],
+        "cost_usd": 0.5346264000000001,
+        "pi_cost_usd": 0.5346264000000001
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 10,
+          "write": 9,
+          "edit": 6
+        }
+      },
+      "metrics": {
+        "duration_ms": 281209,
+        "cost_usd": 0.5346264000000001,
+        "tool_calls": 25,
+        "turns": 23,
+        "tokens_total": 53279,
+        "tokens_input": 28940,
+        "tokens_output": 24339,
+        "tokens_reasoning": 8792,
+        "tokens_cache_read": 427520
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": false,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "main.tscn",
+          "project.godot",
+          "scripts/aid.gd",
+          "scripts/aid.gd.uid",
+          "scripts/cooperate.gd",
+          "scripts/cooperate.gd.uid",
+          "scripts/main.gd",
+          "scripts/main.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "muse-wonder-high-20261029-205306",
+      "page": "game",
+      "model": "openrouter/meta/muse-wonder",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-29T21:07:33Z",
+      "batch": "2026-10-29-205306-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Meta"
+        ],
+        "cost_usd": 0.9369808,
+        "pi_cost_usd": 0.9369808
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 7,
+          "write": 6,
+          "edit": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 262228,
+        "cost_usd": 0.9369808,
+        "tool_calls": 14,
+        "turns": 13,
+        "tokens_total": 131490,
+        "tokens_input": 107688,
+        "tokens_output": 23802,
+        "tokens_reasoning": 6800,
+        "tokens_cache_read": 150944
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "main.gd",
+          "main.gd.uid",
+          "main.tscn",
+          "project.godot"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4-pro-0813-high-20261030-034211",
+      "page": "game",
+      "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-30T03:42:11Z",
+      "batch": "2026-10-30-034211-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Wafer",
+          "Sail Research"
+        ],
+        "cost_usd": 0.16011720999999998,
+        "pi_cost_usd": 0.286894521
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 10,
+          "write": 6,
+          "edit": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 319675,
+        "cost_usd": 0.16011720999999998,
+        "tool_calls": 18,
+        "turns": 19,
+        "tokens_total": 95940,
+        "tokens_input": 65806,
+        "tokens_output": 30134,
+        "tokens_reasoning": 20382,
+        "tokens_cache_read": 390116
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "main.gd",
+          "main.gd.uid",
+          "main.tscn",
+          "project.godot"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gemini-4-argon-high-20261030-034211",
+      "page": "game",
+      "model": "openrouter/google/gemini-4-argon",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-30T03:42:11Z",
+      "batch": "2026-10-30-034211-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "failed",
+      "error": "402: {\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 36841. To increase, visit https://openrouter.ai/settings/credits and add",
+      "route": {
+        "requested": null,
+        "served": [
+          "Google"
+        ],
+        "cost_usd": 0.089936,
+        "pi_cost_usd": 0.08993600000000002
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 1,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 146185,
+        "cost_usd": 0.089936,
+        "tool_calls": 2,
+        "turns": 3,
+        "tokens_total": 11924,
+        "tokens_input": 3663,
+        "tokens_output": 8261,
+        "tokens_reasoning": 7787,
+        "tokens_cache_read": 0
+      },
+      "thumb": null,
+      "output": null,
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "icon.svg"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "grok-4.7-high-20261030-034211",
+      "page": "game",
+      "model": "openrouter/x-ai/grok-4.7",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-30T03:42:11Z",
+      "batch": "2026-10-30-034211-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "failed",
+      "error": "402: {\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 14470. To increase, visit https://openrouter.ai/settings/credits and add",
+      "route": {
+        "requested": null,
+        "served": [
+          "xAI"
+        ],
+        "cost_usd": 0.363468,
+        "pi_cost_usd": 0.363468
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 995382,
+        "cost_usd": 0.363468,
+        "tool_calls": 4,
+        "turns": 5,
+        "tokens_total": 68510,
+        "tokens_input": 13770,
+        "tokens_output": 54740,
+        "tokens_reasoning": 54158,
+        "tokens_cache_read": 14976
+      },
+      "thumb": null,
+      "output": null,
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "minimax-m3.1-flash-high-20261030-034211",
+      "page": "game",
+      "model": "openrouter/minimax/minimax-m3.1-flash",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-10-30T03:44:37Z",
+      "batch": "2026-10-30-034211-game",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Together"
+        ],
+        "cost_usd": 0.03820104,
+        "pi_cost_usd": 0.03438093600000001
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 18,
+          "write": 12,
+          "edit": 8,
+          "read": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 213756,
+        "cost_usd": 0.03820104,
+        "tool_calls": 40,
+        "turns": 39,
+        "tokens_total": 100885,
+        "tokens_input": 76724,
+        "tokens_output": 24161,
+        "tokens_reasoning": 8220,
+        "tokens_cache_read": 813056
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "main.tscn",
+          "project.godot",
+          "scripts/background.gd",
+          "scripts/background.gd.uid",
+          "scripts/board.gd",
+          "scripts/board.gd.uid",
+          "scripts/main.gd",
+          "scripts/main.gd.uid"
+        ]
+      },
+      "rank": null
+    }
+  ]
+}

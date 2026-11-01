@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Good Multiplier — small money, moved well, does enormous good</title>
+<meta name="description" content="An interactive look at the most cost-effective, evidence-backed ways money can improve lives — and what would happen if everyone on Earth gave a little. No signup, no tracking, nothing saved.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='44' fill='%23f2b544'/%3E%3Ccircle cx='50' cy='50' r='17' fill='%23070a12'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top"><span class="brand-mark">◉</span> The Good Multiplier</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#idea">The idea</a>
+      <a href="#math">The math</a>
+      <a href="#interventions">Interventions</a>
+      <a href="#objections">Objections</a>
+      <a href="#give-well">Give well</a>
+    </nav>
+    <a class="btn small primary" href="#pledge">Make a pledge</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <canvas id="globe" aria-hidden="true"></canvas>
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <p class="eyebrow reveal">An interactive public-good experiment</p>
+      <h1 class="reveal">What if everyone gave <em>a&nbsp;little</em> —<br>and gave it <em>well</em>?</h1>
+      <p class="lede reveal">The most effective things money can buy in this world cost <strong>dollars, not millions</strong>.
+      Move even a small share of our spending there, and billions of lives improve. Scroll to play with the math —
+      no signup, no tracking, and nothing you do here is saved or sent anywhere.</p>
+      <div class="cta-row reveal">
+        <a class="btn primary" href="#math">See the math ↓</a>
+        <a class="btn ghost" href="#pledge">Skip to my pledge</a>
+        <button class="btn ghost" id="shareBtn" type="button">Share the idea</button>
+      </div>
+      <dl class="stat-strip reveal">
+        <div><dt class="stat-num" data-count="8.1" data-suffix="B">0</dt><dd>people on Earth</dd></div>
+        <div><dt class="stat-num" data-count="700" data-prefix="~" data-suffix="M">0</dt><dd>live in extreme poverty (&lt;$2.15/day)</dd></div>
+        <div><dt class="stat-num" data-count="220" data-prefix="≈$" data-suffix="B">0</dt><dd>is <em>all</em> government foreign aid, per year</dd></div>
+        <div><dt class="stat-num" data-count="2.4" data-prefix="$" data-suffix="T">0</dt><dd>is spent on militaries, per year</dd></div>
+      </dl>
+      <p class="strip-note reveal">The world spends roughly <strong>11× more on its militaries</strong> than on all foreign aid — and aid is not even aimed at the most effective uses.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE IDEA ============ -->
+  <section class="section" id="idea">
+    <div class="container">
+      <p class="eyebrow reveal">The idea</p>
+      <h2 class="reveal">Three true things, one uncomfortable conclusion</h2>
+      <div class="cards three">
+        <article class="card reveal">
+          <span class="card-num">01</span>
+          <h3>The need is enormous — and measurable</h3>
+          <p>About <strong>700 million people</strong> live on under $2.15 a day. Preventable and treatable disease still kills
+          millions of children every year, and hundreds of millions live with worms, malaria risk, or vitamin
+          deficiencies that cost them health and income. <span class="src">Sources: World Bank; WHO</span></p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">02</span>
+          <h3>Not all dollars are equal</h3>
+          <p>Some things money buys are <strong>100–1,000× more effective per dollar</strong> than typical spending.
+          A $5.50 bed net can protect a family from malaria for years. $1 can deworm a child. That gap is the
+          “multiplier” this page is about.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-num">03</span>
+          <h3>We already know what works</h3>
+          <p>Twenty-plus years of <strong>randomized controlled trials</strong> — run by J-PAL, Innovations for Poverty
+          Action and others — plus free, independent charity evaluators like <strong>GiveWell</strong> and
+          <strong>Giving What We Can</strong>, tell us which programs actually deliver. The evidence exists. We just
+          don’t all use it.</p>
+        </article>
+      </div>
+      <p class="big-takeaway reveal">So the conclusion: <strong>if everyone gave even a little, and aimed it at the most
+      effective uses, we could plausibly save millions of lives a year</strong> — for less than the world spends on, say,
+      soft drinks or lottery tickets.</p>
+    </div>
+  </section>
+
+  <!-- ============ THE MATH ============ -->
+  <section class="section alt" id="math">
+    <div class="container">
+      <p class="eyebrow reveal">The math</p>
+      <h2 class="reveal">Eight billion people. One slider.</h2>
+      <p class="section-lede reveal">Suppose every person on Earth gave the same small monthly amount to the most
+      effective programs. Drag the sliders and watch what that pool of money could fund.</p>
+
+      <div class="math-grid">
+        <div class="panel controls reveal">
+          <div class="control">
+            <label for="amt">Each of the 8.1B people gives
+              <output id="amtOut" for="amt">$1 / month</output></label>
+            <input type="range" id="amt" min="0.5" max="25" step="0.5" value="1"
+                   aria-label="Monthly amount per person, in dollars">
+            <div class="scale"><span>$0.50</span><span>$25</span></div>
+          </div>
+
+          <h3 class="alloc-title">Where should it go? <span class="hint">(shares auto-normalize to 100%)</span></h3>
+          <div class="control alloc">
+            <label for="alloc-nets"><span class="dot" style="--c:#f2b544"></span>Malaria nets <output id="out-nets-pct">40%</output></label>
+            <input type="range" id="alloc-nets" data-alloc="nets" min="0" max="100" step="1" value="40">
+          </div>
+          <div class="control alloc">
+            <label for="alloc-deworm"><span class="dot" style="--c:#5eead4"></span>Deworming children <output id="out-deworm-pct">25%</output></label>
+            <input type="range" id="alloc-deworm" data-alloc="deworm" min="0" max="100" step="1" value="25">
+          </div>
+          <div class="control alloc">
+            <label for="alloc-vita"><span class="dot" style="--c:#7dd3fc"></span>Vitamin A doses <output id="out-vita-pct">15%</output></label>
+            <input type="range" id="alloc-vita" data-alloc="vita" min="0" max="100" step="1" value="15">
+          </div>
+          <div class="control alloc">
+            <label for="alloc-cash"><span class="dot" style="--c:#c4b5fd"></span>Direct cash to families <output id="out-cash-pct">20%</output></label>
+            <input type="range" id="alloc-cash" data-alloc="cash" min="0" max="100" step="1" value="20">
+          </div>
+          <p class="fine">Default split is a reasonable guess, not a prescription — the point is the scale, not the exact mix.</p>
+        </div>
+
+        <div class="panel results reveal">
+          <div class="pool">
+            <span class="pool-label">Global pool per year</span>
+            <span class="pool-num" id="poolNum">$0</span>
+            <span class="pool-sub" id="poolSub"></span>
+          </div>
+          <div class="out-grid">
+            <div class="out"><span class="out-num" id="out-nets">0</span><span class="out-label">malaria nets distributed <small>(~$5.50 each, protects ~2 people for ~3 yrs)</small></span></div>
+            <div class="out"><span class="out-num" id="out-deworm">0</span><span class="out-label">children dewormed for a year <small>(~$1.50 each)</small></span></div>
+            <div class="out"><span class="out-num" id="out-vita">0</span><span class="out-label">vitamin A doses <small>(~$1 each, 2–3 per child per yr)</small></span></div>
+            <div class="out"><span class="out-num" id="out-cash">0</span><span class="out-label">households given a ~$1,000 cash grant <small>(food, assets, businesses)</small></span></div>
+          </div>
+          <p class="lives" id="livesLine"></p>
+          <div class="alloc-bar" id="allocBar" aria-hidden="true">
+            <span data-bar="nets" style="background:#f2b544"></span><span data-bar="deworm" style="background:#5eead4"></span><span data-bar="vita" style="background:#7dd3fc"></span><span data-bar="cash" style="background:#c4b5fd"></span>
+          </div>
+          <p class="fine">Costs per unit are rough published figures (AMF &amp; Evidence Action via GiveWell; Helen Keller
+          International via GiveWell; GiveDirectly). “Lives saved” assumes ~$4,500–$45,000 per life saved across the two
+          mortality-focused programs, and caps that pool at ~$50B/yr — beyond that, real-world absorptive capacity means
+          marginal dollars do far less — so treat it as an upper bound, not a prediction. Even 10× lower, it remains enormous.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERVENTIONS ============ -->
+  <section class="section" id="interventions">
+    <div class="container">
+      <p class="eyebrow reveal">The menu</p>
+      <h2 class="reveal">What a dollar can actually buy</h2>
+      <p class="section-lede reveal">These are among the best-evidenced, most cost-effective uses of money on Earth.
+      Each card shows the unit cost and what $1,000 buys.</p>
+
+      <div class="cards menu">
+        <article class="card reveal">
+          <h3>🦟 Malaria bed nets</h3>
+          <p class="what">Insecticide-treated nets hung over beds. The single most iconic global-health bargain.</p>
+          <p class="cost">~<strong>$5.50</strong> per net</p>
+          <p class="per">$1,000 → ~180 nets, protecting ~360 people for ~3 years.</p>
+          <p class="evidence">Evidence: large RCTs; best estimate ≈ <strong>$4,500 per life saved</strong>. Channel: Against Malaria Foundation, a GiveWell top charity.</p>
+        </article>
+        <article class="card reveal">
+          <h3>💊 Deworming</h3>
+          <p class="what">Cheap pills that clear intestinal worms — restoring nutrition, cognition, school attendance.</p>
+          <p class="cost">~<strong>$1.50</strong> per child per year</p>
+          <p class="per">$1,000 → ~650 children treated for a year.</p>
+          <p class="evidence">Evidence: RCTs + Cochrane meta-analyses; among the cheapest interventions per healthy life-year (DCP3). Channel: Evidence Action’s Deworm the World, a GiveWell top charity.</p>
+        </article>
+        <article class="card reveal">
+          <h3>🍊 Vitamin A</h3>
+          <p class="what">Two or three tiny doses a year for children in deficient regions — cuts child mortality by ~24%.</p>
+          <p class="cost">~<strong>$1</strong> per dose</p>
+          <p class="per">$1,000 → 1,000 doses, protecting ~400 children for a year.</p>
+          <p class="evidence">Evidence: Cochrane review — ~24% lower all-cause child mortality; best estimate ≈ $3,000 per life saved. Channel: Helen Keller International via GiveWell.</p>
+        </article>
+        <article class="card reveal">
+          <h3>💵 Direct cash transfers</h3>
+          <p class="what">No-strings cash straight to poor families’ phones or bank accounts. They spend it on food, roofs, livestock, businesses.</p>
+          <p class="cost">~<strong>$1,000</strong> per household</p>
+          <p class="per">$1,000 → one household lifted toward lasting stability.</p>
+          <p class="evidence">Evidence: RCTs (Haushofer &amp; Shapiro, <em>Science</em> 2016) — earnings, assets and well-being all rose; no reduction in work. Channel: GiveDirectly, a GiveWell top charity.</p>
+        </article>
+        <article class="card reveal">
+          <h3>💧 Safe drinking water</h3>
+          <p class="what">Chlorine dispensers at wells, so families can treat their own water.</p>
+          <p class="cost">~<strong>$2</strong> per person per year</p>
+          <p class="per">$1,000 → ~500 person-years of safe water.</p>
+          <p class="evidence">Evidence: RCTs show ~30–60% less diarrheal disease. Channel: Evidence Action’s Dispensers for Safe Water.</p>
+        </article>
+        <article class="card reveal">
+          <h3>💉 Vaccines &amp; basics</h3>
+          <p class="what">Measles and routine immunization, plus basic primary care — the quiet giants of the mortality decline.</p>
+          <p class="cost">pennies–dollars per dose</p>
+          <p class="per">$1,000 → thousands of children vaccinated.</p>
+          <p class="evidence">Evidence: decades of program data; Gavi and the Gates Foundation-supported programs are consistently rated top-tier. Source: GiveWell, DCP3.</p>
+        </article>
+      </div>
+
+      <div class="quiz panel reveal" id="quiz">
+        <h3>Quick check</h3>
+        <p>Per $1,000, which of these averts the most <strong>healthy life-years (DALYs)</strong>, according to Disease Control Priorities and GiveWell-style analyses?</p>
+        <div class="quiz-options">
+          <button type="button" data-pick="deworm">Deworming children</button>
+          <button type="button" data-pick="nets">Malaria nets</button>
+          <button type="button" data-pick="vita">Vitamin A doses</button>
+          <button type="button" data-pick="schools">Building school classrooms</button>
+        </div>
+        <p class="quiz-result" id="quizResult" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OBJECTIONS ============ -->
+  <section class="section alt" id="objections">
+    <div class="container narrow">
+      <p class="eyebrow reveal">Objections</p>
+      <h2 class="reveal">Fair questions, honest answers</h2>
+      <div class="obj-list reveal">
+        <details class="obj">
+          <summary>“Shouldn’t I fix problems near me first?”</summary>
+          <p>Do both — but note that the <em>marginal</em> dollar often does far more good abroad than at home. $5,000 might improve one
+          life a little in a rich country; in a top global-health program the same money can save a life. Local giving, local politics
+          and local care still matter enormously — just allocate some share by effectiveness, not just by distance.</p>
+        </details>
+        <details class="obj">
+          <summary>“Isn’t foreign aid wasted on corruption?”</summary>
+          <p>Some is. But the best-evaluated programs are designed to minimize leakage: nets and pills are bought in bulk and audited;
+          cash goes <em>directly to recipients’ phones</em> (GiveDirectly), with RCTs measuring what actually arrives. Independent evaluators
+          like GiveWell only recommend programs with strong evidence of impact and publish their reasoning for free.</p>
+        </details>
+        <details class="obj">
+          <summary>“Shouldn’t governments do this instead of me?”</summary>
+          <p>They should do much more — and you can vote and advocate for that. But even <em>all</em> current government aid (~$220B/yr) is a
+          rounding error against global need, and much of it isn’t aimed at the most effective uses. Individual giving adds real capacity
+          <em>today</em>, and many of the best programs are too small to absorb government-scale funding yet.</p>
+        </details>
+        <details class="obj">
+          <summary>“Doesn’t cash aid create dependency?”</summary>
+          <p>The trials say no. In GiveDirectly’s RCTs (Haushofer &amp; Shapiro, <em>Science</em> 2016), recipients worked <em>more</em>, bought
+          assets and started businesses, and reported better mental health. People generally use free money to improve their lives.</p>
+        </details>
+        <details class="obj">
+          <summary>“What about bigger threats — pandemics, climate change, AI risk?”</summary>
+          <p>They matter enormously, and they deserve funding too — a thoughtful split might send some share to long-term/existential-risk
+          work and the rest to proven, life-saving programs now. The uncomfortable part: even the “boring” proven programs are
+          massively underfunded, and they save millions of lives <em>every year</em> while we wait.</p>
+        </details>
+        <details class="obj">
+          <summary>“Can I trust these numbers?”</summary>
+          <p>No estimate is exact — that’s why this page shows ranges and leans on randomized trials and independent evaluators rather than
+          anecdotes. Even if every figure here were off by 5×, the core facts would stand: some uses of money are orders of magnitude more
+          effective than others, and the effective ones are underfunded.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GIVE WELL ============ -->
+  <section class="section" id="give-well">
+    <div class="container">
+      <p class="eyebrow reveal">Give well</p>
+      <h2 class="reveal">How to make your own money count</h2>
+      <ol class="steps reveal">
+        <li><strong>Follow the evidence.</strong> Prefer programs measured with randomized controlled trials, and read free research from evaluators like <strong>GiveWell</strong> and <strong>Giving What We Can</strong> before you give.</li>
+        <li><strong>Give to organizations, not vibes.</strong> Top charities publish their spending, audits and results. Low overhead + proven impact is the combo to look for.</li>
+        <li><strong>Set up a recurring donation.</strong> Even $5–10 a month is real money to a Deworm the World budget — and predictable funding lets the best programs plan and scale. Try the pledge calculator below.</li>
+        <li><strong>If you earn a lot, consider “earning to give.”</strong> A high-income career with large donations to top causes can, for some people, do more good than working directly in a charity.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PLEDGE ============ -->
+  <section class="section alt" id="pledge">
+    <div class="container">
+      <p class="eyebrow reveal">Your pledge</p>
+      <h2 class="reveal">What would <em>you</em> fund?</h2>
+      <p class="section-lede reveal">Slide to choose an amount and a time horizon. This uses the same allocation as “The math”
+      above. Nothing is stored or sent — this page runs entirely on your device.</p>
+
+      <div class="math-grid">
+        <div class="panel controls reveal">
+          <div class="control">
+            <label for="pAmt">I pledge to give <output id="pAmtOut" for="pAmt">$10 / month</output></label>
+            <input type="range" id="pAmt" min="1" max="100" step="1" value="10" aria-label="Monthly pledge in dollars">
+            <div class="scale"><span>$1</span><span>$100</span></div>
+          </div>
+          <div class="control">
+            <label for="pYears">for <output id="pYearsOut" for="pYears">10 years</output></label>
+            <input type="range" id="pYears" min="1" max="50" step="1" value="10" aria-label="Years of giving">
+            <div class="scale"><span>1 yr</span><span>50 yrs</span></div>
+          </div>
+          <p class="fine">One-time gifts to top charities work too — recurring giving just lets them plan better.</p>
+        </div>
+
+        <div class="panel results reveal">
+          <div class="pool">
+            <span class="pool-label">Total given</span>
+            <span class="pool-num" id="plTotal">$0</span>
+            <span class="pool-sub" id="plSub"></span>
+          </div>
+          <ul class="pl-list" id="plList"></ul>
+          <p class="lives" id="plLives"></p>
+          <div class="statement-box">
+            <p class="statement" id="statement"></p>
+            <button class="btn small ghost" id="copyBtn" type="button">Copy my impact statement</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer-brand"><span class="brand-mark">◉</span> The Good Multiplier</p>
+    <p>Figures on this page are approximate and rounded, drawn from: <strong>GiveWell</strong> cost-effectiveness analyses and top-charity
+    reviews (AMF, Evidence Action, Helen Keller International, GiveDirectly); <strong>J-PAL</strong> and <strong>Innovations for Poverty Action</strong>
+    randomized trials; <strong>Cochrane</strong> reviews (vitamin A, deworming); Haushofer &amp; Shapiro, <em>Science</em> (2016);
+    <em>Disease Control Priorities</em>, 3rd ed.; <strong>World Bank</strong> ($2.15/day poverty line); <strong>OECD</strong> (foreign aid flows);
+    <strong>SIPRI</strong> (military spending); <strong>WHO</strong>.</p>
+    <p class="fine">Estimates are uncertain and “lives saved” figures are linear upper-bound illustrations, not predictions.
+    This page is an educational demo, not financial or medical advice. It makes no network requests and stores nothing:
+    it works fully offline. Built with vanilla JS modules and three.js.</p>
+    <p class="fine">© <span id="year">2026</span> — built as a public-good demo. If you found it useful, pass it on.</p>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "id": "grok-4.7-high-20261029-204911",
+  "page": "essay",
+  "model": "openrouter/x-ai/grok-4.7",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-10-29T20:49:11Z",
+  "batch": "2026-10-29-204911-essay",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "xAI"
+    ],
+    "cost_usd": 0.941184,
+    "pi_cost_usd": 0.9411840000000001
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 15,
+      "read": 13,
+      "edit": 3,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 720403,
+    "cost_usd": 0.941184,
+    "tool_calls": 32,
+    "turns": 21,
+    "tokens_total": 172030,
+    "tokens_input": 131069,
+    "tokens_output": 40961,
+    "tokens_reasoning": 27507,
+    "tokens_cache_read": 866560
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 32033,
+    "words": 6024,
+    "title": "The Person in Front of You",
+    "excerpt": "Most of the harm people do to one another is done by people who believe, in the moment, that they are justified. Not by the rare monster who enjoys suffering. By the parent who is tired. The official who is owed a favor. The neighbor who heard a story. The driver who is late. The crowd that would\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

@@ -1,0 +1,67 @@
+{
+  "id": "gpt-6.1-sol-cx-high-20261029-184357",
+  "page": "game",
+  "model": "openai/gpt-6.1-sol",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-10-29T18:43:57Z",
+  "batch": "2026-10-29-184357-game",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 15
+    }
+  },
+  "metrics": {
+    "duration_ms": 786985,
+    "cost_usd": 0.0,
+    "tool_calls": 15,
+    "turns": 1,
+    "tokens_total": 52401,
+    "tokens_input": 17901,
+    "tokens_output": 34500,
+    "tokens_reasoning": 10292,
+    "tokens_cache_read": 686976
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      ".gitignore",
+      "README.md",
+      "checks/gameplay.gd",
+      "checks/gameplay.gd.uid",
+      "export_presets.cfg",
+      "game.gd",
+      "game.gd.uid",
+      "icon.svg",
+      "icon.svg.import",
+      "main.tscn",
+      "project.godot"
+    ]
+  }
+}

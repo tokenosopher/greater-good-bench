@@ -1,0 +1,91 @@
+{
+  "id": "qwen3.8-max-prime-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/qwen/qwen3.8-max-prime",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T20:58:21Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "Alibaba"
+    ],
+    "cost_usd": 1.530956,
+    "pi_cost_usd": 1.530956
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 13,
+      "read": 7,
+      "edit": 4,
+      "write": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 650359,
+    "cost_usd": 1.530956,
+    "tool_calls": 26,
+    "turns": 27,
+    "tokens_total": 151709,
+    "tokens_input": 102250,
+    "tokens_output": 49459,
+    "tokens_reasoning": 35831,
+    "tokens_cache_read": 1056896
+  },
+  "thumb": "media/shared-breath-still.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 585125,
+        "path": "media/shared-breath-still.png",
+        "thumb": "media/shared-breath-still.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 1080,
+        "height": 1080,
+        "duration_s": 10.0,
+        "bytes": 730264,
+        "transcoded": false,
+        "path": "media/shared-breath.mp4",
+        "poster": "media/shared-breath.poster.jpg",
+        "thumb": "media/shared-breath.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1200,
+        "height": 1200,
+        "bytes": 247135,
+        "path": "media/shared-breath.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/font.py",
+      "src/make.py"
+    ]
+  }
+}

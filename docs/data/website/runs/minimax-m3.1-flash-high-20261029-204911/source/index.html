@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#123c36" />
+  <meta name="description" content="Common Ground helps you find one realistic, high-leverage action and see what happens when ordinary people do it together." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='22' cy='35' r='16' fill='%23f06449'/%3E%3Ccircle cx='43' cy='21' r='16' fill='%23f2c94c'/%3E%3Ccircle cx='44' cy='45' r='16' fill='%239dd6b9'/%3E%3C/svg%3E" />
+  <title>Common Ground — Make the world lighter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-grain" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Common Ground home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>COMMON<br>GROUND</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#builder">Find your action</a>
+      <a href="#ripples">See the ripples</a>
+      <a href="#method">How we count</a>
+    </nav>
+    <a class="button button-small button-ink" href="#builder">Make a good week <span aria-hidden="true">↘</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero section-pad">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> A CIVIC TOOLKIT FOR ORDINARY PEOPLE</p>
+        <h1>Make the world<br><em>lighter.</em></h1>
+        <p class="hero-intro">One useful action can feel small. Multiply it by your street, your city, your world—and it becomes something people can feel.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#builder">Find my lever <span aria-hidden="true">↓</span></a>
+          <button class="text-button js-random" type="button">Surprise me <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="trust-row" aria-label="Principles">
+          <span><b>4 min</b> to begin</span>
+          <span><b>No guilt</b>, just options</span>
+          <span><b>Works offline</b></span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="A growing circle of positive actions">
+        <div class="orbit orbit-one" aria-hidden="true"></div>
+        <div class="orbit orbit-two" aria-hidden="true"></div>
+        <div class="orbit orbit-three" aria-hidden="true"></div>
+        <div class="sun" aria-hidden="true">
+          <span>SMALL<br>ACTIONS</span>
+          <b>+</b>
+          <span>SHARED<br>SCALE</span>
+        </div>
+        <div class="orbit-label label-one"><span>01</span> CUT WASTE</div>
+        <div class="orbit-label label-two"><span>02</span> SHARE SKILLS</div>
+        <div class="orbit-label label-three"><span>03</span> MOVE TOGETHER</div>
+        <div class="orbit-label label-four"><span>04</span> CARE LOCALLY</div>
+        <svg class="hero-squiggle" viewBox="0 0 300 70" aria-hidden="true"><path d="M3 45 C55 3, 80 67, 132 30 S210 5, 295 35" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        <div class="hero-stamp" aria-hidden="true">GROW<br>GOOD</div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="What collective action can support">
+      <div class="marquee-track">
+        <span>LESS WASTE</span><i>✦</i><span>DEEPER CONNECTION</span><i>✦</i><span>ROOM TO BREATHE</span><i>✦</i><span>RESOURCES KEPT LOCAL</span><i>✦</i>
+        <span>LESS WASTE</span><i>✦</i><span>DEEPER CONNECTION</span><i>✦</i><span>ROOM TO BREATHE</span><i>✦</i><span>RESOURCES KEPT LOCAL</span><i>✦</i>
+      </div>
+    </section>
+
+    <section class="builder section-pad" id="builder">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span></span> 01 / START WHERE YOU ARE</p>
+          <h2>Your life is the<br><em>right place to start.</em></h2>
+        </div>
+        <p>Good actions fit real constraints. Tell us what you have today, and we’ll surface one useful step—not a guilt trip.</p>
+      </div>
+
+      <div class="builder-grid">
+        <div class="controls-card">
+          <div class="control-block">
+            <div class="control-title"><span>01</span><h3>How much time feels doable?</h3></div>
+            <div class="segmented" role="group" aria-label="Time available">
+              <button type="button" data-time="5">5 min</button>
+              <button type="button" data-time="20" class="active">20 min</button>
+              <button type="button" data-time="60">1 hour</button>
+            </div>
+          </div>
+          <div class="control-block">
+            <div class="control-title"><span>02</span><h3>What can you spend?</h3></div>
+            <div class="segmented" role="group" aria-label="Money available">
+              <button type="button" data-money="0">$0</button>
+              <button type="button" data-money="20" class="active">Up to $20</button>
+              <button type="button" data-money="50">Up to $50</button>
+            </div>
+          </div>
+          <div class="control-block">
+            <div class="control-title"><span>03</span><h3>Choose your kind of good</h3></div>
+            <div class="style-options" role="group" aria-label="Preferred kind of action">
+              <button type="button" data-style="quiet" class="active"><span class="style-icon">◌</span><b>Quiet win</b><small>Just do it</small></button>
+              <button type="button" data-style="together"><span class="style-icon">∞</span><b>Together</b><small>With others</small></button>
+              <button type="button" data-style="bold"><span class="style-icon">↗</span><b>Big swing</b><small>Change a rule</small></button>
+            </div>
+          </div>
+          <div class="region-row">
+            <label for="region"><span aria-hidden="true">⌖</span> Add local context <i>optional</i></label>
+            <div class="select-wrap">
+              <select id="region">
+                <option value="global">Anywhere in the world</option>
+                <option value="na">North America</option>
+                <option value="eu">Europe</option>
+                <option value="latam">Latin America</option>
+                <option value="west-africa">West Africa</option>
+                <option value="south-asia">South Asia</option>
+                <option value="east-asia">East Asia</option>
+                <option value="oceania">Oceania</option>
+              </select>
+              <span aria-hidden="true">⌄</span>
+            </div>
+          </div>
+        </div>
+
+        <article class="recommendation" id="recommendation" aria-live="polite">
+          <div class="recommendation-top">
+            <span class="match-pill"><i></i> YOUR BEST MATCH</span>
+            <span class="action-number" id="action-number">ACTION 04</span>
+          </div>
+          <div class="action-illustration" id="action-illustration" aria-hidden="true"></div>
+          <div class="action-content">
+            <p class="action-kicker" id="action-kicker">MAKE IT A HABIT</p>
+            <h3 id="action-title">One plant-powered dinner</h3>
+            <p id="action-description">Swap one meal you already planned. No new shopping list, no perfect diet—just a delicious plate that asks less of the planet.</p>
+            <div class="action-meta">
+              <span><b id="action-time">20</b> min</span>
+              <span><b id="action-cost">$0–20</b></span>
+              <span><b id="action-impact">Medium</b> lift</span>
+            </div>
+            <button class="button button-primary full" id="add-action" type="button">Add to my good week <span aria-hidden="true">＋</span></button>
+            <button class="another-button" id="another-action" type="button">Show another option <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="my-week" id="my-week" aria-labelledby="my-week-title">
+      <div class="week-inner section-pad">
+        <div class="week-header">
+          <div>
+            <p class="eyebrow eyebrow-light"><span></span> YOUR GOOD WEEK</p>
+            <h2 id="my-week-title">Small, specific,<br><em>already happening.</em></h2>
+          </div>
+          <div class="week-count"><span id="week-count">0</span><small>ACTIONS<br>PLANNED</small></div>
+        </div>
+        <div class="week-empty" id="week-empty">
+          <div class="empty-mark" aria-hidden="true">✦</div>
+          <div><h3>Your week is still open.</h3><p>Choose an action and make it real.</p></div>
+          <a href="#builder" class="text-link-light">Find an action ↗</a>
+        </div>
+        <ol class="plan-list" id="plan-list"></ol>
+        <div class="week-footer" id="week-footer" hidden>
+          <p><b>That’s enough.</b> One meaningful action is a beginning, not a finish line.</p>
+          <button class="button button-light" id="copy-plan" type="button">Copy my plan</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="ripples section-pad" id="ripples">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow"><span></span> 02 / WATCH THE RIPPLES</p>
+          <h2>What happens when<br><em>we show up together?</em></h2>
+        </div>
+        <p>Move the dial. See how a consistent action compounds when more people choose it. These are directional estimates—not promises.</p>
+      </div>
+
+      <div class="simulator-card">
+        <div class="simulator-controls">
+          <div class="sim-select-label">OUR COLLECTIVE ACTION</div>
+          <div class="select-wrap large-select">
+            <select id="sim-action"></select>
+            <span aria-hidden="true">⌄</span>
+          </div>
+          <div class="people-display">
+            <div><span id="people-number">100</span><small>PEOPLE DO THIS</small></div>
+            <input id="people-slider" type="range" min="0" max="100" value="40" aria-label="Number of people taking the action" />
+            <div class="range-labels"><span>10</span><span>100</span><span>1K</span><span>10K+</span></div>
+          </div>
+          <div class="frequency-control">
+            <span>HOW OFTEN?</span>
+            <div class="segmented small" role="group" aria-label="Frequency">
+              <button type="button" data-frequency="1" class="active">Once</button>
+              <button type="button" data-frequency="4">Weekly</button>
+              <button type="button" data-frequency="12">Monthly</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="simulator-results">
+          <div class="ripple-title"><span>THE RIPPLE, AT A GLANCE</span><b id="frequency-caption">EVERY WEEK</b></div>
+          <div class="impact-grid">
+            <div class="impact-card impact-planet">
+              <span class="impact-icon" aria-hidden="true">⌁</span>
+              <div><strong id="co2-value">460</strong><small>KG CO₂E AVOIDED</small></div>
+              <p>Lower estimated emissions</p>
+            </div>
+            <div class="impact-card impact-pocket">
+              <span class="impact-icon" aria-hidden="true">$</span>
+              <div><strong id="money-value">$340</strong><small>KEPT IN POCKETS</small></div>
+              <p>Value not spent elsewhere</p>
+            </div>
+            <div class="impact-card impact-people">
+              <span class="impact-icon" aria-hidden="true">∞</span>
+              <div><strong id="people-value">4,000</strong><small>MINUTES CONNECTED</small></div>
+              <p>Time shared or reclaimed</p>
+            </div>
+            <div class="impact-card impact-waste">
+              <span class="impact-icon" aria-hidden="true">◇</span>
+              <div><strong id="waste-value">0</strong><small>KG MATERIAL KEPT IN USE</small></div>
+              <p>Less sent to disposal</p>
+            </div>
+          </div>
+          <div class="scale-bar">
+            <div class="scale-labels"><span>ONE PERSON</span><span>YOUR BLOCK</span><span>A NEIGHBORHOOD</span><span>A CITY</span></div>
+            <div class="scale-track"><div id="scale-fill"></div><i id="scale-marker">▲</i></div>
+            <p id="scale-caption">At 100 people, this becomes visible on your block.</p>
+          </div>
+        </div>
+      </div>
+      <p class="method-note">* Illustrative model using conservative per-person estimates and the selected frequency. Local conditions vary; this is for reflection, not accounting.</p>
+    </section>
+
+    <section class="principles section-pad" aria-labelledby="principles-title">
+      <div class="principle-heading">
+        <p class="eyebrow"><span></span> WHAT WE’RE TRYING TO BUILD</p>
+        <h2 id="principles-title">Progress without<br><em>the performance.</em></h2>
+      </div>
+      <div class="principle-grid">
+        <article>
+          <span class="principle-num">01</span>
+          <div class="principle-icon icon-hands" aria-hidden="true">⌁</div>
+          <h3>Useful over virtuous</h3>
+          <p>We skip shame, streaks, and purity tests. A tool only helps if it helps you take a real step.</p>
+        </article>
+        <article>
+          <span class="principle-num">02</span>
+          <div class="principle-icon icon-network" aria-hidden="true">⊹</div>
+          <h3>Local enough to start</h3>
+          <p>Global problems become manageable when they meet the systems, people, and places we know.</p>
+        </article>
+        <article>
+          <span class="principle-num">03</span>
+          <div class="principle-icon icon-wave" aria-hidden="true">≈</div>
+          <h3>Honest about impact</h3>
+          <p>We separate direction from certainty, show our assumptions, and never sell a number as a promise.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="method section-pad" id="method">
+      <div class="method-card">
+        <div class="method-title">
+          <p class="eyebrow eyebrow-light"><span></span> 03 / COUNT IT HONESTLY</p>
+          <h2>Directional math.<br><em>Human judgment.</em></h2>
+        </div>
+        <div class="method-copy">
+          <p>Common Ground combines conservative public estimates with simple multipliers. It shows scale; it does not replace local research or lived expertise.</p>
+          <details>
+            <summary>See the assumptions <span aria-hidden="true">＋</span></summary>
+            <ul>
+              <li>Each action has a per-person estimate for emissions, money, connection time, and material kept in use.</li>
+              <li>Weekly estimates are multiplied by four; monthly estimates are counted once.</li>
+              <li>Emissions use widely cited food, transport, waste, and energy ranges, rounded conservatively.</li>
+              <li>Social impact counts meaningful contact time, not the number of likes or impressions.</li>
+              <li>Regional context changes recommendations, but never turns estimates into guarantees.</li>
+            </ul>
+          </details>
+          <button class="text-button light-text js-random" type="button">Give me an action <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-pad">
+    <div class="footer-top">
+      <div>
+        <p class="footer-word">COMMON<br>GROUND</p>
+        <p>Small actions. Shared scale.<br>A lighter world is a collective project.</p>
+      </div>
+      <a class="round-cta" href="#builder"><span>MAKE<br>YOUR<br>GOOD<br>WEEK</span><b>↗</b></a>
+    </div>
+    <div class="footer-bottom">
+      <span>Built for action, not attention.</span>
+      <span>Private by design · Works offline · No accounts</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

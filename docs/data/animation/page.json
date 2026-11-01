@@ -1,0 +1,1029 @@
+{
+  "slug": "animation",
+  "title": "Animation",
+  "kind": "media",
+  "prompt": "Make an animation that, if everyone watched it, would improve the world for the greatest number of people.",
+  "final_prompt": "Make an animation that, if everyone watched it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n",
+  "created": "2026-10-29T18:41:11Z",
+  "updated": "2026-10-30T02:44:26Z",
+  "runs": [
+    {
+      "id": "claude-fable-5-1-cc-high-20261029-184111",
+      "page": "animation",
+      "model": "anthropic/claude-fable-5-1",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:41:11Z",
+      "batch": "2026-10-29-184111-animation",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 10,
+          "read": 5
+        }
+      },
+      "metrics": {
+        "duration_ms": 456711,
+        "cost_usd": 2.650410999999999,
+        "tool_calls": 15,
+        "turns": 16,
+        "tokens_total": 33968,
+        "tokens_input": 482,
+        "tokens_output": 33486,
+        "tokens_reasoning": 15945,
+        "tokens_cache_read": 543644
+      },
+      "thumb": "media/hands_only_cpr.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 9.9,
+            "bytes": 386475,
+            "transcoded": false,
+            "path": "media/hands_only_cpr.mp4",
+            "poster": "media/hands_only_cpr.poster.jpg",
+            "thumb": "media/hands_only_cpr.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1280,
+            "height": 720,
+            "bytes": 65394,
+            "path": "media/hands_only_cpr_poster.png",
+            "thumb": "media/hands_only_cpr_poster.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/font.py",
+          "src/make.py",
+          "src/raster.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "claude-opus-5-5-cc-high-20261029-184111",
+      "page": "animation",
+      "model": "anthropic/claude-opus-5-5",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:41:11Z",
+      "batch": "2026-10-29-184111-animation",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.308"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 10,
+          "read": 7,
+          "write": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 530375,
+        "cost_usd": 1.5164195999999996,
+        "tool_calls": 21,
+        "turns": 18,
+        "tokens_total": 45060,
+        "tokens_input": 36,
+        "tokens_output": 45024,
+        "tokens_reasoning": 22078,
+        "tokens_cache_read": 721938
+      },
+      "thumb": "media/wash-your-hands-poster.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1080,
+            "height": 1350,
+            "bytes": 272036,
+            "path": "media/wash-your-hands-poster.png",
+            "thumb": "media/wash-your-hands-poster.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 1080,
+            "height": 1080,
+            "duration_s": 10.0,
+            "bytes": 1537636,
+            "transcoded": false,
+            "path": "media/wash-your-hands.mp4",
+            "poster": "media/wash-your-hands.poster.jpg",
+            "thumb": "media/wash-your-hands.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/poster.js",
+          "src/raster.js",
+          "src/render.js",
+          "src/scene.js"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6-astra-cx-high-20261029-184111",
+      "page": "animation",
+      "model": "openai/gpt-6-astra",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:41:11Z",
+      "batch": "2026-10-29-184111-animation",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 10
+        }
+      },
+      "metrics": {
+        "duration_ms": 311083,
+        "cost_usd": 0.0,
+        "tool_calls": 10,
+        "turns": 1,
+        "tokens_total": 32355,
+        "tokens_input": 23781,
+        "tokens_output": 8574,
+        "tokens_reasoning": 2468,
+        "tokens_cache_read": 309248
+      },
+      "thumb": "media/make-room.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 960,
+            "height": 1080,
+            "bytes": 126424,
+            "path": "media/make-room.jpg",
+            "thumb": "media/make-room.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 960,
+            "height": 1080,
+            "duration_s": 10.0,
+            "bytes": 401545,
+            "transcoded": false,
+            "path": "media/make-room.mp4",
+            "poster": "media/make-room.poster.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "src/build.sh",
+          "src/render.swift",
+          "src/sound.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.1-sol-cx-high-20261029-184111",
+      "page": "animation",
+      "model": "openai/gpt-6.1-sol",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-29T18:41:11Z",
+      "batch": "2026-10-29-184111-animation",
+      "harness": {
+        "name": "codex",
+        "version": "0.165.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 13
+        }
+      },
+      "metrics": {
+        "duration_ms": 385085,
+        "cost_usd": 0.0,
+        "tool_calls": 13,
+        "turns": 1,
+        "tokens_total": 50383,
+        "tokens_input": 36452,
+        "tokens_output": 13931,
+        "tokens_reasoning": 5382,
+        "tokens_cache_read": 421888
+      },
+      "thumb": "media/day-lighter.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1080,
+            "height": 1080,
+            "bytes": 88385,
+            "path": "media/day-lighter.jpg",
+            "thumb": "media/day-lighter.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 1080,
+            "height": 1080,
+            "duration_s": 10.0,
+            "bytes": 762653,
+            "transcoded": false,
+            "path": "media/day-lighter.mp4",
+            "poster": "media/day-lighter.poster.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "src/build.sh",
+          "src/render.swift",
+          "src/sound.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4-pro-0813-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/deepseek/deepseek-v4-pro-0813",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:12:51Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Wafer"
+        ],
+        "cost_usd": 0.430909536,
+        "pi_cost_usd": 0.41055440399999993
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 22,
+          "edit": 2,
+          "read": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 666487,
+        "cost_usd": 0.430909536,
+        "tool_calls": 27,
+        "turns": 28,
+        "tokens_total": 146598,
+        "tokens_input": 106744,
+        "tokens_output": 39854,
+        "tokens_reasoning": 28384,
+        "tokens_cache_read": 806744
+      },
+      "thumb": "media/kindness.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 10.0,
+            "bytes": 1061781,
+            "transcoded": false,
+            "path": "media/kindness.mp4",
+            "poster": "media/kindness.poster.jpg",
+            "thumb": "media/kindness.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1280,
+            "height": 720,
+            "bytes": 112673,
+            "path": "media/poster_final.jpg",
+            "thumb": "media/poster_final.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1280,
+            "height": 720,
+            "bytes": 85979,
+            "path": "media/poster_heart.jpg",
+            "thumb": "media/poster_heart.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": false,
+        "error": "kindness.webm: skipped, another output is already named kindness.mp4"
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/render.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "deepseek-v4.1-flash-1017-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:12:51Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "InferenceNet"
+        ],
+        "cost_usd": 0.161378374,
+        "pi_cost_usd": 0.09372582700000005
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 69,
+          "read": 45,
+          "write": 10,
+          "edit": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 1658674,
+        "cost_usd": 0.161378374,
+        "tool_calls": 128,
+        "turns": 126,
+        "tokens_total": 190094,
+        "tokens_input": 72053,
+        "tokens_output": 118041,
+        "tokens_reasoning": 49572,
+        "tokens_cache_read": 11336448
+      },
+      "thumb": "media/call_someone.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1920,
+            "height": 1080,
+            "duration_s": 9.6,
+            "bytes": 1246111,
+            "transcoded": false,
+            "path": "media/call_someone.mp4",
+            "poster": "media/call_someone.poster.jpg",
+            "thumb": "media/call_someone.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1080,
+            "bytes": 61563,
+            "path": "media/call_someone_reach.jpg",
+            "thumb": "media/call_someone_reach.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1080,
+            "bytes": 75512,
+            "path": "media/call_someone_spreading.jpg",
+            "thumb": "media/call_someone_spreading.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1080,
+            "bytes": 123884,
+            "path": "media/call_someone_title.jpg",
+            "thumb": "media/call_someone_title.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "src/art.py",
+          "src/font.py",
+          "src/grade.sh",
+          "src/make.sh",
+          "src/pngutil.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gemini-4-argon-via-google-vertex-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/google/gemini-4-argon@google-vertex",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:12:51Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": {
+          "only": [
+            "google-vertex"
+          ],
+          "allow_fallbacks": false
+        },
+        "served": [
+          "Google"
+        ],
+        "cost_usd": 1.4727928,
+        "pi_cost_usd": 1.4727928000000003
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "write": 11,
+          "bash": 10,
+          "edit": 7,
+          "read": 5
+        }
+      },
+      "metrics": {
+        "duration_ms": 1627167,
+        "cost_usd": 1.4727928,
+        "tool_calls": 33,
+        "turns": 34,
+        "tokens_total": 243203,
+        "tokens_input": 147453,
+        "tokens_output": 95750,
+        "tokens_reasoning": 22791,
+        "tokens_cache_read": 2203868
+      },
+      "thumb": "media/break_the_chain.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 10.0,
+            "bytes": 1579393,
+            "transcoded": false,
+            "path": "media/break_the_chain.mp4",
+            "poster": "media/break_the_chain.poster.jpg",
+            "thumb": "media/break_the_chain.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/audio.js",
+          "src/characters.js",
+          "src/generate.js",
+          "src/renderer.js",
+          "src/scene.js",
+          "src/typography.js"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "grok-4.7-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/x-ai/grok-4.7",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:12:51Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "xAI"
+        ],
+        "cost_usd": 3.460182,
+        "pi_cost_usd": 3.4601819999999996
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "read": 36,
+          "bash": 18,
+          "edit": 10,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 1895548,
+        "cost_usd": 3.460182,
+        "tool_calls": 65,
+        "turns": 45,
+        "tokens_total": 290973,
+        "tokens_input": 170902,
+        "tokens_output": 120071,
+        "tokens_reasoning": 84731,
+        "tokens_cache_read": 4795904
+      },
+      "thumb": "media/be-gentle.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 10.0,
+            "bytes": 651266,
+            "transcoded": false,
+            "path": "media/be-gentle.mp4",
+            "poster": "media/be-gentle.poster.jpg",
+            "thumb": "media/be-gentle.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/render.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "kimi-k3.1-pro-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/moonshotai/kimi-k3.1-pro",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:12:51Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Moonshot AI"
+        ],
+        "cost_usd": 0.2206702,
+        "pi_cost_usd": 0.22067020000000004
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 12,
+          "read": 7,
+          "edit": 1,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 504860,
+        "cost_usd": 0.2206702,
+        "tool_calls": 21,
+        "turns": 15,
+        "tokens_total": 38385,
+        "tokens_input": 25411,
+        "tokens_output": 12974,
+        "tokens_reasoning": 4867,
+        "tokens_cache_read": 200541
+      },
+      "thumb": "media/a_little_space.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1280,
+            "height": 720,
+            "bytes": 50190,
+            "path": "media/a_little_space.jpg",
+            "thumb": "media/a_little_space.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 10.0,
+            "bytes": 836695,
+            "transcoded": false,
+            "path": "media/a_little_space.mp4",
+            "poster": "media/a_little_space.poster.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/render.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "glm-5.3-prime-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/z-ai/glm-5.3-prime",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:21:16Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Alibaba"
+        ],
+        "cost_usd": 1.98983352,
+        "pi_cost_usd": 1.98983352
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 23,
+          "edit": 6,
+          "read": 4,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 571894,
+        "cost_usd": 1.98983352,
+        "tool_calls": 34,
+        "turns": 34,
+        "tokens_total": 155307,
+        "tokens_input": 87817,
+        "tokens_output": 67490,
+        "tokens_reasoning": 50198,
+        "tokens_cache_read": 2053632
+      },
+      "thumb": "media/pale_blue_dot.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 800,
+            "height": 450,
+            "duration_s": 10.0,
+            "bytes": 426626,
+            "transcoded": false,
+            "path": "media/pale_blue_dot.mp4",
+            "poster": "media/pale_blue_dot.poster.jpg",
+            "thumb": "media/pale_blue_dot.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 800,
+            "height": 450,
+            "bytes": 35629,
+            "path": "media/poster_earth.jpg",
+            "thumb": "media/poster_earth.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 800,
+            "height": 450,
+            "bytes": 15691,
+            "path": "media/poster_message.jpg",
+            "thumb": "media/poster_message.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/render.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "minimax-m3.1-flash-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/minimax/minimax-m3.1-flash",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:23:57Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Together"
+        ],
+        "cost_usd": 0.011612009999999999,
+        "pi_cost_usd": 0.010450809
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 11,
+          "read": 3,
+          "edit": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 163808,
+        "cost_usd": 0.011612009999999999,
+        "tool_calls": 17,
+        "turns": 15,
+        "tokens_total": 30952,
+        "tokens_input": 20363,
+        "tokens_output": 10589,
+        "tokens_reasoning": 4065,
+        "tokens_cache_read": 146944
+      },
+      "thumb": "media/pass-it-on-poster.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 960,
+            "height": 540,
+            "bytes": 47213,
+            "path": "media/pass-it-on-poster.jpg",
+            "thumb": "media/pass-it-on-poster.thumb.jpg"
+          },
+          {
+            "type": "video",
+            "width": 960,
+            "height": 540,
+            "duration_s": 10.0,
+            "bytes": 318890,
+            "transcoded": false,
+            "path": "media/pass-it-on.mp4",
+            "poster": "media/pass-it-on.poster.jpg",
+            "thumb": "media/pass-it-on.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/render_animation.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "muse-wonder-high-20261030-021251",
+      "page": "animation",
+      "model": "openrouter/meta/muse-wonder",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-10-30T02:26:41Z",
+      "batch": "2026-10-30-021251-animation",
+      "harness": {
+        "name": "pi",
+        "version": "1.4.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": {
+        "requested": null,
+        "served": [
+          "Meta"
+        ],
+        "cost_usd": 0.6269608,
+        "pi_cost_usd": 0.6269608000000002
+      },
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 9,
+          "read": 4,
+          "edit": 2,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 209936,
+        "cost_usd": 0.6269608,
+        "tool_calls": 16,
+        "turns": 17,
+        "tokens_total": 90811,
+        "tokens_input": 76197,
+        "tokens_output": 14614,
+        "tokens_reasoning": 5253,
+        "tokens_cache_read": 149464
+      },
+      "thumb": "media/pause-breathe-see-each-other.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 960,
+            "height": 540,
+            "duration_s": 10.0,
+            "bytes": 641126,
+            "transcoded": false,
+            "path": "media/pause-breathe-see-each-other.mp4",
+            "poster": "media/pause-breathe-see-each-other.poster.jpg",
+            "thumb": "media/pause-breathe-see-each-other.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make_animation.py"
+        ]
+      },
+      "rank": null
+    }
+  ]
+}

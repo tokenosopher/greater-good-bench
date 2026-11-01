@@ -1,0 +1,78 @@
+{
+  "id": "minimax-m3.1-flash-high-20261029-205306",
+  "page": "svg",
+  "model": "openrouter/minimax/minimax-m3.1-flash",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T21:01:04Z",
+  "batch": "2026-10-29-205306-svg",
+  "harness": {
+    "name": "pi",
+    "version": "1.4.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": {
+    "requested": null,
+    "served": [
+      "ModelRun"
+    ],
+    "cost_usd": 0.00817668,
+    "pi_cost_usd": 0.007359012000000001
+  },
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 5,
+      "read": 1,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 47173,
+    "cost_usd": 0.00817668,
+    "tool_calls": 7,
+    "turns": 7,
+    "tokens_total": 30482,
+    "tokens_input": 23492,
+    "tokens_output": 6990,
+    "tokens_reasoning": 2122,
+    "tokens_cache_read": 30592
+  },
+  "thumb": "media/future-is-a-shared-project.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 238716,
+        "path": "media/future-is-a-shared-project.jpg",
+        "thumb": "media/future-is-a-shared-project.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 11154,
+        "path": "media/future-is-a-shared-project.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/poster.svg"
+    ]
+  }
+}

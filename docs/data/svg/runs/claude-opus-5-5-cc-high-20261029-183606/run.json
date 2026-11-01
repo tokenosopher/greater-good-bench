@@ -1,0 +1,78 @@
+{
+  "id": "claude-opus-5-5-cc-high-20261029-183606",
+  "page": "svg",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:36:06Z",
+  "batch": "2026-10-29-183606-svg",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.308"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 6,
+      "read": 3,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 304213,
+    "cost_usd": 0.9734866,
+    "tool_calls": 10,
+    "turns": 9,
+    "tokens_total": 30754,
+    "tokens_input": 18,
+    "tokens_output": 30736,
+    "tokens_reasoning": 11222,
+    "tokens_cache_read": 232073
+  },
+  "thumb": "media/ors.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1200,
+        "height": 1940,
+        "bytes": 329381,
+        "path": "media/ors.png",
+        "thumb": "media/ors.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1200,
+        "height": 1940,
+        "bytes": 45320,
+        "path": "media/ors.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make_ors.py"
+    ]
+  }
+}

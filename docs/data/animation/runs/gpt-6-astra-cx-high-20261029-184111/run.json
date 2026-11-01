@@ -1,0 +1,76 @@
+{
+  "id": "gpt-6-astra-cx-high-20261029-184111",
+  "page": "animation",
+  "model": "openai/gpt-6-astra",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-10-29T18:41:11Z",
+  "batch": "2026-10-29-184111-animation",
+  "harness": {
+    "name": "codex",
+    "version": "0.165.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 10
+    }
+  },
+  "metrics": {
+    "duration_ms": 311083,
+    "cost_usd": 0.0,
+    "tool_calls": 10,
+    "turns": 1,
+    "tokens_total": 32355,
+    "tokens_input": 23781,
+    "tokens_output": 8574,
+    "tokens_reasoning": 2468,
+    "tokens_cache_read": 309248
+  },
+  "thumb": "media/make-room.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 960,
+        "height": 1080,
+        "bytes": 126424,
+        "path": "media/make-room.jpg",
+        "thumb": "media/make-room.thumb.jpg"
+      },
+      {
+        "type": "video",
+        "width": 960,
+        "height": 1080,
+        "duration_s": 10.0,
+        "bytes": 401545,
+        "transcoded": false,
+        "path": "media/make-room.mp4",
+        "poster": "media/make-room.poster.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "src/build.sh",
+      "src/render.swift",
+      "src/sound.py"
+    ]
+  }
+}
