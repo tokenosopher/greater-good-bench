@@ -34,6 +34,9 @@ def test_the_catalog_matches_the_scene_and_the_page():
     assert len(studio.slot_labels("reveal")) == 4 and len(studio.slot_labels("reveal", 12)) == 12  # 4 unless asked
     assert {k for k, card in c["cards"].items() if card.get("scene")} == {"hook", "finale"}
     assert set(studio.FINALE_BOX) == set(studio.FORMATS)
+    # the cards with a link default to the site's address ([site] url without the scheme)
+    assert {k: card["link"] for k, card in c["cards"].items() if "link" in card} == {"finale": "bench.example.com", "vote": "bench.example.com"}
+    assert studio.catalog("bench.test/x")["cards"]["vote"]["link"] == "bench.test/x"
 
 
 def test_a_runs_type_and_length():
@@ -136,9 +139,9 @@ def test_the_scene_plan_shares_a_prompt_and_a_pick_only_within_one_page(site):  
 
 @needs_tools
 @pytest.mark.parametrize("template, slots, cards, size", [
-    ("duel", [ART(HIGH), ART(OTHER)], [card("title", 0, secs=2), card("vote", 99, secs=2, link="fenderog.com/art-crit")], (1920, 1080)),
+    ("duel", [ART(HIGH), ART(OTHER)], [card("title", 0, secs=2), card("vote", 99, secs=2, link="bench.example.com")], (1920, 1080)),
     ("ladder", [ART(HIGH), ART(OTHER), ART(HIGH), ART(OTHER)], [card("section", 2, secs=2)], (1080, 1920)),  # a run twice: recorded once
-    ("reveal", [ART(HIGH), ART(OTHER)], [card("hook", 0, heading=""), card("finale", 99, secs=5, link="fenderog.com/art-crit")], (1080, 1920)),
+    ("reveal", [ART(HIGH), ART(OTHER)], [card("hook", 0, heading=""), card("finale", 99, secs=5, link="bench.example.com")], (1080, 1920)),
     ("grid", [ART(HIGH), ART(OTHER)], [card("hook", 0, heading=""), card("finale", 99, secs=5)], (1080, 1920)),
     ("wide", [ART(HIGH), ART(OTHER)], [card("finale", 99, secs=3)], (1920, 1080)),
 ])

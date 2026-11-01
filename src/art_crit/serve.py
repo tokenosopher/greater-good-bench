@@ -42,7 +42,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from . import site, studio, video
-from .config import Config
+from .config import Config, site_name
 from .harness import HARNESSES
 from .runner import STOP_FILE
 from .util import CritError
@@ -545,7 +545,7 @@ class _Handler(http.server.SimpleHTTPRequestHandler):
         if path.endswith("/api/video/jobs"):
             return self._local_json(200, video_jobs(Path(self.directory).parent))
         if path.endswith("/api/studio"):
-            return self._local_json(200, studio.catalog())
+            return self._local_json(200, studio.catalog(site_name(Config.load(Path(self.directory).parent).site_url)))
         if path.endswith("/api/video"):
             status = video_status(parse_qs(urlsplit(self.path).query).get("job", [None])[0])
             return self._local_json(404, {"error": "no such job"}) if status is None else self._local_json(200, status)

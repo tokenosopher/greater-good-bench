@@ -810,7 +810,7 @@ newest first, with each run's state, metrics, prompt, files and transcript, and 
 Visitors signed in with GitHub can give each result a heart and hand out one gold, one silver and one bronze medal per
 page (ADR-0022). Votes and prompt requests (ADR-0030) are the only things the published site writes; the owner's ranking
 above stays local. The API is
-`cloudflare/votes.mjs`, served by the Worker at `/art-crit/api/*`, storing in D1 (`cloudflare/schema.sql`).
+`cloudflare/votes.mjs`, served by the Worker at `<SITE_PREFIX>/api/*` (`SITE_PREFIX` from `cloudflare/wrangler.jsonc`, `/art-crit` upstream, `""` for a whole host), storing in D1 (`cloudflare/schema.sql`).
 
 Tables: `hearts(page, run, user_id)`, primary key all three. `medals(page, user_id, medal, run)` with `medal` in
 `gold|silver|bronze`, primary key `(page, user_id, medal)` and `UNIQUE (page, user_id, run)`: one of each medal per user
@@ -835,7 +835,7 @@ drift and counts votes cast before the table existed. Apply the schema before de
 | `PUT api/medal` `{"p", "medal", "run": "<id>"\|null}` | Puts the user's medal on `run` (`null` takes it back). In one transaction it removes that medal's old result and any other medal the user had on `run`. Answers like `GET api/votes`. |
 | `POST api/request` `{"prompt", "kind", "note"?}` | Opens a GitHub issue on `fenderog/art-crit` (see Prompt requests) with `GITHUB_ISSUES_TOKEN`, a fine-grained token with Issues: write on that repo; answers `201 {"number", "url"}`. Body ≤ 8 KiB; `prompt` 10–4000 chars after trimming, `kind` one of `media`/`godot`/`web`/`blender`, `note` ≤ 1000 (400 otherwise). 5 per user and 50 site-wide per rolling 24 h (429). GitHub refusing is 502 and counts nothing; without the token 503. |
 
-Cookies are `__Secure-` prefixed, `HttpOnly; Secure; SameSite=Lax`, `Path=/art-crit/api/`: the session (30 days) and the
+Cookies are `__Secure-` prefixed, `HttpOnly; Secure; SameSite=Lax`, `Path=<SITE_PREFIX>/api/`: the session (30 days) and the
 login state (10 minutes) are JSON payloads signed with HMAC-SHA-256 (`SESSION_SECRET`) and typed so one can't stand in for
 the other. Writes (`PUT`, `POST`) need a valid session (401), an `Origin` header equal to the request's own origin (403;
 sandboxed game frames send `null`), `Content-Type: application/json` (415), a body under 2 KiB (8 KiB for `api/request`) (413), and for votes a page and run
@@ -876,7 +876,7 @@ direct visit to a raw output URL gets an opaque origin too, so it can't use the 
 assets, because it is served at any depth). `docs/_headers` is Pages' cache policy (ADR-0029): run directories
 (`/data/:slug/runs/*`) `max-age=86400, stale-while-revalidate=604800`, `assets/vendor/*` and `engines/*` a year and
 `immutable`; everything else keeps Pages' `max-age=0, must-revalidate` (the viewer's own scripts have no cache-busting,
-ADR-0012). The Worker passes these headers through. No other path is routed; static requests forward no visitor credentials. `/art-crit/api/*` is the
+ADR-0012). The Worker passes these headers through. No other path is routed; static requests forward no visitor credentials. `<SITE_PREFIX>/api/*` is the
 votes API (see Community votes). The apex has a
 proxied DNS record to make Worker routes active, but no site at `/`. GitHub Pages can stay online
 at its old URL during migration; the Pages subdomain isn't the supported URL for playing games.

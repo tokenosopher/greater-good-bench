@@ -1,7 +1,7 @@
 """art-crit.toml, parsed once, plus `RunRequest`: everything one `art-crit run` needs to know.
 
 `Config.load(root)` reads the file once in `cli.main` and is passed to the importer and runner,
-so `[clean]`, `[run]` and `[sets]` share one parser. `RunRequest` is the run's inputs, built by the
+so `[clean]`, `[run]`, `[sets]` and `[site]` share one parser. `RunRequest` is the run's inputs, built by the
 CLI from argparse (and, later, by the website); it round-trips through JSON, so a run started
 somewhere else carries exactly the same fields."""
 
@@ -14,6 +14,14 @@ from .kinds import KINDS
 from .util import CritError, parse_duration
 
 DEFAULT_TOOLS = ["python3", "node", "ffmpeg", "ffprobe"]
+# The published site's address (`[site] url`): the vote cards of `art-crit video` and the studio show it, and the CLI
+# prints compare links under it. A placeholder until the owner sets the real one in art-crit.toml (DEPLOY.md).
+DEFAULT_SITE_URL = "https://bench.example.com/"
+
+
+def site_name(url):
+    """What a video card says for the site: the address without the scheme or the trailing slash."""
+    return url.split("://", 1)[-1].rstrip("/")
 
 
 @dataclass
@@ -34,6 +42,7 @@ class Config:
     rewrites: list[tuple[str, str]]  # [clean].rewrite + home dir, longest prefix first
     run: RunSettings = field(default_factory=RunSettings)
     sets: dict[str, list[str]] = field(default_factory=dict)
+    site_url: str = DEFAULT_SITE_URL  # [site].url, always ending in "/"
 
     @classmethod
     def load(cls, root):
@@ -62,7 +71,12 @@ class Config:
             if not isinstance(specs, list) or not all(isinstance(s, str) for s in specs):
                 raise CritError(f"art-crit.toml [sets].{name} must be a list of \"model[:levels]\" strings")
 
-        return cls(root=root, rewrites=rewrites, run=run, sets=sets)
+        site_url = data.get("site", {}).get("url", DEFAULT_SITE_URL)
+        if not isinstance(site_url, str) or not site_url.startswith(("https://", "http://")):
+            raise CritError(f"art-crit.toml [site].url must be an http(s) address, got {site_url!r}")
+        site_url = site_url.rstrip("/") + "/"
+
+        return cls(root=root, rewrites=rewrites, run=run, sets=sets, site_url=site_url)
 
 
 def _check_parallel(value, what):

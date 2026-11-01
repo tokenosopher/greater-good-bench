@@ -1,4 +1,4 @@
-"""Pages staging and the /art-crit router (no live Cloudflare calls)."""
+"""Pages staging and the router, on a path and on a host of its own (no live Cloudflare calls)."""
 
 import gzip
 import shutil
@@ -41,6 +41,8 @@ def test_router_strips_prefix_and_decompresses_wasm():
 import { gzipSync } from 'node:zlib';
 import assert from 'node:assert/strict';
 import router from './cloudflare/router.mjs';
+// wrangler.jsonc's vars for a site on a path; the second half runs the same Worker with SITE_PREFIX "".
+const env = { SITE_PREFIX: '/art-crit', PAGES_URL: 'https://art-crit.pages.dev' };
 let urls = [];
 let forwarded = [];
 globalThis.fetch = async (url, options) => {
@@ -53,9 +55,11 @@ globalThis.fetch = async (url, options) => {
           'content-type': 'video/mp4', 'content-length': '10',
           'access-control-allow-origin': '*', etag: 'video-tag',
         } })
-      : new Response('ok', { headers: { 'access-control-allow-origin': '*' } });
+      : url.endsWith('/missing.html')
+        ? new Response('<a href="/">Back</a>', { status: 404, headers: { 'content-type': 'text/html; charset=utf-8' } })
+        : new Response('ok', { headers: { 'access-control-allow-origin': '*' } });
 };
-const request = (path, method = 'GET') => router.fetch(new Request('https://fenderog.com' + path, { method }));
+const request = (path, method = 'GET') => router.fetch(new Request('https://fenderog.com' + path, { method }), env);
 let response = await request('/art-crit/engines/abcdef012345/godot.wasm');
 assert.equal(await response.text(), 'wasm bytes');
 assert.equal(response.headers.get('content-type'), 'application/wasm');
@@ -70,7 +74,7 @@ assert.equal((await request('/art-crit/page.html', 'PUT')).status, 405); // stat
 assert.equal((await request('/art-crit/api/rank', 'PUT')).status, 404); // the owner's ranking API is local-only
 response = await router.fetch(new Request('https://fenderog.com/art-crit/video.mp4', {
   headers: { Range: 'bytes=2-4', Cookie: 'private=yes' },
-}));
+}), env);
 assert.equal(response.status, 206);
 assert.equal(response.headers.get('content-range'), 'bytes 2-4/10');
 assert.equal(response.headers.get('accept-ranges'), 'bytes');
@@ -79,21 +83,46 @@ assert.equal(forwarded.pop().get('Range'), 'bytes=2-4');
 assert.equal(forwarded.at(-1).get('Cookie'), null);
 response = await router.fetch(new Request('https://fenderog.com/art-crit/video.mp4', {
   headers: { Range: 'bytes=12-' },
-}));
+}), env);
 assert.equal(response.status, 416);
 response = await router.fetch(new Request('https://fenderog.com/art-crit/video.mp4', {
   headers: { Range: 'bytes=2-4', 'If-Range': 'other-tag' },
-}));
+}), env);
 assert.equal(response.status, 200);
 assert.equal((await request('/art-crit-other/')).status, 404);
 // Model-made files under data/ get the viewer's sandbox as a header too, so a direct visit has an opaque origin.
 response = await request('/art-crit/data/horse/runs/r1/game/index.html');
 assert.equal(response.headers.get('content-security-policy'), 'sandbox allow-scripts allow-pointer-lock');
 assert.equal(await response.text(), 'ok');
-response = await router.fetch(new Request('https://fenderog.com/art-crit/data/horse/runs/r1/media/clip.mp4', { headers: { Range: 'bytes=0-1' } }));
+response = await router.fetch(new Request('https://fenderog.com/art-crit/data/horse/runs/r1/media/clip.mp4', { headers: { Range: 'bytes=0-1' } }), env);
 assert.equal(response.status, 206);
 assert.equal(response.headers.get('content-security-policy'), 'sandbox allow-scripts allow-pointer-lock');
 assert.equal((await request('/art-crit/page.html')).headers.get('content-security-policy'), null);
+// docs/404.html links home with href="/": under a prefix the Worker points it at the prefix.
+response = await request('/art-crit/missing.html');
+assert.equal(response.status, 404);
+assert.equal(await response.text(), '<a href="/art-crit/">Back</a>');
+
+// The same Worker on a host of its own (SITE_PREFIX ""): every path is the site, nothing is stripped.
+const root = { SITE_PREFIX: '', PAGES_URL: 'https://greater-good-bench.pages.dev/' };
+const at = (path, init = {}) => router.fetch(new Request('https://bench.example.com' + path, init), root);
+response = await at('/engines/abcdef012345/godot.wasm');
+assert.equal(await response.text(), 'wasm bytes');
+assert.equal(response.headers.get('content-type'), 'application/wasm');
+assert.equal(urls.pop(), 'https://greater-good-bench.pages.dev/engines/abcdef012345/godot.wasm.gz');
+assert.equal((await at('/')).status, 200);
+assert.equal(urls.pop(), 'https://greater-good-bench.pages.dev/');
+assert.equal((await at('/page.html?p=horse')).status, 200);
+assert.equal(urls.pop(), 'https://greater-good-bench.pages.dev/page.html?p=horse');
+assert.equal((await at('/page.html', { method: 'PUT' })).status, 405);
+assert.equal((await at('/api/rank', { method: 'PUT' })).status, 404);
+assert.equal((await at('/api/votes?p=horse')).status, 503); // no database or secrets in this env
+response = await at('/data/horse/runs/r1/media/clip.mp4', { headers: { Range: 'bytes=0-1' } });
+assert.equal(response.status, 206);
+assert.equal(response.headers.get('content-security-policy'), 'sandbox allow-scripts allow-pointer-lock');
+assert.equal(await (await at('/missing.html')).text(), '<a href="/">Back</a>'); // already right at the root
+await assert.rejects(() => router.fetch(new Request('https://bench.example.com/'), { SITE_PREFIX: '' }), /PAGES_URL/);
+await assert.rejects(() => router.fetch(new Request('https://bench.example.com/'), { ...root, SITE_PREFIX: 'bench' }), /SITE_PREFIX/);
 """
     subprocess.run(["node", "--input-type=module", "-e", script], check=True, cwd=Path(__file__).resolve().parents[1])
 

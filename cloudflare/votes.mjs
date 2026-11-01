@@ -1,9 +1,8 @@
-// /art-crit/api/*: GitHub sign-in plus hearts and gold/silver/bronze medals, stored in D1 (adr/0022), and prompt
+// <prefix>/api/* (the prefix is SITE_PREFIX in wrangler.jsonc, "" on a host of its own): GitHub sign-in plus hearts and gold/silver/bronze medals, stored in D1 (adr/0022), and prompt
 // requests, which become GitHub issues opened by the site's bot token (adr/0030). The only part of the site that writes. Reads are public; writes need a session cookie *and* a same-origin
 // request, so a page on another origin (or a sandboxed game frame, whose Origin is "null") can't vote.
 
-const SITE = "/art-crit/";
-const API = `${SITE}api/`;
+// `site` below is the site's root path (SITE_PREFIX + "/", e.g. "/" or "/bench/") and `api` is `${site}api/`.
 const SESSION = "__Secure-ac_session";
 const OAUTH = "__Secure-ac_oauth";
 const SESSION_SECONDS = 30 * 24 * 3600;
@@ -52,7 +51,7 @@ function cookieValue(request, name) {
   return null;
 }
 
-const setCookie = (name, value, seconds) => `${name}=${value}; Path=${API}; Max-Age=${seconds}; HttpOnly; Secure; SameSite=Lax`;
+const setCookie = (name, value, seconds, api) => `${name}=${value}; Path=${api}; Max-Age=${seconds}; HttpOnly; Secure; SameSite=Lax`;
 
 // ---- responses
 const json = (body, status = 200, headers = []) =>
@@ -62,29 +61,29 @@ const redirect = (location, cookies) =>
   new Response(null, { status: 302, headers: [["Location", location], ["Cache-Control", "no-store"], ...cookies.map((c) => ["Set-Cookie", c])] });
 
 // Where to send the visitor after sign-in: a page of this site, never anywhere else.
-function returnPath(origin, value) {
+function returnPath(origin, value, site, api) {
   try {
     const url = new URL(value ?? "", origin);
-    if (url.origin === origin && url.pathname.startsWith(SITE) && !url.pathname.startsWith(API)) return url.pathname + url.search + url.hash;
+    if (url.origin === origin && url.pathname.startsWith(site) && !url.pathname.startsWith(api)) return url.pathname + url.search + url.hash;
   } catch {}
-  return SITE;
+  return site;
 }
 
 // ---- sign in with GitHub (OAuth web flow, no scopes: only the public profile is readable)
 // The random `state` travels to GitHub and back, and also sits in a signed cookie with the page to return to,
 // so the callback only accepts a sign-in this browser started.
-async function startLogin(url, env) {
+async function startLogin(url, env, site, api) {
   const state = b64(crypto.getRandomValues(new Uint8Array(16)));
-  const ret = returnPath(url.origin, url.searchParams.get("return"));
-  const cookie = setCookie(OAUTH, await seal(env.SESSION_SECRET, "oauth", { state, ret }, OAUTH_SECONDS), OAUTH_SECONDS);
+  const ret = returnPath(url.origin, url.searchParams.get("return"), site, api);
+  const cookie = setCookie(OAUTH, await seal(env.SESSION_SECRET, "oauth", { state, ret }, OAUTH_SECONDS), OAUTH_SECONDS, api);
   const authorize = new URL("https://github.com/login/oauth/authorize");
-  authorize.search = new URLSearchParams({ client_id: env.GITHUB_CLIENT_ID, redirect_uri: `${url.origin}${API}callback`, state }).toString();
+  authorize.search = new URLSearchParams({ client_id: env.GITHUB_CLIENT_ID, redirect_uri: `${url.origin}${api}callback`, state }).toString();
   return redirect(authorize.toString(), [cookie]);
 }
 
-async function finishLogin(request, url, env) {
+async function finishLogin(request, url, env, api) {
   const saved = await unseal(env.SESSION_SECRET, "oauth", cookieValue(request, OAUTH));
-  const clear = setCookie(OAUTH, "", 0);
+  const clear = setCookie(OAUTH, "", 0, api);
   if (!saved || saved.state !== url.searchParams.get("state")) {
     return new Response("Sign-in expired. Go back and try again.", { status: 400, headers: [["Set-Cookie", clear]] });
   }
@@ -94,7 +93,7 @@ async function finishLogin(request, url, env) {
   const token = await (await fetch("https://github.com/login/oauth/access_token", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET, code, redirect_uri: `${url.origin}${API}callback` }),
+    body: JSON.stringify({ client_id: env.GITHUB_CLIENT_ID, client_secret: env.GITHUB_CLIENT_SECRET, code, redirect_uri: `${url.origin}${api}callback` }),
   })).json().catch(() => ({}));
   if (!token.access_token) return new Response("GitHub did not accept the sign-in. Go back and try again.", { status: 502, headers: [["Set-Cookie", clear]] });
 
@@ -106,7 +105,7 @@ async function finishLogin(request, url, env) {
     return new Response("Could not read your GitHub profile. Go back and try again.", { status: 502, headers: [["Set-Cookie", clear]] });
   }
   const session = await seal(env.SESSION_SECRET, "session", { id: profile.id, login: profile.login }, SESSION_SECONDS);
-  return redirect(saved.ret, [clear, setCookie(SESSION, session, SESSION_SECONDS)]);
+  return redirect(saved.ret, [clear, setCookie(SESSION, session, SESSION_SECONDS, api)]);
 }
 
 async function sessionUser(request, env) {
@@ -189,9 +188,8 @@ async function vote(request, env, pages, user, kind) {
 // ---- prompt requests (adr/0030)
 // POST api/request {prompt, kind, note?}: a signed-in visitor's prompt idea becomes an issue on the repo, labeled
 // "prompt request". The issue is opened with GITHUB_ISSUES_TOKEN (a fine-grained token with Issues: write on this one
-// repo), never the visitor's own GitHub token, which the site doesn't keep. Each user gets REQUESTS_PER_DAY a day and
+// repo, GITHUB_REPO in wrangler.jsonc), never the visitor's own GitHub token, which the site doesn't keep. Each user gets REQUESTS_PER_DAY a day and
 // the whole site REQUESTS_PER_DAY_ALL, counted in D1, so the bot can't be used to flood the repo.
-const REPO = "tokenosopher/greater-good-bench";
 const REQUEST_KINDS = { media: "Vector", godot: "Game", web: "Web", blender: "3D", text: "Text" };
 const REQUESTS_PER_DAY = 5;
 const REQUESTS_PER_DAY_ALL = 50;
@@ -224,7 +222,7 @@ export function issueFor({ prompt, kind, note }, login) {
 }
 
 async function requestPrompt(request, env, user) {
-  if (!env.GITHUB_ISSUES_TOKEN) throw new HttpError(503, "prompt requests are not configured");
+  if (!env.GITHUB_ISSUES_TOKEN || !env.GITHUB_REPO) throw new HttpError(503, "prompt requests are not configured");
   const body = await readBody(request, MAX_REQUEST_BODY);
   const prompt = typeof body.prompt === "string" ? body.prompt.trim() : "";
   const note = typeof body.note === "string" ? body.note.trim() : "";
@@ -241,7 +239,7 @@ async function requestPrompt(request, env, user) {
   if (mine.results[0].n >= REQUESTS_PER_DAY) throw new HttpError(429, `you can send ${REQUESTS_PER_DAY} requests a day; try again tomorrow`);
   if (all.results[0].n >= REQUESTS_PER_DAY_ALL) throw new HttpError(429, "too many requests today; try again tomorrow");
 
-  const res = await fetch(`https://api.github.com/repos/${REPO}/issues`, {
+  const res = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO}/issues`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${env.GITHUB_ISSUES_TOKEN}`, Accept: "application/vnd.github+json",
@@ -260,9 +258,9 @@ async function requestPrompt(request, env, user) {
 
 // ---- routing
 const ROUTES = {
-  login: { GET: (c) => startLogin(c.url, c.env) },
-  callback: { GET: (c) => finishLogin(c.request, c.url, c.env) },
-  logout: { POST: () => json({ ok: true }, 200, [["Set-Cookie", setCookie(SESSION, "", 0)]]) },
+  login: { GET: (c) => startLogin(c.url, c.env, c.site, c.api) },
+  callback: { GET: (c) => finishLogin(c.request, c.url, c.env, c.api) },
+  logout: { POST: (c) => json({ ok: true }, 200, [["Set-Cookie", setCookie(SESSION, "", 0, c.api)]]) },
   votes: {
     GET: async (c) => {
       const slug = c.url.searchParams.get("p");
@@ -274,9 +272,14 @@ const ROUTES = {
   request: { POST: (c) => c.signedIn((user) => requestPrompt(c.request, c.env, user)) },
 };
 
-export async function handleApi(request, env, pages) {
+// `prefix` is the router's SITE_PREFIX ("" or "/name"); `pages` the Pages project's URL. The Origin check and the OAuth
+// callback use the request's own origin, so they follow whatever host the Worker is routed on.
+export async function handleApi(request, env, pages, prefix = "") {
+  const site = `${prefix}/`;
+  const api = `${site}api/`;
   const url = new URL(request.url);
-  const handlers = Object.hasOwn(ROUTES, url.pathname.slice(API.length)) ? ROUTES[url.pathname.slice(API.length)] : null;
+  const name = url.pathname.slice(api.length);
+  const handlers = Object.hasOwn(ROUTES, name) ? ROUTES[name] : null;
   if (!handlers) return json({ error: "not found" }, 404);
   const handler = handlers[request.method];
   if (!handler) return json({ error: "method not allowed" }, 405, [["Allow", Object.keys(handlers).join(", ")]]);
@@ -288,7 +291,7 @@ export async function handleApi(request, env, pages) {
       if (!user) throw new HttpError(401, "sign in with GitHub first");
       return run(user);
     };
-    return await handler({ request, url, env, pages, signedIn });
+    return await handler({ request, url, env, pages, site, api, signedIn });
   } catch (err) {
     if (err instanceof HttpError) return json({ error: err.message }, err.status);
     console.error(err); // D1 or GitHub trouble: say so plainly, without details

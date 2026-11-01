@@ -10,10 +10,10 @@
 <body>
 <!-- Served by Cloudflare Pages (status 404) for any path that doesn't exist. Without it Pages serves index.html with
      200, which makes a missing page.json parse as HTML in the viewer and the votes API. Plain on purpose: it is served
-     at any depth, so relative assets wouldn't resolve. -->
+     at any depth, so relative assets wouldn't resolve. The Worker rewrites href="/" to the site's prefix. -->
 <main>
   <h1>Not found</h1>
-  <p>There is nothing at this address. <a href="/art-crit/">Back to the prompts</a>.</p>
+  <p>There is nothing at this address. <a href="/">Back to the prompts</a>.</p>
 </main>
 </body>
 </html>

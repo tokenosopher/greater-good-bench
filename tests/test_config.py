@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from art_crit.config import Config, RunRequest
+from art_crit.config import Config, RunRequest, site_name
 from art_crit.util import CritError
 
 
@@ -27,6 +27,16 @@ def test_config_defaults_without_bench_toml(tmp_path):
     cfg = Config.load(tmp_path)
     assert cfg.sets == {} and cfg.run.parallel == 8
     assert [prefix for prefix, _ in cfg.rewrites] == [str(Path.home())]
+
+
+def test_site_url_defaults_to_a_placeholder_and_ends_in_a_slash(tmp_path):
+    assert Config.load(tmp_path).site_url == "https://bench.example.com/"
+    (tmp_path / "art-crit.toml").write_text('[site]\nurl = "https://example.org/bench"\n')
+    assert Config.load(tmp_path).site_url == "https://example.org/bench/"
+    assert site_name(Config.load(tmp_path).site_url) == "example.org/bench"
+    (tmp_path / "art-crit.toml").write_text('[site]\nurl = "example.org"\n')
+    with pytest.raises(CritError, match=r"\[site\].url"):
+        Config.load(tmp_path)
 
 
 def test_malformed_set_is_an_error(tmp_path):

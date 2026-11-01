@@ -183,8 +183,9 @@ def test_text_from_a_run_never_becomes_markup(site, tmp_path):
 
 @needs_tools
 def test_the_cli_prints_the_files_and_the_link_for_the_post(site, tmp_path, capsys):
+    (site / "art-crit.toml").write_text('[site]\nurl = "https://bench.test/sub"\n')  # the link is under [site] url
     rc = in_thread(main, ["video", "art", HIGH, OTHER, "-l", "wide", "-d", "2", "--no-sound", "-o", str(tmp_path / "v"), "--root", str(site)])
     out = capsys.readouterr().out
     assert rc == 0 and out.count(".mp4") == 1 and (tmp_path / "v").is_dir()
-    assert f"link for the post: https://fenderog.com/art-crit/compare.html?p=art&r={HIGH}%2C{OTHER}" in out
+    assert f"link for the post: https://bench.test/sub/compare.html?p=art&r={HIGH}%2C{OTHER}" in out
     assert main(["video", "art", HIGH, "--root", str(site)]) == 1  # one run isn't a comparison

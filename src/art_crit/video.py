@@ -17,11 +17,10 @@ from pathlib import Path
 from urllib.parse import quote
 
 from . import video_sound
+from .config import DEFAULT_SITE_URL, Config, site_name
 from .site import run_failed
 from .util import CritError
 
-SITE_URL = "https://fenderog.com/art-crit/"
-SITE_NAME = "fenderog.com/art-crit"  # what the cards say; the compare link is for the post (`compare_url`)
 SIDE = 1080  # every source clip is SIDE x SIDE
 FPS = 30
 BG = "0x0e0e13"
@@ -373,7 +372,7 @@ def cues(plan):
     return out
 
 
-def scene_plan(layout, page, runs, clips, seconds):
+def scene_plan(layout, page, runs, clips, seconds, site=site_name(DEFAULT_SITE_URL)):
     """Everything scene.js needs for one layout (JSON; every string in it is shown with textContent)."""
     prompt = prompt_text(page)
     infos = [run_info(r) for r in runs]
@@ -384,7 +383,7 @@ def scene_plan(layout, page, runs, clips, seconds):
     segments, total = timeline(layout, len(runs), seconds)
     return {"layout": layout, "size": LAYOUTS[layout], "fps": FPS, "frames": total, "segments": segments,
             "timing": {**TIMING, "type_s": type_seconds(prompt)}, "tiles": tile_boxes(len(runs), TILE_BOX[layout]),
-            "prompt": prompt, "title": page["title"], "site": SITE_NAME, "runs": infos}
+            "prompt": prompt, "title": page["title"], "site": site, "runs": infos}
 
 
 def extract_frames(source, out_dir):
@@ -438,9 +437,9 @@ def render_layout(studio, plan, work, out, wav, say, scene="scene.html"):
         page.close()
 
 
-def compare_url(slug, run_ids):
-    """The site's compare page for these runs: the link to put in the post."""
-    return f"{SITE_URL}compare.html?p={quote(slug)}&r={quote(','.join(run_ids))}"
+def compare_url(site_url, slug, run_ids):
+    """The site's compare page for these runs: the link to put in the post (`site_url` is `[site] url`)."""
+    return f"{site_url}compare.html?p={quote(slug)}&r={quote(','.join(run_ids))}"
 
 
 # ---- entry point ----------------------------------------------------------------------------------------------------
@@ -481,6 +480,7 @@ def check_tools():
 def make_videos(root, slug, run_ids, layouts=None, seconds=SECONDS, out_dir=None, say=print, sound=True):
     """Make one video per layout of the given runs of a page; returns the files (in <root>/videos/<slug>/ by default)."""
     page, runs, layouts = check_request(root, slug, run_ids, layouts, seconds)
+    site = site_name(Config.load(root).site_url)  # what the cards say; the compare link is for the post (`compare_url`)
     docs = root / "docs"
     out_dir = Path(out_dir) if out_dir else root / "videos" / slug
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -497,7 +497,7 @@ def make_videos(root, slug, run_ids, layouts=None, seconds=SECONDS, out_dir=None
         for layout in layouts:
             say(f"rendering {layout} ({LAYOUT_NAMES[layout]})")
             out = out_dir / f"{stamp}-{slug}-{layout}.mp4"
-            plan = scene_plan(layout, page, runs, clips, seconds)
+            plan = scene_plan(layout, page, runs, clips, seconds, site)
             wav = None
             if sound:
                 wav = Path(work) / f"{layout}.wav"

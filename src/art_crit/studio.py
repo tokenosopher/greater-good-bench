@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import video, video_sound
+from .config import DEFAULT_SITE_URL, site_name
 from .site import run_failed
 from .util import CritError
 
@@ -55,7 +56,7 @@ CARDS = {
     "hook": {"label": "Hook", "heading": "", "sub": "", "look": "glow", "secs": 3, "at": 0, "scene": True,
              "heading_label": "Headline", "sub_label": "Second line",
              "hint": "Every run on a moving wall, a headline and the prompt typing out. Empty: \"N AI models. Same prompt.\""},
-    "finale": {"label": "Finale", "heading": "Place your vote", "sub": "", "link": "fenderog.com/art-crit", "look": "glow",
+    "finale": {"label": "Finale", "heading": "Place your vote", "sub": "", "link": "", "look": "glow",
                "secs": 5, "at": 99, "scene": True, "heading_label": "Question", "sub_label": "Line under it",
                "hint": "Every run as a numbered tile, the question and a call to vote; a crown on your #1. Empty line: \"on art-crit ↓\""},
     "title": {"label": "Title", "heading": "Which model built it best?", "sub": "Same prompt, different models", "look": "dark",
@@ -64,7 +65,7 @@ CARDS = {
                  "heading_label": "Question", "sub_label": "Detail"},
     "section": {"label": "Section", "heading": "Round 2", "sub": "Max effort", "look": "light", "at": "middle",
                 "heading_label": "Section name", "sub_label": "Subtitle"},
-    "vote": {"label": "Vote", "heading": "Place your vote", "sub": "", "link": "fenderog.com/art-crit", "look": "peach",
+    "vote": {"label": "Vote", "heading": "Place your vote", "sub": "", "link": "", "look": "peach",
              "at": 99, "heading_label": "Question", "sub_label": "Subtitle"},
     "credits": {"label": "Credits", "heading": "Made with art-crit", "sub": "Every run, with its cost and full transcript, is on the site.",
                 "look": "dark", "at": 99, "heading_label": "Heading", "sub_label": "Text"},
@@ -85,10 +86,12 @@ LIMITS = {"heading": 90, "sub": 280, "link": 60, "cards": 12}
 SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 
 
-def catalog():
-    """What the page offers (GET api/studio): its choices come from here, so the page and the render agree."""
+def catalog(site=site_name(DEFAULT_SITE_URL)):
+    """What the page offers (GET api/studio): its choices come from here, so the page and the render agree. `site` is
+    the default link of the cards that have one (`[site] url` without the scheme)."""
+    cards = {k: {**c, "link": site} if "link" in c else c for k, c in CARDS.items()}
     return {"templates": {k: {**t, "size": FORMATS[t["format"]]} for k, t in TEMPLATES.items()}, "looks": LOOKS,
-            "cards": CARDS, "seconds": SECONDS, "record_seconds": RECORD_SECONDS, "sync": SYNC, "music": MUSIC, "types": TYPES, "limits": LIMITS}
+            "cards": cards, "seconds": SECONDS, "record_seconds": RECORD_SECONDS, "sync": SYNC, "music": MUSIC, "types": TYPES, "limits": LIMITS}
 
 
 def slot_labels(template, count=None):

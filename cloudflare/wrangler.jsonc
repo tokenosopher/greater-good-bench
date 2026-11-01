@@ -1,14 +1,34 @@
+// The Worker in front of the site (router.mjs + votes.mjs). This file is the one place for the site's address on
+// Cloudflare: set the three PLACEHOLDER values below (DEPLOY.md step 3), then
+// `npx wrangler deploy --config cloudflare/wrangler.jsonc`. Keep art-crit.toml's `[site] url` the same address.
 {
   "name": "art-crit-router",
   "main": "router.mjs",
   "compatibility_date": "2026-10-11",
+  // PLACEHOLDER 1, the host. A subdomain of its own (recommended): a Custom Domain, which also creates its DNS record
+  // and certificate; replace bench.example.com with yours and keep SITE_PREFIX "".
   "routes": [
-    { "pattern": "fenderog.com/art-crit", "zone_name": "fenderog.com" },
-    { "pattern": "fenderog.com/art-crit/*", "zone_name": "fenderog.com" }
+    { "pattern": "bench.example.com", "custom_domain": true }
   ],
-  // Community votes (adr/0022). Setup is in README.md: create the database, put its id here, apply schema.sql,
-  // then `wrangler secret put` GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET and SESSION_SECRET.
-  "d1_databases": [
-    { "binding": "DB", "database_name": "art-crit-votes", "database_id": "909c7b8d-2624-4332-8a44-23027d637903" }
-  ]
+  // A path on a domain that serves other things instead (e.g. yourdomain.com/bench): replace the block above with
+  // routes on that zone, and set SITE_PREFIX to the same path:
+  //   "routes": [
+  //     { "pattern": "yourdomain.com/bench", "zone_name": "yourdomain.com" },
+  //     { "pattern": "yourdomain.com/bench/*", "zone_name": "yourdomain.com" }
+  //   ],
+  "vars": {
+    // PLACEHOLDER 2: "" when the site is a whole host (bench.example.com/), or "/bench" (no trailing slash) for a path.
+    "SITE_PREFIX": "",
+    // PLACEHOLDER 3: the Pages project's own address, as the Pages dashboard shows it after the first build
+    // (https://<project name>.pages.dev; Cloudflare adds a suffix if the name was taken).
+    "PAGES_URL": "https://greater-good-bench.pages.dev",
+    // Where prompt requests become issues (adr/0030); a fork changes it to its own repo.
+    "GITHUB_REPO": "tokenosopher/greater-good-bench"
+  }
+  // Community votes (adr/0022), DEPLOY.md step 4: `npx wrangler d1 create art-crit-votes`, paste its database_id below,
+  // uncomment the three lines (the leading comma included), apply schema.sql, then `wrangler secret put` GITHUB_CLIENT_ID,
+  // GITHUB_CLIENT_SECRET and SESSION_SECRET. Until then the API answers 503 and the site shows no vote controls.
+  // ,"d1_databases": [
+  //   { "binding": "DB", "database_name": "art-crit-votes", "database_id": "PASTE-THE-ID-FROM-wrangler-d1-create" }
+  // ]
 }

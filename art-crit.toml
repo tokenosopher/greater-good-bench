@@ -2,6 +2,11 @@
 # Extra path prefixes to hide in published session/source files (home dir -> "~" is always applied).
 rewrite = { "/Volumes/M2SSD" = "<vol>", "--Volumes-M2SSD-" = "--vol-" }
 
+[site]
+# The published site's address, the same one the Worker serves (cloudflare/wrangler.jsonc, DEPLOY.md). Set it once: the
+# vote cards of `art-crit video` and the studio show it (without https://) and `art-crit video` prints compare links under it.
+url = "https://bench.example.com/"   # placeholder: e.g. "https://bench.yourdomain.com/" or "https://yourdomain.com/bench/"
+
 [run]
 dir = "~/dev/art-crit-runs"   # where batch folders go (never inside ~/dev/effort-runs)
 parallel = 4

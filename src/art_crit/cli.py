@@ -153,7 +153,7 @@ def main(argv=None):
         if args.command == "video":
             for path in make_videos(root, args.slug, args.run_ids, args.layouts, args.seconds, args.out, sound=args.sound):
                 print(path)
-            print(f"link for the post: {compare_url(args.slug, args.run_ids)}")
+            print(f"link for the post: {compare_url(config.site_url, args.slug, args.run_ids)}")
             return 0
         if args.command == "rebuild":
             rebuild(root)

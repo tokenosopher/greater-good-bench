@@ -27,8 +27,9 @@ The prompts, the model set and the exact command for each page are in [prompts/R
   and limits for every model on a page.
 - **Only the newest frontier models**, run at the effort levels the batch names.
 
-**Live site:** none yet. Deploying to Cloudflare Pages is the owner's to set up, following
-[Cloudflare deployment](#cloudflare-deployment) below.
+**Live site:** https://tokenosopher.github.io/greater-good-bench/ (GitHub Pages, from `main:/docs`; there the votes
+and the request form fall back to GitHub's new-issue page). Cloudflare is the planned home, for community votes and a
+custom domain: [DEPLOY.md](DEPLOY.md) is the step-by-step checklist.
 
 ## Based on art-crit
 
@@ -327,7 +328,8 @@ numbered grid of everyone (your #1 rank, if you ranked them, gets a crown). A sy
 the cuts (`--no-sound` for a silent track, to add a platform sound instead). Games and 3D models are recorded playing and
 turning, SVGs and images get a slow zoom, and a run's own video plays. Pick layouts with `-l reveal|grid|wide` (default
 all three) and the seconds per run with `-d` (default 4). Files go to `videos/<page>/`
-(git-ignored, never published), and the command prints the site's compare link for the post. Needs ffmpeg and
+(git-ignored, never published), and the command prints the site's compare link for the post (under `[site] url` in
+`art-crit.toml`, which is also the address the vote cards show). Needs ffmpeg and
 Playwright with Chrome (`uv tool install --editable '.[verify]'`).
 
 **Video studio** (`art-crit serve`, then `http://127.0.0.1:8000/studio.html`, also linked from the home page and from each
@@ -351,11 +353,13 @@ fork and open a pull request.
 
 ## Cloudflare deployment
 
-The values in this section are the upstream art-crit's: the `fenderog.com` domain (and its `/art-crit` path), the
-Pages project name `art-crit`, the `art-crit-votes` database and the `fenderog/art-crit` repo. Replace them with your
-own (domain, project, database, and `tokenosopher/greater-good-bench` or your fork) in these steps and in
-`cloudflare/wrangler.jsonc`. The prompt-request issues already go to `tokenosopher/greater-good-bench` (`REPO` in
-`cloudflare/votes.mjs`, `REPO_ISSUES` in `docs/assets/lanes/request.js`).
+**For this fork, follow [DEPLOY.md](DEPLOY.md)**: it is the ordered checklist with the exact commands. The examples in
+this section are the upstream art-crit's (`fenderog.com/art-crit`, a path on an apex domain, Pages project `art-crit`,
+repo `fenderog/art-crit`). Here the site's address is set in one place, `cloudflare/wrangler.jsonc` (`routes` plus the
+`vars` `SITE_PREFIX`, `PAGES_URL` and `GITHUB_REPO`); `SITE_PREFIX` is `""` for a host of its own (the default, a
+placeholder `bench.example.com`) or a path like `/bench`. Read `/art-crit/` below as `<SITE_PREFIX>/`. The local video
+tools take the same address from `[site] url` in `art-crit.toml`. The prompt-request issues go to `GITHUB_REPO`
+(`REPO_ISSUES` in `docs/assets/lanes/request.js` for the fallback).
 
 Cloudflare Pages follows `main` of `fenderog/art-crit` (project `art-crit`). Set its build command
 to `python3 cloudflare/prepare.py`, output directory to `cloudflare-dist`, and root to the repo root.
@@ -363,8 +367,9 @@ The build copies `docs/` and compresses the shared Godot WASM for Pages' 25 MiB/
 To validate locally: `python3 cloudflare/prepare.py` (output is gitignored). `art-crit publish`
 then pushes new data to GitHub, which triggers a Pages deployment automatically.
 
-Pages doesn't support a custom-domain **path**, so `cloudflare/router.mjs` runs as a Worker on
-only `fenderog.com/art-crit` and `fenderog.com/art-crit/*`, stripping the prefix and streaming the
+Pages doesn't support a custom-domain **path**, and Pages can't stream the engine, so `cloudflare/router.mjs` runs as a
+Worker on the address in `wrangler.jsonc` (upstream: only `fenderog.com/art-crit` and `fenderog.com/art-crit/*`),
+stripping the prefix and streaming the
 engine decompressed; it also supports video range requests for Safari, and serves everything under `data/` (model-made
 games, pages and SVGs) with the viewer's iframe sandbox as a CSP header, so a raw output URL opened directly can't act on
 the site's origin. Its config is `cloudflare/wrangler.jsonc`; redeploy the router after edits with
@@ -381,7 +386,7 @@ is set up the Worker answers 503 on `/art-crit/api/*` and the site simply shows 
 1. **GitHub OAuth App** (GitHub → Settings → Developer settings → OAuth Apps → New): homepage
    `https://fenderog.com/art-crit/`, callback URL `https://fenderog.com/art-crit/api/callback`. Generate a client secret.
 2. **Database**: `npx wrangler d1 create art-crit-votes`, then paste the printed `database_id` into
-   `cloudflare/wrangler.jsonc`.
+   `cloudflare/wrangler.jsonc` and uncomment its `d1_databases` block.
 3. **Tables**: `npx wrangler d1 execute art-crit-votes --remote --config cloudflare/wrangler.jsonc --file cloudflare/schema.sql`
 4. **Secrets** (each prompts for the value): `npx wrangler secret put GITHUB_CLIENT_ID --config cloudflare/wrangler.jsonc`,
    then the same for `GITHUB_CLIENT_SECRET` (from step 1) and `SESSION_SECRET` (any long random string, for example

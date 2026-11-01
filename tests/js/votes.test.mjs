@@ -7,7 +7,10 @@ import { memoryD1 } from "./d1.mjs";
 const ORIGIN = "https://fenderog.com";
 const RUNS = ["run-a", "run-b", "run-c"];
 const USERS = { alice: { id: 101, login: "alice" }, bob: { id: 202, login: "bob" }, carol: { id: 303, login: "carol" } };
-const env = () => ({ DB: memoryD1(), GITHUB_CLIENT_ID: "client-id", GITHUB_CLIENT_SECRET: "client-secret", SESSION_SECRET: "test-secret" });
+// The vars of cloudflare/wrangler.jsonc, here for a site on a path (SITE_PREFIX "/art-crit"); the end of the file
+// covers a site on a host of its own (SITE_PREFIX "").
+const VARS = { SITE_PREFIX: "/art-crit", PAGES_URL: "https://art-crit.pages.dev", GITHUB_REPO: "tokenosopher/greater-good-bench" };
+const env = () => ({ ...VARS, DB: memoryD1(), GITHUB_CLIENT_ID: "client-id", GITHUB_CLIENT_SECRET: "client-secret", SESSION_SECRET: "test-secret" });
 
 const issues = []; // every issue the Worker asked GitHub to open
 globalThis.fetch = async (url, options = {}) => {
@@ -283,7 +286,7 @@ test("logout clears the session and needs the same origin", async () => {
 });
 
 test("voting is off until it is configured, and unknown routes are 404", async () => {
-  assert.equal((await call({}, "/votes?p=demo")).status, 503);
+  assert.equal((await call({ ...VARS }, "/votes?p=demo")).status, 503); // the vars alone: no database or secrets yet
   assert.equal((await call(env(), "/constructor")).status, 404);
   assert.equal((await call(env(), "/rank", { method: "PUT", body: {} })).status, 404);
 });
@@ -356,4 +359,39 @@ test("prompt requests are off until the bot token is configured", async () => {
   const alice = await signIn(e, "alice");
   const res = await request(e, alice, { prompt: PROMPT, kind: "media" });
   assert.equal(res.status, 503);
+});
+
+test("prompt requests are off without GITHUB_REPO", async () => {
+  const e = { ...withBot(), GITHUB_REPO: "" };
+  const alice = await signIn(e, "alice");
+  assert.equal((await request(e, alice, { prompt: PROMPT, kind: "media" })).status, 503);
+});
+
+// ---- a site on a host of its own: SITE_PREFIX "" serves the API at /api/ and the site at /
+test("with an empty SITE_PREFIX the API, its cookies, the callback and the return path live at the host's root", async () => {
+  const HOST = "https://bench.example.com";
+  const e = { ...withBot(), SITE_PREFIX: "" };
+  const at = (path, { method = "GET", cookie, body, origin = HOST } = {}) => router.fetch(new Request(HOST + path, {
+    method,
+    headers: { ...(cookie && { Cookie: cookie }), ...(origin && { Origin: origin }), ...(body && { "Content-Type": "application/json" }) },
+    body: body && JSON.stringify(body),
+  }), e);
+  const start = await at("/api/login?return=/compare.html?p=demo");
+  const to = new URL(start.headers.get("location"));
+  assert.equal(to.searchParams.get("redirect_uri"), `${HOST}/api/callback`);
+  const oauth = cookieFrom(start, "__Secure-ac_oauth");
+  assert.match(oauth, /Path=\/api\/;/);
+  const done = await at(`/api/callback?code=code-alice&state=${to.searchParams.get("state")}`, { cookie: pair(oauth) });
+  assert.equal(done.headers.get("location"), "/compare.html?p=demo");
+  const alice = pair(cookieFrom(done, "__Secure-ac_session"));
+  for (const evil of ["https://evil.example/", "//evil.example/", "/api/votes"]) {
+    const s = await at(`/api/login?return=${encodeURIComponent(evil)}`);
+    const back = await at(`/api/callback?state=${new URL(s.headers.get("location")).searchParams.get("state")}`, { cookie: pair(cookieFrom(s, "__Secure-ac_oauth")) });
+    assert.equal(back.headers.get("location"), "/", evil);
+  }
+  assert.equal((await at("/api/heart", { method: "PUT", cookie: alice, body: { p: "demo", run: "run-a", on: true } })).status, 200);
+  assert.equal((await at("/api/heart", { method: "PUT", cookie: alice, body: { p: "demo", run: "run-a", on: true }, origin: "https://evil.example" })).status, 403);
+  const votes = await (await at("/api/votes?p=demo", { cookie: alice })).json();
+  assert.equal(votes.totals["run-a"].hearts, 1);
+  assert.equal((await at("/api/request", { method: "POST", cookie: alice, body: { prompt: PROMPT, kind: "web" } })).status, 201);
 });
