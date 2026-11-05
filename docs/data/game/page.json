@@ -82,6 +82,7 @@
           "scripts/Main.gd.uid"
         ]
       },
+      "summary": "Built and verified. The project loads in the headless editor with no errors, and the main scene runs headless without errors.\n\n**What I built: Common Ground**, a turn-based commons game. Five households share one lake for twenty seasons. Each season you choose how many fish to take and one other action: rest, share a fish with whoever is worst off, watch who takes what, or propose a per-household limit. The lake regrows logistically, so what is left determines what comes back. There is no personal score. The ending grades the whole village on average wellbeing, the worst-off household, and lake health, then offers one small real-world action to try that week.\n\n**Why this game, if everyone played it:** most of what matters is a commons, and the thing that blocks cooperation is usually fear of being the only one. The four neighbours model that directly. Mira cooperates by default, Tomas copies the crowd, Ragnar grabs because nobody ever shared with him and only reforms when someone does, and Elin panics and over-fishes when the water drops. Players discover experientially that a visible agreement, keeping your own promise first, sharing when someone is short, and looking instead of assuming are what make a commons work.\n\n**Balance, from a headless simulation of eight runs per strategy:**\n\n| Strategy | Village score |\n|---|---|\n| Take 5 every season | 3 (collapse) |\n| Take 3, do nothing else | 26 (collapse) |\n| Take 2, do nothing else | 67 (holding together) |\n| Propose limit 3, then rest | 55 (struggling) |\n| Propose limit 3, then watch | 74 (holding together) |\n| Propose limit 3, then share | 86 (flourishing) |\n| Propose limit 3, break it from season 6 | 18 (collapse) |\n\n**Files:**\n- `project.godot` sets the GL Compatibility renderer, 1280x720 canvas-items stretch, and the main scene. No thread setting is enabled.\n- `scripts/Main.gd` holds the game loop, code-built UI, trust and lake rules, random events, and the intro and ending screens.\n- `scripts/Household.gd` holds the four neighbour behaviours.\n- `scripts/LakeView.gd` and `scripts/Face.gd` draw the animated lake and the household faces with no external assets.\n- `README.md` has run instructions.\n\nRun it from this directory with `godot --path .` or open the project in the editor and press Play.",
       "rank": null
     },
     {
@@ -159,6 +160,7 @@
           "scripts/town.gd.uid"
         ]
       },
+      "summary": "I've built **Ripple**, a complete Godot 4.7 game that teaches players to spot online misinformation. `godot --headless --path . --editor --quit` loads with no errors or warnings. An automated script also played through all 44 posts with no runtime errors (it got 36 right and ended with 37 of 42 neighbours clear-minded), and I checked the main screens from rendered screenshots.\n\n**Why this game:** I chose to tackle misinformation because it affects nearly everyone: health choices, elections, and how neighbours treat each other. \"Psychological inoculation\" research (Roozenbeek, van der Linden and others) has found that practising how to spot manipulation techniques in a safe setting helps people resist them in real life. A short game with plain language and nothing that ties it to one culture could reach very large numbers of people.\n\n**How it plays**\n- You live in Brindlewick, a fictional town, so the game doesn't take sides in real politics. Posts appear one at a time: you either **share** the post or decide **something's off** and name the trick it uses.\n- **Six chapters each teach one trick:** Emotional Bait, Fake Expert, False Choice, Scapegoat, Personal Attack and Cherry-Picking. A seventh chapter mixes them all together, and some posts there use more than one trick.\n- **Honest posts are about a third of the feed, and flagging them costs you.** This is deliberate, so players learn to trust good sources rather than become cynical. Honest examples include a named doctor, a newspaper correction, a mayor admitting a mistake, and a lost cat.\n- **Every answer explains why**, gives a question to ask yourself, and says what happened in town as a result.\n- **The town is a network of 42 neighbours.** Each choice ripples out from \"you\" and turns them clear-minded (gold, smiling) or misled (grey, in fog). Lies spread harder than truth, so you need roughly 60% accuracy just to keep the town from getting worse.\n- **Some posts link together:** an honest crime report (\"2 thefts, up from 1\") comes back later as \"CRIME HAS DOUBLED!!!\", and one fake account uses a 1 in place of an \"l\".\n- **The end screen** shows your results and town outcome, plus a pocket guide of seven questions to ask before sharing anything.\n\nIt runs on the gl_compatibility renderer with no thread support and no external assets: all visuals are drawn in code. You can play with the mouse, or the keyboard (`S`, `F`, `1`\u2013`6`, `Esc`, `Enter`). Text has no emoji, because they may not display in the web build.\n\n**Files**\n- `project.godot`: main scene is `main.tscn`, window is 1280\u00d7720\n- `scripts/main.gd`: UI, game flow, scoring and feedback\n- `scripts/town.gd`: the animated neighbour network\n- `scripts/content.gd`: the techniques and all 44 posts\n- `README.md`: how to run it, and controls",
       "rank": null
     },
     {
@@ -236,6 +238,7 @@
           "tests/smoke.gd.uid"
         ]
       },
+      "summary": "Built **Common Ground**, an isometric neighborhood strategy game about listening, sharing resources, and leaving nobody behind.\n\nIncludes a six-week campaign, five building types, upgrades, undo, original artwork, synthesized sound, help, and replay.\n\nVerified: headless editor load and gameplay tests pass.\n\nRun with `godot --path .` or open `project.godot` and press **F5**. Instructions are in `README.md`.",
       "rank": null
     },
     {
@@ -304,6 +307,7 @@
           "project.godot"
         ]
       },
+      "summary": "Built **Common Ground**, a complete seven-day neighborhood game about listening, sharing resources, and helping everyone thrive.\n\nIncludes procedural artwork, synthesized sound, shared projects, night forecasts, results, replay, and keyboard controls.\n\nSelf-contained, using GL Compatibility with no threads enabled. Godot\u2019s editor check and gameplay tests pass.\n\nRun with `godot --path .`. Instructions are in `README.md`.",
       "rank": null
     },
     {
@@ -392,6 +396,7 @@
           "scripts/ui_kit.gd.uid"
         ]
       },
+      "summary": "Built **Common Ground**, a complete Godot 4.7.2 game about conflict mediation and perspective-taking.\n\n### What it is\nYou chair three difficult conversations: a mill town divided over a polluted river, neighbors competing for a shared lot, and residents versus newcomers at a crowded school. Each side has a public **position** and hidden **interests** \u2014 the needs and fears underneath.\n\n### Core loop\n- **Listen** to reveal hidden needs and build goodwill, knowing the other side feels ignored.\n- **Reassure** to keep someone at the table at the cost of a turn.\n- **Connect** one need from each side to find genuine win-win solutions.\n- False \u201cbridges\u201d cost goodwill; if either side reaches zero, they walk out.\n- Bring all six needs onto common ground before round 14 ends.\n\nThe game teaches three broadly useful habits: hearing the interest behind a position, sharing attention, and looking for solutions that meet both fears instead of splitting the loss. It ends with a five-point field guide and a concrete real-world next step.\n\n### Project details\n- GL Compatibility renderer, no thread support, web-export ready.\n- Main scene set in `project.godot`.\n- All visuals drawn in code; all sounds synthesized at runtime; no external assets or plugins.\n- Three chapters, intro/guide/result/field-guide screens, animations, generated audio, keyboard and mouse support.\n- `README.md` includes run instructions.\n- Verified with `godot --headless --path . --editor --quit` with no errors, plus automated win/failure tests for all scenarios.\n\nRun with:\n\n```bash\ngodot --path .\n```",
       "rank": null
     },
     {
@@ -466,6 +471,7 @@
           "project.godot"
         ]
       },
+      "summary": "Built **Common Ground**, a complete 10-week strategy game about mutual aid, trust, green infrastructure, preparedness, and fair neighborhood outcomes.\n\nFeatures include:\n- Four neighborhoods with distinct needs and recurring community benefits\n- Five project types, limited resources, forecasts, crises, and positive events\n- Interactive help, keyboard/mouse controls, weekly reports, scoring, and replay\n- Procedural vector artwork with no external assets or plugins\n- GL Compatibility renderer and web-compatible configuration\n\nRun with `godot --path .` or open the project and press **F5**. Instructions are in `README.md`.\n\nBoth the required editor-load check and runtime check pass without errors.",
       "rank": null
     },
     {
@@ -541,6 +547,7 @@
           "scripts/main.gd.uid"
         ]
       },
+      "summary": "Done. The project imports and runs cleanly in Godot 4.7.2 (no script errors in either the editor check or a live headless run).\n\n## What I built: **The Commons**\n\nA game about the two skills that measurably improve the world at scale \u2014 cooperating on shared problems, and choosing help that actually works. Two playable modes:\n\n**Door 1 \u2014 The Commons** (`scripts/cooperate.gd`)\nAn iterated public-goods game over 20 rounds. You and four neighbours each get 10 coins per round; whatever goes into the shared pot is multiplied \u00d71.6 and split five ways \u2014 so keeping your coins is always the selfish best move *for one round*. Your four neighbours are classic game-theory archetypes: **Copycat** (tit-for-tat), **Giver**, **Freerider**, and **Grudger**. The debrief shows that reciprocity \u2014 start kind, mirror what you get, forgive fast \u2014 beats defection, naive generosity, and permanent grudges, then maps that to voting, taxes, climate, and open source. Real math, real lesson.\n\n**Door 2 \u2014 The Aid Office** (`scripts/aid.gd`)\nFive budget-allocation levels based on compressed real global-health lessons:\n1. Cost-effectiveness gaps of 10\u2013100x (bed nets vs. gala dinners vs. viral bracelets)\n2. Benchmarking against direct cash transfers\n3. Diminishing returns \u2014 spend at the margin, options saturate past their cap\n4. The value of information \u2014 a pilot study collapses outcome uncertainty for everything else\n5. Balancing proven core spend against high-variance long shots (research, pandemic preparedness)\n\nClaims are noisy based on evidence quality; after deploying, true outcomes are revealed and scored against an \"ideally-informed funder\" benchmark, with a lesson card after each level.\n\n**Structure:** `main.tscn` (single Control, all UI built in code \u2014 no external assets), `scripts/main.gd` (shell/navigation/intro), `README.md` with run instructions. Uses `gl_compatibility` with no thread support, so it's web-export ready.",
       "rank": null
     },
     {
@@ -612,6 +619,7 @@
           "project.godot"
         ]
       },
+      "summary": "## Built: **Ripple \u2014 One Small Kindness at a Time**\n\nA cozy, fully playable 5-day village game in pure code-driven Godot 4.7.2 (no external assets, audio, or plugins; art is drawn and sound is synthesized in `main.gd`).\n\n**The idea:** if everyone played\u2014and practised\u2014*notice \u2192 pause \u2192 help well \u2192 pass it on*, the world would improve for many people. So that's literally the game loop:\n\n- **Walk the village** (WASD/arrows, `E`/`Space` to interact) and respond to timed need-bubbles from 8 named villagers: loneliness, heavy shopping, overwhelm, being new in town \u2014 plus fetch quests, litter, and wilting garden plants.\n- **Dialogue choices teach helping *well*:** listening beats \"cheer up!\", helping at another's pace beats rushing, and a welcome beats directions. Each choice shows a short, humane consequence.\n- **The ripple system is the heart of it:** people you help thoughtfully become *inspired*, then autonomously help others \u2014 generating Ripples, hearts, flowers, and rising village Warmth, which visibly shifts the whole village from grey to blooming. Ignored needs expire and drag Warmth down.\n- **Evening reflections** (rest / reflect / message a friend) grant next-day perks, modelling that kindness is sustainable, not self-sacrificing. After Day 5 you get an ending based on Warmth, plus one small real-world quest.\n- HUD tracks Day, time, Kindness, Ripples, Warmth, and what's carried; includes intro, day summaries, endings, and replay.\n\n**Project details:** `project.godot` (gl_compatibility renderer, main scene set, no thread support enabled), `main.tscn`, `main.gd`, `README.md` with run instructions. Verified with `godot --headless --path . --editor --quit` (clean load), a headless runtime run, and a temporary automated playthrough (dialogue, fetch/litter completion, day transitions, ending, restart) that passed before being removed.",
       "rank": null
     },
     {
@@ -684,6 +692,7 @@
           "project.godot"
         ]
       },
+      "summary": "Done. I built **Ripple: A Kindness Game** \u2014 a complete, self-contained Godot 4.7.2 project.\n\n## What it is\n\nA tiny cooperative village simulator whose core loop *is* the lesson: if everyone played it, the world would improve because it trains the exact behaviors that sustain real communities.\n\n- **Kindness is contagious.** Help a struggling villager (SPACE) and the boost ripples outward to their neighbors.\n- **Mutual aid returns to you.** Your \"Care\" energy recharges faster when the community is happy \u2014 the more you give, the more you *can* give.\n- **Greed is a shared loss.** You *may* hoard (X) for a quick personal boost, but it wounds the whole town and breeds distrust that slows your recovery.\n- The goal is to raise community wellbeing past a threshold and sustain it to reach a **Beloved Community** \u2014 with stage-based lessons and a reflective win screen tying it back to real-world cooperation research.\n\n## Technical details\n\n- **Files created** (all in the current directory, nothing else touched):\n  - `project.godot` \u2014 GL Compatibility renderer, 1024\u00d7640, main scene set, no thread use\n  - `main.tscn` \u2014 minimal main scene referencing the script\n  - `main.gd` \u2014 the entire game (~600 lines): grid village, face/mood rendering, ripples, particles, HUD, intro/win screens, all drawn procedurally\n  - `README.md` \u2014 run/export instructions\n  - `main.gd.uid` \u2014 auto-generated by the editor import\n- **No external assets, downloads, or plugins** \u2014 every sprite, face, heart, ripple, and UI element is drawn in code with `draw_*` calls.\n- **No threads** used anywhere in game code (web-export friendly).\n\n## Verification\n\n- `godot --headless --path . --editor --quit` \u2014 runs with **exit 0, no errors** (fixed one GDScript type-inference parse error during the process).\n- Additionally ran two headless harnesses to actually execute the gameplay: kindness/greed/trouble logic ran clean, and the win path (joy accumulation \u2192 `WON` state) was confirmed working \u2014 then deleted the temp test files.\n\nTo run it: `godot --path .`",
       "rank": null
     },
     {
@@ -740,6 +749,7 @@
           "icon.svg"
         ]
       },
+      "summary": null,
       "rank": null
     },
     {
@@ -790,6 +800,7 @@
         "conversation": "session/conversation.json"
       },
       "source": null,
+      "summary": "The game should teach a skill that scales: before spending other people\u2019s lives, sit in their chair and name the need under the demand. I\u2019ll build that as a complete, web-safe Godot project.",
       "rank": null
     },
     {
@@ -866,6 +877,7 @@
           "scripts/main.gd.uid"
         ]
       },
+      "summary": "Built **Common Ground**, a complete cooperative stewardship game in the current directory.\n\n### Gameplay\n- Manage seven interconnected districts over eight days.\n- Balance **nature** and **people** by restoring habitats, supporting communities, or nurturing both.\n- Actions benefit neighboring districts, encouraging long-term shared-resource management.\n- Daily environmental events test the community.\n- A tempting \u201cprivate gathering\u201d provides an immediate benefit while damaging shared trust and nature.\n- Multiple endings evaluate community health, trust, and whether collective goals were met.\n\n### Technical details\n- Godot **4.7.2**\n- `gl_compatibility` renderer\n- Thread support disabled\n- Main scene configured in `project.godot`\n- Fully self-contained, with procedurally drawn visuals and no external assets or plugins\n- Keyboard shortcuts: `1\u20134` select actions; `Space` ends the day\n- Includes `README.md` with instructions\n\nValidation completed successfully with:\n\n```bash\ngodot --headless --path . --editor --quit\ngodot --headless --path . --quit-after 5\n```",
       "rank": null
     }
   ]

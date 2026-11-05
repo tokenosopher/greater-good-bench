@@ -189,6 +189,8 @@ function renderGame(run, base) {
     const image = itemImage(item);
     return image ? [el("span", { class: "cover-tools" }, coverButtons(run, image, status))] : [];
   } : null;
+  const summary = summaryBlock(run);
+  if (summary) panel.append(summary);
   panel.append(...renderOutput(run, base, { full: true, tools }));
   if (canCover) {
     // A game or page has one picture (its screenshot): only the page cover applies. Media runs get buttons per file;
@@ -202,6 +204,44 @@ function renderGame(run, base) {
       ])
     );
   }
+}
+
+// "What the model says it made": the run's own closing summary (run.summary, Markdown recorded at import), above the
+// output. Rendered by renderMarkdown() (DOM nodes, raw HTML stays text; markdown.js is loaded on demand), and folded to
+// about six lines behind "Show more" when it is longer. run.html?…#summary (a card's "more" link) opens it unfolded.
+// (run() runs during the module's top-level await, before any later `const` here exists: keep the limit inside.)
+function summaryBlock(run, foldAfter = 6) {
+  if (!run.summary) return null;
+  const body = el("div", { class: "prose run-summary-body", attrs: { id: "summary-body" } }, [el("p", { text: run.summary })]);
+  // a rough line count at the block's ~90-character measure decides whether it folds (the panel may be hidden, so no measuring)
+  const lines = run.summary.split("\n").filter((l) => l.trim()).reduce((n, l) => n + Math.ceil(l.length / 90), 0);
+  const long = lines > foldAfter;
+  const open = location.hash === "#summary";
+  const toggle = long ? el("button", { class: "link-button run-summary-toggle", attrs: { type: "button", "aria-controls": "summary-body" } }) : null;
+  const block = el("section", { class: "run-summary", attrs: { id: "summary", "aria-labelledby": "summary-title" } }, [
+    el("h2", { class: "run-summary-title", text: "What the model says it made", attrs: { id: "summary-title" } }),
+    el("p", { class: "run-summary-note", text: "Its closing message, unedited: a claim, not a verdict." }),
+    body,
+    toggle,
+  ]);
+  const fold = (folded) => {
+    block.classList.toggle("is-folded", folded);
+    toggle.textContent = folded ? "Show more" : "Show less";
+    toggle.setAttribute("aria-expanded", String(!folded));
+  };
+  if (toggle) {
+    fold(!open);
+    toggle.addEventListener("click", () => fold(!block.classList.contains("is-folded")));
+  }
+  import("./markdown.js").then(({ renderMarkdown }) => {
+    renderMarkdown(body, run.summary);
+    // Its links and images point into the agent's work dir ("output/poster.svg"), which doesn't exist on the site:
+    // keep the words, drop the dead relative links and images (absolute http(s) links stay).
+    for (const a of body.querySelectorAll("a")) if (!/^https?:\/\//i.test(a.getAttribute("href") || "")) a.replaceWith(...a.childNodes);
+    for (const img of body.querySelectorAll("img")) img.replaceWith(img.alt);
+    if (open) block.scrollIntoView({ block: "start" });
+  }).catch(() => {}); // the plain text stays
+  return block;
 }
 
 async function renderTranscriptTab(run, base) {

@@ -1,6 +1,6 @@
 import { el, qs, qsList, setQuery, loadPage, getJSON, SITE_NAME } from "../dom.js";
 import { fmtNum, fmtDuration, fmtCost } from "../fmt.js";
-import { renderOutput, kindUi } from "../output.js";
+import { renderOutput, kindUi, summaryBlurb } from "../output.js";
 import {
   runDir, runUrl, effortPill, prettyModelLabel, prettyModelName, modelParts, vendorOf, vendorName, vendorMark,
   groupByVendor, vendorOptions, byRankThenModel, filterRuns, rankBy, bestSets, stateBadge, EFFORTS, effortIndex,
@@ -80,7 +80,7 @@ async function start(page) {
   function drawFilters() {
     const vendors = [...new Set(runs.map((r) => vendorOf(r.model)))];
     const efforts = [...new Set(runs.map((r) => r.effort))].sort((a, b) => effortIndex(a) - effortIndex(b));
-    filters.replaceChildren(
+    filters.replaceChildren(...[
       el("div", { class: "grp" }, [el("span", { class: "lbl", text: "Vendor" }), ...vendors.map((v) => pill(vendorName(v), filter.vendors.includes(v), () => toggle("vendors", v)))]),
       efforts.length > 1 ? el("div", { class: "grp" }, [el("span", { class: "lbl", text: "Effort" }), ...efforts.map((e) => pill(e ?? "–", filter.efforts.includes(e), () => toggle("efforts", e)))]) : null,
       el("span", { class: "spacer" }),
@@ -92,7 +92,7 @@ async function start(page) {
           on: { click: () => { effortDesc = !effortDesc; setQuery({ sort: effortDesc ? "effort-desc" : null }); drawFilters(); drawLanes(); } },
         }),
       ]),
-    );
+    ].filter(Boolean)); // one effort level: no Effort group (replaceChildren would print the null)
   }
 
   // ---- cards ----
@@ -110,6 +110,7 @@ async function start(page) {
         stateBadge(run),
         el("a", { class: "open", text: "↗", attrs: { href: runUrl(slug, run.id), title: "Open the run" } }),
       ]),
+      summaryBlurb(run, runUrl(slug, run.id)),
       el("div", { class: "v2-metrics" }, [
         metricNode("duration_ms", fmtDuration(m.duration_ms)),
         metricNode("tokens_total", `${fmtNum(m.tokens_total)} tok`),

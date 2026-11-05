@@ -50,5 +50,6 @@
     "conversation": "session/conversation.json",
     "stderr": "session/stderr.txt"
   },
-  "source": null
+  "source": null,
+  "summary": "Created [A World That Works on a Bad Day](output/essay.md), a 1,921-word essay about building a society where dignity, safety, and help are accessible to ordinary, fallible people.\n\nThe output directory contains exactly one Markdown file, under 200 KB."
 }

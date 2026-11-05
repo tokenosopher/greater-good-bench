@@ -60,5 +60,6 @@
     "files": [
       "notes/outline.md"
     ]
-  }
+  },
+  "summary": "The essay is saved at `output/essay.md`, the only file in that directory, at about 16 KB. Notes and an outline are in `notes/outline.md`, outside the output folder.\n\n**What I wrote.** The essay, titled \"Everyone Else Is Reading This Too,\" takes the prompt's premise literally. It argues that the most valuable thing a universally read essay can do is not tell readers how to live, but correct what they believe about everyone else. It walks through the research on pluralistic ignorance: Princeton students and campus drinking, Saudi men and women working, American climate-policy support, partisan perception gaps, the forty-country lost-wallet study, commuters talking to strangers, and disaster behaviour. The pattern across all of them is that most people are more honest, moderate, and cooperative than most people believe.\n\nIt then explains why the error arises, what it costs, and why universal readership matters. Because everyone has read it, the correction becomes common knowledge, which lowers the cost of dissenting, trusting first, and de-escalating. It closes with five small, scalable actions, an honest section on what the essay cannot fix, and a short list of real sources so readers can check the claims."
 }

@@ -56,5 +56,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": "Done. The essay is at `./output/essay.md` (13 KB, single file, no HTML or images).\n\n**Summary of what I wrote:**\n\n**\"The Skill of Being Wrong\"** \u2014 an essay arguing that the highest-leverage idea for the greatest number of people is *epistemic humility as a practical skill*, not a virtue. Its core claims:\n\n1. **Certainty is a feeling, not evidence** \u2014 the brain generates the sense of being right before the reasoning, so raw certainty can't be trusted.\n2. **Strong opinions, weakly held** \u2014 the expensive mistake is weak opinions held strongly; the fix is committing to real positions while deciding in advance what would change your mind.\n3. **Productive disagreement** \u2014 argue to test rather than win, steelman opponents, make disputes legible, and update publicly (which spreads the permission to be honest).\n4. **Scope insensitivity** \u2014 translate vivid stories into numbers (\"compared to what?\"), since narratives bias decisions affecting thousands toward the interests of one.\n5. **Trust as compounding infrastructure** \u2014 every honest interaction is a deposit in the shared account that all cooperation, markets, science, and democracy draw from.\n\nIt closes with five concrete daily habits and a concrete picture of the payoff, framed explicitly as non-utopian: no sainthood required, just a learnable skill that compounds socially each time someone is wrong out loud."
 }

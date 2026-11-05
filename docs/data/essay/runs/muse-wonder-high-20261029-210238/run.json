@@ -56,5 +56,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": "Wrote **\u201cThe Next Person You Meet\u201d** to `./output/essay.md` \u2014 the sole Markdown file in `./output/`.\n\nIt\u2019s a ~2,200-word essay arguing that the world improves when we treat each person as fully real: hold first judgments lightly, choose small acts that multiply across billions of people, repair mistakes quickly instead of defending them, and leave people, places, and the future cleaner than we found them. It closes with five concrete practices for the very next interaction \u2014 and extends the same mercy to oneself."
 }

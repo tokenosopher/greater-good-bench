@@ -79,5 +79,6 @@
     "files": [
       "src/render_animation.py"
     ]
-  }
+  },
+  "summary": "Created **\u201cPass It On.\u201d** \u2014 a 10-second animated public-service piece showing one good deed traveling between people, expanding into a wider ripple, and ending with the call to action:\n\n**\u201cOne good act starts a ripple. Do one good thing today.\u201d**\n\nFinished files:\n- `output/pass-it-on.mp4` \u2014 960\u00d7540, 30 fps, 10 seconds, 312 KB\n- `output/pass-it-on-poster.jpg` \u2014 final-frame poster, 46 KB\n\nSource: `src/render_animation.py`"
 }

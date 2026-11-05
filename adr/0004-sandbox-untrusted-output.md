@@ -33,6 +33,8 @@ There is exactly one way to show each type of output:
 
 - Never use `innerHTML` with run data. The exception is `renderMarkdown()`, whose output is sanitized as
   described above.
+- "Play full screen" (2026-11) fullscreens the `.game-frame` wrapper around the sandboxed iframe in the same click
+  that inserts it, never the iframe itself, so the iframe's attributes are exactly `sandboxedGame()`'s.
 - "Open full screen" runs a game outside the sandbox, so the link says "(unsandboxed)".
 - Games boot only on click, never automatically. The exception is `play.html` (the compare cards' ↗ pop-out
   window), which boots at once because opening the window was the click. It shows output only through

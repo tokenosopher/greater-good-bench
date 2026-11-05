@@ -66,5 +66,6 @@
       "mobile-interaction.jpg",
       "styles.css"
     ]
-  }
+  },
+  "summary": "Built **Common Ground**, an offline-first interactive civic-action website.\n\n### Included\n- Personalized action matcher based on time, budget, social style, and optional regional context\n- Personal \u201cGood Week\u201d planner with add/remove and copy-to-clipboard support\n- Interactive collective-impact simulator covering emissions, savings, connection time, and material reuse\n- Transparent methodology and carefully labeled illustrative estimates\n- Responsive editorial design with accessible controls and reduced-motion support\n- No external assets, APIs, accounts, analytics, or browser storage\n\n### Files\n- `index.html`\n- `main.js`\n- `styles.css`\n- `README.md`\n- `home-desktop.jpg`\n- `mobile-interaction.jpg`\n\n### Verification\n- `esbuild main.js --bundle --format=esm --outfile=/dev/null` succeeds\n- Tested desktop and mobile layouts in headless Chrome\n- Verified planner interactions, simulator updates, no JavaScript errors, and no horizontal overflow"
 }

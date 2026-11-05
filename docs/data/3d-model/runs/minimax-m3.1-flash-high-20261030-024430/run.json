@@ -107,5 +107,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": "Created **SOLAQUA**, a solar-powered community water station designed as a scalable public-service hub.\n\n### Features modeled\n- Rainwater collection with roof gutter and cistern\n- Dual solar-panel canopy\n- Accessible filtered drinking fountain\n- Visible water-level indicator\n- Purification and power modules\n- Public information board and branding\n- Phone-charging ledge\n- Warm nighttime task lighting\n- Integrated bench and planter\n- Tactile paving and wheelchair-accessible design\n\n### Published files\n- `output/solaqua_civic_water_station.glb` \u2014 interactive 3D model\n- `output/solaqua_hero.jpg` \u2014 final presentation render"
 }

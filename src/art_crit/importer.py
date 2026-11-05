@@ -13,6 +13,7 @@ from types import SimpleNamespace
 from . import clean, site
 from .kinds import KINDS, StageContext
 from .kinds.media import thumbnail
+from .summary import summary_of
 from .util import CritError, mask
 
 # Files under work/ that are never part of the copied source (editor cache, npm packages: bundled into a
@@ -163,6 +164,8 @@ def stage_run(src, slug, tmp_root, docs_root, rewrites, redact, allow_threads, k
         "page": slug,
         "thumb": staged.thumb if staged else None,
         "output": output,
+        # read back from the cleaned, scanned transcript just written (run.json itself isn't scanned)
+        "summary": summary_of(run_dir) if session else None,
         "session": session,
         "source": source,
     }

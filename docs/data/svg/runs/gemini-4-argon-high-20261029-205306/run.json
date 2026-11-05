@@ -45,5 +45,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": null
 }

@@ -45,5 +45,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": "The game should teach a skill that scales: before spending other people\u2019s lives, sit in their chair and name the need under the demand. I\u2019ll build that as a complete, web-safe Godot project."
 }

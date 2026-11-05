@@ -50,5 +50,6 @@
     "conversation": "session/conversation.json",
     "stderr": "session/stderr.txt"
   },
-  "source": null
+  "source": null,
+  "summary": "Wrote [Make It Possible to Say Something Is Wrong](output/essay.md), a 1,959-word essay about making honesty safe, power accountable, and repair practical\u2014from families to public institutions.\n\n`./output/` contains exactly one Markdown file, under 200 KB."
 }

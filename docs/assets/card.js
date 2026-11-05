@@ -4,7 +4,7 @@
 import { el } from "./dom.js";
 import { fmtDuration, fmtCost, fmtNum } from "./fmt.js";
 import { runDir, harnessLabel, stateBadge, effortPill, prettyModelLabel, runUrl, LOWER_IS_BETTER, isComplete, byRankThenModel, rankChip, vendorOptions, groupByVendor, bestSets, playUrl } from "./runs.js";
-import { outputBadge, outputOk, renderOutput } from "./output.js";
+import { outputBadge, outputOk, renderOutput, summaryBlurb } from "./output.js";
 import { selectBox } from "./selection.js";
 import { voteBar } from "./votes.js";
 
@@ -89,5 +89,7 @@ export function runCard(slug, r, best, selection = null, votes = null) {
   const body = el("div", { class: "compare-body" });
   if (r.error) body.append(el("p", { class: "run-error", text: r.error }));
   body.append(...renderOutput(r, base, { compact: true, href: runUrl(slug, r.id) }));
+  const blurb = summaryBlurb(r, runUrl(slug, r.id)); // inside the body: a card is exactly three grid rows
+  if (blurb) body.append(blurb);
   return el("div", { class: isComplete(r) ? "compare-col" : "compare-col is-failed", ...vendorOptions(r.model) }, [el("h3", {}, heading), body, meta]);
 }

@@ -85,5 +85,6 @@
     "files": [
       "src/make.py"
     ]
-  }
+  },
+  "summary": "I made a quiet, looping poster about how far a small kindness travels.\n\n**What it is:** a single drop falls through a star-flecked dark field and strikes still water. Seven rings of warm light spread outward, far past the point of impact, then dissolve \u2014 and the drop falls again. The type reads:\n\n> **A SMALL ACT**\n> *Kindness* **ripples.**\n> One kind thing, passed on, can travel further than you will ever see.\n> PASS IT ON\n\n**Files in `./output/`:**\n- `kindness-ripples.svg` \u2014 self-contained animated SVG (8 s SMIL loop, vector, 226 KB)\n- `kindness-ripples.mp4` \u2014 8 s, 1080\u00d71350, 30 fps loop (287 KB)\n- `kindness-ripples-poster.jpg` \u2014 composed still frame (97 KB)\n\n**How it was made:** `src/make.py` generates the whole scene from scratch (gradients, rings, splash, stars, motes, typography) with no external assets. It emits both the SMIL-animated SVG and per-frame SVGs, rasterises them with `rsvg-convert`, and encodes the loop with `ffmpeg`. All intermediate frames were deleted."
 }

@@ -1970,3 +1970,109 @@ def test_text_compare_reads_each_text_in_full(site, page):
     expect(page.locator(".compare-col .text-tile")).to_have_count(2)
     assert page.locator(".compare-col a.popout").count() == 0  # no play.html window for a text
     assert_no_errors(page)
+
+
+# ---------------------------------------------------------------- the model's summary + "Play full screen"
+SUMMARY_MD = ("I made **Orbit Garden**, a small game about tending planets. [Play it](output/index.html), "
+              "[docs](https://example.com/orbit).\n\n"
+              + "\n\n".join(f"- Feature {i}: something the player can do, explained at some length so it wraps." for i in range(12))
+              + "\n\n<script>window.summaryRan = true</script>")
+RECORD_FULLSCREEN = """
+window.__fullscreen = [];
+Element.prototype.requestFullscreen = function () { window.__fullscreen.push(this.className); return Promise.resolve(); };
+"""
+
+
+def with_summary(pg):
+    """Routes demo's page.json so the high run (the one with a game) has a long Markdown summary."""
+    def fulfill(route):
+        body = route.fetch().json()
+        for r in body["runs"]:
+            if r["id"] == HIGH_ID:
+                r["summary"] = SUMMARY_MD
+        route.fulfill(json=body)
+
+    pg.route("**/data/demo/page.json*", fulfill)
+
+
+def test_run_page_shows_the_summary_above_the_output_folded(site, page):
+    with_summary(page)
+    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
+    block = page.locator("#panel-game .run-summary")
+    expect(block.locator("h2")).to_have_text("What the model says it made")
+    expect(block.locator(".run-summary-body strong")).to_have_text("Orbit Garden")  # Markdown, rendered as DOM nodes
+    assert block.bounding_box()["y"] < page.locator("#panel-game .game-frame").bounding_box()["y"]
+    assert "<script>" in block.inner_text() and block.locator("script").count() == 0
+    # a link into the agent's work dir is dead on the site: its words stay, the link goes; http(s) links stay
+    assert block.locator("a").count() == 1 and block.locator("a").get_attribute("href") == "https://example.com/orbit"
+    assert "Play it" in block.inner_text()
+    assert page.evaluate("window.summaryRan") is None
+    toggle = block.locator("button.run-summary-toggle")
+    expect(toggle).to_have_text("Show more")
+    expect(toggle).to_have_attribute("aria-expanded", "false")
+    folded = block.locator(".run-summary-body").bounding_box()["height"]
+    toggle.click()
+    expect(toggle).to_have_text("Show less")
+    assert block.locator(".run-summary-body").bounding_box()["height"] > folded * 2
+    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}#summary")  # a card's "more" link opens it unfolded
+    expect(page.locator("button.run-summary-toggle")).to_have_text("Show less")
+    assert_no_errors(page)
+
+
+def test_run_page_without_a_summary_shows_no_block(site, page):
+    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
+    page.wait_for_selector("[data-play]")
+    assert page.locator(".run-summary").count() == 0
+    assert_no_errors(page)
+
+
+def test_play_full_screen_on_the_run_page_boots_the_sandboxed_game_on_the_wrapper(site, page):
+    page.add_init_script(RECORD_FULLSCREEN)
+    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
+    button = page.get_by_role("button", name="Play full screen")
+    expect(button).to_have_count(1)
+    assert button.evaluate("(b) => b.tagName") == "BUTTON"
+    button.focus()
+    page.keyboard.press("Enter")  # reachable by keyboard
+    frame = page.locator("#panel-game .game-frame iframe")
+    expect(frame).to_have_count(1)
+    assert frame.get_attribute("sandbox") == "allow-scripts allow-pointer-lock"  # exactly sandboxedGame()'s
+    assert page.locator("[data-play], .play-full").count() == 0  # the overlay was replaced
+    assert page.evaluate("window.__fullscreen") == ["game-frame"]  # the wrapper, not the iframe
+    assert page.locator('a:has-text("Open full screen")').count() == 1  # the play.html link stays
+    assert_no_errors(page)
+
+
+def test_play_full_screen_falls_back_to_playing_in_place_without_the_api(site, page):
+    page.add_init_script("delete Element.prototype.requestFullscreen; delete Element.prototype.webkitRequestFullscreen;")
+    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
+    page.get_by_role("button", name="Play full screen").click()
+    expect(page.locator("#panel-game .game-frame iframe")).to_have_count(1)
+    assert_no_errors(page)
+
+
+def test_game_card_plays_full_screen_in_one_click_and_shows_the_summary_blurb(site, page):
+    with_summary(page)
+    page.add_init_script(RECORD_FULLSCREEN)
+    page.goto(f"{site}page.html?p=demo")
+    card = page.locator(f'.v2-card:has(input[data-id="{HIGH_ID}"])')
+    blurb = card.locator(".run-blurb")
+    expect(blurb).to_contain_text("I made Orbit Garden, a small game about tending planets.")  # plain text, no Markdown
+    text = blurb.locator("span").inner_text()
+    assert len(text) <= 161 and text.endswith("…")
+    assert blurb.get_attribute("title").startswith("I made Orbit Garden")
+    expect(blurb.locator("a")).to_have_attribute("href", f"run.html?p=demo&r={HIGH_ID}#summary")
+    assert page.locator(".v2-card .run-blurb").count() == 1  # runs without a summary have none
+    url = page.url
+    card.get_by_role("button", name="Play full screen").click()
+    frame = card.locator(".game-frame iframe")
+    expect(frame).to_have_count(1)
+    assert frame.get_attribute("sandbox") == "allow-scripts allow-pointer-lock"
+    assert page.evaluate("window.__fullscreen") == ["game-frame"]
+    assert page.url == url  # played on the page, never navigated to the run
+
+    page.goto(f"{site}compare.html?p=demo&r={MEDIUM_ID},{HIGH_ID}")
+    col = page.locator(".v2-col").nth(1)
+    expect(col.locator(".run-blurb span")).to_have_text(text)
+    expect(col.get_by_role("button", name="Play full screen")).to_have_count(1)
+    assert_no_errors(page)

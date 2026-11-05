@@ -497,6 +497,30 @@ tr.run-detail:hover { background: none; }
 }
 .play-overlay:hover .play-icon { transform: scale(1.12); }
 .play-overlay .play-label { position: relative; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); letter-spacing: 0.02em; }
+/* "Play full screen" (buildGameFrame): a second, prominent action on the overlay. It asks for full screen on the
+   .game-frame wrapper, so the frame fills the screen and shows its own exit button (only while full screen). */
+.play-full {
+  position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 2px solid #fff; border-radius: 9999px;
+  background: rgba(2, 9, 58, 0.72); color: #fff; font: 600 14px var(--font); cursor: pointer; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); transition: background var(--ease);
+}
+.play-full:hover { background: #0075de; }
+.play-full:focus-visible, .play-overlay:focus-visible { outline: 3px solid var(--sky); outline-offset: -3px; }
+.play-full-icon { font-size: 17px; line-height: 1; }
+@media (max-width: 600px) { /* a phone-width frame: the ▶ alone, so the full-screen pill doesn't sit on its label */
+  .play-overlay .play-label { display: none; }
+  .play-full { bottom: 10px; min-height: 40px; padding: 0 14px; font-size: 13px; }
+}
+.fs-exit { display: none; }
+.game-frame:fullscreen { max-width: none; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+.game-frame:-webkit-full-screen { max-width: none; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+.game-frame:fullscreen .fs-exit, .game-frame:-webkit-full-screen .fs-exit {
+  display: block; position: absolute; top: 12px; right: 12px; z-index: 2; min-height: 36px; padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 9999px; background: rgba(2, 9, 58, 0.6); color: #fff;
+  font: 500 13px var(--font); cursor: pointer; opacity: 0.6; transition: opacity var(--ease);
+}
+.game-frame:fullscreen .fs-exit:hover, .game-frame:fullscreen .fs-exit:focus-visible { opacity: 1; }
 .game-links { margin-top: 10px; font-size: 13px; color: var(--ink-3); display: flex; gap: 6px 16px; flex-wrap: wrap; }
 
 /* ---- transcript ---- */
@@ -1052,3 +1076,23 @@ a.text-tile:hover .text-tile-title { text-decoration: underline; }
 .prose-box { max-height: 70vh; overflow-y: auto; padding: 16px 20px; box-sizing: border-box; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
 .prose-box .prose { font-size: 15px; line-height: 1.65; }
 .prose-box .prose h1 { font-size: 1.5rem; }
+
+/* ---- the model's own summary (run.summary): a block above the output on the run page, a short line on cards ---- */
+.run-summary {
+  max-width: 960px; box-sizing: border-box; margin: 0 0 16px; padding: 14px 18px 12px;
+  border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--r); background: var(--surface);
+}
+.run-summary-title { margin: 0; font: 600 15px/1.3 var(--font); letter-spacing: -0.005em; }
+.run-summary-note { margin: 2px 0 10px; font-size: 12px; color: var(--ink-3); }
+.run-summary-body { max-width: none; font-size: 15px; line-height: 1.6; }
+.run-summary-body > :last-child { margin-bottom: 0; }
+.run-summary-body h1, .run-summary-body h2, .run-summary-body h3 { font-size: 1.05rem; margin: 1em 0 0.4em; }
+.run-summary-body pre { overflow-x: auto; font-size: 13px; }
+.run-summary.is-folded .run-summary-body {
+  max-height: 9.6em; overflow: hidden; /* about six lines */
+  -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent);
+}
+.run-summary-toggle { margin-top: 8px; font-size: 13px; }
+.run-blurb { margin: 0; padding: 2px 16px 6px; font-size: 13px; line-height: 1.45; color: var(--ink-2); overflow-wrap: anywhere; }
+.run-blurb-more { margin-left: 6px; color: var(--accent); white-space: nowrap; }
+.compare-body .run-blurb { padding: 8px 0 0; }

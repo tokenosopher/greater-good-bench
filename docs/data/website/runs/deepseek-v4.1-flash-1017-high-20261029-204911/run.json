@@ -72,5 +72,6 @@
       "src/ripple.js",
       "styles.css"
     ]
-  }
+  },
+  "summary": "Built **MULTIPLIER** \u2014 an offline, evidence-based field guide to the highest-leverage actions an ordinary person can take.\n\n**What\u2019s in it**\n- **The exchange rate** \u2014 a blunt comparison of what money buys as a consumer good vs. as global health.\n- **Impact lab** \u2014 a live calculator: set a yearly giving budget and cause mix, then watch estimated healthy years, CO2e avoided, and animals spared update.\n- **The atlas** \u2014 18 actions across money, lifestyle, body, voice, and career, filterable and sortable, each with expandable reasoning, how-to-start guidance, sources, and evidence ratings.\n- **Your portfolio** \u2014 add actions, scale from one person to a town, a million, a billion, or everyone, and copy a plain-text commitment summary.\n- **The multiplier** \u2014 an interactive cascade showing how one conversation compounds through a network.\n- **Method** \u2014 assumptions, ranges, sources, and an explicit note on what the page is not claiming.\n\n**Technical notes**\n- Pure ES modules, custom canvas/SVG visuals, no runtime dependencies, no network calls, no storage.\n- Verified with `esbuild main.js --bundle --format=esm --outfile=/dev/null`.\n- Checked and refined at desktop and mobile widths with headless Chrome; README included."
 }

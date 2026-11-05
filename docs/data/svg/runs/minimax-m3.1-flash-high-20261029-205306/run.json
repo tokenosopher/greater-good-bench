@@ -74,5 +74,6 @@
     "files": [
       "src/poster.svg"
     ]
-  }
+  },
+  "summary": "Created an optimistic public-service poster centered on the message **\u201cThe future is a shared project.\u201d**\n\nIt combines a diverse, linked community holding hands beneath a living planet with three universal calls to action:\n\n- **Protect** what gives us life  \n- **Share** what we have  \n- **Include** those on the outside  \n\n### Finished files\n- `output/future-is-a-shared-project.svg`\n- `output/future-is-a-shared-project.jpg`\n\nThe editable SVG source is retained at `src/poster.svg`."
 }

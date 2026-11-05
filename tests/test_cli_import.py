@@ -361,3 +361,87 @@ def test_import_returns_the_paths_it_wrote(bench_root, batch_dir):
     assert "docs/engines/6d75082047da" in written  # the engine this page stored
     run = "docs/data/voxel-horse/runs/gpt-6-sol-high-20260926-001158"
     assert run in written
+
+
+# --- the model's own summary (run.summary) --------------------------------------------------------
+
+
+def test_import_records_the_last_assistant_text_as_summary_from_the_cleaned_transcript(bench_root, batch_dir):
+    main(["import", str(batch_dir), "--root", str(bench_root)])
+    runs = run_data_json(bench_root, "voxel-horse")  # page.json carries it like any other run field
+    for r in runs:
+        assert r["summary"] == "Working in ~/effort-runs/x now."  # the cleaned text: the home dir is rewritten
+        on_disk = json.loads((run_dir(bench_root, "voxel-horse", r["id"]) / "run.json").read_text())
+        assert on_disk["summary"] == r["summary"]
+
+
+def test_import_summary_is_null_without_a_transcript(bench_root, batch_dir):
+    (batch_dir / "gpt-6-sol-low-20260926-001158" / "harness" / "conversation.json").unlink()
+    main(["import", str(batch_dir), "--root", str(bench_root)])
+    runs = {r["effort"]: r for r in run_data_json(bench_root, "voxel-horse")}
+    assert runs["low"]["summary"] is None and runs["low"]["session"] is None
+    assert runs["high"]["summary"]
+
+
+def test_import_summary_is_redacted_like_the_transcript(bench_root, batch_factory):
+    run = batch_factory(slug="redactsum", secret="sk-" + "C" * 24)
+    main(["import", str(run), "--redact", "--root", str(bench_root)])
+    low = next(r for r in run_data_json(bench_root, "redactsum") if r["effort"] == "low")
+    assert "C" * 24 not in low["summary"] and "[REDACTED]" in low["summary"]
+
+
+def test_summary_skips_thinking_and_tool_calls_and_walks_back_to_text():
+    from art_crit.summary import last_assistant_text
+
+    def asst(*parts):
+        return {"type": "message", "message": {"role": "assistant", "content": list(parts)}}
+
+    entries = [
+        {"type": "message", "message": {"role": "user", "content": "make a game"}},
+        asst({"type": "text", "text": "Starting."}, {"type": "toolCall", "name": "bash", "arguments": {}}),
+        asst({"type": "thinking", "thinking": "secret plan"}, {"type": "text", "text": "I made **Orbit**, a game."},
+             {"type": "text", "text": "Arrow keys move."}, {"type": "toolCall", "name": "read", "arguments": {}}),
+        {"type": "message", "message": {"role": "toolResult", "content": [{"type": "text", "text": "ok"}]}},
+        asst({"type": "thinking", "thinking": "done?"}, {"type": "toolCall", "name": "bash", "arguments": {}}),
+        asst({"type": "text", "text": "   "}),
+    ]
+    assert last_assistant_text(entries) == "I made **Orbit**, a game.\n\nArrow keys move."
+    assert last_assistant_text(entries[:1]) is None
+    assert last_assistant_text([asst({"type": "text", "text": "plain"})]) == "plain"
+    assert last_assistant_text([{"type": "message", "message": {"role": "assistant", "content": "a string"}}]) == "a string"
+
+
+def test_summary_is_cut_at_4000_characters_on_a_paragraph_or_sentence():
+    from art_crit.summary import MAX_CHARS, cut
+
+    assert cut("short.") == "short."
+    paragraphs = "\n\n".join(f"Paragraph {i} " + "word " * 60 for i in range(40))
+    out = cut(paragraphs)
+    assert len(out) <= MAX_CHARS and out.endswith("\n\n…") and paragraphs.startswith(out[:-3])
+    sentences = " ".join(f"Sentence {i} is here." for i in range(400))  # one long paragraph
+    out = cut(sentences)
+    assert len(out) <= MAX_CHARS and out.endswith("here. …")
+    words = "x" * 10 + " " + "word " * 1200  # no paragraph or sentence break at all
+    out = cut(words)
+    assert len(out) <= MAX_CHARS and out.endswith("word…")
+    fenced = "Intro.\n\n```\n" + "code line\n" * 600 + "```\n"
+    out = cut(fenced)
+    assert len(out) <= MAX_CHARS and out.endswith("\n```")  # a fence cut open is closed again
+
+
+def test_rebuild_backfills_a_missing_summary_from_the_published_transcript(bench_root, batch_dir):
+    main(["import", str(batch_dir), "--root", str(bench_root)])
+    runs = run_data_json(bench_root, "voxel-horse")
+    for r in runs:  # as published before summaries existed
+        rj = run_dir(bench_root, "voxel-horse", r["id"]) / "run.json"
+        record = json.loads(rj.read_text())
+        del record["summary"]
+        rj.write_text(json.dumps(record, indent=2) + "\n")
+    convo = run_dir(bench_root, "voxel-horse", runs[0]["id"]) / "session" / "conversation.json"
+    convo.unlink()  # one run without a transcript gets null
+    main(["rebuild", "--root", str(bench_root)])
+    by_id = {r["id"]: r for r in run_data_json(bench_root, "voxel-horse")}
+    assert by_id[runs[0]["id"]]["summary"] is None
+    assert by_id[runs[1]["id"]]["summary"] == "Working in ~/effort-runs/x now."
+    for r in runs:
+        assert "summary" in json.loads((run_dir(bench_root, "voxel-horse", r["id"]) / "run.json").read_text())

@@ -129,6 +129,7 @@
         "conversation": "session/conversation.json"
       },
       "source": null,
+      "summary": "The work is done and all deliverables are in place. Nothing further depends on another result, so there is nothing left to request.\n\n**What I made:** a 3D \"recipe equation\" for Oral Rehydration Solution, the home-mixable treatment for the dehydration that still kills hundreds of thousands of children a year from diarrhoea. The Lancet called it potentially the most important medical advance of the 20th century, and most people have never seen how simple it is. Laid out on a clay tablet, readable left to right in any language:\n\n**1 L clean water + 6 level teaspoons sugar + \u00bd level teaspoon salt = stir, then sip often.**\n\n- A 1-litre glass bottle of water with a blue cap, six teaspoons of sugar in two rows, one half-filled teaspoon of salt, and a glass of the finished solution with a stirring spoon.\n- Large standing numerals and \"+\", \"=\" symbols sit on the slab, with flat labels in front of each ingredient.\n- The front edge carries the title \"ORAL REHYDRATION SOLUTION - a cure for deadly dehydration\", and a footer line with the practical guidance: small sips after every loose stool, make fresh daily, seek care if it worsens.\n\n**Files in ./output/** (4 files):\n- `ors_recipe.glb` at 7.3 MB, text converted to mesh, glass and liquid exported with transmission, no compression.\n- `ors_recipe_main.jpg`, the front three-quarter view of the whole equation.\n- `ors_recipe_closeup_spoons.jpg`, a low close-up on the sugar spoons.\n- `ors_recipe_side.jpg`, a view from the cup end looking back along the equation.\n\nRenders are Cycles on the Metal GPU, 1600x1000, 128 samples, denoised. A working copy of the scene is saved as `ors_recipe.blend` in the working directory, outside the published folder.",
       "rank": null
     },
     {
@@ -259,6 +260,7 @@
           "scripts/helpers.py"
         ]
       },
+      "summary": "I made a tabletop diorama that teaches how to make **oral rehydration solution (ORS)** at home.\n\n**Why this subject:** dehydration from diarrhoea is still one of the leading causes of death in children under five, killing hundreds of thousands each year. Most of those deaths could be prevented with clean water, sugar and salt in the right proportions. Few things a picture could teach would save more lives if everyone saw it once.\n\n**The model** reads left to right as a five-step equation, with a numbered card under each step:\n1. **1 litre of clean water** in a glass jug with a red 1-litre line, plus an \"ORS\" sachet beside it.\n2. **6 level teaspoons of sugar**: six actual spoons with flat, level fills, and the sugar bowl behind them.\n3. **\u00bd level teaspoon of salt**: one spoon filled only halfway, next to a salt shaker.\n4. **Stir well** until it dissolves: a jug with a wooden spoon and a swirl.\n5. **Small sips, often**: a caregiver holding a cup while the child drinks from it with both hands.\n\nA board at the back gives the full message in WHO/UNICEF terms. It says to use an ORS packet if you have one and otherwise make the home recipe. It also says to make it fresh every day and keep breastfeeding and feeding. In yellow, it lists the danger signs that mean getting help fast: blood in the stool, a very sleepy child, a child who can't drink, or vomiting everything.\n\n**Files in `./output/`:**\n- `ors_oral_rehydration_diorama.glb` (6.7 MB, no compression): the full scene without the backdrop walls. I re-imported it into Blender to check that all the text and parts come through. The glass uses the standard glTF transmission extension, with partial transparency as a fallback for viewers that don't support it.\n- `ors_how_to_make_hero.jpg`: the whole diorama from the front.\n- `ors_ingredients_closeup.jpg`: a top-down view showing the six level sugar spoons next to the half spoon of salt.\n- `ors_giving_sips_closeup.jpg`: the caregiver giving the child sips.\n\nThe working `.blend` file (`ors_diorama.blend`) and the helper scripts are in the working directory, outside `output/`.",
       "rank": null
     },
     {
@@ -369,6 +371,7 @@
         "stderr": "session/stderr.txt"
       },
       "source": null,
+      "summary": "Created **The Common Table**: a welcoming circle beneath a fruit tree, sharing food, water, and learning\u2014with an open chair for you.\n\nSaved in `output/`: the interactive GLB model (13.4 MB) and two final renders, all within the requested limits.",
       "rank": null
     },
     {
@@ -488,6 +491,7 @@
           "stage.py"
         ]
       },
+      "summary": "Created **Common Ground**: five ceramic hands supporting a living Earth, with an open circle inviting participation. Its inscription reads **\u201cNo one thrives alone.\u201d**\n\nSaved in `output/`: the 4 MB GLB model and two final JPG renders, all within the requested limits.",
       "rank": null
     },
     {
@@ -622,6 +626,7 @@
           "finalize.py"
         ]
       },
+      "summary": "I've completed the model. Here's a summary of what I made.\n\n## The World in a Drop of Water \ud83c\udf0d\ud83d\udca7\n\nA monument in the round: a large, clear **water droplet suspended above a still stone basin**, with the **Earth held (and magnified) inside it**. The message is *clean water sustains life for everyone* \u2014 access to safe drinking water is one of the single highest-impact ways to improve the world for the greatest number of people.\n\n**What's in the scene (all built procedurally in `bpy`, no external assets):**\n- A stone **plinth \u2192 column \u2192 basin** pedestal (warm sandstone materials).\n- A **glassy water droplet** (lathe surface-of-revolution, Principled BSDF with full transmission, IOR 1.33) floating above the basin.\n- A **procedural Earth** inside the drop \u2014 an equirectangular texture generated in code via `mathutils.noise` (fBm land/ocean mask, coastline, vegetation, highland, snow, polar ice), plus a roughness map, applied to a UV sphere. It's refracted and magnified through the glass lens.\n- Reflective basin water with subtle ring ripples, a Preetham sky, warm key sun + cool fill.\n- A ground plane (excluded from the GLB so the viewer gets a clean standalone monument).\n\n**Deliverables in `./output/` (4 files):**\n| file | size | purpose |\n|---|---|---|\n| `the_world_in_a_drop.glb` | 2.04 MB | interactive model (6 meshes, embedded textures, KHR transmission glass, no Draco/meshopt) |\n| `hero.jpg` | 136 KB | main composition |\n| `closeup.jpg` | 160 KB | Earth-filling close-up through the droplet |\n| `wide.jpg` | 138 KB | full-monument three-quarter view |\n\n**Verification (rendered to JPEGs and checked programmatically since I can't view images):**\n- Confirmed camera framing via `world_to_camera_view` (droplet/Earth centered, base cropped intentionally).\n- Confirmed exposure per region (sky ~0.7, stone warm, no unintended clipping) and that the Earth's green land appears centered in all three renders.\n- Parsed the GLB to confirm the two Earth textures are embedded (bufferView, no external URIs), the glass material exports `KHR_materials_transmission`/`_ior`, and no Draco/meshopt compression is used.\n\nA note on tooling: the persistent Blender MCP instance crashed once mid-session (during an unsafe introspection loop); I restarted it on port 52575 and continued. All final work went through the Blender instance as required.",
       "rank": null
     },
     {
@@ -749,6 +754,7 @@
           "final.py"
         ]
       },
+      "summary": "Made **\u201cThe Overview\u201d** \u2014 a portrait of Earth as the one borderless home we all share: the view that reliably changes how people see the world.\n\n**Built in Blender (procedurally, no external assets):**\n- Hand-constructed equirectangular land/ocean map with recognizable continents, continental shelves, deserts, forests, ice caps, and a subtle relief normal map\n- Separate semi-transparent cloud layer\n- Thin blue atmosphere shell plus a render-only atmospheric rim glow\n- Cratered Moon, procedural starfield, sun/fill lighting, and a soft bloom compositor\n- Earth/Moon scene exported as a self-contained GLB with embedded textures\n\n**Published in `./output/`:**\n- `pale_blue_dot.glb` \u2014 6.4 MB interactive model (Earth, clouds, atmosphere, Moon)\n- `the_overview.jpg` \u2014 1600\u00d71200 hero portrait\n- `the_blue_dot.jpg` \u2014 1600\u00d71200 Earth-and-Moon wide view\n\nThe piece is meant to do what the overview effect does: make the planet feel singular, fragile, and shared.",
       "rank": null
     },
     {
@@ -903,6 +909,7 @@
         "conversation": "session/conversation.json"
       },
       "source": null,
+      "summary": "I created **\"The Commons of Life\"** (`output/commons_of_life.glb`), an interactive 3D cutaway sanctuary designed to communicate universal, life-saving practical knowledge across both developing and developed regions\u2014using spatial 3D cross-sections that can be understood visually from any angle:\n\n1. **Central Rainwater Harvesting, First-Flush Diverter & Solar Beacon Tower**:\n   - An inverted copper rainwater catchment funnel and solar photovoltaic crown feeding a cutaway storage cistern.\n   - Includes a cutaway **First-Flush Diverter** standpipe with a floating ball valve demonstrating how dirty initial roof-wash water is isolated before clean rainwater enters the main tank and radiates through stone aqueducts to four stations.\n\n2. **Station 1 \u2014 Clean Water (`output/03_station1_clean_water_filter.jpg`)**:\n   - **Cutaway Bio-Sand & Charcoal Filter**: Shows raw murky water poured through a perforated copper diffuser plate, standing water zone, active microbial biolayer (*Schmutzdecke*), fine silica sand, granular activated charcoal, coarse sand, and river gravel\u2014paired with the essential **constant-level outlet standpipe** that keeps the biolayer submerged while pouring purified water into a clean vessel.\n   - **SODIS (Solar Water Disinfection) Rack**: Shows clear PET bottles on a corrugated reflective tray under 6 hours of UV sunlight.\n\n3. **Station 2 \u2014 Oral Rehydration Solution (ORS) & Hygiene (`output/04_station2_oral_rehydration_tippytap.jpg`)**:\n   - **Visual ORS Formula Table**: Displays the life-saving rehydration ratio (**1 Liter Clean Water + 6 Level Teaspoons of Sugar + \u00bd Teaspoon of Salt**) using a graduated 1L pitcher, six 3D silver teaspoons of sugar, and one half-divided teaspoon of salt.\n   - **Hands-Free Tippy-Tap**: A foot-pedal-operated hanging jerrycan with suspended soap and a gravel soak-pit for sanitary handwashing.\n\n4. **Station 3 \u2014 Emergency First Aid: CPR & Recovery Position (`output/05_station3_cpr_and_recovery_position.jpg`)**:\n   - **Hands-Only CPR**: Sculpted kneeling rescuer with vertically locked arms pressing the center of the sternum (`5\u20136 cm` depth, `100\u2013120 / min`), with a translucent chest cutaway showing the ribcage, sternum, heart, and arterial blood flow to the brain.\n   - **Lateral Recovery Position**: Sculpted figure demonstrating the posture for an unconscious breathing person\u2014near arm at 90\u00b0, back of far hand supporting the cheek, far leg bent at a 90\u00b0 kickstand prop, and a glowing open airway channel.\n\n5. **Station 4 \u2014 Clean Cooking & Regenerative Soil (`output/06_station4_rocket_stove_keyhole_garden.jpg`)**:\n   - **Cutaway Insulated Rocket Stove**: Reveals the horizontal fuel shelf allowing primary air intake *under* the firewood, the 90\u00b0 L-tube combustion core surrounded by wood-ash/pumice insulation to eliminate toxic indoor smoke, and a narrow metal pot skirt maximizing heat transfer.\n   - **Cutaway Keyhole Compost Bed & Three Sisters**: Shows layered woody mulch, compost, and topsoil around a central woven compost/greywater basket, supporting symbiotic Maize (structural stalk), Climbing Beans (with visible pink nitrogen-fixing root nodules), and Squash (living-mulch ground cover).",
       "rank": null
     },
     {
@@ -1036,6 +1043,7 @@
           "build_scene.py"
         ]
       },
+      "summary": "**Held in Common** is a fountain sculpture of open hands, different ages and skin tones, rising out of one pool to hold a single living Earth. A young olive tree grows from the top.\n\nThe idea is simple enough to see at a glance: this world is not something to grab. We hold it together, including the smallest hand, and what grows from that is life. The gap in the circle is where the viewer\u2019s hand belongs.\n\n- `output/held-in-common.glb` (2.7 MB) is the interactive model.\n- `output/held-in-common-hero.jpg` shows the whole monument.\n- `output/held-in-common-hands.jpg` is a close view of the hands on Africa.\n- `output/held-in-common-around.jpg` shows the ring of hands from the side.",
       "rank": null
     },
     {
@@ -1153,6 +1161,7 @@
         "conversation": "session/conversation.json"
       },
       "source": null,
+      "summary": "Created **Common Ground** \u2014 a symbolic sculpture of twelve diverse people joining hands around Earth, including a child and wheelchair user, beneath a flourishing tree and three doves. It represents shared stewardship, inclusion, cooperation, and peace.\n\nSaved in `./output/`:\n- `common_ground.glb` \u2014 interactive 3D model, 6.7 MB, uncompressed\n- `common_ground.jpg` \u2014 full sculpture render\n- `many_hands.jpg` \u2014 close-up of the human circle",
       "rank": null
     },
     {
@@ -1290,6 +1299,7 @@
           "scripts/read_png.py"
         ]
       },
+      "summary": "Everything is complete and verified. \n\n## Summary\n\n**\"One Home \u2014 The Pale Blue Dot\"** \u2014 a 3D sculpture of Earth as a single, borderless sphere suspended in darkness, carrying Carl Sagan's words on a floating gold-inscribed plaque. The concept leverages the *overview effect*: seeing Earth whole from space \u2014 no nations, no borders, one fragile blue dot \u2014 is among the most reliably perspective-shifting images humans have ever made, and it speaks to everyone regardless of language, politics, or belief.\n\n**What's in `output/`:**\n- **`one_home_pale_blue_dot.glb`** (6.8 MB, interactive) \u2014 Earth with procedurally generated continents (rasterized from hand-built geographic polygons: recognizable Americas, Africa, Eurasia, Australia, polar ice), drifting cloud layer, translucent atmospheric shell, a cratered moon, an emissive starfield sphere with a Milky Way band (~10,000 stars), and the plaque. Exports with KHR punctual lights so it's lit in any viewer; zooming out reveals Earth as a tiny dot among the stars \u2014 the discovery is the message.\n- **`render_hero.jpg`** \u2014 the main composition: half-lit Earth center, plaque lower-left, crescent moon upper-right, Milky Way behind.\n- **`render_closeup.jpg`** \u2014 Earth filling the frame with clouds and limb glow.\n- **`render_dot.jpg`** \u2014 the homage to Voyager 1's *Pale Blue Dot*: Earth as a small speck in the void.\n\n**Process notes:** everything was built in Blender's Python (numpy-generated textures, custom spherical UVs, bmesh geometry); since the model in this session can't view images, I validated every step numerically \u2014 sampling the texture at known lat/lon coordinates (Congo green, Sahara tan, Pacific blue), probing rendered pixels at projected geographic points to confirm the map isn't mirrored or flipped, verifying text legibility via gold-color pixel bands, and parsing the GLB binary to confirm materials, lights, and structure.",
       "rank": null
     },
     {
@@ -1402,6 +1412,7 @@
         "conversation": "session/conversation.json"
       },
       "source": null,
+      "summary": "Created **SOLAQUA**, a solar-powered community water station designed as a scalable public-service hub.\n\n### Features modeled\n- Rainwater collection with roof gutter and cistern\n- Dual solar-panel canopy\n- Accessible filtered drinking fountain\n- Visible water-level indicator\n- Purification and power modules\n- Public information board and branding\n- Phone-charging ledge\n- Warm nighttime task lighting\n- Integrated bench and planter\n- Tactile paving and wheelchair-accessible design\n\n### Published files\n- `output/solaqua_civic_water_station.glb` \u2014 interactive 3D model\n- `output/solaqua_hero.jpg` \u2014 final presentation render",
       "rank": null
     },
     {
@@ -1529,6 +1540,7 @@
         "conversation": "session/conversation.json"
       },
       "source": null,
+      "summary": "Made **\u201cOne Shared Home\u201d** \u2014 a hopeful public-sculpture model built in Blender:\n\n- A stylised Earth rises like a sprouting plant at the centre, crowned with a red heart and a golden orbit ring with doves.\n- Twelve diverse figures \u2014 different skin tones and clothing, a child, an elder with a cane, a person in a hijab, and a wheelchair user \u2014 stand in an unbroken circle holding hands around the planet.\n- Trees, a circular plaza plinth, and a plaque reading \u201cONE SHARED HOME \u2014 CARE FOR PEOPLE + PLANET\u201d reinforce the message: we have one planet, and everyone belongs in the circle of care.\n\nSaved in `./output/` (4 files):\n- `one_shared_home.glb` (1.48 MB, no compression) for the interactive viewer\n- `one_shared_home_main.jpg`, `one_shared_home_orbit.jpg`, `one_shared_home_close.jpg` \u2014 final renders from three angles",
       "rank": null
     }
   ]

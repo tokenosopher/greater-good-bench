@@ -156,7 +156,8 @@ cf pages deployments list --project-name art-crit   # Git-triggered deployment s
   only place games are embedded. The compare cards' ↗ pop-out opens `play.html` (which uses it), never the raw
   entry URL; run and expanded-table fullscreen links also go through `play.html`. The Worker serves everything under
   `data/` with that sandbox as a CSP header (`router.mjs`), so a raw output URL opened directly gets an opaque origin
-  too; keep its flags equal to `sandboxedGame()`'s. (ADR-0004)
+  too; keep its flags equal to `sandboxedGame()`'s. "Play full screen" (`buildGameFrame()`) fullscreens the `.game-frame`
+  wrapper, never the iframe, so nothing about the iframe changes for it. (ADR-0004)
 - **Web pages are verified the way they're shown:** offline, inside the site's sandbox (`Web.verify`, `verify_page(..., sandboxed=True)`).
   Don't relax that to a plain page load; it's what guarantees a packaged page has no outside dependencies. (ADR-0013)
 - **Model-made SVGs are only shown with `<img>`** (`mediaElement()` in output.js), which never runs their
@@ -352,6 +353,11 @@ cf pages deployments list --project-name art-crit   # Git-triggered deployment s
   The viewer loads markdown.js (and Marked, 72 KB) with a dynamic `import()` only when a text is read in full, so cards
   and the home page never pay for it; a text has no thumbnail, so the lanes home shows a text tile for a page without a
   picture (`pickedText` in lanes/index.js), and `isPlayable()`/the ↗ pop-out leave texts out (nothing for play.html).
+- **The viewer's entry modules render during their top-level `await`**, before any `const` declared further down the
+  module exists: run.js's `render()` threw "Cannot access 'SUMMARY_LINES' before initialization" and left the Game tab
+  empty. Keep constants that render-time code needs above the `await`, or inside the function.
+- **`run.summary` is read from the published transcript** (`summary.py`), like a text's excerpt from the cleaned file:
+  never from harness/, because run.json isn't secret-scanned.
 - **`replaceChildren()`/`append()` print `null` as text**; `el()` skips null children, so pass optional nodes
   through `el()` or `.filter(Boolean)`.
 - **Tools recorded per run:** `Harness.tools(mcp)` (+ `BUILTIN_TOOLS` where the command names them) feeds `run.json.tools.allowed`;

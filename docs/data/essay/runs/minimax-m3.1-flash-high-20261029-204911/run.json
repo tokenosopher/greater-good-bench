@@ -56,5 +56,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": "Created `output/a-more-good-world.md`.\n\nThe essay argues that a better world can be built through ordinary, coordinated moral practice: preventing avoidable suffering, improving institutions, protecting truth, widening participation, repairing systems, strengthening trust, and making beneficial choices the default. It offers practical principles and action at personal, interpersonal, professional, civic, and global levels."
 }

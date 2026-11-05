@@ -69,5 +69,6 @@
       "main.tscn",
       "project.godot"
     ]
-  }
+  },
+  "summary": "Built **Common Ground**, a complete 10-week strategy game about mutual aid, trust, green infrastructure, preparedness, and fair neighborhood outcomes.\n\nFeatures include:\n- Four neighborhoods with distinct needs and recurring community benefits\n- Five project types, limited resources, forecasts, crises, and positive events\n- Interactive help, keyboard/mouse controls, weekly reports, scoring, and replay\n- Procedural vector artwork with no external assets or plugins\n- GL Compatibility renderer and web-compatible configuration\n\nRun with `godot --path .` or open the project and press **F5**. Instructions are in `README.md`.\n\nBoth the required editor-load check and runtime check pass without errors."
 }

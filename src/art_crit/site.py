@@ -8,6 +8,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 
 from .kinds.media import add_thumbs, write_thumb
+from .summary import summary_of
 from .util import CritError, effort_sort_key, title_from_slug
 
 
@@ -43,6 +44,15 @@ def backfill_thumbs(run_dir, run):
         (run_dir / "thumb.png").unlink()
         run["thumb"] = "thumb.jpg"
     return json.dumps(run, sort_keys=True) != before
+
+
+def backfill_summary(run_dir, run):
+    """`summary` for a run published before it existed, from its published (cleaned) transcript; null when there is
+    none. Never redone once the key is there. Returns whether run.json changed."""
+    if "summary" in run:
+        return False
+    run["summary"] = summary_of(run_dir) if (run.get("session") or {}).get("conversation") else None
+    return True
 
 
 def apply_ranking(page_dir, runs):
@@ -136,7 +146,7 @@ def rebuild(root):
                 rj = run_dir / "run.json"
                 if rj.is_file():
                     run = json.loads(rj.read_text())
-                    if backfill_thumbs(run_dir, run):
+                    if backfill_thumbs(run_dir, run) | backfill_summary(run_dir, run):
                         rj.write_text(json.dumps(run, indent=2) + "\n")
                     runs.append(run)
         if not runs:

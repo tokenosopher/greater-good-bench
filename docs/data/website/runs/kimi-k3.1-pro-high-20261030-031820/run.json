@@ -75,5 +75,6 @@
       "styles.css",
       "ui.js"
     ]
-  }
+  },
+  "summary": "Built **Common Ground**, a private, offline-friendly tool for healthier difficult conversations.\n\n- Four-step conversation builder: observation \u2192 feelings \u2192 needs \u2192 request\n- Live, copyable message draft with gentle blame-language prompts\n- Guided 60-second breathing reset\n- Interactive field guide for common conflicts\n- Responsive, accessible design with reduced-motion support\n- No accounts, tracking, network requests, or browser storage\n\nVerified the esbuild packaging command and tested desktop/mobile layouts and interactions in headless Chrome."
 }

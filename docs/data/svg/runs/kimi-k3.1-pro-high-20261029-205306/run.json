@@ -75,5 +75,6 @@
     "files": [
       "make_poster.py"
     ]
-  }
+  },
+  "summary": "Created a warm, accessible poster encouraging practical everyday kindness: **\u201cMake someone\u2019s day a little easier.\u201d** It features two hands holding a glowing heart, with reminders to **notice, listen, and offer what you can**.\n\n- [Scalable SVG](output/kindness.svg)\n- [1600 \u00d7 2000 PNG](output/kindness.png)"
 }

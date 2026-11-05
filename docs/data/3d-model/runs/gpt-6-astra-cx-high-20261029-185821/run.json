@@ -105,5 +105,6 @@
     "conversation": "session/conversation.json",
     "stderr": "session/stderr.txt"
   },
-  "source": null
+  "source": null,
+  "summary": "Created **The Common Table**: a welcoming circle beneath a fruit tree, sharing food, water, and learning\u2014with an open chair for you.\n\nSaved in `output/`: the interactive GLB model (13.4 MB) and two final renders, all within the requested limits."
 }

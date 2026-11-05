@@ -72,5 +72,6 @@
       "src/render.swift",
       "src/sound.py"
     ]
-  }
+  },
+  "summary": "Created **\u201cMake someone\u2019s day lighter\u201d**\u2014a 10-second animation about sharing burdens, with original music.\n\n- [Watch the animation](output/day-lighter.mp4)\n- [View the poster](output/day-lighter.jpg)\n\nBoth files are under 2 MB. Source code is in `src/`."
 }

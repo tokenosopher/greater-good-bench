@@ -122,5 +122,6 @@
   "session": {
     "conversation": "session/conversation.json"
   },
-  "source": null
+  "source": null,
+  "summary": "Made **\u201cOne Shared Home\u201d** \u2014 a hopeful public-sculpture model built in Blender:\n\n- A stylised Earth rises like a sprouting plant at the centre, crowned with a red heart and a golden orbit ring with doves.\n- Twelve diverse figures \u2014 different skin tones and clothing, a child, an elder with a cane, a person in a hijab, and a wheelchair user \u2014 stand in an unbroken circle holding hands around the planet.\n- Trees, a circular plaza plinth, and a plaque reading \u201cONE SHARED HOME \u2014 CARE FOR PEOPLE + PLANET\u201d reinforce the message: we have one planet, and everyone belongs in the circle of care.\n\nSaved in `./output/` (4 files):\n- `one_shared_home.glb` (1.48 MB, no compression) for the interactive viewer\n- `one_shared_home_main.jpg`, `one_shared_home_orbit.jpg`, `one_shared_home_close.jpg` \u2014 final renders from three angles"
 }

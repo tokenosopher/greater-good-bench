@@ -63,5 +63,6 @@
       "main.tscn",
       "project.godot"
     ]
-  }
+  },
+  "summary": "Built **Common Ground**, a complete seven-day neighborhood game about listening, sharing resources, and helping everyone thrive.\n\nIncludes procedural artwork, synthesized sound, shared projects, night forecasts, results, replay, and keyboard controls.\n\nSelf-contained, using GL Compatibility with no threads enabled. Godot\u2019s editor check and gameplay tests pass.\n\nRun with `godot --path .`. Instructions are in `README.md`."
 }

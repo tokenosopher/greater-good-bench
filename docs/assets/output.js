@@ -43,9 +43,11 @@ export function sandboxedGame(entryUrl) {
   });
 }
 
-// Builds a click-to-play `.game-frame`: an overlay (thumb + play button,
-// carrying `data-play`) that is replaced in place by a sandboxed iframe on
-// click. Games never boot on their own. Returns the frame element.
+// Builds a click-to-play `.game-frame`: an overlay (thumb + play button, carrying `data-play`) and a "Play full screen"
+// button, both replaced in place by a sandboxed iframe on click. Games never boot on their own. Full screen is asked for
+// in that same click (the Fullscreen API needs a user gesture) on the wrapper, not the iframe, so the frame keeps exactly
+// sandboxedGame()'s attributes and can carry an exit button; Esc leaves full screen and the game keeps running in place.
+// Where full screen isn't available or is refused (iPhone Safari), the game simply plays in place. Returns the frame.
 export function buildGameFrame(entryUrl, thumbUrl) {
   const frame = el("div", { class: "game-frame" });
   const overlay = el(
@@ -57,9 +59,34 @@ export function buildGameFrame(entryUrl, thumbUrl) {
     [el("span", { class: "play-icon", text: "▶" }), el("span", { class: "play-label", text: "Click to play" })]
   );
   if (thumbUrl) overlay.style.backgroundImage = `url("${thumbUrl}")`;
-  overlay.addEventListener("click", () => overlay.replaceWith(sandboxedGame(entryUrl)));
-  frame.append(overlay);
+  const full = el("button", { class: "play-full", attrs: { type: "button", title: "Play full screen (Esc to leave)" } },
+    [el("span", { class: "play-full-icon", text: "⛶", attrs: { "aria-hidden": "true" } }), el("span", { text: "Play full screen" })]);
+  const play = (fullscreen) => {
+    const game = sandboxedGame(entryUrl);
+    const exit = el("button", { class: "fs-exit", text: "Exit full screen (Esc)", attrs: { type: "button" }, on: { click: () => leaveFullscreen() } });
+    frame.replaceChildren(game, exit);
+    if (fullscreen) enterFullscreen(frame);
+    game.focus(); // keys go to the game without another click
+  };
+  overlay.addEventListener("click", () => play(false));
+  full.addEventListener("click", () => play(true));
+  frame.append(overlay, full);
   return frame;
+}
+
+// Full screen on `node` where the browser allows it (prefixed on older Safari); a refusal or no API at all leaves the
+// game playing in place.
+function enterFullscreen(node) {
+  const request = node.requestFullscreen ?? node.webkitRequestFullscreen;
+  if (!request) return;
+  try {
+    request.call(node)?.catch?.(() => {});
+  } catch {}
+}
+
+function leaveFullscreen() {
+  const exit = document.exitFullscreen ?? document.webkitExitFullscreen;
+  if ((document.fullscreenElement ?? document.webkitFullscreenElement) && exit) exit.call(document)?.catch?.(() => {});
 }
 
 // One media output (run.media item). Model-made SVGs may contain scripts, so every image,
@@ -164,6 +191,29 @@ export function mediaCard(items, base, href = null) {
 export function textCard(out, href = null) {
   const body = [out.title ? el("strong", { class: "text-tile-title", text: out.title }) : null, el("span", { class: "text-tile-excerpt", text: out.excerpt || "" })];
   return href ? el("a", { class: "text-tile", attrs: { href, title: "Read the run" } }, body) : el("div", { class: "text-tile" }, body);
+}
+
+// The run's own summary (`run.summary`, Markdown the model wrote at the end) as one plain line for a card: its first
+// ~`limit` characters (textContent only), the longer start in the tooltip and, when cut, a link to the run page where it
+// is shown in full. Null when the run has none.
+export function summaryBlurb(run, href = null, limit = 160) {
+  const flat = plainSummary(run.summary);
+  if (!flat) return null;
+  const cut = flat.length > limit;
+  const short = cut ? `${flat.slice(0, limit).replace(/\s+\S*$/, "").replace(/[\s,;:.-]+$/, "")}…` : flat;
+  return el("p", { class: "run-blurb", attrs: { title: flat.length > 600 ? `${flat.slice(0, 600)}…` : flat } }, [
+    el("span", { text: short }),
+    cut && href ? el("a", { class: "run-blurb-more", text: "more", attrs: { href: `${href}#summary`, "aria-label": "Read the model's whole summary" } }) : null,
+  ]);
+}
+
+// Markdown as one line of plain text: no block markers, emphasis, code ticks, link or image syntax (like text.py's plain()).
+function plainSummary(md) {
+  if (!md) return "";
+  return md.split("\n").filter((line) => !/^\s*(```|~~~|[-*_=|:]{3,}\s*$)/.test(line))
+    .map((line) => line.replace(/^\s{0,3}(#{1,6}\s+|>\s?|[-*+]\s+(\[[ xX]\]\s+)?|\d+[.)]\s+)/, "")
+      .replace(/!?\[([^\]]*)\]\([^)]*\)/g, "$1").replace(/\*{1,3}|_{2,3}|~~|`+/g, ""))
+    .join(" ").replace(/\s+/g, " ").trim();
 }
 
 // A text run's Markdown as an article. The file is fetched and rendered by markdown.js (loaded on first use: it carries

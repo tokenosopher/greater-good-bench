@@ -1,6 +1,6 @@
 import { el, qs, qsList, loadPage, SITE_NAME } from "../dom.js";
 import { fmtNum, fmtDuration, fmtCost } from "../fmt.js";
-import { renderOutput, kindUi } from "../output.js";
+import { renderOutput, kindUi, summaryBlurb } from "../output.js";
 import { localFeature, runDir, runUrl, effortPill, prettyModelName, modelParts, vendorOf, vendorName, vendorMark, vendorOptions, rankBy } from "../runs.js";
 import { loadVotes, voteBar } from "../votes.js";
 import { headerAuth, promptDialog, plural, offlineVotes } from "./common.js";
@@ -66,6 +66,7 @@ if (page) {
           el("span", { class: "spacer" }),
           bar,
         ]),
+        summaryBlurb(run, runUrl(slug, run.id)),
         el("div", { class: "v2-metrics-col" }, [
           metric(run, "duration_ms", "Time"),
           metric(run, "tokens_total", "Tokens"),
