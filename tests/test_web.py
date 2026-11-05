@@ -1981,6 +1981,7 @@ RECORD_FULLSCREEN = """
 window.__fullscreen = [];
 Element.prototype.requestFullscreen = function () { window.__fullscreen.push(this.className); return Promise.resolve(); };
 """
+PHONE = {"width": 390, "height": 844}  # "Play full screen" is shown only at phone width (style.css's 720px block)
 
 
 def with_summary(pg):
@@ -2027,6 +2028,7 @@ def test_run_page_without_a_summary_shows_no_block(site, page):
 
 
 def test_play_full_screen_on_the_run_page_boots_the_sandboxed_game_on_the_wrapper(site, page):
+    page.set_viewport_size(PHONE)
     page.add_init_script(RECORD_FULLSCREEN)
     page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
     button = page.get_by_role("button", name="Play full screen")
@@ -2044,6 +2046,7 @@ def test_play_full_screen_on_the_run_page_boots_the_sandboxed_game_on_the_wrappe
 
 
 def test_play_full_screen_falls_back_to_playing_in_place_without_the_api(site, page):
+    page.set_viewport_size(PHONE)
     page.add_init_script("delete Element.prototype.requestFullscreen; delete Element.prototype.webkitRequestFullscreen;")
     page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
     page.get_by_role("button", name="Play full screen").click()
@@ -2052,6 +2055,7 @@ def test_play_full_screen_falls_back_to_playing_in_place_without_the_api(site, p
 
 
 def test_game_card_plays_full_screen_in_one_click_and_shows_the_summary_blurb(site, page):
+    page.set_viewport_size(PHONE)
     with_summary(page)
     page.add_init_script(RECORD_FULLSCREEN)
     page.goto(f"{site}page.html?p=demo")
@@ -2075,4 +2079,30 @@ def test_game_card_plays_full_screen_in_one_click_and_shows_the_summary_blurb(si
     col = page.locator(".v2-col").nth(1)
     expect(col.locator(".run-blurb span")).to_have_text(text)
     expect(col.get_by_role("button", name="Play full screen")).to_have_count(1)
+    assert_no_errors(page)
+
+
+def test_desktop_shows_only_click_to_play_and_plays_in_place(site, page):
+    """At desktop width every game surface is the pre-"Play full screen" overlay: the button stays in the markup
+    but is hidden, "Click to play" shows and plays in place without asking for full screen."""
+    page.add_init_script(RECORD_FULLSCREEN)
+    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
+    overlay = page.locator("#panel-game [data-play]")
+    expect(overlay.locator(".play-label")).to_have_text("Click to play")
+    assert overlay.locator(".play-label").is_visible()
+    assert page.locator("#panel-game .play-full").count() == 1
+    assert not page.locator("#panel-game .play-full").is_visible()
+    assert page.locator('a:has-text("Open full screen")').count() == 1
+    overlay.click()
+    expect(page.locator("#panel-game .game-frame iframe")).to_have_count(1)
+    assert page.evaluate("window.__fullscreen") == []
+
+    page.goto(f"{site}page.html?p=demo")
+    card = page.locator(f'.v2-card:has(input[data-id="{HIGH_ID}"])')
+    expect(card.locator("[data-play]")).to_be_visible()
+    assert not card.locator(".play-full").is_visible()
+    page.goto(f"{site}compare.html?p=demo&r={MEDIUM_ID},{HIGH_ID}")
+    col = page.locator(".v2-col").nth(1)
+    expect(col.locator("[data-play]")).to_be_visible()
+    assert not col.locator(".play-full").is_visible()
     assert_no_errors(page)

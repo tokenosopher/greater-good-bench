@@ -497,11 +497,12 @@ tr.run-detail:hover { background: none; }
 }
 .play-overlay:hover .play-icon { transform: scale(1.12); }
 .play-overlay .play-label { position: relative; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); letter-spacing: 0.02em; }
-/* "Play full screen" (buildGameFrame): a second, prominent action on the overlay. It asks for full screen on the
-   .game-frame wrapper, so the frame fills the screen and shows its own exit button (only while full screen). */
+/* "Play full screen" (buildGameFrame): on small screens only (shown in the 720px block below), a second, prominent
+   action on the overlay; on desktop the ▶ "Click to play" overlay alone. It asks for full screen on the .game-frame
+   wrapper, so the frame fills the screen and shows its own exit button (only while full screen). */
 .play-full {
   position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 2;
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 2px solid #fff; border-radius: 9999px;
+  display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 2px solid #fff; border-radius: 9999px;
   background: rgba(2, 9, 58, 0.72); color: #fff; font: 600 14px var(--font); cursor: pointer; white-space: nowrap;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); transition: background var(--ease);
 }
@@ -914,6 +915,7 @@ body:has(.page-container) { --page: 1440px; } /* the header lines up with the wi
 
 @media (max-width: 720px) {
   :root { --gutter: 16px; }
+  .play-full { display: inline-flex; } /* "Play full screen" is a phone action; desktop keeps the ▶ overlay alone */
   body { font-size: 14.5px; }
   h1 { font-size: 2rem; letter-spacing: -0.03em; }
   .hero { margin: 8px 0 36px; }

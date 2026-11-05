@@ -913,8 +913,8 @@ and each lanes page links to its classic counterpart ("classic view").
   the card's width (every card in a lane equally tall, the picture at the top), a 44 px checkbox, the thumbnail pill
   at the bottom of the media area, the model, effort, time/tokens/cost (best in green), and the vote row ("Your vote:",
   inactive without the vote API). A click anywhere on the media opens the run (videos show their poster without
-  controls on cards); a game card's own buttons are the exception: "Play full screen" in the middle of the picture
-  (one click, full screen, on the page) and the small ▶ in the corner (plays in the card). Under the model name, the
+  controls on cards); a game card's own buttons are the exception: the small ▶ in the corner (plays in the card) and,
+  on small screens only, "Play full screen" in the middle of the picture (one click, full screen, on the page). Under the model name, the
   run's summary blurb. Checked runs fill a bottom tray (thumbnail, model, vendor · effort, remove) with "Compare in
   detail →" from two runs.
 - **Compare** (`?p=<slug>&r=<id>,<id>…`, at least two): back link, title, the page line, prompt and final-prompt modal,
@@ -1001,12 +1001,13 @@ lists from the `import` statements and fails when they drift.
     "Show more" when it is longer (by a rough line count at ~90 characters; `run.html…#summary` opens it unfolded).
   - *Game*: click-to-play overlay (shows thumb). On click it inserts
     `<iframe sandbox="allow-scripts allow-pointer-lock" allow="fullscreen; autoplay; gamepad">` pointing at `output.entry`.
-    The overlay also has a "Play full screen" `<button>`: the same click inserts the iframe and calls
+    On small screens (the ≤720px phone breakpoint; hidden by CSS on desktop, where the markup is the same) the overlay
+    also has a "Play full screen" `<button>`: the same click inserts the iframe and calls
     `requestFullscreen()` (or `webkitRequestFullscreen()`) on the `.game-frame` wrapper, never the iframe, so the
     sandbox attributes stay exactly `sandboxedGame()`'s and the wrapper can show an "Exit full screen (Esc)" button
     (only while full screen). Esc leaves full screen and the game keeps running in place; without the API, or when it is
     refused (iPhone Safari), the game plays in place. `buildGameFrame()` draws this frame everywhere a game is shown
-    (run page, lanes cards, compare columns, the classic grid/compare), so on a card one click plays full screen without
+    (run page, lanes cards, compare columns, the classic grid/compare), so on a phone a card's one click plays full screen without
     leaving the page. There's also an "Open full screen ↗" link (link to `play.html`, which boots it in the sandbox).
   - *Transcript*: renders `session.conversation`. System prompt collapsed. User text. For each assistant message:
     thinking (collapsed, toggle "show thinking"), text (markdown), and toolCall blocks paired with their toolResult by
@@ -1096,6 +1097,6 @@ lists from the `import` statements and fails when they drift.
   text and never runs), the excerpt tiles on the home and page cards, and compare reading each text in full.
   The run page's summary block (above the output, Markdown with a raw `<script>` kept as text, folded behind "Show
   more") and the card/compare blurbs are covered on a routed demo page; "Play full screen" on the run page and a lanes
-  card (by keyboard too) is checked to replace the overlay with an iframe whose `sandbox` is unchanged and to call
+  card (by keyboard too), at a 390×844 phone viewport, is checked to replace the overlay with an iframe whose `sandbox` is unchanged and to call
   `requestFullscreen` on the `.game-frame` wrapper (stubbed by an init script: headless Chrome never goes full screen),
-  and to play in place when the API is missing.
+  and to play in place when the API is missing; at desktop width the button is hidden and "Click to play" plays in place.

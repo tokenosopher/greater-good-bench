@@ -364,7 +364,7 @@ body.v2 .site-header { padding-left: max(var(--v2-gutter), calc((100% - 1480px) 
 .v2-card .v2-media .text-tile { padding-top: 60px; } /* below the card's checkbox */
 .v2-tile-media .text-tile, .v2-feature-media .text-tile { position: absolute; inset: 0; aspect-ratio: auto; border: 0; border-radius: 0; padding: 52px 20px 16px; }
 .v2-col .v2-media .prose-box { border: 0; border-radius: 0; max-height: 70vh; }
-/* Game cards: "Play full screen" is the card's main action, in the middle of the picture; the small ▶ in the corner plays
-   in place (buildGameFrame). */
+/* Game cards on small screens: "Play full screen" is the card's main action, in the middle of the picture; the small ▶ in
+   the corner plays in place (buildGameFrame). On desktop the button is hidden (style.css) and the ▶ alone remains. */
 .v2-media .play-full { bottom: auto; top: 50%; transform: translate(-50%, -50%); }
 .v2-col .run-blurb { padding: 0 16px 6px; }

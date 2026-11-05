@@ -44,7 +44,8 @@ export function sandboxedGame(entryUrl) {
 }
 
 // Builds a click-to-play `.game-frame`: an overlay (thumb + play button, carrying `data-play`) and a "Play full screen"
-// button, both replaced in place by a sandboxed iframe on click. Games never boot on their own. Full screen is asked for
+// button (always in the markup, shown only at phone width by style.css's 720px block), both replaced in place by a
+// sandboxed iframe on click. Games never boot on their own. Full screen is asked for
 // in that same click (the Fullscreen API needs a user gesture) on the wrapper, not the iframe, so the frame keeps exactly
 // sandboxedGame()'s attributes and can carry an exit button; Esc leaves full screen and the game keeps running in place.
 // Where full screen isn't available or is refused (iPhone Safari), the game simply plays in place. Returns the frame.
