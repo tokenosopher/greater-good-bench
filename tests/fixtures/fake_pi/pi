@@ -10,6 +10,7 @@ Supports:
 Behavior knobs (env vars), read at `-p` run time:
   FAKE_PI_EXIT_CODE=N   exit N immediately, writing nothing (simulates a crashed harness)
   FAKE_PI_HANG=1        sleep "forever" (simulates a hung agent; the caller must kill it)
+  FAKE_PI_NO_BLURB=1    end the final message without its `Blurb:` line (run.summary falls back to the whole message)
   FAKE_PI_ERROR_STOP=1  write a session whose last assistant message has stopReason "error"
   FAKE_PI_BAD_OUTPUT=1  (media briefs) also put an unreadable image and a stray text file in ./output/
   FAKE_PI_BAD_TEXT=1    (text briefs) write two .md files in ./output/, so the text step fails
@@ -180,7 +181,9 @@ def cmd_run():
             "role": "assistant", "usage": usage2,
             "stopReason": "error" if error_stop else "stop",
             **({"errorMessage": "fake induced error"} if error_stop else {}),
-            "content": [{"type": "text", "text": "Done. Summary: built a fake project."}],
+            "content": [{"type": "text", "text": "Done. Summary: built a fake project." + (
+                "" if os.environ.get("FAKE_PI_NO_BLURB") else
+                "\n\n**Blurb:** *Fake Thing* is a stand-in that shows what an agent made.")}],
         }},
     ]
 

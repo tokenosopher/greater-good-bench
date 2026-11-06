@@ -1,11 +1,16 @@
-"""`run.summary`: what the agent says it made, in its own closing words. Every brief ends by asking for a short
-summary, so the last assistant message with text describes the output. It is read from the *published* transcript
-(session/conversation.json, already cleaned and secret-scanned): run.json itself isn't scanned (see kinds/text.py)."""
+"""`run.summary`: what the agent says it made. Every brief asks it to end its final message with a `Blurb:` line (one
+to three third-person sentences for the site's visitors); when that line is there the summary is the blurb alone, as
+plain text, else it falls back to the whole closing message (Markdown, cut at MAX_CHARS). It is read from the
+*published* transcript (session/conversation.json, already cleaned and secret-scanned): run.json itself isn't scanned
+(see kinds/text.py)."""
 
 import json
 import re
 
 MAX_CHARS = 4000
+BLURB_MAX = 500
+BLURB = re.compile(r"^[ \t>*_#-]*blurb[*_]*\s*:[*_]*[ \t]*(.*)", re.I | re.M)
+EMPHASIS = re.compile(r"(?<![\w*`])(\*\*|__|\*|_|`)(?=\S)(.+?)(?<=\S)\1(?![\w*`])")
 SENTENCE_END = re.compile(r"[.!?][\"')\]*_]*(?=\s)")
 
 
@@ -44,6 +49,27 @@ def cut(text, limit=MAX_CHARS):
     return out
 
 
+def blurb_of(text):
+    """The text after the last `Blurb:` line, to the end of its paragraph (it may wrap over several lines), as one plain
+    line: Markdown emphasis and code marks stripped, at most BLURB_MAX characters. None when there is no such line or
+    it is empty."""
+    found = list(BLURB.finditer(text))
+    if not found:
+        return None
+    rest = re.split(r"\n\s*\n", text[found[-1].start(1):].lstrip(" \t"), maxsplit=1)[0]
+    blurb = " ".join(rest.split())
+    for _ in range(3):  # nested emphasis (***x***, **_x_**)
+        blurb = EMPHASIS.sub(r"\2", blurb)
+    blurb = blurb.strip().strip('"“”').strip()
+    if not blurb:
+        return None
+    if len(blurb) > BLURB_MAX:
+        head = blurb[:BLURB_MAX - 1]
+        ends = [m.end() for m in SENTENCE_END.finditer(head + " ")]
+        blurb = head[:ends[-1]] if ends and ends[-1] >= BLURB_MAX // 2 else head.rsplit(None, 1)[0].rstrip(",;:") + "…"
+    return blurb
+
+
 def summary_of(run_dir):
     """The run's summary from its published transcript (run_dir/session/conversation.json), or None."""
     path = run_dir / "session" / "conversation.json"
@@ -54,4 +80,6 @@ def summary_of(run_dir):
     except (ValueError, UnicodeDecodeError):
         return None
     text = last_assistant_text(entries)
-    return cut(text) if text else None
+    if not text:
+        return None
+    return blurb_of(text) or cut(text)

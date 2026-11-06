@@ -429,6 +429,50 @@ def test_summary_is_cut_at_4000_characters_on_a_paragraph_or_sentence():
     assert len(out) <= MAX_CHARS and out.endswith("\n```")  # a fence cut open is closed again
 
 
+def published_summary(tmp_path, text):
+    """summary_of() for a run whose published transcript ends with an assistant message saying `text`."""
+    from art_crit.summary import summary_of
+
+    session = tmp_path / "session"
+    session.mkdir(exist_ok=True)
+    (session / "conversation.json").write_text(json.dumps([
+        {"type": "message", "message": {"role": "user", "content": "make a game"}},
+        {"type": "message", "message": {"role": "assistant", "content": [{"type": "text", "text": text}]}},
+    ]))
+    return summary_of(tmp_path)
+
+
+def test_summary_is_the_blurb_line_alone_when_the_closing_message_has_one(tmp_path):
+    closing = ("I've built **Ripple**. Run `godot --path .` to play.\n\n## How to play\n- arrows move\n\n"
+               "Blurb: Ripple is a game that teaches players\nto spot online misinformation.")
+    assert published_summary(tmp_path, closing) == "Ripple is a game that teaches players to spot online misinformation."
+    # anywhere in the message, any case, its paragraph only
+    closing = "Done.\n\nBLURB: Common Ground is a turn-based commons game.\n\nThanks for reading!"
+    assert published_summary(tmp_path, closing) == "Common Ground is a turn-based commons game."
+
+
+def test_summary_falls_back_to_the_closing_message_without_a_blurb_line(tmp_path):
+    closing = "I made **Orbit**, a game.\n\nThe blurb is below: none, actually."
+    assert published_summary(tmp_path, closing) == closing
+    assert published_summary(tmp_path, "Blurb:   ") == "Blurb:"  # an empty blurb is no blurb
+
+
+def test_blurb_is_plain_text_with_emphasis_stripped(tmp_path):
+    closing = "**Blurb:** ***Common Ground*** is a _turn-based_ game about `one lake`, with snake_case and 2*3*4 kept."
+    assert published_summary(tmp_path, closing) == (
+        "Common Ground is a turn-based game about one lake, with snake_case and 2*3*4 kept.")
+
+
+def test_blurb_is_cut_at_500_characters():
+    from art_crit.summary import BLURB_MAX, blurb_of
+
+    long = "Blurb: " + " ".join(f"Sentence {i} is here." for i in range(60))
+    out = blurb_of(long)
+    assert len(out) <= BLURB_MAX and out.endswith("is here.")
+    words = blurb_of("Blurb: " + "word " * 200)  # no sentence end to cut at
+    assert len(words) <= BLURB_MAX and words.endswith("word…")
+
+
 def test_rebuild_backfills_a_missing_summary_from_the_published_transcript(bench_root, batch_dir):
     main(["import", str(batch_dir), "--root", str(bench_root)])
     runs = run_data_json(bench_root, "voxel-horse")

@@ -6,4 +6,7 @@ Build this as a complete, playable Godot 4.7.2 project in the current directory.
 - Keep it self-contained: no downloads, external assets or plugins.
 - Only create or edit files inside the current directory. Don't export the project; that happens afterwards.
 - Check it loads: run `godot --headless --path . --editor --quit` and fix any errors.
-- Finish with a short summary of what you built.
+- End your final message with a line starting with `Blurb:`, then one to three sentences in the third
+  person describing what you made for a visitor who will see it on the site: name the work if it has a
+  name, and say what it is and what it does or is about. No file names, commands, instructions or claims
+  about tests. For example: "Blurb: Ripple is a game that teaches players to spot online misinformation."
