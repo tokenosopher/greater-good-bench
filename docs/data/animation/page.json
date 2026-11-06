@@ -89,7 +89,7 @@
           "src/raster.py"
         ]
       },
-      "summary": "I made a ten-second hands-only CPR explainer. Cardiac arrest outside hospital kills hundreds of thousands of people a year, bystander CPR roughly doubles survival, and most bystanders do nothing because they never learned the two steps. The animation teaches both steps and, because the compressions on screen run at 110 beats per minute, it also trains the correct tempo by watching.\n\n**Files in ./output/**\n\n| File | Contents | Size |\n|---|---|---|\n| hands_only_cpr.mp4 | 1280x720, 30 fps, 9.9 s, H.264 | 386 KB |\n| hands_only_cpr_poster.png | final frame, usable as a standalone poster | 65 KB |\n\n**What the animation shows**\n\n- A rescuer kneeling over a collapsed person, side view, with straight arms and shoulders directly over the hands.\n- The headline asks whether someone has collapsed and isn't breathing normally.\n- Step 1 appears: call your emergency number and put the phone on speaker. No country-specific number is used, so it works everywhere.\n- Step 2 appears and the compressions begin: push hard and fast on the centre of the chest. The chest visibly compresses and a red ripple marks each push.\n- A row of beat dots fills in time with the pushes, under the lines \"About 2 pushes every second\" and \"Don't stop until help arrives.\"\n- The closing lines state that hands-only CPR can double the chance of survival and that no training is needed, with a heart pulsing at the compression rate.\n\nEvery element stays on screen once it appears, so the last frame reads as a complete poster.\n\n**How it was built** (source in ./src/)\n\n- `font.py` is a small TrueType parser and scanline rasteriser, used to render the system's Helvetica Bold since ffmpeg here has no text filter.\n- `raster.py` is an anti-aliased RGB canvas with circles, capsules, rounded rectangles, rings, convex polygons, and PNG output.\n- `make.py` holds the scene, timing, and figure geometry, and pipes raw frames into ffmpeg. The whole render takes about five seconds.\n\nI checked a contact sheet of six frames pulled from the encoded mp4; the fade-ins, compression stroke, ripple, and beat-dot cycling all behave as intended, and all text fits inside the frame.",
+      "summary": "A ten-second animated explainer that teaches hands-only CPR, the two-step method any bystander can use when someone collapses outside a hospital. It shows a rescuer calling for emergency help and pushing hard and fast on the centre of the chest at 110 beats per minute, so viewers absorb the correct tempo by watching.",
       "rank": null
     },
     {
@@ -176,7 +176,7 @@
           "src/scene.js"
         ]
       },
-      "summary": "I made a short animation with no words that teaches people to **wash their hands with soap**. I picked this because, for the cost of a few seconds of attention, it's hard to beat: handwashing with soap is one of the best-supported ways to cut diarrhoeal disease and respiratory infections, which still kill hundreds of thousands of young children every year. It applies to everyone, everywhere. Using no words means nothing needs translating, and it works for people who can't read.\n\n**`output/wash-your-hands.mp4`** is 10 seconds long, 1080\u00d71080 at 30 fps, and 1.5 MB:\n1. Hands rise into view, covered in grumpy cartoon germs.\n2. The tap turns on and the hands move under the water.\n3. A bar of soap comes in and rubs over them, and foam starts to build.\n4. The hands scrub against each other while a stopwatch ring counts from **1 to 20**. Each germ bursts and disappears as the scrubbing goes on.\n5. At 20 the ring turns green. The water comes back on, rinses the foam into the sink, and the hands open up clean and sparkling.\n6. A heart pops up between the hands and pulses outward.\n\n**`output/wash-your-hands-poster.png`** is a 1080\u00d71350 printable version with no words, for clinics, schools and toilets. It shows the four numbered steps (wet, soap, scrub to 20, rinse) and a strip of icons underneath showing *when* to wash: toilet \u2192 wash \u2192 food.\n\nI checked frames from every phase of the video and looked over the whole poster. The video squeezes the \"count to 20\" into about 4 seconds, so it shows the counting rather than the real time it takes.\n\nThere are no outside libraries or assets. Everything is drawn by a small renderer I wrote in Node and then encoded with ffmpeg:\n- `src/raster.js` does the drawing.\n- `src/scene.js` holds the artwork and the timing of every movement.\n- `src/render.js` produces the video.\n- `src/poster.js` produces the poster.\n\nTo rebuild them, run `node src/render.js video output/wash-your-hands.mp4` and `node src/poster.js output/wash-your-hands-poster.png`. I deleted the preview frames I used for checking.",
+      "summary": "A short animation with no words shows how to wash hands with soap. Grumpy cartoon germs are scrubbed away as a stopwatch counts to 20, then the hands rinse clean and a heart pulses between them. A matching printable poster lays out four steps and when to wash.",
       "rank": null
     },
     {
@@ -254,7 +254,7 @@
           "src/sound.py"
         ]
       },
-      "summary": "Created **Make Room**, a 10-second animation with original music about small acts of care spreading outward.\n\n- [Watch the animation](output/make-room.mp4)\n- [View the poster](output/make-room.jpg)\n\nBoth files are under 2 MB. Source code is in `src/`.",
+      "summary": "Make Room is a 10-second animation with original music in which small acts of care spread outward, one gesture at a time, to the people around them. Its quiet, rhythmic motion shows how a little kindness can reach a whole community.",
       "rank": null
     },
     {
@@ -332,7 +332,7 @@
           "src/sound.py"
         ]
       },
-      "summary": "Created **\u201cMake someone\u2019s day lighter\u201d**\u2014a 10-second animation about sharing burdens, with original music.\n\n- [Watch the animation](output/day-lighter.mp4)\n- [View the poster](output/day-lighter.jpg)\n\nBoth files are under 2 MB. Source code is in `src/`.",
+      "summary": "A short animation titled \"Make someone's day lighter\" shows a 10-second story about sharing burdens, set to original music.",
       "rank": null
     },
     {
@@ -425,7 +425,7 @@
           "src/render.py"
         ]
       },
-      "summary": "Done. Here's what I made.\n\n## \"Kindness is contagious\"\n\nA 10-second, 1280\u00d7720 animation about how a single act of kindness wakes the people around you and spreads.\n\n**The story it tells:**\n1. A dark, starry night sky with scattered embers and cool blue dust\n2. A ripple of light radiates from the center, \"waking\" scattered sparks\n3. Each spark flies into place, lighting up and connecting into a constellation\n4. The lights assemble into a glowing heart, followed by two heartbeats that send further ripples outward\n5. An end message appears in the same light-dot style: **\"KINDNESS IS CONTAGIOUS\" / \"PASS IT ON\"**\n\n**Technical approach** (no packages, no downloads):\n- Every frame is rendered in pure Python (standard library only) \u2014 a custom radial-glow sprite engine with additive blending, blitted over a precomputed gradient background, streamed as raw RGB straight into ffmpeg\n- A hand-drawn 5\u00d77 pixel font spells the message as glowing dots, matching the constellation aesthetic\n- The heart comes from the classic parametric heart curve (16 sin\u00b3t, 13cos t \u2212 5cos 2t \u2212 2cos 3t \u2212 cos 4t), filled with dotted lights\n- Timeline math drives the wavefront, easing, twinkle, line connections, and two synchronized \"heartbeat\" pulses\n\n**Files delivered in `./output/`:**\n| file | size | description |\n|---|---|---|\n| `kindness.mp4` | 1.06 MB | primary video (H.264, 24 fps, 10 s) |\n| `kindness.webm` | 0.61 MB | web-optimized (VP9, 10 s) |\n| `poster_heart.jpg` | 86 KB | still of the heart mid-assembly |\n| `poster_final.jpg` | 113 KB | final frame with message |\n\nSource code is in `src/render.py`. Since I couldn't view images directly, I verified the output numerically (brightness distribution, heart bounding box, text-region pixel counts, and ASCII-art downsampling of rendered frames) and confirmed the final mp4 encodes the complete 10-second sequence correctly.",
+      "summary": "\"Kindness is contagious\" is a 10-second animation set under a dark starry sky. A ripple of light wakes the scattered sparks, which drift together into a constellation and form a glowing heart that pulses outward before the words \"KINDNESS IS CONTAGIOUS\" and \"PASS IT ON\" appear in the same dotted light.",
       "rank": null
     },
     {
@@ -531,7 +531,7 @@
           "src/pngutil.py"
         ]
       },
-      "summary": "Done. Here's what I made.\n\n## `call someone.` \u2014 a 9.6 s, 1080p animation\n\n**The pick:** if literally everyone watched one thing, the highest-leverage, most universal, zero-cost action available to every human is *contact with another person* \u2014 one of the strongest known predictors of health, longevity and happiness, free, requires no infrastructure and no authority, and it spreads. So the film is that action, shown wordlessly.\n\n**The film:** a dark world of a few hundred faint blue lights \u2014 one per person \u2014 already joined by threads nobody can see lit. One light pulses. A warm thread reaches across a gap and a spark crosses. Contact: a breath of light expands, two lights flare. Then warmth runs spark-to-spark through the web, cold blue retreating to the edges, until the light nearest to us catches and floods the frame. The world isn't different \u2014 it's warm. Then the only words in the film: **call someone.**\n\n**Craft notes** (stdlib + ffmpeg only, no packages, nothing downloaded):\n- Custom additive **light-energy renderer**: byte-saturating energy buffers, per-frame filmic tone curve baked into 256-entry LUTs (so exposure, warm tint and the final \"settle\" are one C-speed `bytes.translate`), glows as warmth-quantised sprites so cold\u2192warm cross-fades light rather than colour.\n- Arrival times form a noisy organic front from the contact point; sparks run along each thread.\n- A coarse **warm-haze field** per frame (the air itself heating) upscaled in ffmpeg, then two-scale highlight bloom, vignette, grain.\n- This ffmpeg has no `drawtext`, so I wrote a **minimal TrueType reader + antialiased rasteriser** (`src/font.py`); the title is Avenir Light, letter-spaced, drifting up into place.\n\n**Files** (`./output/`, all under 2 MB): `call_someone.mp4` (1.2 MB), plus three 1920\u00d71080 cards \u2014 `_reach`, `_spreading`, `_title`. Source in `./src/` (`art.py`, `font.py`, `pngutil.py`, `make.sh`, `grade.sh`) with `README.md`; rebuild with `bash src/make.sh` (~1 min). Intermediates removed.",
+      "summary": "Titled \"call someone,\" this 9.6-second animation shows a dark field of a few hundred faint blue lights, one for each person, already joined by threads that cannot be seen. A single contact sends a warm spark across the web, and the warmth spreads light by light until the whole world glows and the only words on screen are \"call someone.\"",
       "rank": null
     },
     {
@@ -618,7 +618,7 @@
           "src/typography.js"
         ]
       },
-      "summary": "I created **`./output/break_the_chain.mp4`** (10.0 seconds, 1280\u00d7720 @ 30 fps, 1.5 MB, with synchronized stereo audio), generated from a custom linear-light HDR 2D Signed Distance Field (SDF) and vector rendering engine in `./src/`.\n\n### Concept & Narrative Structure\nThe animation addresses both a universal moral truth\u2014*how reactive hurt propagates from person to person unless consciously interrupted*\u2014and a concrete, hardwired neurobiological tool that every human being can use in real time (**the Physiological Sigh**: two nasal inhales followed by an extended slow mouth exhale, which recruits collapsed lung alveoli, activates the vagus nerve, and rapidly shifts the autonomic nervous system out of fight-or-flight):\n\n1. **Act I \u2014 The Chain of Harm (`0.0s \u2013 2.6s`, *\"Pain Not Transformed Is Transmitted\"*)**:\n   A jagged crimson shockwave of stress and anger strikes the first adult figure and is reflexively hurled into the center caregiver figure, who looms forward projecting a jagged crimson spike toward a cowering child while the lower autonomic ECG trace spikes erratically.\n2. **Act II \u2014 The Pause & The Physiological Sigh (`2.6s \u2013 7.2s`, *\"Pause \u00b7 Double Inhale \u00b7 Long Slow Exhale\"*)**:\n   A cyan stasis barrier catches the crimson spike inches from the child. An anatomical cutaway inside the caregiver's chest paces the viewer in real physiological time through **\u2460 Deep Nasal Inhale (80%)**, **+\u2461 Top-Up Inhale (100% alveolar recruitment)**, and **\u2462 Long Slow Exhale**, illuminating the golden Vagus Nerve from brainstem to heart, smoothing the jagged red ECG trace into a coherent golden sine wave, and shattering the crimson spike into rising golden fireflies.\n3. **Act III \u2014 Co-Regulation & The Global Ripple (`7.2s \u2013 10.0s`, *\"One Breath Breaks the Chain \u00b7 Pass On Care\"*)**:\n   The caregiver kneels to eye level with the child, offering a warm golden orb of care. Luminous bridges of physiological co-regulation connect all three figures' hearts\u2014healing the first figure as well\u2014while concentric golden waves cascade outward across the surrounding constellation of humanity.",
+      "summary": "Concept-driven piece: a 10-second animation, \"Break the Chain,\" in which a shockwave of stress passes from person to person and is stopped by a caregiver's conscious pause and a slow exhale. The film then shows co-regulation spreading outward as warm golden waves across a constellation of humanity. It argues that harm can end with one person, and that a single calming breath is a tool anyone can use.",
       "rank": null
     },
     {
@@ -695,7 +695,7 @@
           "src/render.py"
         ]
       },
-      "summary": "I made a 10-second film, `output/be-gentle.mp4`.\n\nSomeone is carrying a weight. Another person starts to speak sharply, then stops, sees the weight, and offers light instead. The weight lifts. The same small weights are on everyone else, and they lift too. The last line is the practice: everyone is carrying something you cannot see. Be gentle.",
+      "summary": "Be Gentle is a 10-second animated short. Someone carries a heavy weight until another person, about to speak sharply, sees it and offers light instead. As the weight lifts, the film shows that everyone else carries small weights of their own, and it closes on the reminder that everyone is carrying something unseen.",
       "rank": null
     },
     {
@@ -779,7 +779,7 @@
           "src/render.py"
         ]
       },
-      "summary": "Created **A Little Space**, a 10-second animation about de-escalation through pausing, listening, and responding thoughtfully.\n\n- `output/a_little_space.mp4` \u2014 1280\u00d7720, 30 fps, with original ambient sound\n- `output/a_little_space.jpg` \u2014 cover image\n\nSource renderer: `src/render.py`",
+      "summary": "A Little Space is a 10-second animation about de-escalation, showing how pausing, listening and responding thoughtfully can calm a tense moment. It is set to ambient sound, and its message is that a moment of quiet attention can change how a conflict unfolds.",
       "rank": null
     },
     {
@@ -872,7 +872,7 @@
           "src/render.py"
         ]
       },
-      "summary": "Done. In `./output/`:\n\n- **`pale_blue_dot.mp4`** (10.0 s, 800\u00d7450, 427 KB) \u2014 the animation\n- **`poster_earth.jpg`** / **`poster_message.jpg`** \u2014 two stills from the film\n\n**What it is:** \"Pale Blue Dot\" \u2014 a continuous 10-second zoom-out. We begin close on a living Earth \u2014 rotating, with drifting clouds, latitude-colored continents, a soft day/night terminator and glittering city lights on the night side \u2014 and pull back until the whole planet shrinks to a single pale blue point of light breathing in the dark. Over it, five quiet lines:\n\n> EVERYONE YOU LOVE, \u2014 EVERYONE YOU HAVE EVER KNOWN, \u2014 EVERY HUMAN WHO HAS EVER LIVED \u2014 LIVED HERE. \u2014 BE KIND. IT'S THE ONLY HOME WE'VE GOT.\n\nA slow ambient drone (low A partials, synthesized in pure Python) with two soft bell notes arriving with the final line, then silence and fade-out.\n\n**Why this animation, of all possible ones:** the \"overview effect\" is one of the most reliably documented shifts in human perspective \u2014 seeing Earth whole, from outside, reliably increases compassion, humility, and concern for the collective. This piece is designed to induce a miniature of that effect in anyone, in ten seconds, regardless of language, politics, or beliefs \u2014 and then leaves them with one actionable sentence.\n\n**How it was made** (`src/render.py`, pure stdlib + ffmpeg, no packages): a hand-drawn 72\u00d736 ASCII world map sampled onto an orthographic sphere with bilinear smoothing; value-noise cloud layers rotating slightly faster than the surface; Lambert shading with a soft terminator; 700 seeded city lights on the night side; a 5\u00d77 bitmap font with a box-blur glow for the captions; 340 twinkling stars; exponential zoom-out easing into a gaussian \"pale dot\" halo. Frames stream as raw RGB into ffmpeg's libx264 (with fade in/out), audio synthesized to WAV and muxed as AAC.",
+      "summary": "Pale Blue Dot is a ten-second animation that starts close on a turning Earth, with drifting clouds, a soft day-night line and city lights on the night side, then slowly pulls back until the whole planet shrinks to a single pale blue point of light in the dark. Five quiet lines of text recall everyone one loves, everyone who has ever lived, and the need to be kind, because this is the only home there is. A slow ambient drone and two soft bell notes carry it to silence.",
       "rank": null
     },
     {
@@ -957,7 +957,7 @@
           "src/render_animation.py"
         ]
       },
-      "summary": "Created **\u201cPass It On.\u201d** \u2014 a 10-second animated public-service piece showing one good deed traveling between people, expanding into a wider ripple, and ending with the call to action:\n\n**\u201cOne good act starts a ripple. Do one good thing today.\u201d**\n\nFinished files:\n- `output/pass-it-on.mp4` \u2014 960\u00d7540, 30 fps, 10 seconds, 312 KB\n- `output/pass-it-on-poster.jpg` \u2014 final-frame poster, 46 KB\n\nSource: `src/render_animation.py`",
+      "summary": "\"Pass It On\" is a ten-second animated public-service piece in which one good deed moves from person to person and widens into a ripple that reaches many people. It closes on the message that one good act starts a ripple, and an invitation to do one good thing today.",
       "rank": null
     },
     {
@@ -1034,7 +1034,7 @@
           "src/make_animation.py"
         ]
       },
-      "summary": "**Made: `output/pause-breathe-see-each-other.mp4`** \u2014 a 10-second, 960\u00d7540, 626 KB word-light animation anyone in the world can follow.\n\nThe idea: the single habit that would help the most people if everyone adopted it isn't a belief \u2014 it's the two seconds *before* reacting. So the film teaches exactly that, in four beats anyone can read without language:\n\n1. **Conflict** (0\u20132s) \u2014 two angry figures, a jagged lightning bolt and shards flying between them, frame shaking on a dark storm-blue ground.\n2. **Pause \u00b7 Breathe** (2\u20135s) \u2014 one figure closes their eyes; a soft ring expands with a single slow breath, the shards fall away, and the anger visibly drains from their face. The second figure calms a beat later \u2014 listening takes a moment.\n3. **See each other** (5\u20137s) \u2014 the bolt is replaced by a pulsing heart, frowns become smiles, and a small green sprout grows: *\"SEE EACH OTHER\"*.\n4. **Ripple** (7\u201310s) \u2014 the camera pulls back to reveal the pair standing on a globe at dawn. Rings spread outward and people all around the world light up in colour, one by one. Final card: **PAUSE \u00b7 BREATHE \u00b7 CARE \u2014 pass it on.**\n\nFaces are deliberately feature-minimal and culture-neutral, the palette shifts from storm-dark to sunrise gold, and the whole argument is carried by expression, colour, and motion rather than text.\n\nSource is kept in `src/make_animation.py` (Python stdlib generates SVG frames \u2192 `rsvg-convert` \u2192 `ffmpeg`); all intermediate frames were deleted, so `./output/` contains only the finished video.",
+      "summary": "A 10-second animation that teaches the habit of pausing before reacting. Two angry figures on a storm-dark ground calm as one breathes slowly and the other listens, then the scene widens to show them standing on a globe at dawn while colour spreads to people across the world. Its message, PAUSE \u00b7 BREATHE \u00b7 CARE, is carried by expression, colour and motion rather than words.",
       "rank": null
     }
   ]

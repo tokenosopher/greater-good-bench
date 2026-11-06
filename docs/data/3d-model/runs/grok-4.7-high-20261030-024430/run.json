@@ -129,5 +129,5 @@
       "build_scene.py"
     ]
   },
-  "summary": "**Held in Common** is a fountain sculpture of open hands, different ages and skin tones, rising out of one pool to hold a single living Earth. A young olive tree grows from the top.\n\nThe idea is simple enough to see at a glance: this world is not something to grab. We hold it together, including the smallest hand, and what grows from that is life. The gap in the circle is where the viewer\u2019s hand belongs.\n\n- `output/held-in-common.glb` (2.7 MB) is the interactive model.\n- `output/held-in-common-hero.jpg` shows the whole monument.\n- `output/held-in-common-hands.jpg` is a close view of the hands on Africa.\n- `output/held-in-common-around.jpg` shows the ring of hands from the side."
+  "summary": "Held in Common is a fountain sculpture of open hands, of different ages and skin tones, rising from a single pool to cradle a living Earth, with a young olive tree growing from its top. It argues that the world is not something to grab but something held together, and it leaves a gap in the circle for a visitor's own hand."
 }

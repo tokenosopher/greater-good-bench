@@ -7,12 +7,13 @@ import { fmtBytes, fmtNum } from "./fmt.js";
 import { mountModel } from "./model.js";
 
 // What differs per kind in the UI: its name, the run page's output tab, what a run without output says,
-// the badge for a kind step that failed, and whether its output is a gallery of files (output.items) or a text to read
-// (output.text) rather than a game or page. Anything else (kinds the viewer doesn't know) reads as a game.
+// the badge for a kind step that failed, the words on a card's "open the run" cue for a game or page (`open`), and
+// whether its output is a gallery of files (output.items) or a text to read (output.text) rather than a game or page.
+// Anything else (kinds the viewer doesn't know) reads as a game.
 const KIND_UI = {
-  godot: { label: "Game", tab: "Game", none: "No playable build recorded for this run.", failed: "export failed" },
+  godot: { label: "Game", tab: "Game", none: "No playable build recorded for this run.", failed: "export failed", open: "Play" },
   media: { label: "Vector", tab: "Output", none: "No output files recorded for this run.", failed: "output failed", gallery: true },
-  web: { label: "Web", tab: "Page", none: "No packaged page recorded for this run.", failed: "packaging failed" },
+  web: { label: "Web", tab: "Page", none: "No packaged page recorded for this run.", failed: "packaging failed", open: "View the page" },
   blender: { label: "3D", tab: "Output", none: "No model or renders recorded for this run.", failed: "output failed", gallery: true },
   text: { label: "Text", tab: "Read", none: "No text recorded for this run.", failed: "text failed", text: true },
 };
@@ -130,13 +131,25 @@ export function modelElement(item, base, poster = null, { compact = false } = {}
 // The first render of a run, shown behind its model's "View in 3D" button.
 const posterOf = (items) => items.find((i) => i.type === "image") ?? null;
 
-// A run's media items as captioned figures (file name, size, duration) with download links.
+// The items a gallery shows, and the hero a card picks from: the 3D model(s) when there is one (its first render stays
+// as the "View in 3D" poster), else the video(s), else every image. Renders and stills beside a model or a video are
+// working files; the gallery lists them under "Other files" instead (by item type, never by kind name).
+export function shownItems(items) {
+  const models = items.filter((i) => i.type === "model");
+  if (models.length) return models;
+  const videos = items.filter((i) => i.type === "video");
+  return videos.length ? videos : items;
+}
+
+// A run's media items as captioned figures (file name, size, duration) with download links: the shownItems() ones,
+// then any others as a small "Other files" list of download links, so nothing is lost.
 // Downloads use the `download` attribute so an SVG is saved, never opened as a page here. `full` (the run page) shows
 // them one below the other at their own size (never wider than the page) instead of in fixed 4:3 boxes. `tools(item)`
 // returns extra nodes for an item's caption (the owner's local cover buttons).
 export function mediaGallery(items, base, { full = false, tools = null } = {}) {
   const grid = el("div", { class: full ? "media-grid is-full" : "media-grid" });
-  for (const item of items || []) {
+  const shownSet = shownItems(items || []);
+  for (const item of shownSet) {
     const name = item.path.split("/").pop();
     const dims = item.width && item.height ? `${item.width}×${item.height}` : null;
     const dur = item.duration_s != null ? `${Number(item.duration_s).toFixed(1)}s` : null;
@@ -148,6 +161,20 @@ export function mediaGallery(items, base, { full = false, tools = null } = {}) {
     ]);
     const boxClass = item.type === "model" && full ? "media-full is-model" : full ? "media-full" : "media-box";
     grid.append(el("figure", { class: item.type === "model" ? "media-item is-model" : "media-item" }, [el("div", { class: boxClass }, [mediaElement(item, base, posterOf(items))]), caption]));
+  }
+  const others = (items || []).filter((i) => !shownSet.includes(i));
+  if (others.length) {
+    grid.append(el("div", { class: "media-other" }, [
+      el("h3", { class: "media-other-title", text: "Other files" }),
+      el("ul", {}, others.map((item) => {
+        const name = item.path.split("/").pop();
+        return el("li", {}, [
+          el("a", { text: name, attrs: { href: base + item.path, download: name } }),
+          el("span", { class: "muted", text: [item.width && item.height ? `${item.width}×${item.height}` : null, fmtBytes(item.bytes)].filter(Boolean).join(" · ") }),
+          ...(tools?.(item) ?? []), // the owner's cover buttons stay reachable for a hidden still
+        ]);
+      })),
+    ]));
   }
   return grid;
 }
@@ -183,8 +210,50 @@ export function mediaCard(items, base, href = null) {
     box.replaceChildren(...[hero, items.length > 1 ? el("span", { class: "media-count", text: mediaCount(items) }) : null].filter(Boolean));
     thumbs.forEach((t, j) => t.setAttribute("aria-current", String(j === i)));
   };
-  if (items.length) show(Math.max(0, items.findIndex((i) => i.type === "video" || i.type === "model")));
+  if (items.length) show(items.indexOf(shownItems(items)[0]));
   return el("div", { class: "media-card" }, [box, thumbs.length ? el("div", { class: "media-strip" }, thumbs) : null]);
+}
+
+// A card's output as one link to the run page (`href`): the lanes cards and compare columns never play anything in
+// place. It shows a still (a game's or page's screenshot, the hero item's thumbnail or poster, a model's first render),
+// a strip of the outputs' thumbnails when there are several (pictures only, part of the link), and a cue saying what
+// the run page does: "▶ Play" / "▶ Watch" / "▶ View in 3D" in the middle, or "Open run →" in the corner for pictures.
+// Images, SVGs included, stay <img> (mediaElement(), ADR-0004); nothing here loads a frame, a video or three.js.
+function outputLink(run, base, href) {
+  const out = run.output;
+  let still = null;
+  let strip = null;
+  let cue = null;
+  if (out.items) {
+    const items = out.items;
+    const hero = shownItems(items)[0];
+    const poster = posterOf(items);
+    const picture = (item) => (item.type === "video" ? item.thumb || item.poster : item.type === "model" ? poster && shown(poster, true) : shown(item, true));
+    if (hero) {
+      const src = picture(hero);
+      still = hero.type === "image" ? mediaElement(hero, base, null, { compact: true }) : src ? el("img", { attrs: { src: base + src, alt: "", loading: "lazy" } }) : null;
+      cue = hero.type === "model" ? "View in 3D" : hero.type === "video" ? "Watch" : null;
+    }
+    if (items.length > 1) {
+      strip = el("span", { class: "media-strip" }, items.map((item) => {
+        const src = picture(item);
+        return el("span", { class: item.type === "image" ? "media-thumb" : `media-thumb is-${item.type}`, attrs: { "aria-current": String(item === hero) } },
+          [src ? el("img", { attrs: { src: base + src, alt: "", loading: "lazy" } }) : null]);
+      }));
+    }
+  } else {
+    still = run.thumb ? el("img", { attrs: { src: base + run.thumb, alt: "", loading: "lazy" } }) : null;
+    cue = kindUi(run.kind).open ?? "Play";
+  }
+  const label = cue ?? "Open run";
+  // the cue sits on the picture itself (centred on it, or in its corner), the strip at the bottom of the whole link
+  const cueNode = el("span", { class: "open-cue" }, cue
+    ? [el("span", { class: "open-icon", text: "▶", attrs: { "aria-hidden": "true" } }), el("span", { class: "open-label", text: cue })]
+    : [el("span", { class: "open-label", text: "Open run" }), el("span", { class: "open-icon", text: "→", attrs: { "aria-hidden": "true" } })]);
+  return el("a", { class: cue ? "output-link is-play" : "output-link", attrs: { href, title: `${label} on the run page` } }, [
+    el("span", { class: still ? "output-still" : "output-still is-blank" }, [still, cueNode]),
+    strip,
+  ]);
 }
 
 // A text run (output.text, Markdown) on a card: its title and the excerpt recorded at import, as plain text (no fetch),
@@ -194,22 +263,20 @@ export function textCard(out, href = null) {
   return href ? el("a", { class: "text-tile", attrs: { href, title: "Read the run" } }, body) : el("div", { class: "text-tile" }, body);
 }
 
-// The run's own summary (`run.summary`, Markdown the model wrote at the end) as one plain line for a card: its first
-// ~`limit` characters (textContent only), the longer start in the tooltip and, when cut, a link to the run page where it
-// is shown in full. Null when the run has none.
-export function summaryBlurb(run, href = null, limit = 160) {
+// The run's own summary (`run.summary`: one to three plain sentences on what it made) as a card's blurb, in full, as
+// plain text (textContent). Capped at ~`limit` characters with "…" (the whole text then in the tooltip) in case a long
+// one slips through. Null when the run has none.
+export function summaryBlurb(run, limit = 240) {
   const flat = plainSummary(run.summary);
   if (!flat) return null;
   const cut = flat.length > limit;
-  const short = cut ? `${flat.slice(0, limit).replace(/\s+\S*$/, "").replace(/[\s,;:.-]+$/, "")}…` : flat;
-  return el("p", { class: "run-blurb", attrs: { title: flat.length > 600 ? `${flat.slice(0, 600)}…` : flat } }, [
-    el("span", { text: short }),
-    cut && href ? el("a", { class: "run-blurb-more", text: "more", attrs: { href: `${href}#summary`, "aria-label": "Read the model's whole summary" } }) : null,
-  ]);
+  const text = cut ? `${flat.slice(0, limit).replace(/\s+\S*$/, "").replace(/[\s,;:.-]+$/, "")}…` : flat;
+  return el("p", { class: "run-blurb", text, attrs: cut ? { title: flat } : {} });
 }
 
-// Markdown as one line of plain text: no block markers, emphasis, code ticks, link or image syntax (like text.py's plain()).
-function plainSummary(md) {
+// A summary as one line of plain text. Older summaries were Markdown, so block markers, emphasis, code ticks and link or
+// image syntax are dropped (like text.py's plain()); a plain sentence passes through unchanged.
+export function plainSummary(md) {
   if (!md) return "";
   return md.split("\n").filter((line) => !/^\s*(```|~~~|[-*_=|:]{3,}\s*$)/.test(line))
     .map((line) => line.replace(/^\s{0,3}(#{1,6}\s+|>\s?|[-*+]\s+(\[[ xX]\]\s+)?|\d+[.)]\s+)/, "")
@@ -237,13 +304,15 @@ export function textArticle(out, base, { full = false } = {}) {
 // A run's output wherever it is shown, as an array of nodes: the kind step's own error (if any), then
 // the media gallery, the text, the game or page in the sandbox, or the "no output" message.
 // Games and pages start on a click (a thumbnail with a play button) unless `autoplay` (the click was
-// opening the row or the window); `frameClass` is the wrapper of an autoplaying frame. `compact` (cards)
+// opening the row or the window); `frameClass` is the wrapper of an autoplaying frame. `compact` (the classic cards)
 // shows media as one hero with a thumbnail strip instead of the full captioned gallery, its image linking to `href`;
-// `full` (the run page) shows the gallery at full size.
-export function renderOutput(run, base, { autoplay = false, frameClass = "game-frame", compact = false, href = null, full = false, tools = null } = {}) {
+// `full` (the run page) shows the gallery at full size. `link` (the lanes cards and compare columns: the run page's
+// URL) shows the output as one link there (outputLink(); a text as its title/excerpt tile), never playing in place.
+export function renderOutput(run, base, { autoplay = false, frameClass = "game-frame", compact = false, href = null, full = false, tools = null, link = null } = {}) {
   const out = run.output;
   const nodes = out?.error ? [el("p", { class: "run-error", text: out.error })] : [];
   if (!out?.ok) return [...nodes, el("p", { class: "msg", text: kindUi(run.kind).none })];
+  if (link) return [...nodes, out.text ? textCard(out, link) : outputLink(run, base, link)];
   if (out.items) return [...nodes, compact ? mediaCard(out.items || [], base, href) : mediaGallery(out.items || [], base, { full, tools })];
   if (out.text) return [...nodes, compact ? textCard(out, href) : textArticle(out, base, { full })];
   const entry = base + out.entry;

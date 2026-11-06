@@ -743,6 +743,38 @@ input.run-select { width: 16px; height: 16px; margin: 4px 0 0; flex: none; accen
 .model-view .msg { margin: auto; padding: 12px; text-align: center; }
 .media-grid.is-full .media-item.is-model { width: 100%; }
 .media-full.is-model { aspect-ratio: 4 / 3; max-height: 80vh; }
+/* The files a gallery leaves out beside a model or a video (output.js shownItems()): download links under it. */
+.media-other { grid-column: 1 / -1; font-size: 13px; color: var(--ink-3); }
+.media-other-title { margin: 2px 0 6px; font: 600 13px var(--font); color: var(--ink-2); }
+.media-other ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.media-other li { display: flex; flex-wrap: wrap; gap: 4px 10px; overflow-wrap: anywhere; }
+
+/* A card's output as one link to the run page (output.js outputLink()): the still at the card's width, the outputs'
+   thumbnail strip bottom-left, and a cue: "▶ Play / Watch / View in 3D" in the middle, or "Open run →" in the corner. */
+.output-link { position: relative; display: block; color: inherit; text-decoration: none; background: var(--surface); }
+.output-link:hover { text-decoration: none; }
+.output-link:focus-visible { outline: 3px solid var(--sky); outline-offset: -3px; }
+.output-still { position: relative; display: block; }
+.output-still img { display: block; width: 100%; height: auto; }
+.output-still.is-blank { aspect-ratio: 16 / 9; background: var(--midnight); }
+.output-link .media-strip {
+  position: absolute; left: 12px; bottom: 12px; z-index: 1; height: auto; gap: 6px; padding: 6px; overflow: hidden;
+  max-width: calc(100% - 170px); border-radius: 12px; background: rgba(23, 22, 42, .55);
+}
+.output-link .media-thumb { width: 34px; height: 34px; border: 2px solid transparent; border-radius: 7px; background: var(--surface); cursor: inherit; }
+.output-link .media-thumb[aria-current="true"] { border-color: #fff; }
+.open-cue {
+  position: absolute; right: 12px; bottom: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 0 18px; box-sizing: border-box; border-radius: 9999px; background: rgba(2, 9, 58, 0.78); color: #fff;
+  font: 600 14px var(--font); white-space: nowrap; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); transition: background var(--ease);
+}
+.output-link:hover .open-cue, .output-link:focus-visible .open-cue { background: #0075de; }
+.output-link.is-play .open-cue { right: auto; bottom: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 52px; padding: 0 22px 0 8px; gap: 10px; font-size: 15px; }
+.output-link.is-play .open-icon {
+  width: 38px; height: 38px; border-radius: 50%; background: #0075de; display: flex; align-items: center; justify-content: center;
+  padding-left: 3px; box-sizing: border-box; font-size: 14px;
+}
+.output-link.is-play:hover .open-icon, .output-link.is-play:focus-visible .open-icon { background: #fff; color: #0075de; }
 
 /* ---- runs: view toggle, filter bar, selection ---- */
 .view-toggle { display: inline-flex; }
@@ -1079,22 +1111,7 @@ a.text-tile:hover .text-tile-title { text-decoration: underline; }
 .prose-box .prose { font-size: 15px; line-height: 1.65; }
 .prose-box .prose h1 { font-size: 1.5rem; }
 
-/* ---- the model's own summary (run.summary): a block above the output on the run page, a short line on cards ---- */
-.run-summary {
-  max-width: 960px; box-sizing: border-box; margin: 0 0 16px; padding: 14px 18px 12px;
-  border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--r); background: var(--surface);
-}
-.run-summary-title { margin: 0; font: 600 15px/1.3 var(--font); letter-spacing: -0.005em; }
-.run-summary-note { margin: 2px 0 10px; font-size: 12px; color: var(--ink-3); }
-.run-summary-body { max-width: none; font-size: 15px; line-height: 1.6; }
-.run-summary-body > :last-child { margin-bottom: 0; }
-.run-summary-body h1, .run-summary-body h2, .run-summary-body h3 { font-size: 1.05rem; margin: 1em 0 0.4em; }
-.run-summary-body pre { overflow-x: auto; font-size: 13px; }
-.run-summary.is-folded .run-summary-body {
-  max-height: 9.6em; overflow: hidden; /* about six lines */
-  -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent);
-}
-.run-summary-toggle { margin-top: 8px; font-size: 13px; }
+/* ---- the model's own summary (run.summary, one to three plain sentences): the run page's lede, a card's blurb ---- */
+.run-lede { max-width: 70ch; margin: 4px 0 20px; font-size: 1.1rem; line-height: 1.55; color: var(--ink-2); overflow-wrap: anywhere; }
 .run-blurb { margin: 0; padding: 2px 16px 6px; font-size: 13px; line-height: 1.45; color: var(--ink-2); overflow-wrap: anywhere; }
-.run-blurb-more { margin-left: 6px; color: var(--accent); white-space: nowrap; }
 .compare-body .run-blurb { padding: 8px 0 0; }

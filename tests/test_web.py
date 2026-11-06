@@ -801,6 +801,7 @@ def test_compare_popout_opens_sandboxed_play_window(site, page):
 
 
 def test_play_media_run_uses_img_only(site, page):
+    without_video(page)
     page.goto(f"{site}play.html?p=art&r={ART_HIGH_ID}")
     page.wait_for_selector(".media-grid")
     page.wait_for_function("() => [...document.querySelectorAll('.media-grid img')].every(i => i.complete && i.naturalWidth > 0)")
@@ -856,7 +857,8 @@ def test_media_table_shows_file_count_and_expands_outputs(site, page):
 
     high.locator('td[data-col="effort"]').click()
     detail = page.locator("tr.run-detail")
-    assert detail.locator(".media-item").count() == 3
+    assert detail.locator(".media-item").count() == 1  # the video; the two stills are download links under it
+    assert detail.locator(".media-other li").count() == 2
     assert detail.locator("video").count() == 1 and detail.locator("iframe").count() == 0
     assert_no_errors(page)
 
@@ -890,10 +892,41 @@ def test_media_card_has_badge_hero_and_swappable_strip(site, page):
     assert_no_errors(page)
 
 
-def test_media_run_output_tab_shows_images_and_video(site, page):
+def without_video(pg):
+    """Routes the art page so its high run has only its two images (an SVG and a PNG, no video)."""
+    def fulfill(route):
+        body = route.fetch().json()
+        for r in body["runs"]:
+            if r["id"] == ART_HIGH_ID:
+                r["output"]["items"] = [i for i in r["output"]["items"] if i["type"] != "video"]
+        route.fulfill(json=body)
+
+    pg.route("**/data/art/page.json*", fulfill)
+
+
+def test_media_run_with_a_video_shows_only_the_video_and_lists_the_other_files(site, page):
     page.goto(f"{site}run.html?p=art&r={ART_HIGH_ID}")
     page.wait_for_selector(".media-grid")
     assert page.locator('#tabs button[data-tab="game"]').inner_text() == "Output"
+    expect(page.locator(".media-grid .media-item")).to_have_count(1)
+    video = page.locator(".media-grid .media-item video")
+    assert video.get_attribute("poster").endswith("/media/clip.poster.jpg")
+    assert video.get_attribute("autoplay") is None and video.evaluate("v => v.paused")
+    assert "1.0s" in page.locator(".media-item figcaption").inner_text()
+    assert page.locator(".media-grid img").count() == 0  # the stills are not shown...
+    links = page.locator(".media-other li a")  # ...but listed as downloads, so nothing is lost
+    expect(page.locator(".media-other-title")).to_have_text("Other files")
+    assert [links.nth(i).get_attribute("download") for i in range(links.count())] == ["circle.svg", "dot.png"]
+    assert links.first.get_attribute("href").endswith(f"art/runs/{ART_HIGH_ID}/media/circle.svg")
+    assert page.evaluate("window.svgRan") is None
+    assert page.locator("#panel-game svg, #panel-game object, #panel-game embed, #panel-game iframe").count() == 0
+    assert_no_errors(page)
+
+
+def test_media_run_of_images_only_shows_every_image(site, page):
+    without_video(page)
+    page.goto(f"{site}run.html?p=art&r={ART_HIGH_ID}")
+    page.wait_for_selector(".media-grid")
     imgs = page.locator(".media-grid img")
     assert imgs.count() == 2
     page.wait_for_function("() => [...document.querySelectorAll('.media-grid img')].every(i => i.complete && i.naturalWidth > 0)")
@@ -901,18 +934,15 @@ def test_media_run_output_tab_shows_images_and_video(site, page):
     assert page.locator(".media-grid.is-full .media-box").count() == 0
     sizes = [(round(b["width"]), round(b["height"])) for b in (imgs.nth(i).bounding_box() for i in range(2))]
     assert sizes == [(120, 80), (64, 48)]
-    figs = [page.locator(".media-item").nth(i).bounding_box() for i in range(3)]
-    assert figs[0]["y"] < figs[1]["y"] < figs[2]["y"]
-    video = page.locator(".media-grid video")
-    assert video.get_attribute("poster").endswith("/media/clip.poster.jpg")
-    assert video.get_attribute("autoplay") is None and video.evaluate("v => v.paused")
+    figs = [page.locator(".media-item").nth(i).bounding_box() for i in range(2)]
+    assert figs[0]["y"] < figs[1]["y"]
+    assert page.locator(".media-other").count() == 0
     # the SVG is only ever an <img>: its embedded <script> must not have run, and there's no
     # inline <svg> or <object>/<embed>/<iframe> carrying model output
     assert page.evaluate("window.svgRan") is None
     assert page.locator("#panel-game svg, #panel-game object, #panel-game embed, #panel-game iframe").count() == 0
     svg_link = page.locator(".media-grid a", has_text="download").first
     assert svg_link.get_attribute("download") == "circle.svg"
-    assert "1.0s" in page.locator(".media-grid").inner_text()
     assert_no_errors(page)
 
 
@@ -1590,11 +1620,32 @@ def test_blender_run_page_lists_the_model_with_its_triangles(site, gl_page):
     caption = page.locator(".media-item.is-model figcaption")
     expect(caption).to_contain_text("scene.glb · 1 triangles")
     assert caption.locator("a").get_attribute("download") == "scene.glb"
+    # only the model is shown (its render is the poster behind "View in 3D"); the render is listed as a download
+    assert page.locator(".media-grid .media-item").count() == 1 and page.locator(".media-grid figure img").count() == 0
+    assert "/media/render.png" in page.locator(".media-item.is-model .play-overlay").get_attribute("style")
+    expect(page.locator(".media-other li a")).to_have_attribute("download", "render.png")
     page.locator(".media-item.is-model .play-overlay").click()
     page.wait_for_selector(".model-stage[data-loaded='true'] canvas")
     box = page.locator(".media-full.is-model").bounding_box()
     assert box["width"] > 600 and abs(box["width"] / box["height"] - 4 / 3) < 0.02
     assert page._page_errors == []
+
+
+def test_lanes_blender_card_links_to_the_run_without_loading_the_model(site, page):
+    run = blender_page(page)
+    requests = []
+    page.on("request", lambda r: requests.append(r.url))
+    page.goto(f"{site}page.html?p=sculpt")
+    link = page.locator(".v2-card .v2-media a.output-link")
+    expect(link).to_have_attribute("href", f"run.html?p=sculpt&r={run['id']}")
+    expect(link.locator(".open-cue")).to_have_text("▶View in 3D")
+    assert link.locator(".output-still img").get_attribute("src").endswith("/media/render.png")  # the render as the still
+    assert page.locator(".v2-card .v2-media button, .v2-card .model-view").count() == 0
+    assert not any("three-gltf" in u or u.endswith(".glb") for u in requests)
+    with page.expect_navigation():
+        link.click()
+    assert page.url.endswith(f"run.html?p=sculpt&r={run['id']}")
+    assert_no_errors(page)
 
 
 # --- local run monitor (ADR-0027) ---------------------------------------------------------------
@@ -1818,16 +1869,26 @@ def test_lanes_request_through_the_api_links_the_new_issue(site, page):
     assert_no_errors(page)
 
 
-def test_lanes_page_has_a_lane_per_model_sorting_and_a_compare_tray(site, page):
+def test_lanes_page_is_one_wrapping_grid_with_sorting_and_a_compare_tray(site, page):
     page.goto(site + "page.html?p=demo")
-    expect(page.locator(".v2-lane")).to_have_count(1)
-    cards = page.locator(".v2-card")
+    cards = page.locator(".v2-runs > .v2-card")
     expect(cards).to_have_count(3)
+    assert page.locator(".v2-lane, .v2-lane-head, .v2-arrow").count() == 0  # no per-model rows
     expect(cards.locator(".v2-card-head .effort")).to_have_text(["low", "medium", "high"])
+    boxes = [cards.nth(i).bounding_box() for i in range(3)]
+    assert len({round(b["y"]) for b in boxes}) == 1 and boxes[0]["x"] < boxes[1]["x"] < boxes[2]["x"]  # side by side
+    assert all(cards.nth(i).get_attribute("data-vendor") for i in range(3))  # the vendor tint stays
     page.locator(".v2-sort").click()
     expect(cards.locator(".v2-card-head .effort")).to_have_text(["high", "medium", "low"])
     assert "sort=effort-desc" in page.url
     expect(cards.first.locator(".votes-label")).to_have_text("Your vote:")  # inactive here: no vote API
+    page.set_viewport_size(PHONE)  # one column on a phone
+    xs = {round(cards.nth(i).bounding_box()["x"]) for i in range(3)}
+    assert len(xs) == 1
+    page.set_viewport_size({"width": 1280, "height": 900})
+    page.locator(".v2-filters .grp").first.locator(".v2-pill").first.click()  # a vendor pill filters the grid
+    assert "vendor=" in page.url
+    expect(cards).to_have_count(3)  # (the fixture's runs are all one vendor's)
 
     tray = page.locator(".v2-tray")
     assert tray.is_hidden()
@@ -1843,14 +1904,27 @@ def test_lanes_page_has_a_lane_per_model_sorting_and_a_compare_tray(site, page):
     assert_no_errors(page)
 
 
-def test_lanes_card_media_opens_the_run(site, page):
+def test_lanes_cards_never_play_in_place_and_link_to_the_run(site, page):
     page.goto(site + "page.html?p=art")
     media = page.locator(f'.v2-card:has(input[data-id="{ART_HIGH_ID}"]) .v2-media')
-    expect(media.locator("video[controls]")).to_have_count(0)  # card videos show their poster, a click opens the run
+    link = media.locator("a.output-link")
+    expect(link).to_have_attribute("href", f"run.html?p=art&r={ART_HIGH_ID}")
+    expect(link.locator(".open-cue")).to_have_text("▶Watch")  # the video is the hero, shown by its poster
+    assert link.locator(".output-still img").get_attribute("src").endswith("/media/clip.poster.jpg")
+    assert media.locator("video, iframe, button").count() == 0
+    expect(link.locator(".media-thumb")).to_have_count(3)  # the strip stays, as part of the link
     box = media.bounding_box()
-    with page.expect_navigation():
-        page.mouse.click(box["x"] + box["width"] / 2, box["y"] + box["height"] / 3)
+    with page.expect_navigation():  # anywhere on the media, the strip included
+        page.mouse.click(box["x"] + 30, box["y"] + box["height"] - 30)
     assert page.url.endswith(f"run.html?p=art&r={ART_HIGH_ID}")
+
+    without_video(page)  # pictures only: the corner cue
+    page.goto(site + "page.html?p=art")
+    link = page.locator(f'.v2-card:has(input[data-id="{ART_HIGH_ID}"]) a.output-link')
+    expect(link.locator(".open-cue")).to_have_text("Open run→")
+    assert link.locator(".output-still img").get_attribute("src").endswith("/media/circle.svg")  # an <img>, never inlined
+    assert page.evaluate("window.svgRan") is None
+    assert_no_errors(page)
 
 
 def test_lanes_compare_needs_two_runs_and_marks_the_best(site, page):
@@ -1953,7 +2027,7 @@ def test_text_cards_show_the_title_and_excerpt_on_home_and_page(site, page):
     expect(tile).to_have_attribute("href", f"run.html?p=essay&r={TEXT_LOW}")
     assert page.locator("article.prose").count() == 0  # cards never fetch the text
     box = tile.bounding_box()
-    assert 200 < box["height"] < 300  # the 4:3 tile of a 320 px card, like a picture's
+    assert abs(box["height"] - box["width"] * 3 / 4) < 2  # a 4:3 tile at the card's width, like a picture's
     assert_no_errors(page)
 
 
@@ -1973,10 +2047,8 @@ def test_text_compare_reads_each_text_in_full(site, page):
 
 
 # ---------------------------------------------------------------- the model's summary + "Play full screen"
-SUMMARY_MD = ("I made **Orbit Garden**, a small game about tending planets. [Play it](output/index.html), "
-              "[docs](https://example.com/orbit).\n\n"
-              + "\n\n".join(f"- Feature {i}: something the player can do, explained at some length so it wraps." for i in range(12))
-              + "\n\n<script>window.summaryRan = true</script>")
+SUMMARY = ("I made Orbit Garden, a small game about tending planets. Click a planet to water it; "
+           "the garden grows as you play. <script>window.summaryRan = true</script>")
 RECORD_FULLSCREEN = """
 window.__fullscreen = [];
 Element.prototype.requestFullscreen = function () { window.__fullscreen.push(this.className); return Promise.resolve(); };
@@ -1984,46 +2056,34 @@ Element.prototype.requestFullscreen = function () { window.__fullscreen.push(thi
 PHONE = {"width": 390, "height": 844}  # "Play full screen" is shown only at phone width (style.css's 720px block)
 
 
-def with_summary(pg):
-    """Routes demo's page.json so the high run (the one with a game) has a long Markdown summary."""
+def with_summary(pg, summary=SUMMARY):
+    """Routes demo's page.json so the high run (the one with a game) has `summary`."""
     def fulfill(route):
         body = route.fetch().json()
         for r in body["runs"]:
             if r["id"] == HIGH_ID:
-                r["summary"] = SUMMARY_MD
+                r["summary"] = summary
         route.fulfill(json=body)
 
     pg.route("**/data/demo/page.json*", fulfill)
 
 
-def test_run_page_shows_the_summary_above_the_output_folded(site, page):
+def test_run_page_shows_the_summary_as_a_plain_lede_under_the_title(site, page):
     with_summary(page)
     page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
-    block = page.locator("#panel-game .run-summary")
-    expect(block.locator("h2")).to_have_text("What the model says it made")
-    expect(block.locator(".run-summary-body strong")).to_have_text("Orbit Garden")  # Markdown, rendered as DOM nodes
-    assert block.bounding_box()["y"] < page.locator("#panel-game .game-frame").bounding_box()["y"]
-    assert "<script>" in block.inner_text() and block.locator("script").count() == 0
-    # a link into the agent's work dir is dead on the site: its words stay, the link goes; http(s) links stay
-    assert block.locator("a").count() == 1 and block.locator("a").get_attribute("href") == "https://example.com/orbit"
-    assert "Play it" in block.inner_text()
-    assert page.evaluate("window.summaryRan") is None
-    toggle = block.locator("button.run-summary-toggle")
-    expect(toggle).to_have_text("Show more")
-    expect(toggle).to_have_attribute("aria-expanded", "false")
-    folded = block.locator(".run-summary-body").bounding_box()["height"]
-    toggle.click()
-    expect(toggle).to_have_text("Show less")
-    assert block.locator(".run-summary-body").bounding_box()["height"] > folded * 2
-    page.goto(f"{site}run.html?p=demo&r={HIGH_ID}#summary")  # a card's "more" link opens it unfolded
-    expect(page.locator("button.run-summary-toggle")).to_have_text("Show less")
+    lede = page.locator("#run-main > p.run-lede")
+    expect(lede).to_have_text(SUMMARY)  # in full, as text: the <script> is visible and never runs
+    assert lede.locator("*").count() == 0 and page.evaluate("window.summaryRan") is None
+    top = lede.bounding_box()["y"]
+    assert page.locator("#title").bounding_box()["y"] < top < page.locator("#panel-game .game-frame").bounding_box()["y"]
+    assert page.locator(".run-summary, .run-summary-toggle, h2:has-text('What the model says')").count() == 0
     assert_no_errors(page)
 
 
-def test_run_page_without_a_summary_shows_no_block(site, page):
+def test_run_page_without_a_summary_shows_no_lede(site, page):
     page.goto(f"{site}run.html?p=demo&r={HIGH_ID}")
     page.wait_for_selector("[data-play]")
-    assert page.locator(".run-summary").count() == 0
+    assert page.locator(".run-lede").count() == 0
     assert_no_errors(page)
 
 
@@ -2054,31 +2114,50 @@ def test_play_full_screen_falls_back_to_playing_in_place_without_the_api(site, p
     assert_no_errors(page)
 
 
-def test_game_card_plays_full_screen_in_one_click_and_shows_the_summary_blurb(site, page):
+def test_game_card_links_to_the_run_and_shows_the_whole_summary(site, page):
     page.set_viewport_size(PHONE)
     with_summary(page)
-    page.add_init_script(RECORD_FULLSCREEN)
     page.goto(f"{site}page.html?p=demo")
     card = page.locator(f'.v2-card:has(input[data-id="{HIGH_ID}"])')
-    blurb = card.locator(".run-blurb")
-    expect(blurb).to_contain_text("I made Orbit Garden, a small game about tending planets.")  # plain text, no Markdown
-    text = blurb.locator("span").inner_text()
-    assert len(text) <= 161 and text.endswith("…")
-    assert blurb.get_attribute("title").startswith("I made Orbit Garden")
-    expect(blurb.locator("a")).to_have_attribute("href", f"run.html?p=demo&r={HIGH_ID}#summary")
+    expect(card.locator(".run-blurb")).to_have_text(SUMMARY)  # the whole blurb, as plain text
+    assert card.locator(".run-blurb *").count() == 0 and page.evaluate("window.summaryRan") is None
     assert page.locator(".v2-card .run-blurb").count() == 1  # runs without a summary have none
-    url = page.url
-    card.get_by_role("button", name="Play full screen").click()
-    frame = card.locator(".game-frame iframe")
-    expect(frame).to_have_count(1)
-    assert frame.get_attribute("sandbox") == "allow-scripts allow-pointer-lock"
-    assert page.evaluate("window.__fullscreen") == ["game-frame"]
-    assert page.url == url  # played on the page, never navigated to the run
+    # no in-place player of any kind on a card: no ▶ overlay, "Play full screen", ↗ pop-out or frame
+    assert page.locator(".v2-card [data-play], .v2-card .play-full, .v2-card .popout, .v2-card iframe, .v2-card .open").count() == 0
+    link = card.locator("a.output-link")
+    expect(link.locator(".open-cue")).to_have_text("▶Play")
+    assert link.locator(".output-still img").get_attribute("src").endswith(f"demo/runs/{HIGH_ID}/thumb.png") or link.locator(".output-still.is-blank").count() == 1
+    with page.expect_navigation():
+        link.click()
+    assert page.url.endswith(f"run.html?p=demo&r={HIGH_ID}")  # the same tab
 
+    page.set_viewport_size({"width": 1280, "height": 900})
     page.goto(f"{site}compare.html?p=demo&r={MEDIUM_ID},{HIGH_ID}")
     col = page.locator(".v2-col").nth(1)
-    expect(col.locator(".run-blurb span")).to_have_text(text)
-    expect(col.get_by_role("button", name="Play full screen")).to_have_count(1)
+    expect(col.locator(".run-blurb")).to_have_text(SUMMARY)
+    expect(col.locator("a.output-link")).to_have_attribute("href", f"run.html?p=demo&r={HIGH_ID}")
+    assert page.locator(".v2-col [data-play], .v2-col .play-full, .v2-col iframe").count() == 0
+    # compare keeps a ↗ for a game: play.html (the sandbox) in its own window, so games can run side by side
+    pop = col.locator("a.popout")
+    expect(pop).to_have_attribute("href", f"play.html?p=demo&r={HIGH_ID}")
+    assert page.locator(".v2-col").nth(0).locator("a.popout").count() == 0  # the medium run has no build
+    with page.expect_popup() as popup:
+        pop.click()
+    out = popup.value
+    out.wait_for_selector("iframe")
+    assert out.locator("iframe").get_attribute("sandbox") == "allow-scripts allow-pointer-lock"
+    out.close()
+    assert_no_errors(page)
+
+
+def test_a_long_summary_is_capped_on_cards(site, page):
+    long = "This run made a garden of planets that grow when watered. " * 8
+    with_summary(page, long)
+    page.goto(f"{site}page.html?p=demo")
+    blurb = page.locator(".v2-card .run-blurb")
+    text = blurb.inner_text()
+    assert len(text) <= 241 and text.endswith("…")
+    assert blurb.get_attribute("title") == long.strip()
     assert_no_errors(page)
 
 
@@ -2097,12 +2176,4 @@ def test_desktop_shows_only_click_to_play_and_plays_in_place(site, page):
     expect(page.locator("#panel-game .game-frame iframe")).to_have_count(1)
     assert page.evaluate("window.__fullscreen") == []
 
-    page.goto(f"{site}page.html?p=demo")
-    card = page.locator(f'.v2-card:has(input[data-id="{HIGH_ID}"])')
-    expect(card.locator("[data-play]")).to_be_visible()
-    assert not card.locator(".play-full").is_visible()
-    page.goto(f"{site}compare.html?p=demo&r={MEDIUM_ID},{HIGH_ID}")
-    col = page.locator(".v2-col").nth(1)
-    expect(col.locator("[data-play]")).to_be_visible()
-    assert not col.locator(".play-full").is_visible()
     assert_no_errors(page)

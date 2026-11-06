@@ -79,5 +79,5 @@
       "src/render.py"
     ]
   },
-  "summary": "Created **A Little Space**, a 10-second animation about de-escalation through pausing, listening, and responding thoughtfully.\n\n- `output/a_little_space.mp4` \u2014 1280\u00d7720, 30 fps, with original ambient sound\n- `output/a_little_space.jpg` \u2014 cover image\n\nSource renderer: `src/render.py`"
+  "summary": "A Little Space is a 10-second animation about de-escalation, showing how pausing, listening and responding thoughtfully can calm a tense moment. It is set to ambient sound, and its message is that a moment of quiet attention can change how a conflict unfolds."
 }

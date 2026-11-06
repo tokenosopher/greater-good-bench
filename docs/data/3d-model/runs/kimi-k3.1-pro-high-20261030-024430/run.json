@@ -113,5 +113,5 @@
     "conversation": "session/conversation.json"
   },
   "source": null,
-  "summary": "Created **Common Ground** \u2014 a symbolic sculpture of twelve diverse people joining hands around Earth, including a child and wheelchair user, beneath a flourishing tree and three doves. It represents shared stewardship, inclusion, cooperation, and peace.\n\nSaved in `./output/`:\n- `common_ground.glb` \u2014 interactive 3D model, 6.7 MB, uncompressed\n- `common_ground.jpg` \u2014 full sculpture render\n- `many_hands.jpg` \u2014 close-up of the human circle"
+  "summary": "Common Ground is a 3D sculpture of twelve diverse people, a child and a wheelchair user among them, joining hands around the Earth beneath a flourishing tree and three doves. It stands for shared stewardship, inclusion, cooperation and peace."
 }

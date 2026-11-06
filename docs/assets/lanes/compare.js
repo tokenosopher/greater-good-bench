@@ -1,7 +1,7 @@
 import { el, qs, qsList, loadPage, SITE_NAME } from "../dom.js";
 import { fmtNum, fmtDuration, fmtCost } from "../fmt.js";
-import { renderOutput, kindUi, summaryBlurb } from "../output.js";
-import { localFeature, runDir, runUrl, effortPill, prettyModelName, modelParts, vendorOf, vendorName, vendorMark, vendorOptions, rankBy } from "../runs.js";
+import { renderOutput, kindUi, summaryBlurb, isPlayable } from "../output.js";
+import { localFeature, runDir, runUrl, playUrl, effortPill, prettyModelName, modelParts, vendorOf, vendorName, vendorMark, vendorOptions, rankBy } from "../runs.js";
 import { loadVotes, voteBar } from "../votes.js";
 import { headerAuth, promptDialog, plural, offlineVotes } from "./common.js";
 
@@ -51,22 +51,36 @@ if (page) {
       ]);
     };
 
+    // ↗ plays a game or page in its own window through the sandboxed play.html (never the raw entry URL), so several can
+    // run side by side while the comparison stays open; middle/cmd-click opens a tab from the href.
+    const popout = (run) => {
+      if (!isPlayable(run)) return null;
+      const url = playUrl(slug, run.id);
+      return el("a", {
+        class: "popout", text: "↗",
+        attrs: { href: url, target: "_blank", rel: "noopener", title: "Play in its own window", "aria-label": `Play ${shortName(run)} ${run.effort} in its own window` },
+        on: { click: (e) => { e.preventDefault(); window.open(url, "_blank", "popup,noopener,width=1280,height=800"); } },
+      });
+    };
+
     const col = (run) => {
       const vo = vendorOptions(run.model);
       const bar = votes ? voteBar(votes, run.id) : offlineVotes();
       return el("article", { class: "v2-col", attrs: vo.attrs, style: vo.style }, [
-        // a text is read in full in each column (a scrollable box), everything else is shown as on the cards
-        el("div", { class: "v2-media" }, renderOutput(run, runDir(slug, run.id), { compact: !run.output?.text, href: runUrl(slug, run.id) })),
+        // a text is read in full in each column (a scrollable box); everything else is a link to the run page, as on the
+        // cards (nothing plays in place; a game or page has the ↗ window below)
+        el("div", { class: "v2-media" }, renderOutput(run, runDir(slug, run.id), run.output?.text ? {} : { link: runUrl(slug, run.id) })),
         el("div", { class: "v2-col-head" }, [
           el("a", { class: "who", attrs: { href: runUrl(slug, run.id), title: run.model } }, [
             vendorMark(run.model),
             el("span", { class: "name", text: shortName(run) }),
           ]),
           effortPill(run.effort),
+          popout(run),
           el("span", { class: "spacer" }),
           bar,
         ]),
-        summaryBlurb(run, runUrl(slug, run.id)),
+        summaryBlurb(run),
         el("div", { class: "v2-metrics-col" }, [
           metric(run, "duration_ms", "Time"),
           metric(run, "tokens_total", "Tokens"),

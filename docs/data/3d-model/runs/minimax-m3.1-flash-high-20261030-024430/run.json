@@ -108,5 +108,5 @@
     "conversation": "session/conversation.json"
   },
   "source": null,
-  "summary": "Created **SOLAQUA**, a solar-powered community water station designed as a scalable public-service hub.\n\n### Features modeled\n- Rainwater collection with roof gutter and cistern\n- Dual solar-panel canopy\n- Accessible filtered drinking fountain\n- Visible water-level indicator\n- Purification and power modules\n- Public information board and branding\n- Phone-charging ledge\n- Warm nighttime task lighting\n- Integrated bench and planter\n- Tactile paving and wheelchair-accessible design\n\n### Published files\n- `output/solaqua_civic_water_station.glb` \u2014 interactive 3D model\n- `output/solaqua_hero.jpg` \u2014 final presentation render"
+  "summary": "A solar-powered community water station named SOLAQUA, built as a scalable public-service hub. It collects rainwater into a cistern, shades visitors under a dual solar-panel canopy, and offers an accessible filtered drinking fountain with a visible water-level indicator. Its phone-charging ledge, warm night lighting, public information board, and tactile paving make it a place where a neighborhood can get clean water, power, and information."
 }

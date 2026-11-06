@@ -67,5 +67,5 @@
       "styles.css"
     ]
   },
-  "summary": "Built **Common Ground**, an illustrated, responsive website with six guided activities, topic and time filters, bookmarks, and private session notes.\n\nWorks offline without storage or external assets. Desktop, mobile, interaction, and esbuild checks passed. Includes `README.md`."
+  "summary": "Common Ground is an illustrated website with six guided activities that help visitors connect with people around them. Visitors can filter the activities by topic and time, bookmark the ones they like, and keep private notes for each session. The site works offline and loads no external assets, so it can be used on desktop or mobile without an account or stored data."
 }

@@ -7,7 +7,6 @@ import {
 } from "../runs.js";
 import { createSelection, selectBox } from "../selection.js";
 import { loadVotes, voteBar } from "../votes.js";
-import { createLane } from "./lane.js";
 import { headerAuth, promptDialog, plural, offlineVotes } from "./common.js";
 
 const main = document.getElementById("main");
@@ -27,7 +26,7 @@ async function start(page) {
   const fmtMetric = { duration_ms: fmtDuration, tokens_total: fmtNum, cost_usd: (v, r) => fmtCost(v, r.metrics.cost_estimated, r.metrics.cost_estimate_proxy) };
 
   let filter = { vendors: qsList("vendor"), efforts: qsList("effort") };
-  let effortDesc = qs("sort") === "effort-desc"; // order of the cards in each row: low → high effort (default) or high → low
+  let effortDesc = qs("sort") === "effort-desc"; // each model's runs: low → high effort (default) or high → low
 
   // ---- strip ----
   let thumb = null;
@@ -63,10 +62,10 @@ async function start(page) {
 
   // ---- filters ----
   const filters = el("div", { class: "v2-filters", attrs: { role: "group", "aria-label": "Filter runs" } });
-  const lanes = el("div", { class: "v2-lanes" });
+  const grid = el("div", { class: "v2-runs" });
   const tray = el("div", { class: "v2-tray", attrs: { role: "region", "aria-label": "Selected runs" } });
   tray.hidden = true;
-  main.replaceChildren(strip, filters, lanes);
+  main.replaceChildren(strip, filters, grid);
   document.body.append(tray);
 
   const toggle = (key, value) => {
@@ -74,7 +73,7 @@ async function start(page) {
     filter[key] = list.includes(value) ? list.filter((x) => x !== value) : [...list, value];
     setQuery({ vendor: filter.vendors.join(","), effort: filter.efforts.join(",") });
     drawFilters();
-    drawLanes();
+    drawGrid();
   };
   const pill = (label, on, click) => el("button", { class: "v2-pill", text: label, attrs: { type: "button", "aria-pressed": String(on) }, on: { click } });
   function drawFilters() {
@@ -88,8 +87,8 @@ async function start(page) {
         el("span", { class: "lbl", text: "Sort" }),
         el("button", {
           class: "v2-pill v2-sort", text: effortDesc ? "Effort: high → low" : "Effort: low → high",
-          attrs: { type: "button", title: "Reverse the order of the cards in each row", "aria-label": `Sorted by effort, ${effortDesc ? "high to low" : "low to high"}. Click to reverse.` },
-          on: { click: () => { effortDesc = !effortDesc; setQuery({ sort: effortDesc ? "effort-desc" : null }); drawFilters(); drawLanes(); } },
+          attrs: { type: "button", title: "Reverse the effort order of each model's runs", "aria-label": `Sorted by effort, ${effortDesc ? "high to low" : "low to high"}. Click to reverse.` },
+          on: { click: () => { effortDesc = !effortDesc; setQuery({ sort: effortDesc ? "effort-desc" : null }); drawFilters(); drawGrid(); } },
         }),
       ]),
     ].filter(Boolean)); // one effort level: no Effort group (replaceChildren would print the null)
@@ -103,14 +102,14 @@ async function start(page) {
     const box = selectBox(run, selection);
     const vo = vendorOptions(run.model);
     const node = el("article", { class: "v2-card", attrs: vo.attrs, style: vo.style }, [
-      openable(el("div", { class: "v2-media" }, [...renderOutput(run, runDir(slug, run.id), { compact: true, href: runUrl(slug, run.id) }), el("label", { class: "v2-select-hit" }, [box])]), runUrl(slug, run.id)),
+      // the output is one link to the run page (renderOutput's `link`): nothing plays on the card
+      el("div", { class: "v2-media" }, [...renderOutput(run, runDir(slug, run.id), { link: runUrl(slug, run.id) }), el("label", { class: "v2-select-hit" }, [box])]),
       el("div", { class: "v2-card-head" }, [
         el("a", { class: "title", attrs: { href: runUrl(slug, run.id) } }, [prettyModelLabel(run.model)]),
         effortPill(run.effort),
         stateBadge(run),
-        el("a", { class: "open", text: "↗", attrs: { href: runUrl(slug, run.id), title: "Open the run" } }),
       ]),
-      summaryBlurb(run, runUrl(slug, run.id)),
+      summaryBlurb(run),
       el("div", { class: "v2-metrics" }, [
         metricNode("duration_ms", fmtDuration(m.duration_ms)),
         metricNode("tokens_total", `${fmtNum(m.tokens_total)} tok`),
@@ -123,23 +122,15 @@ async function start(page) {
     return node;
   }
 
-  function drawLanes() {
+  // One wrapping grid of cards (as many across as fit, one on a phone), in byModel() order.
+  function drawGrid() {
     cardBoxes.clear();
     const shown = filterRuns(runs, { vendors: filter.vendors, efforts: filter.efforts }).sort(byRankThenModel);
     if (!shown.length) {
-      lanes.replaceChildren(el("p", { class: "msg", text: "No runs match these filters." }));
+      grid.replaceChildren(el("p", { class: "msg", text: "No runs match these filters." }));
       return;
     }
-    lanes.replaceChildren(...byModel(shown, effortDesc).map((g) => {
-      const lane = createLane(g.runs.map(card));
-      const range = el("span", { class: "range" });
-      lane.onRange = (a, b, more) => { range.textContent = more ? `showing ${a}–${b}` : `all ${g.runs.length} shown`; };
-      const vo = vendorOptions(g.runs[0].model);
-      return el("section", { class: "v2-lane", attrs: vo.attrs, style: vo.style }, [
-        el("div", { class: "v2-lane-head" }, [el("span", { class: "dot" }), el("h2", {}, [el("span", { class: "vend", text: g.vendor }), el("span", { class: "sep", text: " – " }), document.createTextNode(g.name)]), el("span", { class: "count", text: `${plural(g.runs.length, "run")} ·` }), range]),
-        lane.node,
-      ]);
-    }));
+    grid.replaceChildren(...byModel(shown, effortDesc).flatMap((g) => g.runs.map(card)));
     syncSelection();
   }
 
@@ -179,43 +170,23 @@ async function start(page) {
   selection.onChange = syncSelection;
 
   drawFilters();
-  drawLanes();
+  drawGrid();
 }
 
-// One lane per model ("Anthropic – Haiku 5.5"): vendors in their usual order, a vendor's models by their best rank then
-// name, and each model's runs from low to high effort (or high to low with `desc`).
+// The grid's order, model by model: vendors in their usual order, a vendor's models by their best rank then name, and
+// each model's runs from low to high effort (or high to low with `desc`).
 function byModel(runs, desc = false) {
-  const lanes = [];
+  const order = [];
   for (const v of groupByVendor(runs)) {
     const models = new Map();
     for (const r of v.runs) {
-      if (!models.has(r.model)) {
-        const { name, via } = modelParts(r.model);
-        models.set(r.model, { vendor: v.name, name: prettyModelName(name) + (via ? ` via ${via}` : ""), runs: [] });
-      }
+      if (!models.has(r.model)) models.set(r.model, { name: prettyModelName(modelParts(r.model).name), runs: [] });
       models.get(r.model).runs.push(r);
     }
     const best = (g) => Math.min(...g.runs.map((r) => r.rank ?? Infinity));
     const groups = [...models.values()].sort((a, b) => best(a) - best(b) || a.name.localeCompare(b.name));
     for (const g of groups) g.runs.sort((a, b) => (effortIndex(a.effort) - effortIndex(b.effort)) * (desc ? -1 : 1));
-    lanes.push(...groups);
+    order.push(...groups);
   }
-  return lanes;
-}
-
-// A card's media opens the run page on a click anywhere in it — a video's picture or the empty space under a short image
-// included — except on the controls that do their own thing (checkbox, thumbnails, play / View in 3D, links). Videos on
-// cards show their poster without native controls, so a click there opens the run instead of playing in the small box.
-// (A click that ends a drag never gets here: the lane swallows it.)
-function openable(media, href) {
-  const quiet = () => { for (const v of media.querySelectorAll("video[controls]")) v.removeAttribute("controls"); };
-  quiet();
-  new MutationObserver(quiet).observe(media, { childList: true, subtree: true }); // a thumbnail swaps in a fresh <video>
-  media.classList.add("is-openable");
-  media.addEventListener("click", (e) => {
-    if (e.defaultPrevented || e.target.closest("a, button, input, label, iframe, .model-stage")) return;
-    if (e.metaKey || e.ctrlKey || e.button === 1) window.open(href, "_blank");
-    else location.assign(href);
-  });
-  return media;
+  return order;
 }

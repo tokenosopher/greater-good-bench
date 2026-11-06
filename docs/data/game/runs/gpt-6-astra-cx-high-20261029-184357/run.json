@@ -73,5 +73,5 @@
       "tests/smoke.gd.uid"
     ]
   },
-  "summary": "Built **Common Ground**, an isometric neighborhood strategy game about listening, sharing resources, and leaving nobody behind.\n\nIncludes a six-week campaign, five building types, upgrades, undo, original artwork, synthesized sound, help, and replay.\n\nVerified: headless editor load and gameplay tests pass.\n\nRun with `godot --path .` or open `project.godot` and press **F5**. Instructions are in `README.md`."
+  "summary": "Common Ground is an isometric neighborhood strategy game about listening, sharing resources, and leaving nobody behind. Over a six-week campaign, players build five kinds of structures, unlock upgrades, undo moves, and replay with original artwork, synthesized sound, and built-in help."
 }

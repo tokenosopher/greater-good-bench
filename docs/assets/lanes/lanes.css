@@ -69,47 +69,14 @@ body.v2 .site-header { margin-bottom: 0; }
 .v2-filters .grp { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .v2-filters .v2-pill { min-height: 30px; padding: 0 12px; font-size: 13px; }
 
-/* ---- lanes ---- */
-.v2-lane { padding: 18px 0 6px; }
-.v2-lane-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.v2-lane-head h2 { margin: 0; font-size: 20px; letter-spacing: -.01em; }
-.v2-lane-head .count, .v2-lane-head .range { font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
-.v2-lane-head .range { margin-left: auto; }
-.v2-lane-body { position: relative; }
-.v2-viewport { overflow: hidden; border-radius: 16px; cursor: grab; touch-action: pan-y; }
-.v2-viewport.is-dragging { cursor: grabbing; user-select: none; }
-.v2-track { display: flex; column-gap: 16px; transition: transform 320ms cubic-bezier(.2, .8, .2, 1); will-change: transform; }
-.v2-track.is-dragging, .v2-viewport.is-dragging .v2-track { transition: none; }
-.v2-arrow {
-  position: absolute; top: 135px; z-index: 3; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%; border: 1px solid var(--line-strong);
-  background: var(--surface); color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
-}
-.v2-arrow.is-prev { left: -14px; } .v2-arrow.is-next { right: -14px; }
-.v2-arrow:hover { background: var(--surface-2); }
-.v2-arrow:disabled, .v2-arrow[hidden] { display: none; }
+/* ---- runs: one wrapping grid of cards (as many across as fit, one column on a phone) ---- */
+.v2-runs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; padding: 18px 0 6px; align-items: stretch; }
 
 /* ---- card ---- */
 .v2-media {
   position: relative; height: 270px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
   background: var(--surface);
 }
-.v2-media .media-card { position: absolute; inset: 0; display: block; }
-.v2-media .media-box { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border: 0; border-radius: 0; background: none; }
-.v2-media .media-count { display: none; }
-.v2-media .media-strip { position: absolute; left: 8px; bottom: 8px; z-index: 2; max-width: calc(100% - 80px); height: 38px; gap: 4px; }
-.v2-media .media-thumb { width: 46px; border-width: 2px; border-color: rgba(255, 255, 255, .85); background-color: #fff; border-radius: 8px; }
-.v2-media .media-thumb[aria-current="true"] { border-color: var(--accent); }
-.v2-media .game-frame { position: absolute; inset: 0; max-width: none; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
-/* The play / "View in 3D" button keeps covering the media (so the poster image shows and the whole picture is clickable),
-   but without the dimming and with only a small round icon in the bottom-right corner. */
-.v2-media .play-overlay {
-  inset: 0; flex-direction: row; align-items: flex-end; justify-content: flex-end; padding: 12px; gap: 0; z-index: 1;
-  background-size: contain; background-repeat: no-repeat; background-position: center;
-}
-.v2-media .play-overlay::before { display: none; }
-.v2-media .play-overlay .play-icon { width: 40px; height: 40px; font-size: 14px; box-shadow: 0 0 0 3px rgba(255, 255, 255, .9), 0 4px 14px rgba(0, 0, 0, .3); }
-.v2-media .play-overlay .play-label { display: none; }
-.v2-media .model-view > img, .v2-media .model-view .model-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .v2-media .msg { margin: 0; padding: 14px; font-size: 13px; }
 /* ---- selection tray: a full-width panel docked to the bottom ---- */
 .v2-tray { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: #17162a; color: #fff; box-shadow: 0 -6px 24px rgba(23, 22, 42, .25); }
@@ -191,29 +158,16 @@ body.has-tray { padding-bottom: 240px; }
 .v2-metric.best .v { color: var(--good); font-weight: 600; }
 .v2-metric.best .fill { background: var(--good); }
 .v2-cmp-note { margin: 8px 0 0; font-size: 13px; color: var(--ink-3); }
-@media (max-width: 640px) { .v2-arrow.is-prev { left: 2px; } .v2-arrow.is-next { right: 2px; } .v2-card { flex-basis: 82%; } }
 
 /* ---- run card (matches the design: a white card with a vendor-colored top edge) ---- */
-.v2-viewport { padding: 6px 6px 18px; margin: 0 -6px; border-radius: 0; }
-.v2-lane-head .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--vendor); flex: none; }
-.v2-lane-head h2 { font-size: 24px; letter-spacing: -.015em; }
-.v2-lane-head .count { margin-left: 0; }
-.v2-lane-head .range { margin-left: 0; }
 .v2-card {
-  flex: 0 0 320px; box-sizing: border-box; min-width: 0; display: flex; flex-direction: column; gap: 0; overflow: hidden;
+  box-sizing: border-box; min-width: 0; display: flex; flex-direction: column; gap: 0; overflow: hidden;
   background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--vendor, var(--line-strong)); border-radius: 18px;
 }
 .v2-card.is-selected { box-shadow: 0 0 0 3px var(--accent); }
 .v2-card .v2-media { height: 270px; border: 0; border-radius: 0; }
 .v2-select-hit { position: absolute; left: 6px; top: 6px; z-index: 4; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
 .v2-select-hit input { width: 22px; height: 22px; margin: 0; accent-color: var(--accent); cursor: pointer; filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .35)); }
-.v2-card .v2-media .media-strip {
-  left: 12px; bottom: 12px; max-width: calc(100% - 84px); height: auto; gap: 6px; padding: 6px; border-radius: 12px;
-  background: rgba(23, 22, 42, .55); overflow: hidden;
-}
-.v2-card .v2-media .media-thumb { width: 34px; height: 34px; border: 2px solid transparent; border-radius: 7px; }
-.v2-card .v2-media .media-thumb[aria-current="true"] { border-color: #fff; }
-.v2-card .v2-media .play-overlay .play-icon { width: 44px; height: 44px; background: #1d5fe0; box-shadow: none; border: 2px solid #fff; font-size: 16px; }
 .v2-card-head { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 10px 10px 0 16px; }
 .v2-card-head a.title { flex: 0 1 auto; min-width: 0; overflow: hidden; color: var(--ink); text-decoration: none; }
 .v2-card-head a.title .model-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
@@ -223,12 +177,6 @@ body.has-tray { padding-bottom: 240px; }
 .v2-card-head .vendor-icon { display: none; }
 .v2-card-head a.title .model-name { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
 .v2-card-head .effort { background: none; border: 0; padding: 0; color: var(--accent); font-size: 14px; font-weight: 500; }
-.v2-card-head .open {
-  margin-left: auto; flex: none;
-  width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line-strong);
-  border-radius: 10px; background: var(--surface); color: var(--ink); font-size: 16px; padding: 0;
-}
-.v2-card-head .open:hover { background: var(--surface-2); text-decoration: none; }
 .v2-metrics { display: flex; flex-wrap: wrap; padding: 2px 16px 8px; gap: 2px 14px; font: 13px var(--mono); color: var(--ink-2); }
 .v2-metrics .best { color: var(--good); font-weight: 600; }
 .v2-card .votes { display: flex; align-items: center; margin: 0; border-top: 1px solid var(--line); padding: 0 10px 0 16px; gap: 0; flex-wrap: nowrap; }
@@ -237,36 +185,20 @@ body.has-tray { padding-bottom: 240px; }
 .v2-card .vote[aria-pressed="true"] { background: color-mix(in srgb, var(--marigold) 22%, transparent); }
 .v2-card .vote-medal:not(.has):not([aria-pressed="true"]) .vote-icon { opacity: 1; }
 .v2-card .vote-n { font-size: 11px; margin-left: 2px; }
-.v2-arrow { width: 48px; height: 48px; margin-top: -24px; top: 150px; }
-.v2-arrow.is-prev { left: 14px; } .v2-arrow.is-next { right: 14px; }
-@media (max-width: 640px) { .v2-card { flex-basis: 82%; } }
 .v2-card .votes.is-offline .vote { cursor: default; opacity: .85; color: var(--accent); }
 /* White behind every image (no transparency checkerboard), including the thumbnails and the run page's own media box. */
-.v2-media .media-box, .v2-media .media-thumb, .v2-refs img { background: var(--surface); }
+.v2-refs img { background: var(--surface); }
 /* Images are cropped to fill their box (object-fit: cover) instead of being letterboxed. */
-.v2-media .media-box img, .v2-media .media-box video, .v2-media .media-thumb img,
-.v2-feature-media img, .v2-tile-media img, .v2-strip-thumb { object-fit: cover; }
-.v2-media .play-overlay { background-size: cover; }
+.v2-media .media-thumb img, .v2-feature-media img, .v2-tile-media img, .v2-strip-thumb { object-fit: cover; }
 /* A slightly firmer frame around each run card, and a hairline between its image and its details. */
 .v2-card { border-color: color-mix(in srgb, var(--line-strong) 70%, var(--line)); border-top-color: var(--vendor, var(--line-strong)); }
 .v2-card .v2-media { border-bottom: 1px solid var(--line); }
-.v2-lane-head h2 .vend { color: var(--ink-3); font-weight: 600; }
-.v2-lane-head h2 .sep { color: var(--ink-3); font-weight: 400; }
 /* Compare page: no cropping. The media box takes the image's own shape (full column width, natural height). */
 .v2-col .v2-media { height: auto; }
-.v2-col .v2-media .media-card, .v2-col .v2-media .media-box { position: relative; inset: auto; height: auto; }
-.v2-col .v2-media .media-box img, .v2-col .v2-media .media-box video { width: 100%; height: auto; max-height: none; object-fit: contain; }
-.v2-col .v2-media .model-view { aspect-ratio: 4 / 3; height: auto; }
-.v2-col .v2-media .play-overlay { background-size: contain; }
-.v2-col .v2-media .game-frame { position: relative; inset: auto; aspect-ratio: 16 / 9; }
-.v2-col .v2-media .media-strip { left: 12px; bottom: 12px; height: auto; gap: 6px; padding: 6px; border-radius: 12px; background: rgba(23, 22, 42, .55); max-width: calc(100% - 84px); }
-.v2-col .v2-media .media-thumb { width: 34px; height: 34px; border: 2px solid transparent; border-radius: 7px; }
-.v2-col .v2-media .media-thumb[aria-current="true"] { border-color: #fff; }
 .v2-cols { align-items: start; }
 /* Compare: every column is as tall as the tallest one. The media area takes the extra height, with the picture at its top. */
 .v2-cols { align-items: stretch; }
 .v2-col .v2-media { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-start; }
-.v2-col .v2-media .media-box { align-items: flex-start; }
 /* Compare column head: [logo] Model name  ▮▮▯ effort  ……  votes — one row, everything centered on the same line. */
 .v2-col-head { flex-wrap: nowrap; align-items: center; gap: 10px; padding: 10px 8px 6px 16px; min-height: 52px; }
 .v2-col-head .who { flex-direction: row; align-items: center; gap: 10px; min-width: 0; }
@@ -291,22 +223,12 @@ body.has-tray { padding-bottom: 240px; }
 }
 .v2-cmp-top .v2-link-btn { font-size: 14px; }
 .v2-wins { margin: 24px 0; }
-/* Run cards, like the compare page: no cropping. The picture keeps its own shape at the card's width, every card in a lane
-   is as tall as the tallest one, and a shorter picture sits at the top of its media area. */
-.v2-track { align-items: stretch; }
+/* Run cards, like the compare page: no cropping. The picture keeps its own shape at the card's width, every card in a row
+   is as tall as the tallest one, and a shorter picture sits at the top of its media area; the link to the run fills the
+   whole area, so its thumbnail strip and cue sit at the bottom of it. */
 .v2-card .v2-media { height: auto; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-start; }
-.v2-card .v2-media .media-card, .v2-card .v2-media .media-box { position: relative; inset: auto; height: auto; }
-.v2-card .v2-media .media-box { align-items: flex-start; }
-.v2-card .v2-media .media-box img, .v2-card .v2-media .media-box video { width: 100%; height: auto; object-fit: contain; }
-.v2-card .v2-media .model-view { aspect-ratio: 4 / 3; height: auto; }
-.v2-card .v2-media .play-overlay { background-size: contain; }
-.v2-card .v2-media .game-frame { position: relative; inset: auto; aspect-ratio: 16 / 9; }
 .v2-card .v2-media > .msg { padding: 40px 16px; }
-/* The thumbnail pill sits at the bottom of the whole media area (not of the picture), so it never covers a short image's
-   empty space oddly: .media-card stops being its positioning box and .v2-media (position: relative) takes over. */
-.v2-card .v2-media .media-card, .v2-col .v2-media .media-card { position: static; }
-.v2-media.is-openable { cursor: pointer; }
-.v2-media.is-openable video { pointer-events: none; } /* the click goes to the card media, which opens the run */
+.v2-media > .output-link { flex: 1 1 auto; }
 .v2-filters .spacer { flex: 1 1 0; }
 .v2-filters .v2-sort { font-variant-numeric: tabular-nums; }
 /* Home: a compact hero (about half the old height). */
@@ -364,7 +286,4 @@ body.v2 .site-header { padding-left: max(var(--v2-gutter), calc((100% - 1480px) 
 .v2-card .v2-media .text-tile { padding-top: 60px; } /* below the card's checkbox */
 .v2-tile-media .text-tile, .v2-feature-media .text-tile { position: absolute; inset: 0; aspect-ratio: auto; border: 0; border-radius: 0; padding: 52px 20px 16px; }
 .v2-col .v2-media .prose-box { border: 0; border-radius: 0; max-height: 70vh; }
-/* Game cards on small screens: "Play full screen" is the card's main action, in the middle of the picture; the small ▶ in
-   the corner plays in place (buildGameFrame). On desktop the button is hidden (style.css) and the ▶ alone remains. */
-.v2-media .play-full { bottom: auto; top: 50%; transform: translate(-50%, -50%); }
 .v2-col .run-blurb { padding: 0 16px 6px; }

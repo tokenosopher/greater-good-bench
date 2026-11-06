@@ -893,7 +893,7 @@ at its old URL during migration; the Pages subdomain isn't the supported URL for
 
 ### Lanes design (index.html, page.html, compare.html; ADR-0030)
 
-The three main views are the lanes design: `docs/assets/lanes/{index,page,compare,common,lane,request}.js` and
+The three main views are the lanes design: `docs/assets/lanes/{index,page,compare,common,request}.js` and
 `lanes.css` (layered on `style.css`). They reuse the shared modules below, so rendering, sandboxing and votes behave as
 described there. The previous views live unchanged in `docs/classic/` (`<base href="../">`; base-uri `'self'` there),
 and each lanes page links to its classic counterpart ("classic view").
@@ -907,19 +907,24 @@ and each lanes page links to its classic counterpart ("classic view").
   from the viewer: a run's picture can be swapped or dropped in `covers.json` (see Covers).
 - **Page**: a strip with the page thumbnail, title, kind, counts, the prompt (two lines) and a "View final prompt"
   modal (with reference images), plus Cheapest/Fastest/Fewest-tokens tiles; sticky vendor/effort filter pills and an
-  effort sort (`?vendor=`, `?effort=`, `?sort=effort-desc`); one lane per model ("Vendor – Model"), vendors by best rank
-  then name, runs by effort. A lane slides by whole cards with ‹ › and can be dragged (with momentum, no snapping;
-  drags never start on a 3D stage, form control or a video's controls). Cards (320 px) show the output uncropped at
-  the card's width (every card in a lane equally tall, the picture at the top), a 44 px checkbox, the thumbnail pill
-  at the bottom of the media area, the model, effort, time/tokens/cost (best in green), and the vote row ("Your vote:",
-  inactive without the vote API). A click anywhere on the media opens the run (videos show their poster without
-  controls on cards); a game card's own buttons are the exception: the small ▶ in the corner (plays in the card) and,
-  on small screens only, "Play full screen" in the middle of the picture (one click, full screen, on the page). Under the model name, the
-  run's summary blurb. Checked runs fill a bottom tray (thumbnail, model, vendor · effort, remove) with "Compare in
-  detail →" from two runs.
+  effort sort (`?vendor=`, `?effort=`, `?sort=effort-desc`) over one wrapping grid of cards (`.v2-runs`: as many across
+  as fit at ≥300 px, one column on a phone; no per-vendor or per-model rows). The grid's order: vendors in their usual
+  order, a vendor's models by best rank then name, each model's runs by effort (reversed by the sort). Cards keep the
+  vendor tint (top edge) and show the output uncropped at the card's width (every card in a row equally tall, the
+  picture at the top), a 44 px checkbox, the model, effort, the summary blurb, time/tokens/cost (best in green), and the
+  vote row ("Your vote:", inactive without the vote API). **Cards never play anything in place**: the whole output area
+  is one link to the run page in the same tab (`renderOutput(..., {link})` → `outputLink()` in output.js): a still (a
+  game's or page's screenshot, the hero item's thumbnail or poster, a model's first render), the outputs' thumbnail
+  strip at the bottom when there are several (pictures inside the link, not buttons), and a cue: "▶ Play" / "▶ View the
+  page" (from `KIND_UI.open`), "▶ Watch" (a video hero) or "▶ View in 3D" (a model hero) centred on the still, or
+  "Open run →" in its corner for pictures. No video, frame or three.js loads on a card, and there is no ▶ overlay,
+  "Play full screen" or ↗ on page cards. A text card is its title/excerpt tile linking to the run. Checked runs fill a
+  bottom tray (thumbnail, model, vendor · effort, remove) with "Compare in detail →" from two runs.
 - **Compare** (`?p=<slug>&r=<id>,<id>…`, at least two): back link, title, the page line, prompt and final-prompt modal,
-  winner pills, and one equal-height column per run: the output uncropped, vendor logo, model, effort, vote buttons,
-  and Time/Tokens/Cost bars scaled to the largest value (best in green; an unreported cost is "n/a").
+  winner pills, and one equal-height column per run: the output uncropped as the same link to the run page as on the
+  cards (a text is instead read in full in a scrollable box), vendor logo, model, effort, a ↗ for a game or page
+  (`isPlayable()`: `play.html` in its own popup window, the sandbox, so several can play side by side while the
+  comparison stays open), vote buttons, the summary blurb, and Time/Tokens/Cost bars scaled to the largest value (best in green; an unreported cost is "n/a").
 
 All four page views use `loadPage(slug)` in dom.js: one fetch of `page.json`, which includes
 `runs` sorted by started_at then effort order with ranks applied. `run.json` stays the rebuild source of truth;
@@ -960,10 +965,11 @@ shows the full article in a scrollable box. It is rendered only by `renderMarkdo
 never through innerHTML or a frame; `isPlayable()` is false for it and cards have no ↗ pop-out. A text page has no
 picture, so the lanes home shows its highest-effort run's text tile instead.
 
-A run's `summary` (the model's own description of its output) is shown in full only on the run page. Run cards on the
-lanes page, the lanes compare columns and the classic grid/compare cards show its first ~160 characters as one plain
-line (`summaryBlurb()` in output.js: Markdown syntax stripped, textContent only, the longer start as the tooltip, and a
-"more" link to `run.html…#summary` when cut); the home page shows none.
+A run's `summary` (the model's own description of its output: one to three plain sentences) is shown as plain text
+(textContent) everywhere: on the run page as a lede under the title (`p.run-lede`, no heading, fold or note), and on run
+cards on the lanes page, the lanes compare columns and the classic grid/compare cards in full as the blurb
+(`summaryBlurb()` in output.js), capped defensively at ~240 characters with "…" (the whole text then in the tooltip).
+Older Markdown summaries are flattened to one plain line (`plainSummary()`). The home page shows none.
 
 Wherever a run is one of many (home cards, the runs table and grid, compare cards, the click-to-play overlay) the viewer
 shows thumbnails: `run.thumb`, and on a media card each item's `thumb` (`mediaElement(..., {compact: true})`); the run
@@ -996,9 +1002,7 @@ lists from the `import` statements and fails when they drift.
   started (plus the failed/timeout badge for the agent and an "export failed" / "packaging failed" / "output failed"
   badge when the output step failed), and the agent's `error`. Then tabs (the open tab is kept in the URL hash, e.g. `#transcript`; Transcript and
   Source show a count):
-  - Above every kind's output, when the run has a `summary`: a "What the model says it made" block (`#summary`), the
-    Markdown rendered by `renderMarkdown()` (markdown.js loaded on demand), folded to about six lines behind
-    "Show more" when it is longer (by a rough line count at ~90 characters; `run.html…#summary` opens it unfolded).
+  - Under the title, above the tabs and the output, when the run has a `summary`: the summary as a plain-text lede.
   - *Game*: click-to-play overlay (shows thumb). On click it inserts
     `<iframe sandbox="allow-scripts allow-pointer-lock" allow="fullscreen; autoplay; gamepad">` pointing at `output.entry`.
     On small screens (the ≤720px phone breakpoint; hidden by CSS on desktop, where the markup is the same) the overlay
@@ -1006,9 +1010,8 @@ lists from the `import` statements and fails when they drift.
     `requestFullscreen()` (or `webkitRequestFullscreen()`) on the `.game-frame` wrapper, never the iframe, so the
     sandbox attributes stay exactly `sandboxedGame()`'s and the wrapper can show an "Exit full screen (Esc)" button
     (only while full screen). Esc leaves full screen and the game keeps running in place; without the API, or when it is
-    refused (iPhone Safari), the game plays in place. `buildGameFrame()` draws this frame everywhere a game is shown
-    (run page, lanes cards, compare columns, the classic grid/compare), so on a phone a card's one click plays full screen without
-    leaving the page. There's also an "Open full screen ↗" link (link to `play.html`, which boots it in the sandbox).
+    refused (iPhone Safari), the game plays in place. `buildGameFrame()` draws this frame on the run page and the
+    classic grid/compare cards (the lanes cards and compare columns link to the run page instead). There's also an "Open full screen ↗" link (link to `play.html`, which boots it in the sandbox).
   - *Transcript*: renders `session.conversation`. System prompt collapsed. User text. For each assistant message:
     thinking (collapsed, toggle "show thinking"), text (markdown), and toolCall blocks paired with their toolResult by
     `toolCallId`. Tool display: `bash` → command + output, `write` → path + content, `edit` → path + old/new blocks,
@@ -1017,7 +1020,11 @@ lists from the `import` statements and fails when they drift.
     An image in a tool result is shown as an `<img>` thumbnail (a data: URL, only for
     jpeg/png/gif/webp with plain base64 data, never SVG) captioned `[image: <type>, N KB]`, never as text.
     `isError` gets a ✗ badge. Show `+m:ss` since session start (the clock time on hover) and per-message token usage. A tool's duration is the `durationMs` on its `toolResult` message (when present). Filter buttons: all / tool calls / errors.
-  - *Output* (instead of Game, for a `media` run): every `output.items` entry as a captioned figure (file name, size, duration,
+  - *Output* (instead of Game, for a `media` run): the gallery shows the model(s) when any item is a `model`, else the
+    video(s) when any item is a `video`, else every image (`shownItems()` in output.js, by item type, never kind name;
+    the same rule picks a card's hero). The items left out are listed under the gallery as "Other files", each a
+    `download` link (plus the owner's local cover buttons), so nothing is lost; the same gallery is used by play.html
+    and the classic expanded rows. Each shown item is a captioned figure (file name, size, duration,
     bytes, a `download` link), one per row at its recorded `width`×`height` (never wider than the page). Images, **SVGs included**, are only ever shown with `<img>` (which never runs an
     SVG's scripts), never inlined or put in an object/embed/iframe, and never linked for viewing on this origin.
     Videos use `<video controls preload="none">` with the poster, and never autoplay. A `model` item (blender) is a
@@ -1095,8 +1102,10 @@ lists from the `import` statements and fails when they drift.
   excerpt, staging from the cleaned copy, `keep_source`, and a full `run --kind text` (plus rebuild, list, rm and the
   one-kind-per-page check). A routed `text` page in test_web.py covers the run page's article (a raw `<script>` stays
   text and never runs), the excerpt tiles on the home and page cards, and compare reading each text in full.
-  The run page's summary block (above the output, Markdown with a raw `<script>` kept as text, folded behind "Show
-  more") and the card/compare blurbs are covered on a routed demo page; "Play full screen" on the run page and a lanes
-  card (by keyboard too), at a 390×844 phone viewport, is checked to replace the overlay with an iframe whose `sandbox` is unchanged and to call
+  The run page's summary lede (plain text, a raw `<script>` kept as text) and the whole card/compare blurbs (capped at
+  ~240 characters) are covered on a routed demo page, as are the lanes page's single wrapping grid, cards that link to
+  the run page with no player of any kind (game, video, 3D, images), compare's ↗ play.html window, and the gallery rule
+  (only the video / only the model, the rest under "Other files"; an images-only run shows every image). "Play full
+  screen" on the run page (by keyboard too), at a 390×844 phone viewport, is checked to replace the overlay with an iframe whose `sandbox` is unchanged and to call
   `requestFullscreen` on the `.game-frame` wrapper (stubbed by an init script: headless Chrome never goes full screen),
   and to play in place when the API is missing; at desktop width the button is hidden and "Click to play" plays in place.

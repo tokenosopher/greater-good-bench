@@ -68,5 +68,5 @@
       "style.css"
     ]
   },
-  "summary": "Built **a little good**: an illustrated, responsive website with 12 practical kindness guides, time and cause filters, saved actions, and completion tracking.\n\nWorks offline without browser storage. Desktop/mobile interactions tested in Chrome; the required esbuild check passes. Includes README.md."
+  "summary": "A Little Good is an illustrated website of 12 practical kindness guides that visitors can filter by time and cause, save to a personal list and check off as they go. It works offline and keeps no data in the browser."
 }

@@ -75,7 +75,7 @@
           "src/make_poster.py"
         ]
       },
-      "summary": "The poster is finished and verified. The output folder contains only the SVG, and the generator script lives in the source folder.\n\n**What I made**\n\n`output/four-things.svg` is a 1000 by 1400 pictogram poster titled \"Four things that cost nothing and save lives.\" It is drawn in a flat Isotype style with four numbered panels:\n\n- **Hand washing** with soap for 20 seconds, shown with a tap, soap bubbles, and a red timer ring.\n- **Oral rehydration solution** for diarrhoea: 1 litre of clean water, 6 level teaspoons of sugar, half a teaspoon of salt, drawn as a jug plus spoons so it reads without the text.\n- **Hands-only CPR**: a kneeling figure pressing a collapsed person's chest, with the 100 to 120 pushes per minute rate and a \"call for help\" phone glyph.\n- **Severe bleeding**: an arm pressing a folded cloth onto a wound, with pressure arrows and \"PRESS, hard, and keep pressing.\"\n\nThe footer reads \"None of this needs a doctor, a shop, or a phone signal. Show it to someone. One day they will be the nearest person.\"\n\n**Why this image**\n\nDiarrhoeal dehydration, poor hand hygiene, cardiac arrest, and uncontrolled bleeding are among the biggest preventable killers worldwide, and each has a free, teachable response. Oral rehydration therapy alone is credited with saving tens of millions of lives, yet the recipe is still widely unknown. The pictograms carry the numbers so the poster stays useful even where the English is not read.\n\n**Files**\n\n- `output/four-things.svg`, about 14 KB, validated as well-formed XML and render-checked with rsvg.\n- `src/make_poster.py`, the Python script that generates the SVG.",
+      "summary": "Four things that cost nothing and save lives is a pictogram poster in a flat, wordless style with four numbered panels: washing hands with soap for 20 seconds, mixing a home oral rehydration drink for diarrhoea, giving hands-only CPR, and pressing firmly on severe bleeding. Each panel shows its instruction in pictures, so the poster works even where English is not read, and it closes with the reminder that none of these steps needs a doctor, a shop, or a phone signal.",
       "rank": null
     },
     {
@@ -155,7 +155,7 @@
           "src/make_ors.py"
         ]
       },
-      "summary": "I made a poster that teaches people how to make **oral rehydration solution (ORS)** at home, using pictures instead of words.\n\n**Why this subject:** dehydration from diarrhoea kills hundreds of thousands of young children every year, and it can almost always be prevented with water, sugar and salt that cost next to nothing. Of everything one image could teach, this recipe probably saves the most lives per viewer. It also needs no equipment or electricity, and you don't have to read to use it.\n\n**What's in it:**\n- **Header:** a child drawn as a vessel that's almost empty of water, plus a glass of ORS, equals the same child full of water and smiling.\n- **Nine numbered steps:**\n  1. Wash hands with soap.\n  2. Boil water and let it cool, covered.\n  3. Measure 1 litre.\n  4. Add 6 level spoons of sugar.\n  5. Add \u00bd a level spoon of salt.\n  6. Stir until dissolved.\n  7. Give small sips, again and again.\n  8. Keep breastfeeding and keep giving food.\n  9. Throw it away after 24 hours and make a fresh batch.\n- **Danger strip:** if there's blood, the child can't drink, keeps vomiting, is very sleepy or has a high fever, go to the clinic.\n- **Footer:** one line with the recipe in English and a note saying anyone can copy it freely.\n\nThe only words in the pictures are \"ORS\" on the glass and the numbers and units (1 L, \u00d76, \u00d7\u00bd, 24h). The recipe is the WHO/UNICEF home recipe; the safety advice was written from my own knowledge, not checked against a source during this run. The figures have different skin tones, and the clinic uses a neutral green cross, not the Red Cross emblem, whose use is legally restricted.\n\nI rendered it and looked it over. In the first version the \"1 L\" label was cut off, the spoons were hard to see and the jug in step 9 ran off the edge, so I fixed those and checked again.\n\n**Files:**\n- `output/ors.svg`: the poster (1200\u00d71940, about 45 KB, with no external files or fonts needed)\n- `output/ors.png`: a ready-to-view copy of the same image\n- `src/make_ors.py`: the script that generates the SVG (standard library only). Run `python3 src/make_ors.py` to rebuild it.",
+      "summary": "An almost wordless poster that teaches parents and carers to make oral rehydration solution at home from water, sugar and salt. Nine numbered picture steps take the viewer from washing hands to discarding the batch after 24 hours, and a danger strip shows when a child needs a clinic. It is built to help prevent deaths from childhood diarrhoea.",
       "rank": null
     },
     {
@@ -228,7 +228,7 @@
           "src/outline.swift"
         ]
       },
-      "summary": "Created **\u201cLet the hurt end here\u201d**\u2014a poster about pausing, choosing kindness, and keeping healthy boundaries.\n\n[SVG](output/let-the-hurt-end-here.svg) \u00b7 [PNG](output/let-the-hurt-end-here.png)",
+      "summary": "Let the hurt end here is a poster about pausing, choosing kindness, and keeping healthy boundaries. It offers a calm reminder that a cycle of harm can stop with the person who chooses not to pass it on.",
       "rank": null
     },
     {
@@ -301,7 +301,7 @@
           "src/outline_text.swift"
         ]
       },
-      "summary": "Created \u201cEveryone is someone\u201d\u2014two inner worlds connected by one golden path, encouraging empathy and care.\n\n[SVG](output/everyone-is-someone.svg) \u00b7 [JPEG](output/everyone-is-someone.jpg)",
+      "summary": "Two inner worlds joined by a single golden path, a poster that argues everyone is someone and that connection between people is what makes the world better. It is a quiet, hopeful image for anyone who sees it.",
       "rank": null
     },
     {
@@ -400,7 +400,7 @@
           "src/make_video.py"
         ]
       },
-      "summary": "Done. Here's what I made and why.\n\n## Concept\n\nThe single principle that would most improve the world if universally followed is the **Golden Rule** \u2014 \"Treat others as you would like to be treated\" \u2014 the one ethical rule found in virtually every faith and culture. I paired it with a view of **Earth from space** (our shared home) to reinforce that we're all on this one planet together.\n\n## The image\n\nA stylized \"blue marble\" Earth floating in a starfield, with:\n- **Main message** (elegant serif): *\"Treat others as you would like to be treated.\"*\n- **Subtitle**: *\"The one rule shared by every faith and culture on Earth\"*\n- **Multilingual footer** showing the rule in Chinese (\u5df1\u6240\u4e0d\u6b32\uff0c\u52ff\u65bd\u4e8e\u4eba), Arabic (\u0623\u062d\u0628 \u0644\u0623\u062e\u064a\u0643 \u0645\u0627 \u062a\u062d\u0628 \u0644\u0646\u0641\u0633\u0643), Hindi, and Spanish \u2014 reaching billions of people in their own words\n- Subtle lighting (sun glow, day/night terminator, atmosphere rim, clouds) for a calm, contemplative feel\n\n## Deliverables in `./output/`\n\n| File | Format | Size |\n|------|--------|------|\n| `earth.svg` | vector source (scalable) | 48 KB |\n| `earth.png` | 1920\u00d71080 lossless | 388 KB |\n| `earth.jpg` | 1920\u00d71080 shareable | 160 KB |\n| `earth.mp4` | 8 s animated video (24 fps) | 516 KB |\n\nThe video animates subtly: stars twinkle, the Earth slowly drifts/zooms, the atmosphere pulses, and the text fades in over the first two seconds.\n\nSource code lives in `src/` (`make_svg.py` generates the SVG, `make_video.py` renders the animation). All files are under 2 MB, and intermediate frames were cleaned up.",
+      "summary": "A calm view of Earth from space, floating in a starfield, carries the Golden Rule: treating others as one would wish to be treated, a principle found in many of the world's faiths and cultures. The rule also appears in Chinese, Arabic, Hindi and Spanish, and an animated version drifts slowly across the planet as the words fade in.",
       "rank": null
     },
     {
@@ -491,7 +491,7 @@
           "src/make.py"
         ]
       },
-      "summary": "I made a quiet, looping poster about how far a small kindness travels.\n\n**What it is:** a single drop falls through a star-flecked dark field and strikes still water. Seven rings of warm light spread outward, far past the point of impact, then dissolve \u2014 and the drop falls again. The type reads:\n\n> **A SMALL ACT**\n> *Kindness* **ripples.**\n> One kind thing, passed on, can travel further than you will ever see.\n> PASS IT ON\n\n**Files in `./output/`:**\n- `kindness-ripples.svg` \u2014 self-contained animated SVG (8 s SMIL loop, vector, 226 KB)\n- `kindness-ripples.mp4` \u2014 8 s, 1080\u00d71350, 30 fps loop (287 KB)\n- `kindness-ripples-poster.jpg` \u2014 composed still frame (97 KB)\n\n**How it was made:** `src/make.py` generates the whole scene from scratch (gradients, rings, splash, stars, motes, typography) with no external assets. It emits both the SMIL-animated SVG and per-frame SVGs, rasterises them with `rsvg-convert`, and encodes the loop with `ffmpeg`. All intermediate frames were deleted.",
+      "summary": "Kindness Ripples is a quiet, looping poster in which a single drop falls through a star-flecked dark field and strikes still water. Seven rings of warm light spread far beyond the point of impact before fading, and the drop falls again, a reminder that one kind act passed on can travel further than anyone will ever see.",
       "rank": null
     },
     {
@@ -623,7 +623,7 @@
           "make_poster.py"
         ]
       },
-      "summary": "Created a warm, accessible poster encouraging practical everyday kindness: **\u201cMake someone\u2019s day a little easier.\u201d** It features two hands holding a glowing heart, with reminders to **notice, listen, and offer what you can**.\n\n- [Scalable SVG](output/kindness.svg)\n- [1600 \u00d7 2000 PNG](output/kindness.png)",
+      "summary": "Make Someone's Day a Little Easier is a warm, practical poster for everyday kindness. Two hands hold a glowing heart above three simple reminders: notice, listen, and offer what one can.",
       "rank": null
     },
     {
@@ -713,7 +713,7 @@
           "src/verify.py"
         ]
       },
-      "summary": "Done. Everything is in `./output/` (SVG + two rasters, all under 2MB).\n\n## What I made\n\n**\"Pale Blue Dot\"** \u2014 a 1600\u00d71000 SVG poster homage to Carl Sagan's meditation on the 1990 Voyager 1 photograph of Earth:\n\n- **The scene**: a deep-space starfield (1,226 seeded stars, a few with soft glows, subtly blue/warm tinted), a single diagonal shaft of warm sunlight entering from the top right, and one 13-pixel pale blue dot \u2014 Earth \u2014 floating in the beam, with a quiet italic label: *you are here*.\n- **The words**: Sagan's lines (\"Look again at that dot. That's here. That's home. That's us. Every human being who ever was lived out their lives on it \u2014 on a mote of dust suspended in a sunbeam.\"), closed with the actionable message in gold: *Be kind to one another. Everyone you meet is fighting a hard battle.*\n\nThe reasoning: if everyone truly internalized that every person who ever lived shared one fragile pixel, and then translated that into everyday kindness, it's about the widest-reaching improvement available from a single image.\n\n## How it was built & checked\n\n- `src/make_svg.py` generates the SVG deterministically using only portable SVG features (gradients, shapes, text \u2014 no filters), so it renders identically in any browser.\n- Since this session's model can't view images, I verified the render numerically: `src/verify.py` is a minimal pure-stdlib PNG decoder, and I probed the raster for the dot's position and color, beam cross-section and falloff, text-band positions/widths, and text-vs-background contrast. Along the way I found and fixed two real bugs: a text line that overflowed the canvas, and a beam gradient centered on its bounding-box corner instead of the beam axis (which had made the sunbeam nearly invisible).\n- Rasterization used macOS `qlmanage` (with a square-viewport render variant + center crop to get the exact 16:10 aspect) and `sips` for resizing/format.\n\n## Files\n\n| File | Details |\n|---|---|\n| `output/pale-blue-dot.svg` | vector source of truth, 94KB |\n| `output/pale-blue-dot.png` | 1600\u00d71000, 1.9MB |\n| `output/pale-blue-dot.jpg` | 2000\u00d71250, 275KB |",
+      "summary": "Pale Blue Dot is a poster that pays homage to Carl Sagan's reflection on the 1990 Voyager 1 photograph of Earth. A single pale blue dot hangs in a shaft of sunlight against a deep starfield, beneath Sagan's words about the one fragile home shared by everyone who has ever lived. It closes with a gold reminder to be kind to one another, because everyone is fighting a hard battle.",
       "rank": null
     },
     {
@@ -806,7 +806,7 @@
           "src/make.py"
         ]
       },
-      "summary": "Done. Everything is in place and verified.\n\n## What I made\n\n**`output/shared-breath.svg`** (241 KB) \u2014 the piece itself: a self-contained animated SVG (SMIL, seamless 10 s loop, with `<title>`/`<desc>` for screen readers and a graceful static fallback).\n**`output/shared-breath.mp4`** (713 KB) \u2014 the same scene sampled at 30 fps: 1080\u00d71080, exactly 10.0 s, one complete breath, loops perfectly.\n**`output/shared-breath-still.png`** (571 KB) \u2014 1600\u00d71600 poster frame for places that can't animate.\n\n**The idea.** If everyone saw one image, the most useful thing it could do is *work on them while they look*: a warm sphere of light that swells for five seconds and settles for five \u2014 coherent breathing, six breaths a minute, the rhythm that steadies heart rate and calms the nervous system. No language needed to follow the circle. Around it, a ring of 120 small lights \u2014 one for each of us \u2014 pulsing with the same breath while a slow wave of light travels once around the ring each breath, the breath passing round the world. And the caption states the plain true fact the circle is made of: *every person on Earth is breathing right now. You are not alone.* A minute with it is a minute calmer, and the reminder that all eight billion of us share this one involuntary act is a small, honest argument for treating each other as kin.\n\n**How it was built** (`src/font.py`, `src/make.py`): one parametric scene, `breath(t) = \u00bd(1\u2212cos 2\u03c0t/10)`, drives everything \u2014 orb scale, glow, halo rings, each person-light's size and brightness with its own phase delay, star twinkle, and the IN/OUT crossfade. The same functions emit either SMIL timelines (animated SVG) or per-frame static SVGs rasterised with librsvg and encoded with ffmpeg, so video and SVG are pixel-identical in behaviour. All type is a hand-built geometric single-stroke vector font (no font files, renders identically everywhere). Verified by inspecting stills at both breath phases, the SVG's static fallback, and a 4-frame grid pulled from the finished MP4.",
+      "summary": "Shared Breath is a looping animation of a warm sphere of light that swells and settles once every ten seconds, a slow rhythm of about six breaths a minute meant to calm whoever watches it. A ring of 120 small lights, one for each person on Earth, pulses with the same breath while a wave of light passes once around the circle, under the caption \"every person on Earth is breathing right now.\"",
       "rank": null
     },
     {
@@ -886,7 +886,7 @@
           "src/poster.svg"
         ]
       },
-      "summary": "Created an optimistic public-service poster centered on the message **\u201cThe future is a shared project.\u201d**\n\nIt combines a diverse, linked community holding hands beneath a living planet with three universal calls to action:\n\n- **Protect** what gives us life  \n- **Share** what we have  \n- **Include** those on the outside  \n\n### Finished files\n- `output/future-is-a-shared-project.svg`\n- `output/future-is-a-shared-project.jpg`\n\nThe editable SVG source is retained at `src/poster.svg`.",
+      "summary": "The Future Is a Shared Project is an optimistic public-service poster in which a diverse, linked community holds hands beneath a living planet. Beneath it run three calls to action: \"Protect what gives us life,\" \"Share what we have\" and \"Include those on the outside.\"",
       "rank": null
     },
     {
@@ -967,7 +967,7 @@
           "src/make_poster.py"
         ]
       },
-      "summary": "Finished in `./output/`:\n\n- **`one-home.svg`** (13 KB, animated) \u2014 the main piece: **\u201cWE SHARE ONE HOME.\u201d** Eight diverse people \u2014 including a child, an elder, and a wheelchair user \u2014 hold hands in front of one Earth, under the line \u201cFor every human \u2022 All 8 billion of us,\u201d with \u201cone home\u201d repeated in Spanish, Chinese, Hindi, Arabic, and French. Below, four universal habits anyone can do today: **1. Breathe** before you react, **2. Listen** before you judge, **3. Help** someone today, **4. Repair** \u2014 leave it better. It closes: *\u201cNo \u2018us vs. them.\u2019 Only us. \u2192 Pass it on.\u201d* Stars twinkle and the Earth gently floats (disabled under `prefers-reduced-motion`).\n- **`one-home.png`** (281 KB) \u2014 a rendered copy for easy sharing/printing.\n\nSource generator kept at `src/make_poster.py`; the SVG was rendered and visually checked before export.",
+      "summary": "WE SHARE ONE HOME is an animated poster of eight people of different ages and abilities, including a child, an elder and a wheelchair user, holding hands in front of a single Earth under the words \"All 8 billion of us.\" It repeats \"one home\" in five languages beside four everyday habits anyone can practice: breathe, listen, help and repair. It closes on the line \"No us vs. them. Only us.\"",
       "rank": null
     },
     {
@@ -1105,7 +1105,7 @@
           "src/render_film.py"
         ]
       },
-      "summary": "A person stands in the rain at night, upright, meeting your eyes. In their chest is a real window \u2014 a lamp, two cups, a plant, someone at home \u2014 and the same light is caught in their eyes. Down the street, every other person carries a small lit window too.\n\nThe words are the part you can take with you: someone is home in there. Leave them warmer than you found them. You are in there too. Before the harsh word, the turned back, the raised hand.\n\nThe still is `output/someone-is-home.svg`. The film, `output/someone-is-home.mp4`, is the act of looking: a dim stranger, then the room, then the whole street, then the words.",
+      "summary": "Someone Is Home shows a figure standing upright in the rain at night, meeting the viewer's eyes, with a lit window set in their chest: a lamp, two cups, a plant, and someone at home, with the same light caught in their eyes. Down the street, every other person carries a small lit window too, a reminder that someone is home inside each of them.",
       "rank": null
     }
   ]
