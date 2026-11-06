@@ -13,4 +13,7 @@ Deliver the result as image and/or video files, working in the current directory
   like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such
   as rendered frames when you're done.
 - Only create or edit files inside the current directory.
-- Finish with a short summary of what you made.
+- End your final message with a line starting with `Blurb:`, then one to three sentences in the third
+  person describing what you made for a visitor who will see it on the site: name the work if it has a
+  name, and say what it is and what it does or is about. No file names, commands, instructions or claims
+  about tests. For example: "Blurb: Ripple is a game that teaches players to spot online misinformation."

@@ -21,4 +21,7 @@ Make it in Blender, working in the current directory.
 - Tools available on this machine: {tools}. Don't install packages or download anything (no asset
   libraries or add-ons).
 - Only create or edit files inside the current directory.
-- Finish with a short summary of what you made.
+- End your final message with a line starting with `Blurb:`, then one to three sentences in the third
+  person describing what you made for a visitor who will see it on the site: name the work if it has a
+  name, and say what it is and what it does or is about. No file names, commands, instructions or claims
+  about tests. For example: "Blurb: Ripple is a game that teaches players to spot online misinformation."

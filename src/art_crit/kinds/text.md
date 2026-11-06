@@ -9,4 +9,7 @@ Deliver the result as one Markdown file, working in the current directory.
 - Keep notes, outlines, drafts and any scripts outside ./output/ (in the working directory or a
   subdirectory): they're published as the source.
 - Only create or edit files inside the current directory.
-- Finish with a short summary of what you wrote.
+- End your final message with a line starting with `Blurb:`, then one to three sentences in the third
+  person describing what you made for a visitor who will see it on the site: name the work if it has a
+  name, and say what it is and what it does or is about. No file names, commands, instructions or claims
+  about tests. For example: "Blurb: Ripple is a game that teaches players to spot online misinformation."

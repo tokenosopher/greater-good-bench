@@ -17,4 +17,7 @@ Build this as an interactive web page in the current directory.
   screenshot you look at as a .jpg file, never .png: each image you read stays in your context, and a
   long session of large .png files can hit the provider's per-request image limit and end the run.
 - Only create or edit files inside the current directory.
-- Finish with a short summary of what you built.
+- End your final message with a line starting with `Blurb:`, then one to three sentences in the third
+  person describing what you made for a visitor who will see it on the site: name the work if it has a
+  name, and say what it is and what it does or is about. No file names, commands, instructions or claims
+  about tests. For example: "Blurb: Ripple is a game that teaches players to spot online misinformation."

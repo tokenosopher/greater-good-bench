@@ -215,6 +215,16 @@ def test_yes_skips_confirmation_and_runs(run_root, capsys):
     assert "Failure summary:" not in capsys.readouterr().err
 
 
+def test_summary_is_the_agents_blurb_or_its_closing_message_without_one(run_root, monkeypatch):
+    main(["run", "--yes", "a spinning cube", "-m", "openai-codex/gpt-6-sol:low", "--root", str(run_root)])
+    run = json.loads((run_root / "docs/data/a-spinning-cube/page.json").read_text())["runs"][0]
+    assert run["summary"] == "Fake Thing is a stand-in that shows what an agent made."
+    monkeypatch.setenv("FAKE_PI_NO_BLURB", "1")
+    main(["run", "--yes", "a spinning cone", "-m", "openai-codex/gpt-6-sol:low", "--root", str(run_root)])
+    run = json.loads((run_root / "docs/data/a-spinning-cone/page.json").read_text())["runs"][0]
+    assert run["summary"] == "Done. Summary: built a fake project."
+
+
 # --- failures --------------------------------------------------------------------------------
 
 

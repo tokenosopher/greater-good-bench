@@ -103,19 +103,23 @@ page's published copies, so adding runs can't silently leave the model with no i
   "output": { "kind": "godot", "entry": "game/index.html", "engine": "41560f8755ed",
              "godot": "4.7.2.stable.official.ed1daf0bf", "threads": false,
              "ok": true, "verified": true, "error": null },
-  "summary": "I made **Voxel Gallop**, a horse running across a voxel meadow. …",
+  "summary": "Voxel Gallop is a horse running across a voxel meadow, steered with the arrow keys.",
   "session": { "conversation": "session/conversation.json", "stderr": "session/stderr.txt" },
   "source": { "root": "source/", "files": ["README.md", "project.godot", "scenes/main.tscn", "scripts/main.gd"] }
 }
 ```
 - `output`, `session`, `source`, `thumb` and `summary` can each be `null`.
-- `summary` = what the model says it made, in its own words (Markdown, at most 4000 characters): the text parts of the
-  last assistant message in the *published* `session/conversation.json` (so cleaned and secret-scanned, or redacted
-  with `--redact`; run.json itself isn't scanned), skipping thinking and tool calls and walking back past messages
-  with no text. Every brief ends by asking for a short summary, so this describes the output. A longer one is cut at
-  the last paragraph break (else sentence end, else word) that keeps at least half, with "…" (an unclosed code fence
-  is closed). `null` without a transcript or any assistant text. Written at import (`summary.py`); `art-crit rebuild`
-  backfills it on runs published before it existed (a run.json without the key), never redoing it.
+- `summary` = what the model says it made, read from the *published* `session/conversation.json` (so cleaned and
+  secret-scanned, or redacted with `--redact`; run.json itself isn't scanned): the text parts of the last assistant
+  message, skipping thinking and tool calls and walking back past messages with no text. Every brief asks the agent to
+  end that message with a line starting with `Blurb:` (one to three third-person sentences for the site's visitors).
+  **When the message has a `Blurb:` line** (any case, anywhere, the last one wins) `summary` is that blurb alone: the
+  rest of its paragraph after the colon, joined into one line, Markdown emphasis and code marks stripped (plain text),
+  at most 500 characters (cut at the last sentence end that keeps half, else at a word with "…"). **Without one** it
+  is the whole message (Markdown, at most 4000 characters): a longer one is cut at the last paragraph break (else
+  sentence end, else word) that keeps at least half, with "…" (an unclosed code fence is closed). `null` without a
+  transcript or any assistant text. Written at import (`summary.py`); `art-crit rebuild` backfills it on runs
+  published before it existed (a run.json without the key), never redoing it.
 - `rank` exists only in `page.json.runs` (never in `run.json`): the run's rank from `ranking.json`, or `null`.
 - `cover` exists only in `page.json.runs`, and only for a run named in `covers.json`'s `covers` (see Covers); `page.json.cover` ({run, image}) is the owner's pick of the page's home-page picture. A run's `thumb` there can be overridden by `covers.json` too, and then the run has `thumb_override: true`.
 - `kind` is the page's kind (runs imported before kinds existed have none; the viewer treats that as `godot`). Importing
