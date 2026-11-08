@@ -918,11 +918,14 @@ and each lanes page links to its classic counterpart ("classic view").
   picture at the top), a 44 px checkbox, the model, effort, the summary blurb, time/tokens/cost (best in green), and the
   vote row ("Your vote:", inactive without the vote API). **Cards never play anything in place**: the whole output area
   is one link to the run page in the same tab (`renderOutput(..., {link})` → `outputLink()` in output.js): a still (a
-  game's or page's screenshot, the hero item's thumbnail or poster, a model's first render), the outputs' thumbnail
-  strip at the bottom when there are several (pictures inside the link, not buttons), and a cue: "▶ Play" / "▶ View the
+  game's or page's screenshot, the hero item's thumbnail or poster, a model's first render), a thumbnail strip at the
+  bottom when the gallery rule (`shownItems()`) shows several outputs, so a video's or model's stills never appear
+  (pictures inside the link, not buttons), and a cue: "▶ Play" / "▶ View the
   page" (from `KIND_UI.open`), "▶ Watch" (a video hero) or "▶ View in 3D" (a model hero) centred on the still, or
   "Open run →" in its corner for pictures. No video, frame or three.js loads on a card, and there is no ▶ overlay,
-  "Play full screen" or ↗ on page cards. A text card is its title/excerpt tile linking to the run. Checked runs fill a
+  "Play full screen" or ↗ on page cards. When `output.ok` is true, `output.error` (files the kind step skipped, such
+  as a duplicate of the kept video) is left off cards and shown on the run page as a muted "Note:", never as an error.
+  A text card is its title/excerpt tile linking to the run. Checked runs fill a
   bottom tray (thumbnail, model, vendor · effort, remove) with "Compare in detail →" from two runs.
 - **Compare** (`?p=<slug>&r=<id>,<id>…`, at least two): back link, title, the page line, prompt and final-prompt modal,
   winner pills, and one equal-height column per run: the output uncropped as the same link to the run page as on the

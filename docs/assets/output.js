@@ -234,8 +234,9 @@ function outputLink(run, base, href) {
       still = hero.type === "image" ? mediaElement(hero, base, null, { compact: true }) : src ? el("img", { attrs: { src: base + src, alt: "", loading: "lazy" } }) : null;
       cue = hero.type === "model" ? "View in 3D" : hero.type === "video" ? "Watch" : null;
     }
-    if (items.length > 1) {
-      strip = el("span", { class: "media-strip" }, items.map((item) => {
+    const shownSet = shownItems(items);
+    if (shownSet.length > 1) {
+      strip = el("span", { class: "media-strip" }, shownSet.map((item) => {
         const src = picture(item);
         return el("span", { class: item.type === "image" ? "media-thumb" : `media-thumb is-${item.type}`, attrs: { "aria-current": String(item === hero) } },
           [src ? el("img", { attrs: { src: base + src, alt: "", loading: "lazy" } }) : null]);
@@ -310,7 +311,10 @@ export function textArticle(out, base, { full = false } = {}) {
 // URL) shows the output as one link there (outputLink(); a text as its title/excerpt tile), never playing in place.
 export function renderOutput(run, base, { autoplay = false, frameClass = "game-frame", compact = false, href = null, full = false, tools = null, link = null } = {}) {
   const out = run.output;
-  const nodes = out?.error ? [el("p", { class: "run-error", text: out.error })] : [];
+  // A failed kind step is an error everywhere. When the output worked, `error` holds what the step skipped (a duplicate
+  // file, an unreadable extra): a quiet note on the run page (`full`), and nothing on cards.
+  const nodes = !out?.error ? [] : !out.ok ? [el("p", { class: "run-error", text: out.error })]
+    : full ? [el("p", { class: "run-note", text: out.error })] : [];
   if (!out?.ok) return [...nodes, el("p", { class: "msg", text: kindUi(run.kind).none })];
   if (link) return [...nodes, out.text ? textCard(out, link) : outputLink(run, base, link)];
   if (out.items) return [...nodes, compact ? mediaCard(out.items || [], base, href) : mediaGallery(out.items || [], base, { full, tools })];

@@ -923,6 +923,29 @@ def test_media_run_with_a_video_shows_only_the_video_and_lists_the_other_files(s
     assert_no_errors(page)
 
 
+def test_a_skipped_file_is_a_note_on_the_run_page_and_absent_from_cards(site, page):
+    """output.ok with an output.error (a duplicate skipped beside the kept video) is not an error on cards."""
+    note = "clip.webm: skipped, another output is already named clip.mp4"
+
+    def fulfill(route):
+        body = route.fetch().json()
+        for r in body["runs"]:
+            if r["id"] == ART_HIGH_ID:
+                r["output"]["error"] = note
+        route.fulfill(json=body)
+
+    page.route("**/data/art/page.json*", fulfill)
+    page.goto(site + "page.html?p=art")
+    card = page.locator(f'.v2-card:has(input[data-id="{ART_HIGH_ID}"])')
+    expect(card.locator("a.output-link")).to_have_count(1)
+    assert card.locator(".run-error, .run-note").count() == 0
+    page.goto(f"{site}run.html?p=art&r={ART_HIGH_ID}")
+    page.wait_for_selector(".media-grid")
+    expect(page.locator("#panel-game .run-note")).to_have_text(note)
+    assert page.locator("#panel-game .run-error").count() == 0
+    assert_no_errors(page)
+
+
 def test_media_run_of_images_only_shows_every_image(site, page):
     without_video(page)
     page.goto(f"{site}run.html?p=art&r={ART_HIGH_ID}")
@@ -1912,9 +1935,9 @@ def test_lanes_cards_never_play_in_place_and_link_to_the_run(site, page):
     expect(link.locator(".open-cue")).to_have_text("▶Watch")  # the video is the hero, shown by its poster
     assert link.locator(".output-still img").get_attribute("src").endswith("/media/clip.poster.jpg")
     assert media.locator("video, iframe, button").count() == 0
-    expect(link.locator(".media-thumb")).to_have_count(3)  # the strip stays, as part of the link
+    expect(link.locator(".media-thumb")).to_have_count(0)  # a video's stills stay off the card, like on the run page
     box = media.bounding_box()
-    with page.expect_navigation():  # anywhere on the media, the strip included
+    with page.expect_navigation():  # anywhere on the media
         page.mouse.click(box["x"] + 30, box["y"] + box["height"] - 30)
     assert page.url.endswith(f"run.html?p=art&r={ART_HIGH_ID}")
 
@@ -1922,6 +1945,7 @@ def test_lanes_cards_never_play_in_place_and_link_to_the_run(site, page):
     page.goto(site + "page.html?p=art")
     link = page.locator(f'.v2-card:has(input[data-id="{ART_HIGH_ID}"]) a.output-link')
     expect(link.locator(".open-cue")).to_have_text("Open run→")
+    expect(link.locator(".media-thumb")).to_have_count(2)  # pictures only: every picture in the strip, part of the link
     assert link.locator(".output-still img").get_attribute("src").endswith("/media/circle.svg")  # an <img>, never inlined
     assert page.evaluate("window.svgRan") is None
     assert_no_errors(page)
