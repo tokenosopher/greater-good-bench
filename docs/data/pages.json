@@ -3,7 +3,7 @@
     "slug": "game",
     "title": "Game",
     "kind": "godot",
-    "n_runs": 12,
+    "n_runs": 10,
     "models": [
       "anthropic/claude-fable-5-1",
       "anthropic/claude-opus-5-5",
@@ -11,14 +11,12 @@
       "openai/gpt-6.1-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
-      "openrouter/google/gemini-4-argon",
       "openrouter/meta/muse-wonder",
       "openrouter/minimax/minimax-m3.1-flash",
       "openrouter/moonshotai/kimi-k3.1-pro",
-      "openrouter/x-ai/grok-4.7",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-30T03:58:46Z",
+    "updated": "2026-10-30T03:48:10Z",
     "thumb": "data/game/runs/minimax-m3.1-flash-high-20261030-034211/thumb.jpg"
   },
   {
@@ -70,7 +68,7 @@
     "slug": "svg",
     "title": "SVG",
     "kind": "media",
-    "n_runs": 14,
+    "n_runs": 12,
     "models": [
       "anthropic/claude-fable-5-1",
       "anthropic/claude-opus-5-5",
@@ -78,7 +76,6 @@
       "openai/gpt-6.1-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
-      "openrouter/google/gemini-4-argon",
       "openrouter/meta/muse-wonder",
       "openrouter/minimax/minimax-m3.1-flash",
       "openrouter/moonshotai/kimi-k3.1-pro",
@@ -86,7 +83,7 @@
       "openrouter/x-ai/grok-4.7",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-30T03:18:17Z",
+    "updated": "2026-10-30T03:05:59Z",
     "thumb": "data/svg/runs/grok-4.7-high-20261030-023118/media/someone-is-home.thumb.jpg"
   },
   {
@@ -115,7 +112,7 @@
     "slug": "essay",
     "title": "Essay",
     "kind": "text",
-    "n_runs": 14,
+    "n_runs": 12,
     "models": [
       "anthropic/claude-fable-5-1",
       "anthropic/claude-opus-5-5",
@@ -123,7 +120,6 @@
       "openai/gpt-6.1-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
-      "openrouter/google/gemini-4-argon",
       "openrouter/meta/muse-wonder",
       "openrouter/minimax/minimax-m3.1-flash",
       "openrouter/moonshotai/kimi-k3.1-pro",
@@ -131,7 +127,7 @@
       "openrouter/x-ai/grok-4.7",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-30T02:31:17Z",
+    "updated": "2026-10-29T21:05:23Z",
     "thumb": null
   }
 ]

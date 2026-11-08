@@ -5,7 +5,7 @@
   "prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.",
   "final_prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.\n\nBuild this as a complete, playable Godot 4.7.2 project in the current directory.\n- Use the gl_compatibility renderer, and don't enable thread support (it must run as a web export).\n- Set a main scene in project.godot. Add a short README.md with run instructions.\n- Keep it self-contained: no downloads, external assets or plugins.\n- Only create or edit files inside the current directory. Don't export the project; that happens afterwards.\n- Check it loads: run `godot --headless --path . --editor --quit` and fix any errors.\n- Finish with a short summary of what you built.\n",
   "created": "2026-10-29T18:43:57Z",
-  "updated": "2026-10-30T03:58:46Z",
+  "updated": "2026-10-30T03:48:10Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-184357",
@@ -693,114 +693,6 @@
         ]
       },
       "summary": "Ripple: A Kindness Game is a cooperative village simulation in which helping a struggling neighbor sends a ripple of support outward through the community. Greed harms the whole town and slows recovery, so players learn that generosity sustains everyone and lead the village toward becoming a Beloved Community.",
-      "rank": null
-    },
-    {
-      "id": "gemini-4-argon-high-20261030-034211",
-      "page": "game",
-      "model": "openrouter/google/gemini-4-argon",
-      "effort": "high",
-      "kind": "godot",
-      "started_at": "2026-10-30T03:42:11Z",
-      "batch": "2026-10-30-034211-game",
-      "harness": {
-        "name": "pi",
-        "version": "1.4.0"
-      },
-      "state": "failed",
-      "error": "402: {\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 36841. To increase, visit https://openrouter.ai/settings/credits and add",
-      "route": {
-        "requested": null,
-        "served": [
-          "Google"
-        ],
-        "cost_usd": 0.089936,
-        "pi_cost_usd": 0.08993600000000002
-      },
-      "tools": {
-        "allowed": {
-          "builtin": null,
-          "mcp": {}
-        },
-        "used": {
-          "bash": 1,
-          "write": 1
-        }
-      },
-      "metrics": {
-        "duration_ms": 146185,
-        "cost_usd": 0.089936,
-        "tool_calls": 2,
-        "turns": 3,
-        "tokens_total": 11924,
-        "tokens_input": 3663,
-        "tokens_output": 8261,
-        "tokens_reasoning": 7787,
-        "tokens_cache_read": 0
-      },
-      "thumb": null,
-      "output": null,
-      "session": {
-        "conversation": "session/conversation.json"
-      },
-      "source": {
-        "root": "source/",
-        "files": [
-          "icon.svg"
-        ]
-      },
-      "summary": null,
-      "rank": null
-    },
-    {
-      "id": "grok-4.7-high-20261030-034211",
-      "page": "game",
-      "model": "openrouter/x-ai/grok-4.7",
-      "effort": "high",
-      "kind": "godot",
-      "started_at": "2026-10-30T03:42:11Z",
-      "batch": "2026-10-30-034211-game",
-      "harness": {
-        "name": "pi",
-        "version": "1.4.0"
-      },
-      "state": "failed",
-      "error": "402: {\"message\":\"This request requires more credits, or fewer max_tokens. You requested up to 65536 tokens, but can only afford 14470. To increase, visit https://openrouter.ai/settings/credits and add",
-      "route": {
-        "requested": null,
-        "served": [
-          "xAI"
-        ],
-        "cost_usd": 0.363468,
-        "pi_cost_usd": 0.363468
-      },
-      "tools": {
-        "allowed": {
-          "builtin": null,
-          "mcp": {}
-        },
-        "used": {
-          "bash": 4
-        }
-      },
-      "metrics": {
-        "duration_ms": 995382,
-        "cost_usd": 0.363468,
-        "tool_calls": 4,
-        "turns": 5,
-        "tokens_total": 68510,
-        "tokens_input": 13770,
-        "tokens_output": 54740,
-        "tokens_reasoning": 54158,
-        "tokens_cache_read": 14976
-      },
-      "thumb": null,
-      "output": null,
-      "session": {
-        "conversation": "session/conversation.json"
-      },
-      "source": null,
-      "summary": "A game that teaches a skill meant to scale: before making a decision that affects other people's lives, the player sits in their chair and names the need beneath each stated demand.",
       "rank": null
     },
     {

@@ -5,7 +5,7 @@
   "prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.",
   "final_prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n",
   "created": "2026-10-29T18:36:06Z",
-  "updated": "2026-10-30T03:18:17Z",
+  "updated": "2026-10-30T03:05:59Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-183606",
@@ -495,57 +495,6 @@
       "rank": null
     },
     {
-      "id": "gemini-4-argon-high-20261029-205306",
-      "page": "svg",
-      "model": "openrouter/google/gemini-4-argon",
-      "effort": "high",
-      "kind": "media",
-      "started_at": "2026-10-29T20:53:06Z",
-      "batch": "2026-10-29-205306-svg",
-      "harness": {
-        "name": "pi",
-        "version": "1.4.0"
-      },
-      "state": "failed",
-      "error": "400: {\"message\":\"Provider returned error\",\"code\":400,\"metadata\":{\"raw\":\"Gemini models require OpenRouter reasoning details to be preserved in each request. Please refer to our docs: https://openrouter",
-      "route": {
-        "requested": null,
-        "served": [
-          "Google"
-        ],
-        "cost_usd": 0.008426,
-        "pi_cost_usd": 0.008426
-      },
-      "tools": {
-        "allowed": {
-          "builtin": null,
-          "mcp": {}
-        },
-        "used": {
-          "bash": 1
-        }
-      },
-      "metrics": {
-        "duration_ms": 12533,
-        "cost_usd": 0.008426,
-        "tool_calls": 1,
-        "turns": 2,
-        "tokens_total": 2337,
-        "tokens_input": 1868,
-        "tokens_output": 469,
-        "tokens_reasoning": 426,
-        "tokens_cache_read": 0
-      },
-      "thumb": null,
-      "output": null,
-      "session": {
-        "conversation": "session/conversation.json"
-      },
-      "source": null,
-      "summary": null,
-      "rank": null
-    },
-    {
       "id": "kimi-k3.1-pro-high-20261029-205306",
       "page": "svg",
       "model": "openrouter/moonshotai/kimi-k3.1-pro",
@@ -968,58 +917,6 @@
         ]
       },
       "summary": "WE SHARE ONE HOME is an animated poster of eight people of different ages and abilities, including a child, an elder and a wheelchair user, holding hands in front of a single Earth under the words \"All 8 billion of us.\" It repeats \"one home\" in five languages beside four everyday habits anyone can practice: breathe, listen, help and repair. It closes on the line \"No us vs. them. Only us.\"",
-      "rank": null
-    },
-    {
-      "id": "gemini-4-argon-high-20261030-023118",
-      "page": "svg",
-      "model": "openrouter/google/gemini-4-argon",
-      "effort": "high",
-      "kind": "media",
-      "started_at": "2026-10-30T02:31:18Z",
-      "batch": "2026-10-30-023118-svg",
-      "harness": {
-        "name": "pi",
-        "version": "1.4.0"
-      },
-      "state": "failed",
-      "error": "Network connection lost.",
-      "route": {
-        "requested": null,
-        "served": [
-          "Google AI Studio"
-        ],
-        "cost_usd": 0.2606479,
-        "pi_cost_usd": 0.26064790000000004
-      },
-      "tools": {
-        "allowed": {
-          "builtin": null,
-          "mcp": {}
-        },
-        "used": {
-          "bash": 4,
-          "read": 1
-        }
-      },
-      "metrics": {
-        "duration_ms": 2819197,
-        "cost_usd": 0.2606479,
-        "tool_calls": 5,
-        "turns": 12,
-        "tokens_total": 42413,
-        "tokens_input": 20640,
-        "tokens_output": 21773,
-        "tokens_reasoning": 21264,
-        "tokens_cache_read": 16379
-      },
-      "thumb": null,
-      "output": null,
-      "session": {
-        "conversation": "session/conversation.json"
-      },
-      "source": null,
-      "summary": null,
       "rank": null
     },
     {
