@@ -1,0 +1,31 @@
+# Publishes docs/ to GitHub Pages. The default Pages deployment allows 10 minutes for GitHub to sync the files, which
+# a ~180 MB site with ~900 files exceeded twice (6 Nov 2026, stuck in "syncing_files"); this workflow gives it 30.
+# Cloudflare (DEPLOY.md) is the planned home; this keeps the GitHub Pages copy working meanwhile.
+name: pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
