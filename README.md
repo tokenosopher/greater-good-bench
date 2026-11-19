@@ -112,7 +112,7 @@ uv run art-crit run "a voxel horse" -m claude-code:claude-opus-5-5:high -m opena
 uv run art-crit models --harness claude-code
 ```
 
-Claude Code models are `claude-fable-5-1`, `claude-opus-5-5`, `claude-sonnet-5-5`,
+Claude Code models are `claude-fable-5-2`, `claude-fable-5-1`, `claude-opus-5-5`, `claude-sonnet-5-5`,
 `claude-sonnet-5`, and `claude-haiku-4-5` (`fable`, `opus`, `sonnet`, `haiku` work as shorthand),
 at low, medium, high, xhigh, or max. Runs are single agents with file and shell tools only —
 no subagents, web access, skills, scheduling, CLAUDE.md, memory, plugins, hooks, or MCP servers.

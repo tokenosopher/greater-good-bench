@@ -478,6 +478,7 @@ class ClaudeCode(Harness):
     # hence the trimmed lists. Levels from the catalog's capabilities, checked against the requests the
     # CLI actually sends.
     MODELS = {
+        "claude-fable-5-2": ["low", "medium", "high", "xhigh", "max"],
         "claude-fable-5-1": ["low", "medium", "high", "xhigh", "max"],
         "claude-opus-5-5": ["low", "medium", "high", "xhigh", "max"],
         "claude-opus-5": ["low", "medium", "high", "xhigh", "max"],
@@ -489,7 +490,7 @@ class ClaudeCode(Harness):
         "claude-sonnet-4-6": ["low", "medium", "high", "max"],
         "claude-haiku-5-5": ["low", "medium", "high", "xhigh", "max"],
     }
-    ALIASES = {"fable": "claude-fable-5-1", "opus": "claude-opus-5-5", "sonnet": "claude-sonnet-5-5", "haiku": "claude-haiku-5-5"}
+    ALIASES = {"fable": "claude-fable-5-2", "opus": "claude-opus-5-5", "sonnet": "claude-sonnet-5-5", "haiku": "claude-haiku-5-5"}
     # Only the core file and shell tools, like pi: no web, scheduling, messaging or skills, and no
     # sub-agents (each model x effort is one direct run).
     TOOLS = "Bash,Read,Write,Edit,Glob,Grep"
