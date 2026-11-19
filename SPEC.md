@@ -146,7 +146,7 @@ page's published copies, so adding runs can't silently leave the model with no i
   itself, when ffmpeg couldn't make it) for godot and web; for media and blender the first item's `thumb`, or the first
   image's path or video's poster when no item has one; `null` for text (cards show the title and excerpt instead). `art-crit rebuild` backfills missing thumbnails of published
   runs from their files and rewrites those `run.json`. Model-written text (SVGs, the packaged page) is cleaned and secret-scanned like
-  source. The run's `source` never includes `node_modules/`; for media it holds only text files of at most 512 KB,
+  source. The run's `source` never includes a `node_modules/` or any hidden directory (`.preview/`, `.cache/`: tool state such as a browser profile), at any depth; for media it holds only text files of at most 512 KB,
   and `output/` only for the files there that aren't media (a generator script kept in `./output/`).
 - `id` = `<model name after the last "/", lowercased>-<effort>-<YYYYMMDD-HHMMSS of the batch>`, with `-cc` after the
   model for Claude Code runs; URL/filesystem-safe: a pinned OpenRouter route (`@…`, which can contain `/` itself) is split

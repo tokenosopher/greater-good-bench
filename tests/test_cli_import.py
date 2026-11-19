@@ -156,6 +156,23 @@ def test_source_files_exclude_session_and_editor_cache(bench_root, batch_dir):
     assert not (r / "source" / ".godot").exists()
 
 
+def test_source_skips_hidden_dirs_and_nested_node_modules_at_any_depth():
+    """An agent's tool state (a browser profile under .preview/, a nested node_modules) is never source; a hidden
+    file itself is. A Chrome profile in .preview/ once carried token-like strings that stopped a whole import."""
+    from pathlib import PurePosixPath as P
+
+    from art_crit.importer import skipped_source
+
+    assert skipped_source(P(".preview/dev/chrome/Default/Secure Preferences"))
+    assert skipped_source(P("site/.cache/x.json"))
+    assert skipped_source(P(".preview/dev/node_modules/ws/README.md"))
+    assert skipped_source(P("tools/node_modules/a/index.js"))
+    assert skipped_source(P(".godot/imported/icon.png"))
+    assert not skipped_source(P(".gitignore"))
+    assert not skipped_source(P("src/.eslintrc.json"))
+    assert not skipped_source(P("scripts/main.gd"))
+
+
 # --- cleaning ---------------------------------------------------------------------------------
 
 

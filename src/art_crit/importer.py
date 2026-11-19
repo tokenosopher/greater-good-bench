@@ -112,6 +112,13 @@ def stage_session(harness_dir, run_dir, rewrites, redact, batch):
     return session or None
 
 
+def skipped_source(rel):
+    """Whether a work file is never published as source: anything under a skipped name (node_modules, .godot, a run's
+    MCP config) or under any hidden directory, at any depth. Hidden directories are agents' tool state (a browser
+    profile under .preview/, caches), never source a visitor reads; hidden files themselves (.gitignore) are kept."""
+    return any(part in SOURCE_SKIP for part in rel.parts) or any(part.startswith(".") for part in rel.parts[:-1])
+
+
 def stage_source(work_dir, run_dir, kind, rewrites, redact, batch):
     """What the agent wrote -> runs/<id>/source/ (the kind may leave files out, e.g. rendered frames)."""
     if not work_dir.is_dir():
@@ -119,7 +126,7 @@ def stage_source(work_dir, run_dir, kind, rewrites, redact, batch):
     files = []
     for src in sorted(work_dir.rglob("*")):
         rel = src.relative_to(work_dir)
-        if src.is_dir() or rel.parts[0] in SOURCE_SKIP | {"references"} or src.name in SOURCE_SKIP or not kind.keep_source(rel, src):
+        if src.is_dir() or rel.parts[0] == "references" or skipped_source(rel) or not kind.keep_source(rel, src):
             continue
         write_cleaned(src, run_dir / "source" / rel, "text", rewrites, redact, batch)
         files.append(rel.as_posix())
