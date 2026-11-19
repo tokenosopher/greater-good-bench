@@ -1,0 +1,61 @@
+export default async ({ page, shot, sleep, clickText, clickLabel }) => {
+  await clickText("Start the ten minutes");
+  await sleep(500);
+  await shot("cpr-1a");
+  await clickLabel("Tap the near shoulder");
+  await sleep(200);
+  await clickLabel("Tap the far shoulder");
+  await sleep(1500);
+  await shot("cpr-1b");
+  await clickText("Yes — they");
+  await sleep(200);
+  await clickText("No — that");
+  await sleep(300);
+  await shot("cpr-1c");
+  await clickText("Next step");
+  await sleep(400);
+  await shot("cpr-2a");
+  await clickLabel("Bystander 2");
+  await sleep(600);
+  await clickLabel("Bystander 4");
+  await sleep(500);
+  await shot("cpr-2b");
+  await sleep(1200);
+  await clickText("Next step");
+  await sleep(400);
+  await shot("cpr-3a");
+  await clickLabel("Left side of the chest");
+  await sleep(200);
+  await clickLabel("Centre of the chest");
+  await sleep(400);
+  const svg = await page.$(".stage-svg");
+  const box = await svg.boundingBox();
+  for (let i = 0; i < 12; i++) {
+    await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+    await sleep(i < 5 ? 700 : 520);
+  }
+  await shot("cpr-3b");
+  for (let i = 0; i < 40; i++) {
+    await page.keyboard.press("Space");
+    await sleep(540);
+    if (await page.$(".btn-next.is-ready")) break;
+  }
+  await sleep(300);
+  await shot("cpr-3c");
+  await clickText("Next step");
+  await sleep(400);
+  await shot("cpr-4a");
+  await clickLabel("Stomach");
+  await sleep(150);
+  await clickLabel("Upper chest on their right");
+  await sleep(150);
+  await clickLabel("below the armpit");
+  await sleep(2800);
+  await shot("cpr-4b");
+  await page.click(".shock-btn");
+  await sleep(900);
+  await shot("cpr-4c");
+  await clickText("What to remember");
+  await sleep(900);
+  await shot("cpr-keep");
+};

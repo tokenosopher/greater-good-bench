@@ -1,0 +1,68 @@
+{
+  "id": "gpt-6.2-sol-cx-high-20261119-010627",
+  "page": "animation",
+  "model": "openai/gpt-6.2-sol",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-11-19T01:06:27Z",
+  "batch": "2026-11-19-010627-animation",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 21,
+      "file_change": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 480427,
+    "cost_usd": 0.0,
+    "tool_calls": 25,
+    "turns": 1,
+    "tokens_total": 59138,
+    "tokens_input": 40593,
+    "tokens_output": 18545,
+    "tokens_reasoning": 6552,
+    "tokens_cache_read": 847104
+  },
+  "thumb": "media/the-gap.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 9.8,
+        "bytes": 773304,
+        "transcoded": false,
+        "path": "media/the-gap.mp4",
+        "poster": "media/the-gap.poster.jpg",
+        "thumb": "media/the-gap.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "The Gap is a short animated film in which a hand lifts one domino just before a cascade can spread. It asks viewers to check the source before sharing a claim.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "render.py"
+    ]
+  }
+}

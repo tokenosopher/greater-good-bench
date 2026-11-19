@@ -3,9 +3,9 @@
   "title": "SVG",
   "kind": "media",
   "prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.",
-  "final_prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n",
+  "final_prompt": "Make an SVG that, if everyone saw it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- End your final message with a line starting with `Blurb:`, then one to three sentences in the third\n  person describing what you made for a visitor who will see it on the site: name the work if it has a\n  name, and say what it is and what it does or is about. No file names, commands, instructions or claims\n  about tests. For example: \"Blurb: Ripple is a game that teaches players to spot online misinformation.\"\n",
   "created": "2026-10-29T18:36:06Z",
-  "updated": "2026-10-30T03:05:59Z",
+  "updated": "2026-11-19T01:06:25Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-183606",
@@ -1003,6 +1003,207 @@
         ]
       },
       "summary": "Someone Is Home shows a figure standing upright in the rain at night, meeting the viewer's eyes, with a lit window set in their chest: a lamp, two cups, a plant, and someone at home, with the same light caught in their eyes. Down the street, every other person carries a small lit window too, a reminder that someone is home inside each of them.",
+      "rank": null
+    },
+    {
+      "id": "claude-fable-5-2-cc-high-20261119-005609",
+      "page": "svg",
+      "model": "anthropic/claude-fable-5-2",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-11-19T00:56:09Z",
+      "batch": "2026-11-19-005609-svg",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.327"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 6,
+          "read": 5
+        }
+      },
+      "metrics": {
+        "duration_ms": 616789,
+        "cost_usd": 3.3155732,
+        "tool_calls": 11,
+        "turns": 7,
+        "tokens_total": 54034,
+        "tokens_input": 14,
+        "tokens_output": 54020,
+        "tokens_reasoning": 34995,
+        "tokens_cache_read": 300186
+      },
+      "thumb": "media/before-help-arrives.svg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1800,
+            "height": 1550,
+            "bytes": 49142,
+            "path": "media/before-help-arrives.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Before Help Arrives is a wordless first-aid poster in six cards, each showing an emergency and, below an arrow, what anyone can do about it: chest compressions, choking, heavy bleeding, stroke, dehydration from diarrhoea, and burns. It uses only pictograms, colour and numerals so it can be read in any language, and the rescuer in the first card pushes at the real tempo of 110 beats a minute.",
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/make.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-astra-cx-high-20261119-005609",
+      "page": "svg",
+      "model": "openai/gpt-6.2-astra",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-11-19T00:56:09Z",
+      "batch": "2026-11-19-005609-svg",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 6
+        }
+      },
+      "metrics": {
+        "duration_ms": 216479,
+        "cost_usd": 0.0,
+        "tool_calls": 6,
+        "turns": 1,
+        "tokens_total": 23307,
+        "tokens_input": 16015,
+        "tokens_output": 7292,
+        "tokens_reasoning": 2389,
+        "tokens_cache_read": 204800
+      },
+      "thumb": "media/the-firebreak.svg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1400,
+            "height": 1000,
+            "bytes": 606899,
+            "path": "media/the-firebreak.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "The Firebreak is a vintage-style matchbox poster in which one overturned match interrupts a spreading flame. It invites viewers to take a breath before answering in anger.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "make.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-sol-cx-high-20261119-005609",
+      "page": "svg",
+      "model": "openai/gpt-6.2-sol",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-11-19T00:56:09Z",
+      "batch": "2026-11-19-005609-svg",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 10,
+          "file_change": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 463326,
+        "cost_usd": 0.0,
+        "tool_calls": 11,
+        "turns": 1,
+        "tokens_total": 81445,
+        "tokens_input": 62548,
+        "tokens_output": 18897,
+        "tokens_reasoning": 4816,
+        "tokens_cache_read": 413952
+      },
+      "thumb": "media/make-room.svg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "image",
+            "width": 1080,
+            "height": 1380,
+            "bytes": 614167,
+            "path": "media/make-room.svg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Make Room is an illustrated poster in which an empty orange chair and a fifth cup wait at a crowded table. It asks viewers to notice who\u2019s missing from a decision and give the people affected a real say.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "src/poster.py",
+          "src/type.swift"
+        ]
+      },
       "rank": null
     }
   ]

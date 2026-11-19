@@ -1,0 +1,62 @@
+{
+  "id": "claude-fable-5-2-cc-high-20261119-005134",
+  "page": "essay",
+  "model": "anthropic/claude-fable-5-2",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-11-19T00:51:34Z",
+  "batch": "2026-11-19-005134-essay",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.327"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "edit": 6,
+      "bash": 4,
+      "write": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 271775,
+    "cost_usd": 1.5156131999999998,
+    "tool_calls": 11,
+    "turns": 6,
+    "tokens_total": 24450,
+    "tokens_input": 12,
+    "tokens_output": 24438,
+    "tokens_reasoning": 15689,
+    "tokens_cache_read": 135026
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 15491,
+    "words": 2560,
+    "title": "Go First",
+    "excerpt": "A short essay about a mistake almost everyone makes about almost everyone else. You have been in this room. A teacher finishes explaining something difficult, looks up, and asks whether there are any questions. You stopped following ten minutes ago. You look around. No hands are up, and the faces\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Go First is an essay arguing that almost everyone underestimates the honesty, helpfulness and goodwill of almost everyone else, and that this shared mistake keeps people silent, lonely and stuck with customs nobody wants. Drawing on research from dozens of countries, it asks each reader to make the first move, because their silence is what other people are reading as evidence.",
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": null
+}

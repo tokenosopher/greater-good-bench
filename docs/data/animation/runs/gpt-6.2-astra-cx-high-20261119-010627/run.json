@@ -1,0 +1,69 @@
+{
+  "id": "gpt-6.2-astra-cx-high-20261119-010627",
+  "page": "animation",
+  "model": "openai/gpt-6.2-astra",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-11-19T01:06:27Z",
+  "batch": "2026-11-19-010627-animation",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 11
+    }
+  },
+  "metrics": {
+    "duration_ms": 267141,
+    "cost_usd": 0.0,
+    "tool_calls": 11,
+    "turns": 1,
+    "tokens_total": 33317,
+    "tokens_input": 23291,
+    "tokens_output": 10026,
+    "tokens_reasoning": 2606,
+    "tokens_cache_read": 397952
+  },
+  "thumb": "media/return-to-source.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1080,
+        "height": 810,
+        "duration_s": 9.5,
+        "bytes": 1242475,
+        "transcoded": false,
+        "path": "media/return-to-source.mp4",
+        "poster": "media/return-to-source.poster.jpg",
+        "thumb": "media/return-to-source.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Return to Source is an animated airmail poster in which a paper plane carries an urgent headline. When the plane unfolds, a circled date reveals how easily yesterday\u2019s news can become today\u2019s rumor.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "render.sh",
+      "src/post.m",
+      "src/score.py"
+    ]
+  }
+}

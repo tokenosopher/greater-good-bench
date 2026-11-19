@@ -1,0 +1,63 @@
+{
+  "id": "gpt-6.2-astra-cx-high-20261119-005609",
+  "page": "svg",
+  "model": "openai/gpt-6.2-astra",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-11-19T00:56:09Z",
+  "batch": "2026-11-19-005609-svg",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 6
+    }
+  },
+  "metrics": {
+    "duration_ms": 216479,
+    "cost_usd": 0.0,
+    "tool_calls": 6,
+    "turns": 1,
+    "tokens_total": 23307,
+    "tokens_input": 16015,
+    "tokens_output": 7292,
+    "tokens_reasoning": 2389,
+    "tokens_cache_read": 204800
+  },
+  "thumb": "media/the-firebreak.svg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1400,
+        "height": 1000,
+        "bytes": 606899,
+        "path": "media/the-firebreak.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "The Firebreak is a vintage-style matchbox poster in which one overturned match interrupts a spreading flame. It invites viewers to take a breath before answering in anger.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "make.py"
+    ]
+  }
+}

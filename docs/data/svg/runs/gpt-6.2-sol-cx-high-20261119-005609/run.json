@@ -1,0 +1,65 @@
+{
+  "id": "gpt-6.2-sol-cx-high-20261119-005609",
+  "page": "svg",
+  "model": "openai/gpt-6.2-sol",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-11-19T00:56:09Z",
+  "batch": "2026-11-19-005609-svg",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 10,
+      "file_change": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 463326,
+    "cost_usd": 0.0,
+    "tool_calls": 11,
+    "turns": 1,
+    "tokens_total": 81445,
+    "tokens_input": 62548,
+    "tokens_output": 18897,
+    "tokens_reasoning": 4816,
+    "tokens_cache_read": 413952
+  },
+  "thumb": "media/make-room.svg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1080,
+        "height": 1380,
+        "bytes": 614167,
+        "path": "media/make-room.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Make Room is an illustrated poster in which an empty orange chair and a fifth cup wait at a crowded table. It asks viewers to notice who\u2019s missing from a decision and give the people affected a real say.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/poster.py",
+      "src/type.swift"
+    ]
+  }
+}

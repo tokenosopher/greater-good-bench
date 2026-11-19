@@ -1,0 +1,118 @@
+{
+  "id": "gpt-6.2-astra-cx-high-20261119-021043",
+  "page": "3d-model",
+  "model": "openai/gpt-6.2-astra",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-11-19T02:10:47Z",
+  "batch": "2026-11-19-021043-3d-model",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "bash": 13,
+      "mcp__blender__execute_blender_code": 9,
+      "mcp__blender__search_api_docs": 1,
+      "mcp__blender__search_manual_docs": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 778351,
+    "cost_usd": 0.0,
+    "tool_calls": 24,
+    "turns": 1,
+    "tokens_total": 72726,
+    "tokens_input": 54282,
+    "tokens_output": 18444,
+    "tokens_reasoning": 3961,
+    "tokens_cache_read": 1781632
+  },
+  "thumb": "media/01-a-softer-street.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1800,
+        "height": 1380,
+        "bytes": 480801,
+        "path": "media/01-a-softer-street.jpg",
+        "thumb": "media/01-a-softer-street.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1560,
+        "height": 1240,
+        "bytes": 439514,
+        "path": "media/02-curb-inlet.jpg",
+        "thumb": "media/02-curb-inlet.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 10682428,
+        "meshes": 108,
+        "triangles": 310720,
+        "animations": 0,
+        "path": "media/a-softer-street.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "A Softer Street follows rain through a gap in the curb into a garden where two wagtails forage among the flowers. A cutaway reveals the roots and layers of soil beneath the pool, showing how a small patch of city ground can slow runoff and make room for wildlife.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "finish.py",
+      "garden.py",
+      "views.py"
+    ]
+  }
+}

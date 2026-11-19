@@ -3,9 +3,9 @@
   "title": "Essay",
   "kind": "text",
   "prompt": "Write an essay that, if everyone read it, would improve the world for the greatest number of people.",
-  "final_prompt": "Write an essay that, if everyone read it, would improve the world for the greatest number of people.\n\nDeliver the result as one Markdown file, working in the current directory.\n- Save it in ./output/ under any name ending in .md (for example ./output/essay.md). ./output/ must hold\n  exactly one .md file; anything else there is ignored.\n- The file is published as it is and shown as a page: headings, paragraphs, lists, block quotes, emphasis,\n  links and code blocks. No raw HTML (it is shown as plain text) and no images that need other files.\n- Keep it under 200 KB.\n- Keep notes, outlines, drafts and any scripts outside ./output/ (in the working directory or a\n  subdirectory): they're published as the source.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you wrote.\n",
+  "final_prompt": "Write an essay that, if everyone read it, would improve the world for the greatest number of people.\n\nDeliver the result as one Markdown file, working in the current directory.\n- Save it in ./output/ under any name ending in .md (for example ./output/essay.md). ./output/ must hold\n  exactly one .md file; anything else there is ignored.\n- The file is published as it is and shown as a page: headings, paragraphs, lists, block quotes, emphasis,\n  links and code blocks. No raw HTML (it is shown as plain text) and no images that need other files.\n- Keep it under 200 KB.\n- Keep notes, outlines, drafts and any scripts outside ./output/ (in the working directory or a\n  subdirectory): they're published as the source.\n- Only create or edit files inside the current directory.\n- End your final message with a line starting with `Blurb:`, then one to three sentences in the third\n  person describing what you made for a visitor who will see it on the site: name the work if it has a\n  name, and say what it is and what it does or is about. No file names, commands, instructions or claims\n  about tests. For example: \"Blurb: Ripple is a game that teaches players to spot online misinformation.\"\n",
   "created": "2026-10-29T18:30:28Z",
-  "updated": "2026-10-29T21:05:23Z",
+  "updated": "2026-11-19T00:56:08Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-183028",
@@ -762,6 +762,182 @@
       },
       "source": null,
       "summary": "\u201cThe Next Person You Meet\u201d is an essay arguing that the world improves when every person is treated as fully real. It makes the case for holding first judgments lightly, choosing small kindnesses that multiply across billions of lives, repairing mistakes quickly, and leaving people, places and the future a little better than they were found. It ends with five practices for the next encounter, along with a call to extend the same mercy to oneself.",
+      "rank": null
+    },
+    {
+      "id": "claude-fable-5-2-cc-high-20261119-005134",
+      "page": "essay",
+      "model": "anthropic/claude-fable-5-2",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-11-19T00:51:34Z",
+      "batch": "2026-11-19-005134-essay",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.327"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "edit": 6,
+          "bash": 4,
+          "write": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 271775,
+        "cost_usd": 1.5156131999999998,
+        "tool_calls": 11,
+        "turns": 6,
+        "tokens_total": 24450,
+        "tokens_input": 12,
+        "tokens_output": 24438,
+        "tokens_reasoning": 15689,
+        "tokens_cache_read": 135026
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 15491,
+        "words": 2560,
+        "title": "Go First",
+        "excerpt": "A short essay about a mistake almost everyone makes about almost everyone else. You have been in this room. A teacher finishes explaining something difficult, looks up, and asks whether there are any questions. You stopped following ten minutes ago. You look around. No hands are up, and the faces\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Go First is an essay arguing that almost everyone underestimates the honesty, helpfulness and goodwill of almost everyone else, and that this shared mistake keeps people silent, lonely and stuck with customs nobody wants. Drawing on research from dozens of countries, it asks each reader to make the first move, because their silence is what other people are reading as evidence.",
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-astra-cx-high-20261119-005134",
+      "page": "essay",
+      "model": "openai/gpt-6.2-astra",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-11-19T00:51:34Z",
+      "batch": "2026-11-19-005134-essay",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 3,
+          "file_change": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 155499,
+        "cost_usd": 0.0,
+        "tool_calls": 5,
+        "turns": 1,
+        "tokens_total": 11749,
+        "tokens_input": 7840,
+        "tokens_output": 3909,
+        "tokens_reasoning": 2308,
+        "tokens_cache_read": 103936
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 3614,
+        "words": 701,
+        "title": "The People Who Went Home",
+        "excerpt": "The line for winter coats gets shorter at both ends. At the front, a volunteer kneels to turn back the cuffs of a green parka. The child gives it the solemn test children give a coat, raising both arms straight up. At the back, another child feels his mother take his hand. They have been in the\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "The People Who Went Home follows a boy who leaves a school coat giveaway empty-handed. It asks how people trying to do good can learn from those they never get to help.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": null,
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-sol-cx-high-20261119-005134",
+      "page": "essay",
+      "model": "openai/gpt-6.2-sol",
+      "effort": "high",
+      "kind": "text",
+      "started_at": "2026-11-19T00:51:34Z",
+      "batch": "2026-11-19-005134-essay",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 5,
+          "file_change": 4,
+          "web_search": 3
+        }
+      },
+      "metrics": {
+        "duration_ms": 274366,
+        "cost_usd": 0.0,
+        "tool_calls": 12,
+        "turns": 1,
+        "tokens_total": 35620,
+        "tokens_input": 25714,
+        "tokens_output": 9906,
+        "tokens_reasoning": 5563,
+        "tokens_cache_read": 323072
+      },
+      "thumb": null,
+      "output": {
+        "kind": "text",
+        "text": "text/text.md",
+        "bytes": 4487,
+        "words": 824,
+        "title": "The Second Trip",
+        "excerpt": "Picture a woman at a rent assistance office. She opens the envelope she\u2019s been holding flat against her coat. The notice asked for her lease. She brought it. The clerk reads it and asks for last month\u2019s rent receipt. She has that too. It\u2019s at home. \u201cYou can come back tomorrow,\u201d the clerk says. He\u2026",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "The Second Trip is an essay about how a missing line on a notice can cost someone a morning. It asks how everyday decisions can give people back their time and make essential help easier to reach.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": null,
       "rank": null
     }
   ]

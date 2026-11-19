@@ -1,0 +1,78 @@
+{
+  "id": "claude-fable-5-2-cc-high-20261119-010627",
+  "page": "animation",
+  "model": "anthropic/claude-fable-5-2",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-11-19T01:06:27Z",
+  "batch": "2026-11-19-010627-animation",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.327"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 11,
+      "read": 7,
+      "write": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 797358,
+    "cost_usd": 4.6829567999999995,
+    "tool_calls": 20,
+    "turns": 13,
+    "tokens_total": 72974,
+    "tokens_input": 26,
+    "tokens_output": 72948,
+    "tokens_reasoning": 42868,
+    "tokens_cache_read": 911424
+  },
+  "thumb": "media/be-the-heartbeat.thumb.jpg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "video",
+        "width": 1280,
+        "height": 720,
+        "duration_s": 9.8,
+        "bytes": 1319970,
+        "transcoded": false,
+        "path": "media/be-the-heartbeat.mp4",
+        "poster": "media/be-the-heartbeat.poster.jpg",
+        "thumb": "media/be-the-heartbeat.thumb.jpg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Be the Heartbeat is a ten-second looping animation that teaches hands-only CPR: if someone collapses and isn't breathing, call for help, then push hard and fast in the middle of the chest. Its compressions and soundtrack run at the recommended rescue tempo, so watching it teaches the rhythm, and each push sends a pulse down a flatlined heart-monitor line to show that a bystander's hands can stand in for a stopped heart until help arrives.",
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "build.sh",
+      "src/audio.js",
+      "src/font.js",
+      "src/render.js"
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "gpt-6.2-sol-cx-high-20261119-005134",
+  "page": "website",
+  "model": "openai/gpt-6.2-sol",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-11-19T00:51:34Z",
+  "batch": "2026-11-19-005134-website",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 16,
+      "file_change": 4
+    }
+  },
+  "metrics": {
+    "duration_ms": 508912,
+    "cost_usd": 0.0,
+    "tool_calls": 20,
+    "turns": 1,
+    "tokens_total": 104208,
+    "tokens_input": 83524,
+    "tokens_output": 20684,
+    "tokens_reasoning": 4795,
+    "tokens_cache_read": 810880
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 872550,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Good in Reach is an interactive guide to helping others in the time you have. It gives visitors practical ways to reach out, share resources, and improve accessibility, then helps them decide when to act.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      ".gitignore",
+      "README.md",
+      "actions.js",
+      "artwork.js",
+      "index.html",
+      "licenses/DM-Sans.txt",
+      "licenses/Fraunces.txt",
+      "main.js",
+      "style.css",
+      "typefaces.js"
+    ]
+  }
+}

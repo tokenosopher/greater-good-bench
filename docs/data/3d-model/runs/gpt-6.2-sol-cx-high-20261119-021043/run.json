@@ -1,0 +1,119 @@
+{
+  "id": "gpt-6.2-sol-cx-high-20261119-021043",
+  "page": "3d-model",
+  "model": "openai/gpt-6.2-sol",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-11-19T02:10:47Z",
+  "batch": "2026-11-19-021043-3d-model",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "bash": 16,
+      "mcp__blender__execute_blender_code": 15,
+      "mcp__blender__search_api_docs": 1,
+      "mcp__blender__search_manual_docs": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 1016563,
+    "cost_usd": 0.0,
+    "tool_calls": 33,
+    "turns": 1,
+    "tokens_total": 131771,
+    "tokens_input": 97812,
+    "tokens_output": 33959,
+    "tokens_reasoning": 10351,
+    "tokens_cache_read": 4085120
+  },
+  "thumb": "media/01-common-water.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1700,
+        "height": 1400,
+        "bytes": 290340,
+        "path": "media/01-common-water.jpg",
+        "thumb": "media/01-common-water.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1440,
+        "height": 1250,
+        "bytes": 272943,
+        "path": "media/02-at-the-fountain.jpg",
+        "thumb": "media/02-at-the-fountain.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1480,
+        "height": 1215,
+        "bytes": 219051,
+        "path": "media/03-jug-refill-and-rain-garden.jpg",
+        "thumb": "media/03-jug-refill-and-rain-garden.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 6779976,
+        "meshes": 7,
+        "triangles": 266360,
+        "animations": 0,
+        "path": "media/common-water.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Common Water imagines free drinking water as an everyday public service. Beneath a shared canopy, a wheelchair user refills a bottle beside a child at the fountain, while a low shelf around the back makes room for larger jugs.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": null
+}

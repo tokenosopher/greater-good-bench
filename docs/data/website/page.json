@@ -3,9 +3,9 @@
   "title": "Website",
   "kind": "web",
   "prompt": "Make a website that, if everyone saw and used it, would improve the world for the greatest number of people.",
-  "final_prompt": "Make a website that, if everyone saw and used it, would improve the world for the greatest number of people.\n\nBuild this as an interactive web page in the current directory.\n- The entry point is index.html. Put your code in JavaScript ES modules loaded from it\n  (`<script type=\"module\" src=\"main.js\">`), and add a short README.md.\n- You may use npm packages: `npm install <package>` here, then import them by name\n  (`import * as THREE from \"three\"`). No CDN URLs and no import maps.\n- Afterwards the page is packaged into one self-contained index.html with esbuild: every script and\n  stylesheet index.html references is bundled with everything it imports. Load assets the page needs\n  with `import` (they become data URLs) or generate them in code, never by URL string.\n- The packaged page runs offline in a sandboxed iframe: no network requests, and no localStorage,\n  cookies or other storage (they throw there).\n- Check that it packages: `esbuild main.js --bundle --format=esm --outfile=/dev/null` must succeed.\n  Don't build or package the page yourself; that happens afterwards.\n- To look at the page yourself, serve it locally and screenshot it in headless Chrome (Chrome is\n  installed, and a driver such as puppeteer-core or playwright can be npm-installed here). Save every\n  screenshot you look at as a .jpg file, never .png: each image you read stays in your context, and a\n  long session of large .png files can hit the provider's per-request image limit and end the run.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you built.\n",
+  "final_prompt": "Make a website that, if everyone saw and used it, would improve the world for the greatest number of people.\n\nBuild this as an interactive web page in the current directory.\n- The entry point is index.html. Put your code in JavaScript ES modules loaded from it\n  (`<script type=\"module\" src=\"main.js\">`), and add a short README.md.\n- You may use npm packages: `npm install <package>` here, then import them by name\n  (`import * as THREE from \"three\"`). No CDN URLs and no import maps.\n- Afterwards the page is packaged into one self-contained index.html with esbuild: every script and\n  stylesheet index.html references is bundled with everything it imports. Load assets the page needs\n  with `import` (they become data URLs) or generate them in code, never by URL string.\n- The packaged page runs offline in a sandboxed iframe: no network requests, and no localStorage,\n  cookies or other storage (they throw there).\n- Check that it packages: `esbuild main.js --bundle --format=esm --outfile=/dev/null` must succeed.\n  Don't build or package the page yourself; that happens afterwards.\n- To look at the page yourself, serve it locally and screenshot it in headless Chrome (Chrome is\n  installed, and a driver such as puppeteer-core or playwright can be npm-installed here). Save every\n  screenshot you look at as a .jpg file, never .png: each image you read stays in your context, and a\n  long session of large .png files can hit the provider's per-request image limit and end the run.\n- Only create or edit files inside the current directory.\n- End your final message with a line starting with `Blurb:`, then one to three sentences in the third\n  person describing what you made for a visitor who will see it on the site: name the work if it has a\n  name, and say what it is and what it does or is about. No file names, commands, instructions or claims\n  about tests. For example: \"Blurb: Ripple is a game that teaches players to spot online misinformation.\"\n",
   "created": "2026-10-29T18:30:28Z",
-  "updated": "2026-10-30T03:42:04Z",
+  "updated": "2026-11-19T01:26:14Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-183028",
@@ -1009,6 +1009,235 @@
         ]
       },
       "summary": "Common Ground is a private, offline-friendly web tool for having healthier difficult conversations. It walks visitors through a four-step builder (observation, feelings, needs, request), shows a live message draft they can copy, offers a guided 60-second breathing reset, and includes an interactive field guide to common conflicts. It collects no data and makes no network requests.",
+      "rank": null
+    },
+    {
+      "id": "claude-fable-5-2-cc-high-20261119-005134",
+      "page": "website",
+      "model": "anthropic/claude-fable-5-2",
+      "effort": "high",
+      "kind": "web",
+      "started_at": "2026-11-19T00:51:34Z",
+      "batch": "2026-11-19-005134-website",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.327"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "read": 38,
+          "bash": 21,
+          "write": 17,
+          "edit": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 2080668,
+        "cost_usd": 12.053520599999995,
+        "tool_calls": 77,
+        "turns": 45,
+        "tokens_total": 170012,
+        "tokens_input": 92,
+        "tokens_output": 169920,
+        "tokens_reasoning": 59346,
+        "tokens_cache_read": 6973843
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "web",
+        "entry": "game/index.html",
+        "bytes": 289221,
+        "esbuild": "0.28.2",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Bystander is a ten-minute, hands-on first-aid trainer for the minutes before an ambulance arrives. Visitors practise CPR to a beat, back blows, stopping a bleed, spotting a stroke and the recovery position on posable pictogram figures, then keep a pocket card of what to remember. An always-visible emergency mode gives large step-by-step instructions and a CPR metronome for when it is happening for real.",
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "audio.js",
+          "drill.js",
+          "drills/bleeding.js",
+          "drills/choking.js",
+          "drills/cpr.js",
+          "drills/myths.js",
+          "drills/recovery.js",
+          "drills/stroke.js",
+          "emergency.js",
+          "figure.js",
+          "fonts.css",
+          "index.html",
+          "main.js",
+          "numbers.js",
+          "package-lock.json",
+          "package.json",
+          "state.js",
+          "style.css",
+          "tools/make-fonts.mjs",
+          "tools/s/bleed.mjs",
+          "tools/s/choke.mjs",
+          "tools/s/cpr.mjs",
+          "tools/s/em.mjs",
+          "tools/s/end.mjs",
+          "tools/s/home.mjs",
+          "tools/s/mid.mjs",
+          "tools/s/mobile.mjs",
+          "tools/s/rest.mjs",
+          "tools/shot.mjs",
+          "ui.js"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-astra-cx-high-20261119-005134",
+      "page": "website",
+      "model": "openai/gpt-6.2-astra",
+      "effort": "high",
+      "kind": "web",
+      "started_at": "2026-11-19T00:51:34Z",
+      "batch": "2026-11-19-005134-website",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 15
+        }
+      },
+      "metrics": {
+        "duration_ms": 396497,
+        "cost_usd": 0.0,
+        "tool_calls": 15,
+        "turns": 1,
+        "tokens_total": 39302,
+        "tokens_input": 23992,
+        "tokens_output": 15310,
+        "tokens_reasoning": 2125,
+        "tokens_cache_read": 467328
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "web",
+        "entry": "game/index.html",
+        "bytes": 79238,
+        "esbuild": "0.28.2",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Common Good helps visitors turn a spare five, ten, or fifteen minutes into a small act of care for another person, their community, or the planet.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "FONT-LICENSE.txt",
+          "README.md",
+          "actions.js",
+          "art.js",
+          "index.html",
+          "main.js",
+          "style.css"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-sol-cx-high-20261119-005134",
+      "page": "website",
+      "model": "openai/gpt-6.2-sol",
+      "effort": "high",
+      "kind": "web",
+      "started_at": "2026-11-19T00:51:34Z",
+      "batch": "2026-11-19-005134-website",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 16,
+          "file_change": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 508912,
+        "cost_usd": 0.0,
+        "tool_calls": 20,
+        "turns": 1,
+        "tokens_total": 104208,
+        "tokens_input": 83524,
+        "tokens_output": 20684,
+        "tokens_reasoning": 4795,
+        "tokens_cache_read": 810880
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "web",
+        "entry": "game/index.html",
+        "bytes": 872550,
+        "esbuild": "0.28.2",
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Good in Reach is an interactive guide to helping others in the time you have. It gives visitors practical ways to reach out, share resources, and improve accessibility, then helps them decide when to act.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          ".gitignore",
+          "README.md",
+          "actions.js",
+          "artwork.js",
+          "index.html",
+          "licenses/DM-Sans.txt",
+          "licenses/Fraunces.txt",
+          "main.js",
+          "style.css",
+          "typefaces.js"
+        ]
+      },
       "rank": null
     }
   ]

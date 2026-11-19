@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf6ed">
+  <meta name="description" content="Find a practical way to help someone today, even if you only have five minutes.">
+  <title>Good in Reach — An everyday guide to helping others</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#finder">Skip to actions</a>
+  <header class="site-header" id="top">
+    <div class="site-header-inner shell">
+      <a class="brand" href="#top" aria-label="Good in Reach home">
+        <span class="spark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        Good in Reach
+      </a>
+      <nav aria-label="Main navigation">
+        <a class="nav-explainer" href="#about">How it works</a>
+        <button class="plans-button" id="open-plans" type="button">My plans <span id="plan-count" hidden>0</span><span class="arrow-diagonal" aria-hidden="true">↗</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dash" aria-hidden="true"></span> An everyday guide to helping others</p>
+        <h1 id="hero-title">Good starts<br><em>where you are.</em></h1>
+        <p class="hero-description">A few minutes of your day can make someone else’s easier. Find one thing you can do with the time you have.</p>
+        <a class="button button-primary hero-link" href="#finder">Find an action <span aria-hidden="true">↓</span></a>
+      </div>
+      <figure class="hero-figure">
+        <div class="image-frame">
+          <img id="hero-image" alt="Blue and orange print illustration of neighbors sharing fresh produce at a curbside table.">
+        </div>
+        <div class="sunburst" aria-hidden="true"></div>
+      </figure>
+    </section>
+
+    <section class="finder" id="finder" aria-labelledby="finder-title" tabindex="-1">
+      <div class="shell">
+        <div class="finder-heading">
+          <div>
+            <p class="eyebrow"><span class="eyebrow-dash" aria-hidden="true"></span> The action finder</p>
+            <h2 id="finder-title">What can you do today?</h2>
+          </div>
+          <fieldset class="time-filter">
+            <legend>How much time do you have?</legend>
+            <div class="time-options">
+              <input type="radio" name="time" id="time-5" value="5" checked>
+              <label for="time-5">5 minutes</label>
+              <input type="radio" name="time" id="time-15" value="15">
+              <label for="time-15">15 minutes</label>
+              <input type="radio" name="time" id="time-60" value="60">
+              <label for="time-60">1 hour</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="action-grid" id="action-grid"></div>
+        <p class="sr-only" id="action-status" role="status"></p>
+      </div>
+    </section>
+
+    <section class="about shell" id="about" aria-labelledby="about-title">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-dash" aria-hidden="true"></span> How it works</p>
+        <h2 id="about-title">Start with what<br>someone needs.</h2>
+      </div>
+      <ol class="about-content">
+        <li class="about-step"><h3>Pick something you can do.</h3><p>Choose an action that fits your day and helps a real person or group.</p></li>
+        <li class="about-step"><h3>Ask what would help.</h3><p>Give people a say in what you offer. For donations or volunteering, check what the group needs first.</p></li>
+        <li class="about-step"><h3>Decide when you’ll do it.</h3><p>Make a specific plan and keep a copy somewhere you’ll see it.</p></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="brand" href="#top"><span class="spark" aria-hidden="true"><i></i><i></i><i></i><i></i></span> Good in Reach</a>
+      <a class="footer-link" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <dialog id="panel" aria-labelledby="panel-title">
+    <div class="panel-inner">
+      <button class="panel-close" type="button" aria-label="Close dialog" autofocus>×</button>
+      <div id="panel-content"></div>
+      <p class="sr-only" role="status" id="plan-status"></p>
+    </div>
+  </dialog>
+
+  <template id="action-template">
+    <article class="action-card">
+      <div class="action-category"><span class="category-icon" aria-hidden="true"></span><span class="category-name"></span></div>
+      <h3></h3>
+      <p></p>
+      <button type="button" class="action-button"><span></span><span aria-hidden="true">↗</span></button>
+    </article>
+  </template>
+</body>
+</html>

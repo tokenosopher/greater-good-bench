@@ -3,9 +3,9 @@
   "title": "3D model",
   "kind": "blender",
   "prompt": "Make a 3D model that, if everyone saw it, would improve the world for the greatest number of people.",
-  "final_prompt": "Make a 3D model that, if everyone saw it, would improve the world for the greatest number of people.\n\nMake it in Blender, working in the current directory.\n- A Blender 5 instance is running for you with no window (background mode). Use it through the `blender`\n  MCP tools: run Python (`bpy`) with execute_blender_code, and look things up with the API and manual\n  search tools. Blender's working directory is the current directory. The scene starts as Blender's\n  default one (a cube, a camera and a light).\n- There is no window to screenshot. To check your work, render it to an image file and look at the image\n  (render_thumbnail_to_path, render_viewport_to_path, or a render of the scene camera to a file).\n  Keep renders quick: a single tool call may take at most 5 minutes. Save what you look at as .jpg rather\n  than .png (set the render's image format to JPEG, or convert it before reading): each image you read\n  stays in your context, and a long session of large .png renders can hit the provider's per-request\n  image limit and end the run.\n- Build it in Blender itself; don't write the model or the images any other way.\n- Save the finished result in ./output/ (only what is in ./output/ is published):\n  - the model or scene as one .glb file (glTF binary), shown on the site in an interactive 3D viewer:\n    `bpy.ops.export_scene.gltf(filepath=..., export_format='GLB')`, without Draco or meshopt\n    compression, at most 15 MB;\n  - one or more final renders as .png or .jpg, at most 2 MB each, from camera angles you choose.\n  At most 8 files in all.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything (no asset\n  libraries or add-ons).\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n",
+  "final_prompt": "Make a 3D model that, if everyone saw it, would improve the world for the greatest number of people.\n\nMake it in Blender, working in the current directory.\n- A Blender 5 instance is running for you with no window (background mode). Use it through the `blender`\n  MCP tools: run Python (`bpy`) with execute_blender_code, and look things up with the API and manual\n  search tools. Blender's working directory is the current directory. The scene starts as Blender's\n  default one (a cube, a camera and a light).\n- There is no window to screenshot. To check your work, render it to an image file and look at the image\n  (render_thumbnail_to_path, render_viewport_to_path, or a render of the scene camera to a file).\n  Keep renders quick: a single tool call may take at most 5 minutes. Save what you look at as .jpg rather\n  than .png (set the render's image format to JPEG, or convert it before reading): each image you read\n  stays in your context, and a long session of large .png renders can hit the provider's per-request\n  image limit and end the run.\n- Build it in Blender itself; don't write the model or the images any other way.\n- Save the finished result in ./output/ (only what is in ./output/ is published):\n  - the model or scene as one .glb file (glTF binary), shown on the site in an interactive 3D viewer:\n    `bpy.ops.export_scene.gltf(filepath=..., export_format='GLB')`, without Draco or meshopt\n    compression, at most 15 MB;\n  - one or more final renders as .png or .jpg, at most 2 MB each, from camera angles you choose.\n  At most 8 files in all.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything (no asset\n  libraries or add-ons).\n- Only create or edit files inside the current directory.\n- End your final message with a line starting with `Blurb:`, then one to three sentences in the third\n  person describing what you made for a visitor who will see it on the site: name the work if it has a\n  name, and say what it is and what it does or is about. No file names, commands, instructions or claims\n  about tests. For example: \"Blurb: Ripple is a game that teaches players to spot online misinformation.\"\n",
   "created": "2026-10-29T18:58:31Z",
-  "updated": "2026-10-30T03:29:12Z",
+  "updated": "2026-11-19T02:32:26Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-185821",
@@ -1541,6 +1541,398 @@
       },
       "source": null,
       "summary": "\"One Shared Home\" is a 3D public sculpture of a stylised Earth rising like a sprouting plant, crowned with a red heart and a golden ring of doves. Twelve diverse figures, including a child, an elder with a cane, and a wheelchair user, stand hand in hand in an unbroken circle around the planet, with trees and a plaza plinth beneath them. Its message is that there is one planet and everyone belongs in the circle of care.",
+      "rank": null
+    },
+    {
+      "id": "claude-fable-5-2-cc-high-20261119-021043",
+      "page": "3d-model",
+      "model": "anthropic/claude-fable-5-2",
+      "effort": "high",
+      "kind": "blender",
+      "started_at": "2026-11-19T02:10:47Z",
+      "batch": "2026-11-19-021043-3d-model",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.327"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {
+            "blender": {
+              "allowed": [
+                "execute_blender_code",
+                "execute_blender_code_for_cli",
+                "get_blendfile_summary_datablocks",
+                "get_blendfile_summary_datablocks_for_cli",
+                "get_blendfile_summary_missing_files",
+                "get_blendfile_summary_missing_files_for_cli",
+                "get_blendfile_summary_of_linked_libraries",
+                "get_blendfile_summary_of_linked_libraries_for_cli",
+                "get_blendfile_summary_path_info",
+                "get_blendfile_summary_path_info_for_cli",
+                "get_blendfile_summary_usage_guess",
+                "get_blendfile_summary_usage_guess_for_cli",
+                "get_object_detail_summary",
+                "get_objects_summary",
+                "get_python_api_docs",
+                "render_thumbnail_to_path",
+                "render_viewport_to_path",
+                "search_api_docs",
+                "search_manual_docs"
+              ],
+              "hidden": [
+                "get_screenshot_of_area_as_image",
+                "get_screenshot_of_window_as_image",
+                "get_screenshot_of_window_as_json",
+                "jump_to_tab_by_name",
+                "jump_to_tab_by_space_type",
+                "jump_to_view3d_object_by_name",
+                "jump_to_view3d_object_data_by_name"
+              ]
+            }
+          }
+        },
+        "used": {
+          "read": 25,
+          "mcp__blender__execute_blender_code": 18,
+          "bash": 13,
+          "write": 3
+        }
+      },
+      "metrics": {
+        "duration_ms": 1299258,
+        "cost_usd": 6.576494800000001,
+        "tool_calls": 59,
+        "turns": 21,
+        "tokens_total": 92682,
+        "tokens_input": 42,
+        "tokens_output": 92640,
+        "tokens_reasoning": 53839,
+        "tokens_cache_read": 1906154
+      },
+      "thumb": "media/two-hands-back.thumb.jpg",
+      "output": {
+        "kind": "blender",
+        "items": [
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1200,
+            "bytes": 141445,
+            "path": "media/two-hands-back.jpg",
+            "thumb": "media/two-hands-back.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1200,
+            "bytes": 162569,
+            "path": "media/two-hands-compressions.jpg",
+            "thumb": "media/two-hands-compressions.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1600,
+            "height": 1600,
+            "bytes": 170522,
+            "path": "media/two-hands-from-above.jpg",
+            "thumb": "media/two-hands-from-above.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1200,
+            "bytes": 149433,
+            "path": "media/two-hands-hero.jpg",
+            "thumb": "media/two-hands-hero.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1920,
+            "height": 1200,
+            "bytes": 143871,
+            "path": "media/two-hands-side.jpg",
+            "thumb": "media/two-hands-side.thumb.jpg"
+          },
+          {
+            "type": "model",
+            "bytes": 4988048,
+            "meshes": 10,
+            "triangles": 185482,
+            "animations": 1,
+            "path": "media/two-hands.glb"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Two Hands is a sculpture that teaches hands-only CPR: a kneeling figure compresses a collapsed person's chest at 110 pushes a minute while a bystander phones for help and brings a defibrillator, and each push sends a pulse rippling across the plinth. Around its rim, the steps are spelled out \u2014 call, push, shock, keep going \u2014 ending with \"Anyone can do this.",
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "build_export.py",
+          "build_legend.py",
+          "build_model.py",
+          "build_scene.py",
+          "build_stage.py",
+          "check_glb.py",
+          "run.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-astra-cx-high-20261119-021043",
+      "page": "3d-model",
+      "model": "openai/gpt-6.2-astra",
+      "effort": "high",
+      "kind": "blender",
+      "started_at": "2026-11-19T02:10:47Z",
+      "batch": "2026-11-19-021043-3d-model",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {
+            "blender": {
+              "allowed": [
+                "execute_blender_code",
+                "execute_blender_code_for_cli",
+                "get_blendfile_summary_datablocks",
+                "get_blendfile_summary_datablocks_for_cli",
+                "get_blendfile_summary_missing_files",
+                "get_blendfile_summary_missing_files_for_cli",
+                "get_blendfile_summary_of_linked_libraries",
+                "get_blendfile_summary_of_linked_libraries_for_cli",
+                "get_blendfile_summary_path_info",
+                "get_blendfile_summary_path_info_for_cli",
+                "get_blendfile_summary_usage_guess",
+                "get_blendfile_summary_usage_guess_for_cli",
+                "get_object_detail_summary",
+                "get_objects_summary",
+                "get_python_api_docs",
+                "render_thumbnail_to_path",
+                "render_viewport_to_path",
+                "search_api_docs",
+                "search_manual_docs"
+              ],
+              "hidden": [
+                "get_screenshot_of_area_as_image",
+                "get_screenshot_of_window_as_image",
+                "get_screenshot_of_window_as_json",
+                "jump_to_tab_by_name",
+                "jump_to_tab_by_space_type",
+                "jump_to_view3d_object_by_name",
+                "jump_to_view3d_object_data_by_name"
+              ]
+            }
+          }
+        },
+        "used": {
+          "bash": 13,
+          "mcp__blender__execute_blender_code": 9,
+          "mcp__blender__search_api_docs": 1,
+          "mcp__blender__search_manual_docs": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 778351,
+        "cost_usd": 0.0,
+        "tool_calls": 24,
+        "turns": 1,
+        "tokens_total": 72726,
+        "tokens_input": 54282,
+        "tokens_output": 18444,
+        "tokens_reasoning": 3961,
+        "tokens_cache_read": 1781632
+      },
+      "thumb": "media/01-a-softer-street.thumb.jpg",
+      "output": {
+        "kind": "blender",
+        "items": [
+          {
+            "type": "image",
+            "width": 1800,
+            "height": 1380,
+            "bytes": 480801,
+            "path": "media/01-a-softer-street.jpg",
+            "thumb": "media/01-a-softer-street.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1560,
+            "height": 1240,
+            "bytes": 439514,
+            "path": "media/02-curb-inlet.jpg",
+            "thumb": "media/02-curb-inlet.thumb.jpg"
+          },
+          {
+            "type": "model",
+            "bytes": 10682428,
+            "meshes": 108,
+            "triangles": 310720,
+            "animations": 0,
+            "path": "media/a-softer-street.glb"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "A Softer Street follows rain through a gap in the curb into a garden where two wagtails forage among the flowers. A cutaway reveals the roots and layers of soil beneath the pool, showing how a small patch of city ground can slow runoff and make room for wildlife.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "finish.py",
+          "garden.py",
+          "views.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-sol-cx-high-20261119-021043",
+      "page": "3d-model",
+      "model": "openai/gpt-6.2-sol",
+      "effort": "high",
+      "kind": "blender",
+      "started_at": "2026-11-19T02:10:47Z",
+      "batch": "2026-11-19-021043-3d-model",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {
+            "blender": {
+              "allowed": [
+                "execute_blender_code",
+                "execute_blender_code_for_cli",
+                "get_blendfile_summary_datablocks",
+                "get_blendfile_summary_datablocks_for_cli",
+                "get_blendfile_summary_missing_files",
+                "get_blendfile_summary_missing_files_for_cli",
+                "get_blendfile_summary_of_linked_libraries",
+                "get_blendfile_summary_of_linked_libraries_for_cli",
+                "get_blendfile_summary_path_info",
+                "get_blendfile_summary_path_info_for_cli",
+                "get_blendfile_summary_usage_guess",
+                "get_blendfile_summary_usage_guess_for_cli",
+                "get_object_detail_summary",
+                "get_objects_summary",
+                "get_python_api_docs",
+                "render_thumbnail_to_path",
+                "render_viewport_to_path",
+                "search_api_docs",
+                "search_manual_docs"
+              ],
+              "hidden": [
+                "get_screenshot_of_area_as_image",
+                "get_screenshot_of_window_as_image",
+                "get_screenshot_of_window_as_json",
+                "jump_to_tab_by_name",
+                "jump_to_tab_by_space_type",
+                "jump_to_view3d_object_by_name",
+                "jump_to_view3d_object_data_by_name"
+              ]
+            }
+          }
+        },
+        "used": {
+          "bash": 16,
+          "mcp__blender__execute_blender_code": 15,
+          "mcp__blender__search_api_docs": 1,
+          "mcp__blender__search_manual_docs": 1
+        }
+      },
+      "metrics": {
+        "duration_ms": 1016563,
+        "cost_usd": 0.0,
+        "tool_calls": 33,
+        "turns": 1,
+        "tokens_total": 131771,
+        "tokens_input": 97812,
+        "tokens_output": 33959,
+        "tokens_reasoning": 10351,
+        "tokens_cache_read": 4085120
+      },
+      "thumb": "media/01-common-water.thumb.jpg",
+      "output": {
+        "kind": "blender",
+        "items": [
+          {
+            "type": "image",
+            "width": 1700,
+            "height": 1400,
+            "bytes": 290340,
+            "path": "media/01-common-water.jpg",
+            "thumb": "media/01-common-water.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1440,
+            "height": 1250,
+            "bytes": 272943,
+            "path": "media/02-at-the-fountain.jpg",
+            "thumb": "media/02-at-the-fountain.thumb.jpg"
+          },
+          {
+            "type": "image",
+            "width": 1480,
+            "height": 1215,
+            "bytes": 219051,
+            "path": "media/03-jug-refill-and-rain-garden.jpg",
+            "thumb": "media/03-jug-refill-and-rain-garden.thumb.jpg"
+          },
+          {
+            "type": "model",
+            "bytes": 6779976,
+            "meshes": 7,
+            "triangles": 266360,
+            "animations": 0,
+            "path": "media/common-water.glb"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Common Water imagines free drinking water as an everyday public service. Beneath a shared canopy, a wheelchair user refills a bottle beside a child at the fountain, while a low shelf around the back makes room for larger jugs.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": null,
       "rank": null
     }
   ]

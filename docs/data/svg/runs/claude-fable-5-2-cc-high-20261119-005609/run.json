@@ -1,0 +1,70 @@
+{
+  "id": "claude-fable-5-2-cc-high-20261119-005609",
+  "page": "svg",
+  "model": "anthropic/claude-fable-5-2",
+  "effort": "high",
+  "kind": "media",
+  "started_at": "2026-11-19T00:56:09Z",
+  "batch": "2026-11-19-005609-svg",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.327"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 6,
+      "read": 5
+    }
+  },
+  "metrics": {
+    "duration_ms": 616789,
+    "cost_usd": 3.3155732,
+    "tool_calls": 11,
+    "turns": 7,
+    "tokens_total": 54034,
+    "tokens_input": 14,
+    "tokens_output": 54020,
+    "tokens_reasoning": 34995,
+    "tokens_cache_read": 300186
+  },
+  "thumb": "media/before-help-arrives.svg",
+  "output": {
+    "kind": "media",
+    "items": [
+      {
+        "type": "image",
+        "width": 1800,
+        "height": 1550,
+        "bytes": 49142,
+        "path": "media/before-help-arrives.svg"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Before Help Arrives is a wordless first-aid poster in six cards, each showing an emergency and, below an arrow, what anyone can do about it: chest compressions, choking, heavy bleeding, stroke, dehydration from diarrhoea, and burns. It uses only pictograms, colour and numerals so it can be read in any language, and the rescuer in the first card pushes at the real tempo of 110 beats a minute.",
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "src/make.py"
+    ]
+  }
+}

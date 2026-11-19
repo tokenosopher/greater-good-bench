@@ -1,0 +1,56 @@
+{
+  "id": "gpt-6.2-sol-cx-high-20261119-005134",
+  "page": "essay",
+  "model": "openai/gpt-6.2-sol",
+  "effort": "high",
+  "kind": "text",
+  "started_at": "2026-11-19T00:51:34Z",
+  "batch": "2026-11-19-005134-essay",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 5,
+      "file_change": 4,
+      "web_search": 3
+    }
+  },
+  "metrics": {
+    "duration_ms": 274366,
+    "cost_usd": 0.0,
+    "tool_calls": 12,
+    "turns": 1,
+    "tokens_total": 35620,
+    "tokens_input": 25714,
+    "tokens_output": 9906,
+    "tokens_reasoning": 5563,
+    "tokens_cache_read": 323072
+  },
+  "thumb": null,
+  "output": {
+    "kind": "text",
+    "text": "text/text.md",
+    "bytes": 4487,
+    "words": 824,
+    "title": "The Second Trip",
+    "excerpt": "Picture a woman at a rent assistance office. She opens the envelope she\u2019s been holding flat against her coat. The notice asked for her lease. She brought it. The clerk reads it and asks for last month\u2019s rent receipt. She has that too. It\u2019s at home. \u201cYou can come back tomorrow,\u201d the clerk says. He\u2026",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "The Second Trip is an essay about how a missing line on a notice can cost someone a morning. It asks how everyday decisions can give people back their time and make essential help easier to reach.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": null
+}

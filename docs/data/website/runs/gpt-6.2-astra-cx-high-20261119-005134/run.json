@@ -1,0 +1,63 @@
+{
+  "id": "gpt-6.2-astra-cx-high-20261119-005134",
+  "page": "website",
+  "model": "openai/gpt-6.2-astra",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-11-19T00:51:34Z",
+  "batch": "2026-11-19-005134-website",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 15
+    }
+  },
+  "metrics": {
+    "duration_ms": 396497,
+    "cost_usd": 0.0,
+    "tool_calls": 15,
+    "turns": 1,
+    "tokens_total": 39302,
+    "tokens_input": 23992,
+    "tokens_output": 15310,
+    "tokens_reasoning": 2125,
+    "tokens_cache_read": 467328
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 79238,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Common Good helps visitors turn a spare five, ten, or fifteen minutes into a small act of care for another person, their community, or the planet.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "FONT-LICENSE.txt",
+      "README.md",
+      "actions.js",
+      "art.js",
+      "index.html",
+      "main.js",
+      "style.css"
+    ]
+  }
+}

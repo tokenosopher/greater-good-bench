@@ -1,0 +1,68 @@
+{
+  "id": "gpt-6.2-astra-cx-high-20261119-012623",
+  "page": "game",
+  "model": "openai/gpt-6.2-astra",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-11-19T01:26:23Z",
+  "batch": "2026-11-19-012623-game",
+  "harness": {
+    "name": "codex",
+    "version": "0.170.0"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": null,
+      "mcp": {}
+    },
+    "used": {
+      "bash": 17
+    }
+  },
+  "metrics": {
+    "duration_ms": 732787,
+    "cost_usd": 0.0,
+    "tool_calls": 17,
+    "turns": 1,
+    "tokens_total": 69753,
+    "tokens_input": 42405,
+    "tokens_output": 27348,
+    "tokens_reasoning": 4915,
+    "tokens_cache_read": 710912
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Common Ground is a neighborhood puzzle game about listening closely enough to help. Across three days in Maple Ward, players match residents\u2019 requests with neighbors who can offer a cargo bike, a repair lesson, or a quiet place to meet.",
+  "session": {
+    "conversation": "session/conversation.json",
+    "stderr": "session/stderr.txt"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      ".gitignore",
+      "README.md",
+      "art/maple_ward.png",
+      "art/maple_ward.png.import",
+      "export_presets.cfg",
+      "main.tscn",
+      "project.godot",
+      "scripts/game.gd",
+      "scripts/game.gd.uid",
+      "scripts/neighborhood.gd",
+      "scripts/neighborhood.gd.uid"
+    ]
+  }
+}

@@ -3,9 +3,9 @@
   "title": "Animation",
   "kind": "media",
   "prompt": "Make an animation that, if everyone watched it, would improve the world for the greatest number of people.",
-  "final_prompt": "Make an animation that, if everyone watched it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- Finish with a short summary of what you made.\n",
+  "final_prompt": "Make an animation that, if everyone watched it, would improve the world for the greatest number of people.\n\nDeliver the result as image and/or video files, working in the current directory.\n- Save the finished files in ./output/. Only what is in ./output/ is published as the result, so\n  ./output/ holds those finished image/video files and nothing else.\n- Formats: images as .png, .jpg, .webp, .gif or .svg; videos as .mp4 or .webm. At most 8 files,\n  each under 2 MB; videos at most 10 seconds.\n- To check your work, look at what you made (a still, a rendered frame, a few frames of the video), and\n  save what you look at as .jpg rather than .png: each image you read stays in your context, and a long\n  session of large .png files can hit the provider's per-request image limit and end the run.\n- Tools available on this machine: python3 3.12.13 (standard library only), node 24.18.0 (no npm packages), ffmpeg 8.1.1, ffprobe 8.1.1. Don't install packages or download anything.\n- Keep the code you write to make the files in the working directory (its root, or a subdirectory\n  like ./src/, but not in ./output/): it's published as the source. Delete intermediate files such\n  as rendered frames when you're done.\n- Only create or edit files inside the current directory.\n- End your final message with a line starting with `Blurb:`, then one to three sentences in the third\n  person describing what you made for a visitor who will see it on the site: name the work if it has a\n  name, and say what it is and what it does or is about. No file names, commands, instructions or claims\n  about tests. For example: \"Blurb: Ripple is a game that teaches players to spot online misinformation.\"\n",
   "created": "2026-10-29T18:41:11Z",
-  "updated": "2026-10-30T02:44:26Z",
+  "updated": "2026-11-19T01:19:44Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-184111",
@@ -1035,6 +1035,224 @@
         ]
       },
       "summary": "A 10-second animation that teaches the habit of pausing before reacting. Two angry figures on a storm-dark ground calm as one breathes slowly and the other listens, then the scene widens to show them standing on a globe at dawn while colour spreads to people across the world. Its message, PAUSE \u00b7 BREATHE \u00b7 CARE, is carried by expression, colour and motion rather than words.",
+      "rank": null
+    },
+    {
+      "id": "claude-fable-5-2-cc-high-20261119-010627",
+      "page": "animation",
+      "model": "anthropic/claude-fable-5-2",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-11-19T01:06:27Z",
+      "batch": "2026-11-19-010627-animation",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.327"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 11,
+          "read": 7,
+          "write": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 797358,
+        "cost_usd": 4.6829567999999995,
+        "tool_calls": 20,
+        "turns": 13,
+        "tokens_total": 72974,
+        "tokens_input": 26,
+        "tokens_output": 72948,
+        "tokens_reasoning": 42868,
+        "tokens_cache_read": 911424
+      },
+      "thumb": "media/be-the-heartbeat.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 9.8,
+            "bytes": 1319970,
+            "transcoded": false,
+            "path": "media/be-the-heartbeat.mp4",
+            "poster": "media/be-the-heartbeat.poster.jpg",
+            "thumb": "media/be-the-heartbeat.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Be the Heartbeat is a ten-second looping animation that teaches hands-only CPR: if someone collapses and isn't breathing, call for help, then push hard and fast in the middle of the chest. Its compressions and soundtrack run at the recommended rescue tempo, so watching it teaches the rhythm, and each push sends a pulse down a flatlined heart-monitor line to show that a bystander's hands can stand in for a stopped heart until help arrives.",
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "build.sh",
+          "src/audio.js",
+          "src/font.js",
+          "src/render.js"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-astra-cx-high-20261119-010627",
+      "page": "animation",
+      "model": "openai/gpt-6.2-astra",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-11-19T01:06:27Z",
+      "batch": "2026-11-19-010627-animation",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 11
+        }
+      },
+      "metrics": {
+        "duration_ms": 267141,
+        "cost_usd": 0.0,
+        "tool_calls": 11,
+        "turns": 1,
+        "tokens_total": 33317,
+        "tokens_input": 23291,
+        "tokens_output": 10026,
+        "tokens_reasoning": 2606,
+        "tokens_cache_read": 397952
+      },
+      "thumb": "media/return-to-source.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1080,
+            "height": 810,
+            "duration_s": 9.5,
+            "bytes": 1242475,
+            "transcoded": false,
+            "path": "media/return-to-source.mp4",
+            "poster": "media/return-to-source.poster.jpg",
+            "thumb": "media/return-to-source.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Return to Source is an animated airmail poster in which a paper plane carries an urgent headline. When the plane unfolds, a circled date reveals how easily yesterday\u2019s news can become today\u2019s rumor.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "render.sh",
+          "src/post.m",
+          "src/score.py"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-sol-cx-high-20261119-010627",
+      "page": "animation",
+      "model": "openai/gpt-6.2-sol",
+      "effort": "high",
+      "kind": "media",
+      "started_at": "2026-11-19T01:06:27Z",
+      "batch": "2026-11-19-010627-animation",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 21,
+          "file_change": 4
+        }
+      },
+      "metrics": {
+        "duration_ms": 480427,
+        "cost_usd": 0.0,
+        "tool_calls": 25,
+        "turns": 1,
+        "tokens_total": 59138,
+        "tokens_input": 40593,
+        "tokens_output": 18545,
+        "tokens_reasoning": 6552,
+        "tokens_cache_read": 847104
+      },
+      "thumb": "media/the-gap.thumb.jpg",
+      "output": {
+        "kind": "media",
+        "items": [
+          {
+            "type": "video",
+            "width": 1280,
+            "height": 720,
+            "duration_s": 9.8,
+            "bytes": 773304,
+            "transcoded": false,
+            "path": "media/the-gap.mp4",
+            "poster": "media/the-gap.poster.jpg",
+            "thumb": "media/the-gap.thumb.jpg"
+          }
+        ],
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "The Gap is a short animated film in which a hand lifts one domino just before a cascade can spread. It asks viewers to check the source before sharing a claim.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "render.py"
+        ]
+      },
       "rank": null
     }
   ]

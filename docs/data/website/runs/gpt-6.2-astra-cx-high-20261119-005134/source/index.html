@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#faf9f3">
+<title>Common Good — An everyday action guide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead"><div class="wrap mast-inner">
+<a href="#top" class="brand" aria-label="Common Good home"><span data-icon="brand"></span>Common Good</a>
+<nav aria-label="Main navigation"><button class="nav-link active" id="guide-nav">Field guide</button><button class="nav-link" id="saved-nav"><span data-icon="bookmark"></span>Saved<span id="nav-count" class="count">0</span></button></nav>
+</div></header>
+<main id="top">
+<section class="hero" aria-labelledby="headline"><div class="wrap hero-inner">
+<div class="hero-copy"><p class="eyebrow"><i></i> An everyday action guide</p>
+<h1 id="headline">Small acts.<br>Big impact<span>.</span></h1>
+<p class="lead">A field guide to doing good. Discover simple ways to care for the people and places around you.</p>
+<div class="hero-buttons"><button id="explore" class="primary">Explore actions <span data-icon="arrowDown"></span></button><button id="surprise" class="secondary"><span data-icon="shuffle"></span> Surprise me</button></div></div>
+<figure class="hero-art"><canvas data-art="flower" role="img" aria-label="An orange flower with a smiling face and two green leaves"></canvas><figcaption><span class="figure-dot"></span>Fig. 01 &nbsp;/&nbsp; Good in bloom</figcaption></figure>
+</div></section>
+<section id="library" class="wrap library" aria-labelledby="library-heading">
+<div class="library-top"><h2 id="library-heading">The action library</h2><span id="result-count"></span></div>
+<div class="toolbar"><div class="filters" aria-label="Filter by category"></div><label class="duration"><span data-icon="clock"></span><select id="duration" aria-label="Filter by time available"><option value="all">Any duration</option><option value="5">5 min or less</option><option value="10">10 min or less</option><option value="15">15 min or less</option></select><span data-icon="chevron"></span></label></div>
+<div class="cards" id="cards"></div>
+</section></main>
+<footer><div class="wrap footer-inner"><span class="footer-brand"><span data-icon="brand"></span>Common Good</span><button id="to-top">Back to top <span data-icon="up"></span></button></div></footer>
+<dialog id="detail" aria-labelledby="detail-title"></dialog>
+<div id="notice" role="status" aria-live="polite"></div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

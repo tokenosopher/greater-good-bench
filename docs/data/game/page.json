@@ -3,9 +3,9 @@
   "title": "Game",
   "kind": "godot",
   "prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.",
-  "final_prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.\n\nBuild this as a complete, playable Godot 4.7.2 project in the current directory.\n- Use the gl_compatibility renderer, and don't enable thread support (it must run as a web export).\n- Set a main scene in project.godot. Add a short README.md with run instructions.\n- Keep it self-contained: no downloads, external assets or plugins.\n- Only create or edit files inside the current directory. Don't export the project; that happens afterwards.\n- Check it loads: run `godot --headless --path . --editor --quit` and fix any errors.\n- Finish with a short summary of what you built.\n",
+  "final_prompt": "Make a game that, if everyone played it, would improve the world for the greatest number of people.\n\nBuild this as a complete, playable Godot 4.7.2 project in the current directory.\n- Use the gl_compatibility renderer, and don't enable thread support (it must run as a web export).\n- Set a main scene in project.godot. Add a short README.md with run instructions.\n- Keep it self-contained: no downloads, external assets or plugins.\n- Only create or edit files inside the current directory. Don't export the project; that happens afterwards.\n- Check it loads: run `godot --headless --path . --editor --quit` and fix any errors.\n- End your final message with a line starting with `Blurb:`, then one to three sentences in the third\n  person describing what you made for a visitor who will see it on the site: name the work if it has a\n  name, and say what it is and what it does or is about. No file names, commands, instructions or claims\n  about tests. For example: \"Blurb: Ripple is a game that teaches players to spot online misinformation.\"\n",
   "created": "2026-10-29T18:43:57Z",
-  "updated": "2026-10-30T03:48:10Z",
+  "updated": "2026-11-19T02:10:33Z",
   "runs": [
     {
       "id": "claude-fable-5-1-cc-high-20261029-184357",
@@ -770,6 +770,236 @@
         ]
       },
       "summary": "Common Ground is a cooperative stewardship game in which players look after seven interconnected districts over eight days, balancing nature and people through restoration, community support and shared-resource decisions. Daily events test the community, a tempting private gathering trades shared trust for a quick gain, and several endings judge whether the community stayed healthy and united.",
+      "rank": null
+    },
+    {
+      "id": "claude-fable-5-2-cc-high-20261119-012623",
+      "page": "game",
+      "model": "anthropic/claude-fable-5-2",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-11-19T01:26:23Z",
+      "batch": "2026-11-19-012623-game",
+      "harness": {
+        "name": "claude-code",
+        "version": "2.1.327"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": [
+            "Bash",
+            "Read",
+            "Write",
+            "Edit",
+            "Glob",
+            "Grep"
+          ],
+          "mcp": {}
+        },
+        "used": {
+          "bash": 23,
+          "read": 17,
+          "write": 10,
+          "edit": 2
+        }
+      },
+      "metrics": {
+        "duration_ms": 2650162,
+        "cost_usd": 14.0973518,
+        "tool_calls": 52,
+        "turns": 39,
+        "tokens_total": 214085,
+        "tokens_input": 78,
+        "tokens_output": 214007,
+        "tokens_reasoning": 112160,
+        "tokens_cache_read": 7659839
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Steady Hands is a first-aid game set over one ordinary day, in which the player is the nearest person at five emergencies: a cardiac arrest, a choking diner, a stroke, a severe bleed and a burn. Each moment combines quick decisions with a hands-on challenge, such as keeping the rhythm of chest compressions or holding pressure on a wound, and ends with the few rules worth remembering.",
+      "session": {
+        "conversation": "session/conversation.json"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          "README.md",
+          "export_presets.cfg",
+          "icon.svg",
+          "icon.svg.import",
+          "main.tscn",
+          "project.godot",
+          "scripts/art.gd",
+          "scripts/art.gd.uid",
+          "scripts/hud.gd",
+          "scripts/hud.gd.uid",
+          "scripts/main.gd",
+          "scripts/main.gd.uid",
+          "scripts/s_bleeding.gd",
+          "scripts/s_bleeding.gd.uid",
+          "scripts/s_burn.gd",
+          "scripts/s_burn.gd.uid",
+          "scripts/s_choking.gd",
+          "scripts/s_choking.gd.uid",
+          "scripts/s_collapse.gd",
+          "scripts/s_collapse.gd.uid",
+          "scripts/s_stroke.gd",
+          "scripts/s_stroke.gd.uid",
+          "scripts/scenario.gd",
+          "scripts/scenario.gd.uid",
+          "scripts/sfx.gd",
+          "scripts/sfx.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-astra-cx-high-20261119-012623",
+      "page": "game",
+      "model": "openai/gpt-6.2-astra",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-11-19T01:26:23Z",
+      "batch": "2026-11-19-012623-game",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 17
+        }
+      },
+      "metrics": {
+        "duration_ms": 732787,
+        "cost_usd": 0.0,
+        "tool_calls": 17,
+        "turns": 1,
+        "tokens_total": 69753,
+        "tokens_input": 42405,
+        "tokens_output": 27348,
+        "tokens_reasoning": 4915,
+        "tokens_cache_read": 710912
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "Common Ground is a neighborhood puzzle game about listening closely enough to help. Across three days in Maple Ward, players match residents\u2019 requests with neighbors who can offer a cargo bike, a repair lesson, or a quiet place to meet.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          ".gitignore",
+          "README.md",
+          "art/maple_ward.png",
+          "art/maple_ward.png.import",
+          "export_presets.cfg",
+          "main.tscn",
+          "project.godot",
+          "scripts/game.gd",
+          "scripts/game.gd.uid",
+          "scripts/neighborhood.gd",
+          "scripts/neighborhood.gd.uid"
+        ]
+      },
+      "rank": null
+    },
+    {
+      "id": "gpt-6.2-sol-cx-high-20261119-012623",
+      "page": "game",
+      "model": "openai/gpt-6.2-sol",
+      "effort": "high",
+      "kind": "godot",
+      "started_at": "2026-11-19T01:26:23Z",
+      "batch": "2026-11-19-012623-game",
+      "harness": {
+        "name": "codex",
+        "version": "0.170.0"
+      },
+      "state": "complete",
+      "error": null,
+      "route": null,
+      "tools": {
+        "allowed": {
+          "builtin": null,
+          "mcp": {}
+        },
+        "used": {
+          "bash": 20,
+          "file_change": 6
+        }
+      },
+      "metrics": {
+        "duration_ms": 856573,
+        "cost_usd": 0.0,
+        "tool_calls": 26,
+        "turns": 1,
+        "tokens_total": 125093,
+        "tokens_input": 90222,
+        "tokens_output": 34871,
+        "tokens_reasoning": 10190,
+        "tokens_cache_read": 966784
+      },
+      "thumb": "thumb.jpg",
+      "output": {
+        "kind": "godot",
+        "entry": "game/index.html",
+        "engine": "dd54ab29f8a9",
+        "godot": "4.7.2.stable.official.ed1daf0bf",
+        "threads": false,
+        "ok": true,
+        "verified": true,
+        "error": null
+      },
+      "summary": "The Cool Route is a neighborhood routing game about looking after one another during a heat wave. Players deliver water, seek out shaded streets, and help households open shaded stops that make the next day\u2019s rounds easier.",
+      "session": {
+        "conversation": "session/conversation.json",
+        "stderr": "session/stderr.txt"
+      },
+      "source": {
+        "root": "source/",
+        "files": [
+          ".gitignore",
+          "README.md",
+          "export_presets.cfg",
+          "game.gd",
+          "game.gd.uid",
+          "main.tscn",
+          "project.godot",
+          "town_art.gd",
+          "town_art.gd.uid"
+        ]
+      },
       "rank": null
     }
   ]

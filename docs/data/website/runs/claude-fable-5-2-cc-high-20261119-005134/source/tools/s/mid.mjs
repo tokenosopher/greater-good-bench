@@ -1,0 +1,23 @@
+export default async ({ page, shot, sleep, clickText, clickLabel }) => {
+  await sleep(900);
+  await shot("x-home");
+  await clickText("Out cold", ".card");
+  await sleep(600);
+  await shot("x-rec0");
+  await clickText("All drills");
+  await sleep(300);
+  await clickText("Collapse", ".card");
+  await sleep(300);
+  await clickText("Skip this step");
+  await sleep(200);
+  await clickText("Skip this step");
+  await sleep(400);
+  await shot("x-push");
+  await clickText("Skip this step");
+  await sleep(400);
+  await clickLabel("Upper chest on their right");
+  await sleep(150);
+  await clickLabel("below the armpit");
+  await sleep(2800);
+  await shot("x-aed");
+};

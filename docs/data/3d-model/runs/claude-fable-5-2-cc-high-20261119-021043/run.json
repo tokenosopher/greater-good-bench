@@ -1,0 +1,152 @@
+{
+  "id": "claude-fable-5-2-cc-high-20261119-021043",
+  "page": "3d-model",
+  "model": "anthropic/claude-fable-5-2",
+  "effort": "high",
+  "kind": "blender",
+  "started_at": "2026-11-19T02:10:47Z",
+  "batch": "2026-11-19-021043-3d-model",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.327"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {
+        "blender": {
+          "allowed": [
+            "execute_blender_code",
+            "execute_blender_code_for_cli",
+            "get_blendfile_summary_datablocks",
+            "get_blendfile_summary_datablocks_for_cli",
+            "get_blendfile_summary_missing_files",
+            "get_blendfile_summary_missing_files_for_cli",
+            "get_blendfile_summary_of_linked_libraries",
+            "get_blendfile_summary_of_linked_libraries_for_cli",
+            "get_blendfile_summary_path_info",
+            "get_blendfile_summary_path_info_for_cli",
+            "get_blendfile_summary_usage_guess",
+            "get_blendfile_summary_usage_guess_for_cli",
+            "get_object_detail_summary",
+            "get_objects_summary",
+            "get_python_api_docs",
+            "render_thumbnail_to_path",
+            "render_viewport_to_path",
+            "search_api_docs",
+            "search_manual_docs"
+          ],
+          "hidden": [
+            "get_screenshot_of_area_as_image",
+            "get_screenshot_of_window_as_image",
+            "get_screenshot_of_window_as_json",
+            "jump_to_tab_by_name",
+            "jump_to_tab_by_space_type",
+            "jump_to_view3d_object_by_name",
+            "jump_to_view3d_object_data_by_name"
+          ]
+        }
+      }
+    },
+    "used": {
+      "read": 25,
+      "mcp__blender__execute_blender_code": 18,
+      "bash": 13,
+      "write": 3
+    }
+  },
+  "metrics": {
+    "duration_ms": 1299258,
+    "cost_usd": 6.576494800000001,
+    "tool_calls": 59,
+    "turns": 21,
+    "tokens_total": 92682,
+    "tokens_input": 42,
+    "tokens_output": 92640,
+    "tokens_reasoning": 53839,
+    "tokens_cache_read": 1906154
+  },
+  "thumb": "media/two-hands-back.thumb.jpg",
+  "output": {
+    "kind": "blender",
+    "items": [
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1200,
+        "bytes": 141445,
+        "path": "media/two-hands-back.jpg",
+        "thumb": "media/two-hands-back.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1200,
+        "bytes": 162569,
+        "path": "media/two-hands-compressions.jpg",
+        "thumb": "media/two-hands-compressions.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1600,
+        "height": 1600,
+        "bytes": 170522,
+        "path": "media/two-hands-from-above.jpg",
+        "thumb": "media/two-hands-from-above.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1200,
+        "bytes": 149433,
+        "path": "media/two-hands-hero.jpg",
+        "thumb": "media/two-hands-hero.thumb.jpg"
+      },
+      {
+        "type": "image",
+        "width": 1920,
+        "height": 1200,
+        "bytes": 143871,
+        "path": "media/two-hands-side.jpg",
+        "thumb": "media/two-hands-side.thumb.jpg"
+      },
+      {
+        "type": "model",
+        "bytes": 4988048,
+        "meshes": 10,
+        "triangles": 185482,
+        "animations": 1,
+        "path": "media/two-hands.glb"
+      }
+    ],
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Two Hands is a sculpture that teaches hands-only CPR: a kneeling figure compresses a collapsed person's chest at 110 pushes a minute while a bystander phones for help and brings a defibrillator, and each push sends a pulse rippling across the plinth. Around its rim, the steps are spelled out \u2014 call, push, shock, keep going \u2014 ending with \"Anyone can do this.",
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "build_export.py",
+      "build_legend.py",
+      "build_model.py",
+      "build_scene.py",
+      "build_stage.py",
+      "check_glb.py",
+      "run.py"
+    ]
+  }
+}

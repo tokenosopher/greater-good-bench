@@ -1,14 +1,42 @@
 [
   {
-    "slug": "game",
-    "title": "Game",
-    "kind": "godot",
-    "n_runs": 10,
+    "slug": "3d-model",
+    "title": "3D model",
+    "kind": "blender",
+    "n_runs": 15,
     "models": [
       "anthropic/claude-fable-5-1",
+      "anthropic/claude-fable-5-2",
       "anthropic/claude-opus-5-5",
       "openai/gpt-6-astra",
       "openai/gpt-6.1-sol",
+      "openai/gpt-6.2-astra",
+      "openai/gpt-6.2-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/google/gemini-4-argon@google-vertex",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-11-19T02:32:26Z",
+    "thumb": "data/3d-model/runs/claude-fable-5-2-cc-high-20261119-021043/media/two-hands-back.thumb.jpg"
+  },
+  {
+    "slug": "game",
+    "title": "Game",
+    "kind": "godot",
+    "n_runs": 13,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-fable-5-2",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openai/gpt-6.2-astra",
+      "openai/gpt-6.2-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
       "openrouter/meta/muse-wonder",
@@ -16,19 +44,22 @@
       "openrouter/moonshotai/kimi-k3.1-pro",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-30T03:48:10Z",
-    "thumb": "data/game/runs/minimax-m3.1-flash-high-20261030-034211/thumb.jpg"
+    "updated": "2026-11-19T02:10:33Z",
+    "thumb": "data/game/runs/claude-fable-5-2-cc-high-20261119-012623/thumb.jpg"
   },
   {
     "slug": "website",
     "title": "Website",
     "kind": "web",
-    "n_runs": 13,
+    "n_runs": 16,
     "models": [
       "anthropic/claude-fable-5-1",
+      "anthropic/claude-fable-5-2",
       "anthropic/claude-opus-5-5",
       "openai/gpt-6-astra",
       "openai/gpt-6.1-sol",
+      "openai/gpt-6.2-astra",
+      "openai/gpt-6.2-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
       "openrouter/google/gemini-4-argon",
@@ -39,63 +70,22 @@
       "openrouter/x-ai/grok-4.7",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-30T03:42:04Z",
-    "thumb": "data/website/runs/gemini-4-argon-high-20261030-031820/thumb.jpg"
-  },
-  {
-    "slug": "3d-model",
-    "title": "3D model",
-    "kind": "blender",
-    "n_runs": 12,
-    "models": [
-      "anthropic/claude-fable-5-1",
-      "anthropic/claude-opus-5-5",
-      "openai/gpt-6-astra",
-      "openai/gpt-6.1-sol",
-      "openrouter/deepseek/deepseek-v4-pro-0813",
-      "openrouter/deepseek/deepseek-v4.1-flash-1017",
-      "openrouter/google/gemini-4-argon@google-vertex",
-      "openrouter/meta/muse-wonder",
-      "openrouter/minimax/minimax-m3.1-flash",
-      "openrouter/moonshotai/kimi-k3.1-pro",
-      "openrouter/x-ai/grok-4.7",
-      "openrouter/z-ai/glm-5.3-prime"
-    ],
-    "updated": "2026-10-30T03:29:12Z",
-    "thumb": "data/3d-model/runs/muse-wonder-high-20261030-024430/media/one_shared_home_close.thumb.jpg"
-  },
-  {
-    "slug": "svg",
-    "title": "SVG",
-    "kind": "media",
-    "n_runs": 12,
-    "models": [
-      "anthropic/claude-fable-5-1",
-      "anthropic/claude-opus-5-5",
-      "openai/gpt-6-astra",
-      "openai/gpt-6.1-sol",
-      "openrouter/deepseek/deepseek-v4-pro-0813",
-      "openrouter/deepseek/deepseek-v4.1-flash-1017",
-      "openrouter/meta/muse-wonder",
-      "openrouter/minimax/minimax-m3.1-flash",
-      "openrouter/moonshotai/kimi-k3.1-pro",
-      "openrouter/qwen/qwen3.8-max-prime",
-      "openrouter/x-ai/grok-4.7",
-      "openrouter/z-ai/glm-5.3-prime"
-    ],
-    "updated": "2026-10-30T03:05:59Z",
-    "thumb": "data/svg/runs/grok-4.7-high-20261030-023118/media/someone-is-home.thumb.jpg"
+    "updated": "2026-11-19T01:26:14Z",
+    "thumb": "data/website/runs/claude-fable-5-2-cc-high-20261119-005134/thumb.jpg"
   },
   {
     "slug": "animation",
     "title": "Animation",
     "kind": "media",
-    "n_runs": 12,
+    "n_runs": 15,
     "models": [
       "anthropic/claude-fable-5-1",
+      "anthropic/claude-fable-5-2",
       "anthropic/claude-opus-5-5",
       "openai/gpt-6-astra",
       "openai/gpt-6.1-sol",
+      "openai/gpt-6.2-astra",
+      "openai/gpt-6.2-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
       "openrouter/google/gemini-4-argon@google-vertex",
@@ -105,19 +95,22 @@
       "openrouter/x-ai/grok-4.7",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-30T02:44:26Z",
-    "thumb": "data/animation/runs/muse-wonder-high-20261030-021251/media/pause-breathe-see-each-other.thumb.jpg"
+    "updated": "2026-11-19T01:19:44Z",
+    "thumb": "data/animation/runs/claude-fable-5-2-cc-high-20261119-010627/media/be-the-heartbeat.thumb.jpg"
   },
   {
-    "slug": "essay",
-    "title": "Essay",
-    "kind": "text",
-    "n_runs": 12,
+    "slug": "svg",
+    "title": "SVG",
+    "kind": "media",
+    "n_runs": 15,
     "models": [
       "anthropic/claude-fable-5-1",
+      "anthropic/claude-fable-5-2",
       "anthropic/claude-opus-5-5",
       "openai/gpt-6-astra",
       "openai/gpt-6.1-sol",
+      "openai/gpt-6.2-astra",
+      "openai/gpt-6.2-sol",
       "openrouter/deepseek/deepseek-v4-pro-0813",
       "openrouter/deepseek/deepseek-v4.1-flash-1017",
       "openrouter/meta/muse-wonder",
@@ -127,7 +120,32 @@
       "openrouter/x-ai/grok-4.7",
       "openrouter/z-ai/glm-5.3-prime"
     ],
-    "updated": "2026-10-29T21:05:23Z",
+    "updated": "2026-11-19T01:06:25Z",
+    "thumb": "data/svg/runs/claude-fable-5-2-cc-high-20261119-005609/media/before-help-arrives.svg"
+  },
+  {
+    "slug": "essay",
+    "title": "Essay",
+    "kind": "text",
+    "n_runs": 15,
+    "models": [
+      "anthropic/claude-fable-5-1",
+      "anthropic/claude-fable-5-2",
+      "anthropic/claude-opus-5-5",
+      "openai/gpt-6-astra",
+      "openai/gpt-6.1-sol",
+      "openai/gpt-6.2-astra",
+      "openai/gpt-6.2-sol",
+      "openrouter/deepseek/deepseek-v4-pro-0813",
+      "openrouter/deepseek/deepseek-v4.1-flash-1017",
+      "openrouter/meta/muse-wonder",
+      "openrouter/minimax/minimax-m3.1-flash",
+      "openrouter/moonshotai/kimi-k3.1-pro",
+      "openrouter/qwen/qwen3.8-max-prime",
+      "openrouter/x-ai/grok-4.7",
+      "openrouter/z-ai/glm-5.3-prime"
+    ],
+    "updated": "2026-11-19T00:56:08Z",
     "thumb": null
   }
 ]

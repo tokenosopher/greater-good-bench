@@ -1,0 +1,92 @@
+{
+  "id": "claude-fable-5-2-cc-high-20261119-012623",
+  "page": "game",
+  "model": "anthropic/claude-fable-5-2",
+  "effort": "high",
+  "kind": "godot",
+  "started_at": "2026-11-19T01:26:23Z",
+  "batch": "2026-11-19-012623-game",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.327"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "bash": 23,
+      "read": 17,
+      "write": 10,
+      "edit": 2
+    }
+  },
+  "metrics": {
+    "duration_ms": 2650162,
+    "cost_usd": 14.0973518,
+    "tool_calls": 52,
+    "turns": 39,
+    "tokens_total": 214085,
+    "tokens_input": 78,
+    "tokens_output": 214007,
+    "tokens_reasoning": 112160,
+    "tokens_cache_read": 7659839
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "godot",
+    "entry": "game/index.html",
+    "engine": "dd54ab29f8a9",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "threads": false,
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Steady Hands is a first-aid game set over one ordinary day, in which the player is the nearest person at five emergencies: a cardiac arrest, a choking diner, a stroke, a severe bleed and a burn. Each moment combines quick decisions with a hands-on challenge, such as keeping the rhythm of chest compressions or holding pressure on a wound, and ends with the few rules worth remembering.",
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "export_presets.cfg",
+      "icon.svg",
+      "icon.svg.import",
+      "main.tscn",
+      "project.godot",
+      "scripts/art.gd",
+      "scripts/art.gd.uid",
+      "scripts/hud.gd",
+      "scripts/hud.gd.uid",
+      "scripts/main.gd",
+      "scripts/main.gd.uid",
+      "scripts/s_bleeding.gd",
+      "scripts/s_bleeding.gd.uid",
+      "scripts/s_burn.gd",
+      "scripts/s_burn.gd.uid",
+      "scripts/s_choking.gd",
+      "scripts/s_choking.gd.uid",
+      "scripts/s_collapse.gd",
+      "scripts/s_collapse.gd.uid",
+      "scripts/s_stroke.gd",
+      "scripts/s_stroke.gd.uid",
+      "scripts/scenario.gd",
+      "scripts/scenario.gd.uid",
+      "scripts/sfx.gd",
+      "scripts/sfx.gd.uid"
+    ]
+  }
+}

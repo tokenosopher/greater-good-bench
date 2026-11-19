@@ -1,0 +1,96 @@
+{
+  "id": "claude-fable-5-2-cc-high-20261119-005134",
+  "page": "website",
+  "model": "anthropic/claude-fable-5-2",
+  "effort": "high",
+  "kind": "web",
+  "started_at": "2026-11-19T00:51:34Z",
+  "batch": "2026-11-19-005134-website",
+  "harness": {
+    "name": "claude-code",
+    "version": "2.1.327"
+  },
+  "state": "complete",
+  "error": null,
+  "route": null,
+  "tools": {
+    "allowed": {
+      "builtin": [
+        "Bash",
+        "Read",
+        "Write",
+        "Edit",
+        "Glob",
+        "Grep"
+      ],
+      "mcp": {}
+    },
+    "used": {
+      "read": 38,
+      "bash": 21,
+      "write": 17,
+      "edit": 1
+    }
+  },
+  "metrics": {
+    "duration_ms": 2080668,
+    "cost_usd": 12.053520599999995,
+    "tool_calls": 77,
+    "turns": 45,
+    "tokens_total": 170012,
+    "tokens_input": 92,
+    "tokens_output": 169920,
+    "tokens_reasoning": 59346,
+    "tokens_cache_read": 6973843
+  },
+  "thumb": "thumb.jpg",
+  "output": {
+    "kind": "web",
+    "entry": "game/index.html",
+    "bytes": 289221,
+    "esbuild": "0.28.2",
+    "ok": true,
+    "verified": true,
+    "error": null
+  },
+  "summary": "Bystander is a ten-minute, hands-on first-aid trainer for the minutes before an ambulance arrives. Visitors practise CPR to a beat, back blows, stopping a bleed, spotting a stroke and the recovery position on posable pictogram figures, then keep a pocket card of what to remember. An always-visible emergency mode gives large step-by-step instructions and a CPR metronome for when it is happening for real.",
+  "session": {
+    "conversation": "session/conversation.json"
+  },
+  "source": {
+    "root": "source/",
+    "files": [
+      "README.md",
+      "audio.js",
+      "drill.js",
+      "drills/bleeding.js",
+      "drills/choking.js",
+      "drills/cpr.js",
+      "drills/myths.js",
+      "drills/recovery.js",
+      "drills/stroke.js",
+      "emergency.js",
+      "figure.js",
+      "fonts.css",
+      "index.html",
+      "main.js",
+      "numbers.js",
+      "package-lock.json",
+      "package.json",
+      "state.js",
+      "style.css",
+      "tools/make-fonts.mjs",
+      "tools/s/bleed.mjs",
+      "tools/s/choke.mjs",
+      "tools/s/cpr.mjs",
+      "tools/s/em.mjs",
+      "tools/s/end.mjs",
+      "tools/s/home.mjs",
+      "tools/s/mid.mjs",
+      "tools/s/mobile.mjs",
+      "tools/s/rest.mjs",
+      "tools/shot.mjs",
+      "ui.js"
+    ]
+  }
+}
